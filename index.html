@@ -1018,13 +1018,15 @@
   <div class="nav-dot active" data-section="0"><span class="tooltip">Overview</span></div>
   <div class="nav-dot" data-section="1"><span class="tooltip">Operating Model</span></div>
   <div class="nav-dot" data-section="2"><span class="tooltip">Architecture</span></div>
-  <div class="nav-dot" data-section="3"><span class="tooltip">Data Flow</span></div>
-  <div class="nav-dot" data-section="4"><span class="tooltip">Database</span></div>
-  <div class="nav-dot" data-section="5"><span class="tooltip">WhatsApp</span></div>
-  <div class="nav-dot" data-section="6"><span class="tooltip">Compliance</span></div>
-  <div class="nav-dot" data-section="7"><span class="tooltip">Security</span></div>
-  <div class="nav-dot" data-section="8"><span class="tooltip">Timeline</span></div>
-  <div class="nav-dot" data-section="9"><span class="tooltip">Approval</span></div>
+  <div class="nav-dot" data-section="3"><span class="tooltip">Technology</span></div>
+  <div class="nav-dot" data-section="4"><span class="tooltip">Data Flow</span></div>
+  <div class="nav-dot" data-section="5"><span class="tooltip">Database</span></div>
+  <div class="nav-dot" data-section="6"><span class="tooltip">WhatsApp</span></div>
+  <div class="nav-dot" data-section="7"><span class="tooltip">Compliance</span></div>
+  <div class="nav-dot" data-section="8"><span class="tooltip">Security</span></div>
+  <div class="nav-dot" data-section="9"><span class="tooltip">Timeline</span></div>
+  <div class="nav-dot" data-section="10"><span class="tooltip">Insurance</span></div>
+  <div class="nav-dot" data-section="11"><span class="tooltip">Approval</span></div>
 </nav>
 
 <!-- ===== 01: HERO ===== -->
@@ -1268,17 +1270,20 @@
         </g>
         
         <g class="particles">
-          <circle class="data-particle" r="5">
-            <animate attributeName="opacity" values="0;1;1;1;0" dur="3s" repeatCount="indefinite"/>
-            <animateMotion dur="3s" repeatCount="indefinite" path="M 140 130 L 140 160 L 300 160 L 300 200 L 350 245 L 350 290 L 350 320 L 200 320 L 200 360"/>
+          <!-- Particle 1: Dashboard → API → Database (clean path) -->
+          <circle class="data-particle" r="4">
+            <animate attributeName="opacity" values="0;1;1;1;1;0" dur="4s" repeatCount="indefinite"/>
+            <animateMotion dur="4s" repeatCount="indefinite" path="M 140 130 L 140 160 L 300 160 L 300 200 L 300 290 L 350 290 L 350 320 L 200 320 L 200 360"/>
           </circle>
-          <circle class="data-particle-gold" r="5">
-            <animate attributeName="opacity" values="0;1;1;1;0" dur="4s" repeatCount="indefinite" begin="1s"/>
-            <animateMotion dur="4s" repeatCount="indefinite" begin="1s" path="M 740 130 L 740 160 L 600 160 L 600 200 L 500 245 L 450 290 L 450 320 L 420 320 L 420 360"/>
+          <!-- Particle 2: Operative → API → Storage (gold, clean path) -->
+          <circle class="data-particle-gold" r="4">
+            <animate attributeName="opacity" values="0;1;1;1;1;0" dur="5s" repeatCount="indefinite" begin="1.5s"/>
+            <animateMotion dur="5s" repeatCount="indefinite" begin="1.5s" path="M 740 130 L 740 160 L 600 160 L 600 200 L 600 290 L 450 290 L 450 320 L 420 320 L 420 360"/>
           </circle>
-          <circle class="data-particle" r="5">
-            <animate attributeName="opacity" values="0;1;1;1;0" dur="3.5s" repeatCount="indefinite" begin="2s"/>
-            <animateMotion dur="3.5s" repeatCount="indefinite" begin="2s" path="M 540 130 L 540 160 L 500 160 L 500 200 L 550 245 L 600 290 L 600 320 L 670 320 L 670 360"/>
+          <!-- Particle 3: Sophie → API → External Services (clean path) -->
+          <circle class="data-particle" r="4">
+            <animate attributeName="opacity" values="0;1;1;1;1;0" dur="4.5s" repeatCount="indefinite" begin="3s"/>
+            <animateMotion dur="4.5s" repeatCount="indefinite" begin="3s" path="M 540 130 L 540 160 L 500 160 L 500 200 L 500 290 L 600 290 L 600 320 L 670 320 L 670 360"/>
           </circle>
         </g>
         
@@ -1308,8 +1313,138 @@
   </div>
 </section>
 
-<!-- ===== 03: DATA FLOW ===== -->
-<section class="section dot-grid" id="section-3">
+<!-- ===== 03: TECHNOLOGY DEEP DIVE ===== -->
+<section class="section" id="section-3">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Technology / 003</span>
+    </div>
+    
+    <h2 class="fade-up">Technology <span class="text-cyan">Stack</span></h2>
+    
+    <p class="fade-up">Every technology chosen for reliability, security, and long-term support. Here's what we're using and why.</p>
+    
+    <div class="grid grid-2 fade-up" style="margin-top: 2rem; align-items: start;">
+      <!-- Supabase -->
+      <div class="card" style="border-left: 3px solid var(--color-cyan);">
+        <h4 style="display: flex; align-items: center; gap: 0.5rem;">
+          <span style="font-size: 1.5rem;">🗄️</span> Supabase
+        </h4>
+        <p style="margin-bottom: 1rem;"><strong>What it is:</strong> A managed database service built on PostgreSQL — the same database technology used by Instagram, Spotify, and Netflix.</p>
+        <p style="margin-bottom: 1rem;"><strong>Why we chose it:</strong></p>
+        <ul style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 1.25rem; margin-bottom: 1rem;">
+          <li>UK data centre (London) — your data stays in the UK</li>
+          <li>Built-in authentication and security</li>
+          <li>Row-level security for multi-tenant isolation</li>
+          <li>Real-time subscriptions for live updates</li>
+          <li>99.9% uptime guarantee</li>
+        </ul>
+        <span class="badge badge-cyan">Database</span>
+        <span class="badge badge-green">Auth</span>
+        <span class="badge badge-gold">Storage</span>
+      </div>
+      
+      <!-- Vercel -->
+      <div class="card" style="border-left: 3px solid var(--color-gold);">
+        <h4 style="display: flex; align-items: center; gap: 0.5rem;">
+          <span style="font-size: 1.5rem;">🚀</span> Vercel
+        </h4>
+        <p style="margin-bottom: 1rem;"><strong>What it is:</strong> A cloud hosting platform that runs your web application. Think of it as the "building" where your software lives.</p>
+        <p style="margin-bottom: 1rem;"><strong>Why we chose it:</strong></p>
+        <ul style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 1.25rem; margin-bottom: 1rem;">
+          <li>Global edge network — fast for users anywhere in the UK</li>
+          <li>Automatic scaling — handles 10 users or 10,000 users</li>
+          <li>Zero-downtime deployments — updates without interruption</li>
+          <li>Built-in SSL certificates — secure by default</li>
+          <li>Used by McDonald's, Twitch, and The Washington Post</li>
+        </ul>
+        <span class="badge badge-gold">Hosting</span>
+        <span class="badge badge-cyan">CDN</span>
+      </div>
+      
+      <!-- Next.js -->
+      <div class="card" style="border-left: 3px solid var(--color-green);">
+        <h4 style="display: flex; align-items: center; gap: 0.5rem;">
+          <span style="font-size: 1.5rem;">⚛️</span> Next.js
+        </h4>
+        <p style="margin-bottom: 1rem;"><strong>What it is:</strong> The framework that builds the actual web application — the screens, buttons, and interactions Liam will use daily.</p>
+        <p style="margin-bottom: 1rem;"><strong>Why we chose it:</strong></p>
+        <ul style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 1.25rem; margin-bottom: 1rem;">
+          <li>Industry standard — used by Nike, Hulu, TikTok</li>
+          <li>Fast page loads — content appears instantly</li>
+          <li>Built by Vercel — perfect integration</li>
+          <li>Huge developer ecosystem — easy to maintain</li>
+          <li>Server and client in one codebase — simpler, faster</li>
+        </ul>
+        <span class="badge badge-green">Framework</span>
+        <span class="badge badge-cyan">React</span>
+      </div>
+      
+      <!-- GitHub -->
+      <div class="card" style="border-left: 3px solid var(--color-purple);">
+        <h4 style="display: flex; align-items: center; gap: 0.5rem;">
+          <span style="font-size: 1.5rem;">🐙</span> GitHub
+        </h4>
+        <p style="margin-bottom: 1rem;"><strong>What it is:</strong> Where all the code is stored and versioned. Like a filing cabinet that tracks every change ever made.</p>
+        <p style="margin-bottom: 1rem;"><strong>Why we chose it:</strong></p>
+        <ul style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 1.25rem; margin-bottom: 1rem;">
+          <li>Industry standard — 100 million developers use it</li>
+          <li>Complete history — see every change, who made it, when</li>
+          <li>Owned by Microsoft — not going anywhere</li>
+          <li>Automatic backups — code is never lost</li>
+          <li>Collaboration tools — multiple developers can work safely</li>
+        </ul>
+        <span class="badge badge-purple">Code Storage</span>
+        <span class="badge badge-gold">Version Control</span>
+      </div>
+      
+      <!-- WhatsApp Business API -->
+      <div class="card" style="border-left: 3px solid #25D366;">
+        <h4 style="display: flex; align-items: center; gap: 0.5rem;">
+          <span style="font-size: 1.5rem;">💬</span> WhatsApp Business API
+        </h4>
+        <p style="margin-bottom: 1rem;"><strong>What it is:</strong> The official way for businesses to send and receive WhatsApp messages programmatically.</p>
+        <p style="margin-bottom: 1rem;"><strong>Why we chose it:</strong></p>
+        <ul style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 1.25rem; margin-bottom: 1rem;">
+          <li>Everyone already has WhatsApp — no app to download</li>
+          <li>Official Meta API — reliable, compliant, supported</li>
+          <li>End-to-end encryption — messages are secure</li>
+          <li>Delivery receipts — know when messages are read</li>
+          <li>~£0.03 per message — much cheaper than SMS</li>
+        </ul>
+        <span class="badge" style="background: rgba(37, 211, 102, 0.15); color: #25D366;">Messaging</span>
+        <span class="badge badge-cyan">Official API</span>
+      </div>
+      
+      <!-- OpenAI -->
+      <div class="card" style="border-left: 3px solid #10a37f;">
+        <h4 style="display: flex; align-items: center; gap: 0.5rem;">
+          <span style="font-size: 1.5rem;">🤖</span> OpenAI (Sophie AI)
+        </h4>
+        <p style="margin-bottom: 1rem;"><strong>What it is:</strong> The AI technology powering Sophie, your recruitment assistant who qualifies candidates 24/7.</p>
+        <p style="margin-bottom: 1rem;"><strong>Why we chose it:</strong></p>
+        <ul style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 1.25rem; margin-bottom: 1rem;">
+          <li>GPT-4 — the most capable AI model available</li>
+          <li>Natural conversations — candidates don't know it's AI</li>
+          <li>Understands context — handles follow-up questions</li>
+          <li>~£0.30 per applicant — vs £500+ agency fee</li>
+          <li>Works 24/7 — never sleeps, never takes holidays</li>
+        </ul>
+        <span class="badge" style="background: rgba(16, 163, 127, 0.15); color: #10a37f;">AI</span>
+        <span class="badge badge-gold">GPT-4</span>
+      </div>
+    </div>
+    
+    <div class="card fade-up" style="margin-top: 2rem; border-color: var(--color-cyan); background: rgba(6, 182, 212, 0.05);">
+      <h4 style="color: var(--color-cyan);">No Vendor Lock-In</h4>
+      <p>All technologies use open standards. If you ever want to move providers, your data and code come with you. You own everything.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04: DATA FLOW ===== -->
+<section class="section dot-grid" id="section-4">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -1357,7 +1492,7 @@
 </section>
 
 <!-- ===== 04: DATABASE ===== -->
-<section class="section" id="section-4">
+<section class="section" id="section-5">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -1449,7 +1584,7 @@
 </section>
 
 <!-- ===== 05: WHATSAPP ===== -->
-<section class="section line-grid" id="section-5">
+<section class="section line-grid" id="section-6">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -1518,7 +1653,7 @@
 </section>
 
 <!-- ===== 06: COMPLIANCE ===== -->
-<section class="section dot-grid" id="section-6">
+<section class="section dot-grid" id="section-7">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -1572,7 +1707,7 @@
 </section>
 
 <!-- ===== 07: SECURITY ===== -->
-<section class="section" id="section-7">
+<section class="section" id="section-8">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -1637,7 +1772,7 @@
 </section>
 
 <!-- ===== 08: TIMELINE ===== -->
-<section class="section line-grid" id="section-8">
+<section class="section line-grid" id="section-9">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -1697,8 +1832,68 @@
   </div>
 </section>
 
-<!-- ===== 08: CTA ===== -->
-<section class="section cta-section dot-grid" id="section-9">
+<!-- ===== 10: RISK & INSURANCE ===== -->
+<section class="section" id="section-10">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Risk & Insurance / 010</span>
+    </div>
+    
+    <h2 class="fade-up">Key Person <span class="text-gold">Insurance</span></h2>
+    
+    <p class="fade-up">Protecting your investment and ensuring business continuity.</p>
+    
+    <div class="grid grid-2 fade-up" style="margin-top: 2rem; align-items: start;">
+      <div>
+        <h3 style="color: var(--color-gold);">What is Key Person Insurance?</h3>
+        <p style="margin-bottom: 1.5rem;">Key Person Insurance protects businesses against the loss of individuals critical to operations. For the BOS project, this covers scenarios where Cold Lava's key developers become unavailable.</p>
+        
+        <div class="card" style="border-left: 3px solid var(--color-gold);">
+          <h4>Coverage Includes</h4>
+          <ul style="color: var(--color-text-secondary); font-size: 0.875rem; padding-left: 1.25rem;">
+            <li>Costs to hire replacement developers</li>
+            <li>Training time for new team members</li>
+            <li>Project delays and business interruption</li>
+            <li>Documentation and knowledge transfer</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div>
+        <h3 style="color: var(--color-cyan);">Your Protections</h3>
+        
+        <div class="card" style="margin-bottom: 1rem; border-color: var(--color-green);">
+          <h4 style="color: var(--color-green);">✓ Full Code Ownership</h4>
+          <p>All code is stored in <strong>your</strong> GitHub repository (Aztec-Landscapes). You own it. Any developer can pick it up.</p>
+        </div>
+        
+        <div class="card" style="margin-bottom: 1rem; border-color: var(--color-green);">
+          <h4 style="color: var(--color-green);">✓ Industry-Standard Stack</h4>
+          <p>We use mainstream technologies (Next.js, Supabase, PostgreSQL). Thousands of developers worldwide can work on this.</p>
+        </div>
+        
+        <div class="card" style="margin-bottom: 1rem; border-color: var(--color-green);">
+          <h4 style="color: var(--color-green);">✓ Comprehensive Documentation</h4>
+          <p>Every system is documented. Database schemas, API specs, deployment guides — all maintained in the repository.</p>
+        </div>
+        
+        <div class="card" style="border-color: var(--color-green);">
+          <h4 style="color: var(--color-green);">✓ No Proprietary Lock-In</h4>
+          <p>No custom frameworks or obscure libraries. If Cold Lava disappeared tomorrow, any competent agency could continue the work.</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card fade-up" style="margin-top: 2rem; border-color: var(--color-gold); background: rgba(201, 169, 98, 0.05);">
+      <h4 style="color: var(--color-gold);">Cold Lava's Recommendation</h4>
+      <p>While the technical risk is mitigated by code ownership and standard technologies, we recommend discussing key person insurance with your business insurance provider. This provides financial protection and peace of mind for a mission-critical system.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 11: APPROVAL ===== -->
+<section class="section cta-section dot-grid" id="section-11">
   <div class="corner tl"></div>
   <div class="corner br"></div>
   
