@@ -47,6 +47,77 @@
       --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     }
     
+    /* ===== PROGRESS BAR ===== */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--color-cyan), var(--color-gold));
+      z-index: 10000;
+      transition: width 0.1s ease;
+    }
+    
+    /* ===== SECTION NAV ===== */
+    .section-nav {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-dot:hover {
+      border-color: var(--color-cyan);
+      transform: scale(1.2);
+    }
+    
+    .nav-dot.active {
+      background: var(--color-cyan);
+      border-color: var(--color-cyan);
+      box-shadow: 0 0 15px var(--color-cyan-glow);
+    }
+    
+    .nav-dot .tooltip {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.9);
+      border: 1px solid var(--color-border);
+      padding: 0.5rem 0.75rem;
+      font-size: 0.7rem;
+      font-family: var(--font-mono);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .nav-dot:hover .tooltip {
+      opacity: 1;
+    }
+    
+    @media (max-width: 768px) {
+      .section-nav { display: none; }
+    }
+    
+    /* ===== CONTAINER ===== */
     .container {
       max-width: 1400px;
       margin: 0 auto;
@@ -71,6 +142,12 @@
       transform: translateY(40px);
     }
     
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    
+    /* ===== BACKGROUNDS ===== */
     .dot-grid {
       background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
       background-size: 32px 32px;
@@ -81,6 +158,27 @@
         linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
       background-size: 60px 60px;
+    }
+    
+    /* Parallax floating elements */
+    .float-element {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.1;
+    }
+    
+    .float-circle {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 1px solid var(--color-cyan);
+    }
+    
+    .float-square {
+      width: 200px;
+      height: 200px;
+      border: 1px solid var(--color-gold);
+      transform: rotate(45deg);
     }
     
     .grain {
@@ -95,6 +193,7 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     }
     
+    /* ===== SECTION LABELS ===== */
     .section-label {
       display: flex;
       align-items: center;
@@ -116,6 +215,7 @@
       color: var(--color-text-muted);
     }
     
+    /* ===== TYPOGRAPHY ===== */
     h1 {
       font-size: clamp(3rem, 10vw, 6rem);
       font-weight: 700;
@@ -145,12 +245,14 @@
       max-width: 700px;
     }
     
+    /* ===== HERO ===== */
     .hero {
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       position: relative;
+      overflow: hidden;
     }
     
     .hero-title .block {
@@ -191,6 +293,38 @@
       100% { top: 100%; opacity: 0; }
     }
     
+    /* Animated background lines */
+    .hero-bg-lines {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    
+    .hero-bg-lines .line {
+      position: absolute;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--color-cyan), transparent);
+      opacity: 0.1;
+      animation: linePulse 3s ease-in-out infinite;
+    }
+    
+    .hero-bg-lines .line:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .hero-bg-lines .line:nth-child(2) { left: 25%; animation-delay: 0.5s; }
+    .hero-bg-lines .line:nth-child(3) { left: 50%; animation-delay: 1s; }
+    .hero-bg-lines .line:nth-child(4) { left: 75%; animation-delay: 1.5s; }
+    .hero-bg-lines .line:nth-child(5) { left: 90%; animation-delay: 2s; }
+    
+    @keyframes linePulse {
+      0%, 100% { opacity: 0.05; }
+      50% { opacity: 0.15; }
+    }
+    
+    /* ===== GRID ===== */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -200,32 +334,34 @@
     
     .grid-2 { grid-template-columns: repeat(2, 1fr); }
     .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
     
     @media (max-width: 1024px) {
-      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
     }
     
+    /* ===== CARDS ===== */
     .card {
       position: relative;
       padding: 1.5rem;
       background: var(--color-bg-card);
       border: 1px solid var(--color-border);
       transition: all 0.5s var(--ease-out-expo);
+      overflow: hidden;
     }
     
-    .card::before, .card::after {
+    .card::before {
       content: '';
       position: absolute;
-      width: 20px;
-      height: 20px;
-      border-color: var(--color-cyan);
-      border-style: solid;
-      opacity: 0;
-      transition: opacity 0.5s ease;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-cyan), var(--color-gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s var(--ease-out-expo);
     }
-    
-    .card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
-    .card::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
     
     .card:hover {
       border-color: var(--color-cyan);
@@ -233,7 +369,9 @@
       transform: translateY(-4px);
     }
     
-    .card:hover::before, .card:hover::after { opacity: 0.6; }
+    .card:hover::before {
+      transform: scaleX(1);
+    }
     
     .card-number {
       font-family: var(--font-mono);
@@ -255,22 +393,7 @@
       margin-bottom: 0;
     }
     
-    .badge {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 0.625rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 0.25rem 0.75rem;
-      border-radius: 2px;
-    }
-    
-    .badge-cyan { background: rgba(6, 182, 212, 0.15); color: var(--color-cyan); }
-    .badge-gold { background: rgba(201, 169, 98, 0.15); color: var(--color-gold); }
-    .badge-red { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
-    .badge-green { background: rgba(16, 185, 129, 0.15); color: var(--color-green); }
-    .badge-purple { background: rgba(139, 92, 246, 0.15); color: var(--color-purple); }
-    
+    /* ===== STATS ===== */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -287,6 +410,24 @@
       padding: 1.5rem;
       background: var(--color-bg-card);
       border: 1px solid var(--color-border);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stat-item::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--color-cyan);
+      transform: scaleX(0);
+      transition: transform 1s var(--ease-out-expo);
+    }
+    
+    .stat-item.animate::after {
+      transform: scaleX(1);
     }
     
     .stat-number {
@@ -302,7 +443,24 @@
       margin-top: 0.5rem;
     }
     
-    /* ===== SVG ARCHITECTURE DIAGRAM ===== */
+    /* ===== BADGES ===== */
+    .badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 2px;
+    }
+    
+    .badge-cyan { background: rgba(6, 182, 212, 0.15); color: var(--color-cyan); }
+    .badge-gold { background: rgba(201, 169, 98, 0.15); color: var(--color-gold); }
+    .badge-red { background: rgba(239, 68, 68, 0.15); color: var(--color-red); }
+    .badge-green { background: rgba(16, 185, 129, 0.15); color: var(--color-green); }
+    .badge-purple { background: rgba(139, 92, 246, 0.15); color: var(--color-purple); }
+    
+    /* ===== SVG ARCHITECTURE ===== */
     .arch-svg-container {
       width: 100%;
       margin: 3rem 0;
@@ -318,11 +476,12 @@
     .arch-svg .box {
       fill: #0a0a0a;
       stroke-width: 1.5;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
     }
     
     .arch-svg .box:hover {
       filter: url(#glow);
+      cursor: pointer;
     }
     
     .arch-svg .box-cyan { stroke: var(--color-cyan); }
@@ -352,7 +511,6 @@
     .arch-svg .connection-cyan { stroke: var(--color-cyan); }
     .arch-svg .connection-gold { stroke: var(--color-gold); }
     
-    /* Animated dashes */
     .arch-svg .flow-line {
       stroke-dasharray: 8 4;
       animation: flowDash 1s linear infinite;
@@ -362,7 +520,6 @@
       to { stroke-dashoffset: -12; }
     }
     
-    /* Data particles */
     .data-particle {
       fill: var(--color-cyan);
       filter: url(#glow);
@@ -373,7 +530,7 @@
       filter: url(#glowGold);
     }
     
-    /* Code blocks */
+    /* ===== CODE BLOCKS ===== */
     .code-block {
       background: rgba(0, 0, 0, 0.5);
       border: 1px solid var(--color-border);
@@ -381,6 +538,17 @@
       padding: 1.5rem;
       overflow-x: auto;
       margin: 1.5rem 0;
+      position: relative;
+    }
+    
+    .code-block::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
     }
     
     .code-block pre {
@@ -424,7 +592,35 @@
       margin-left: auto;
     }
     
-    /* Table */
+    /* Typing animation for code */
+    .code-typing .line {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    
+    .code-typing.animate .line {
+      animation: typeIn 0.3s ease forwards;
+    }
+    
+    .code-typing.animate .line:nth-child(1) { animation-delay: 0s; }
+    .code-typing.animate .line:nth-child(2) { animation-delay: 0.1s; }
+    .code-typing.animate .line:nth-child(3) { animation-delay: 0.2s; }
+    .code-typing.animate .line:nth-child(4) { animation-delay: 0.3s; }
+    .code-typing.animate .line:nth-child(5) { animation-delay: 0.4s; }
+    .code-typing.animate .line:nth-child(6) { animation-delay: 0.5s; }
+    .code-typing.animate .line:nth-child(7) { animation-delay: 0.6s; }
+    .code-typing.animate .line:nth-child(8) { animation-delay: 0.7s; }
+    .code-typing.animate .line:nth-child(9) { animation-delay: 0.8s; }
+    .code-typing.animate .line:nth-child(10) { animation-delay: 0.9s; }
+    
+    @keyframes typeIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    /* ===== TABLE ===== */
     .table {
       width: 100%;
       border-collapse: collapse;
@@ -451,6 +647,14 @@
       color: var(--color-text-secondary);
     }
     
+    .table tr {
+      transition: background 0.3s ease;
+    }
+    
+    .table tbody tr:hover {
+      background: rgba(6, 182, 212, 0.05);
+    }
+    
     .table code {
       font-family: var(--font-mono);
       font-size: 0.75rem;
@@ -460,13 +664,14 @@
       color: var(--color-cyan);
     }
     
-    /* WhatsApp mockup */
+    /* ===== WHATSAPP ===== */
     .whatsapp-chat {
       max-width: 360px;
       margin: 1.5rem 0;
       background: #0b141a;
       border-radius: 8px;
       overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     }
     
     .whatsapp-header {
@@ -501,7 +706,7 @@
     
     .whatsapp-messages {
       padding: 1rem;
-      min-height: 180px;
+      min-height: 200px;
     }
     
     .wa-msg {
@@ -511,6 +716,19 @@
       margin-bottom: 0.5rem;
       font-size: 0.8rem;
       line-height: 1.4;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    
+    .wa-msg.animate {
+      animation: msgIn 0.4s ease forwards;
+    }
+    
+    @keyframes msgIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
     
     .wa-msg.incoming {
@@ -531,7 +749,7 @@
       margin-top: 0.25rem;
     }
     
-    /* Flow diagram */
+    /* ===== ANIMATED FLOW ===== */
     .animated-flow {
       display: flex;
       align-items: center;
@@ -615,7 +833,7 @@
       100% { left: calc(100% - 4px); opacity: 0; }
     }
     
-    /* Timeline */
+    /* ===== TIMELINE ===== */
     .timeline {
       position: relative;
       margin: 2rem 0;
@@ -659,11 +877,12 @@
       background: var(--color-bg-card);
       border: 1px solid var(--color-border);
       padding: 1.25rem;
-      transition: border-color 0.3s ease;
+      transition: all 0.3s ease;
     }
     
     .timeline-content:hover {
       border-color: var(--color-cyan);
+      transform: translateX(4px);
     }
     
     .timeline-phase {
@@ -694,50 +913,7 @@
       display: inline-block;
     }
     
-    /* CTA */
-    .cta-section {
-      text-align: center;
-      padding: 8rem 0;
-    }
-    
-    .btn {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      padding: 1rem 2.5rem;
-      text-decoration: none;
-      transition: all 0.4s var(--ease-out-expo);
-    }
-    
-    .btn-primary {
-      background: var(--color-gold);
-      color: #000;
-    }
-    
-    .btn-primary:hover {
-      background: #D4B76E;
-      box-shadow: 0 0 40px var(--color-gold-glow);
-      transform: translateY(-2px);
-    }
-    
-    /* File tree */
-    .file-tree {
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      line-height: 1.7;
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--color-border);
-      padding: 1.25rem;
-      color: var(--color-text-secondary);
-    }
-    
-    .file-tree .folder { color: var(--color-gold); }
-    .file-tree .file { color: var(--color-text-secondary); }
-    .file-tree .special { color: var(--color-cyan); }
-    
-    /* ER diagram */
+    /* ===== ER DIAGRAM ===== */
     .er-diagram {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -755,6 +931,7 @@
     .er-table:hover {
       border-color: var(--color-cyan);
       box-shadow: 0 0 20px var(--color-cyan-glow);
+      transform: translateY(-2px);
     }
     
     .er-table-name {
@@ -784,17 +961,89 @@
     .er-col .fk { color: var(--color-purple); }
     .er-col .name { color: var(--color-text-secondary); }
     .er-col .type { color: var(--color-text-muted); font-size: 0.6rem; }
+    
+    /* ===== CTA ===== */
+    .cta-section {
+      text-align: center;
+      padding: 8rem 0;
+    }
+    
+    .btn {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      transition: all 0.4s var(--ease-out-expo);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .btn:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary {
+      background: var(--color-gold);
+      color: #000;
+    }
+    
+    .btn-primary:hover {
+      background: #D4B76E;
+      box-shadow: 0 0 40px var(--color-gold-glow);
+      transform: translateY(-2px);
+    }
   </style>
 </head>
 <body>
 
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- Section Navigation -->
+<nav class="section-nav" id="sectionNav">
+  <div class="nav-dot active" data-section="0"><span class="tooltip">Overview</span></div>
+  <div class="nav-dot" data-section="1"><span class="tooltip">Architecture</span></div>
+  <div class="nav-dot" data-section="2"><span class="tooltip">Data Flow</span></div>
+  <div class="nav-dot" data-section="3"><span class="tooltip">Database</span></div>
+  <div class="nav-dot" data-section="4"><span class="tooltip">WhatsApp</span></div>
+  <div class="nav-dot" data-section="5"><span class="tooltip">Compliance</span></div>
+  <div class="nav-dot" data-section="6"><span class="tooltip">Timeline</span></div>
+  <div class="nav-dot" data-section="7"><span class="tooltip">Get Started</span></div>
+</nav>
+
 <!-- ===== 01: HERO ===== -->
-<section class="section hero dot-grid">
+<section class="section hero dot-grid" id="section-0">
+  <div class="hero-bg-lines">
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+  
   <div class="corner tl"></div>
   <div class="corner br"></div>
   <div class="scan-line"></div>
   
-  <div class="container">
+  <!-- Floating elements for parallax -->
+  <div class="float-element float-circle" style="top: 10%; left: -5%;" data-speed="0.05"></div>
+  <div class="float-element float-square" style="bottom: 20%; right: -3%;" data-speed="0.08"></div>
+  
+  <div class="container" style="position: relative; z-index: 1;">
     <div class="section-label fade-up">
       <div class="label-line"></div>
       <span class="label">Technical Architecture Overview</span>
@@ -812,7 +1061,7 @@
     <div class="stats-grid fade-up" style="max-width: 900px; margin: 3rem auto;">
       <div class="stat-item">
         <div class="stat-number" data-count="10">0</div>
-        <div class="stat-label">Core Database Tables</div>
+        <div class="stat-label">Core Tables</div>
       </div>
       <div class="stat-item">
         <div class="stat-number" data-count="25">0</div>
@@ -820,11 +1069,11 @@
       </div>
       <div class="stat-item">
         <div class="stat-number" data-count="3">0</div>
-        <div class="stat-label">Integration Points</div>
+        <div class="stat-label">Integrations</div>
       </div>
       <div class="stat-item">
         <div class="stat-number" data-count="1">0</div>
-        <div class="stat-label">AI Agent (Sophie)</div>
+        <div class="stat-label">AI Agent</div>
       </div>
     </div>
     
@@ -836,8 +1085,8 @@
   </div>
 </section>
 
-<!-- ===== 02: ANIMATED ARCHITECTURE ===== -->
-<section class="section line-grid">
+<!-- ===== 02: ARCHITECTURE ===== -->
+<section class="section line-grid" id="section-1">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -851,7 +1100,6 @@
     <div class="arch-svg-container fade-up">
       <svg class="arch-svg" viewBox="0 0 1000 550">
         <defs>
-          <!-- Glow filters -->
           <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
             <feMerge>
@@ -866,14 +1114,8 @@
               <feMergeNode in="SourceGraphic"/>
             </feMerge>
           </filter>
-          
-          <!-- Arrow markers -->
-          <marker id="arrowCyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-            <polygon points="0 0, 10 3.5, 0 7" fill="#06B6D4"/>
-          </marker>
         </defs>
         
-        <!-- ===== USER INTERFACES ROW ===== -->
         <text x="500" y="30" text-anchor="middle" class="sub-text" style="font-size: 10px; fill: rgba(255,255,255,0.4);">USER INTERFACES</text>
         
         <!-- Liam Dashboard -->
@@ -904,7 +1146,6 @@
           <text x="740" y="105" text-anchor="middle" class="sub-text">WhatsApp</text>
         </g>
         
-        <!-- ===== API LAYER ===== -->
         <text x="500" y="180" text-anchor="middle" class="sub-text" style="font-size: 10px; fill: rgba(255,255,255,0.4);">API LAYER</text>
         
         <g class="arch-node" data-node="api">
@@ -917,24 +1158,20 @@
           <text x="740" y="265" text-anchor="middle" class="sub-text">/documents</text>
         </g>
         
-        <!-- ===== DATA LAYER ===== -->
         <text x="500" y="340" text-anchor="middle" class="sub-text" style="font-size: 10px; fill: rgba(255,255,255,0.4);">DATA & SERVICES</text>
         
-        <!-- PostgreSQL -->
         <g class="arch-node" data-node="database">
           <rect x="100" y="360" width="200" height="90" rx="4" class="box box-cyan"/>
           <text x="200" y="400" text-anchor="middle" class="label-text">PostgreSQL</text>
           <text x="200" y="425" text-anchor="middle" class="sub-text">Supabase • London</text>
         </g>
         
-        <!-- Storage -->
         <g class="arch-node" data-node="storage">
           <rect x="340" y="360" width="160" height="90" rx="4" class="box box-gold"/>
           <text x="420" y="400" text-anchor="middle" class="label-text">File Storage</text>
           <text x="420" y="425" text-anchor="middle" class="sub-text">Documents</text>
         </g>
         
-        <!-- External Services -->
         <g class="arch-node" data-node="external">
           <rect x="540" y="360" width="260" height="90" rx="4" class="box box-green"/>
           <text x="670" y="395" text-anchor="middle" class="label-text">External Services</text>
@@ -943,52 +1180,31 @@
           <text x="740" y="420" text-anchor="middle" class="sub-text">Gov.uk</text>
         </g>
         
-        <!-- ===== CONNECTION LINES ===== -->
         <g class="connections">
-          <!-- Dashboard to API -->
           <path d="M 140 130 L 140 160 L 300 160 L 300 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
-          
-          <!-- Site Manager to API -->
           <path d="M 340 130 L 340 160 L 400 160 L 400 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
-          
-          <!-- Sophie to API -->
           <path d="M 540 130 L 540 160 L 500 160 L 500 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
-          
-          <!-- Operative to API -->
           <path d="M 740 130 L 740 160 L 600 160 L 600 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
-          
-          <!-- API to Database -->
           <path d="M 350 290 L 350 320 L 200 320 L 200 360" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
-          
-          <!-- API to Storage -->
           <path d="M 450 290 L 450 320 L 420 320 L 420 360" class="connection connection-gold flow-line" style="opacity: 0.6;"/>
-          
-          <!-- API to External -->
           <path d="M 600 290 L 600 320 L 670 320 L 670 360" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
         </g>
         
-        <!-- ===== DATA PARTICLES ===== -->
         <g class="particles">
-          <!-- Particle 1: Dashboard → API → DB -->
           <circle class="data-particle" r="5">
             <animate attributeName="opacity" values="0;1;1;1;0" dur="3s" repeatCount="indefinite"/>
             <animateMotion dur="3s" repeatCount="indefinite" path="M 140 130 L 140 160 L 300 160 L 300 200 L 350 245 L 350 290 L 350 320 L 200 320 L 200 360"/>
           </circle>
-          
-          <!-- Particle 2: Operative → API → Storage -->
           <circle class="data-particle-gold" r="5">
             <animate attributeName="opacity" values="0;1;1;1;0" dur="4s" repeatCount="indefinite" begin="1s"/>
             <animateMotion dur="4s" repeatCount="indefinite" begin="1s" path="M 740 130 L 740 160 L 600 160 L 600 200 L 500 245 L 450 290 L 450 320 L 420 320 L 420 360"/>
           </circle>
-          
-          <!-- Particle 3: Sophie → API → External -->
           <circle class="data-particle" r="5">
             <animate attributeName="opacity" values="0;1;1;1;0" dur="3.5s" repeatCount="indefinite" begin="2s"/>
             <animateMotion dur="3.5s" repeatCount="indefinite" begin="2s" path="M 540 130 L 540 160 L 500 160 L 500 200 L 550 245 L 600 290 L 600 320 L 670 320 L 670 360"/>
           </circle>
         </g>
         
-        <!-- ===== LIVE INDICATOR ===== -->
         <g transform="translate(900, 20)">
           <circle r="5" fill="#10B981">
             <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
@@ -1016,7 +1232,7 @@
 </section>
 
 <!-- ===== 03: DATA FLOW ===== -->
-<section class="section dot-grid">
+<section class="section dot-grid" id="section-2">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -1025,88 +1241,46 @@
     
     <h2 class="fade-up">Labour Request <span class="text-cyan">Flow</span></h2>
     
-    <p class="fade-up">Watch a labour request flow through the system — from site need to operative allocation.</p>
+    <p class="fade-up">Watch a labour request flow through the system.</p>
     
     <div class="animated-flow" id="labour-flow">
-      <div class="flow-step" data-step="1">
-        <strong>1. Request</strong>
-        <span>Site raises need</span>
-      </div>
+      <div class="flow-step" data-step="1"><strong>1. Request</strong><span>Site need</span></div>
       <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="2">
-        <strong>2. Realloc</strong>
-        <span>Check finishing jobs</span>
-      </div>
+      <div class="flow-step" data-step="2"><strong>2. Realloc</strong><span>Check jobs</span></div>
       <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="3">
-        <strong>3. Search</strong>
-        <span>Query labour pool</span>
-      </div>
+      <div class="flow-step" data-step="3"><strong>3. Search</strong><span>Labour pool</span></div>
       <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="4">
-        <strong>4. Match</strong>
-        <span>Skills + location</span>
-      </div>
+      <div class="flow-step" data-step="4"><strong>4. Match</strong><span>Skills+loc</span></div>
       <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="5">
-        <strong>5. Offer</strong>
-        <span>WhatsApp message</span>
-      </div>
+      <div class="flow-step" data-step="5"><strong>5. Offer</strong><span>WhatsApp</span></div>
       <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="6">
-        <strong>6. Confirm</strong>
-        <span>Operative accepts</span>
-      </div>
+      <div class="flow-step" data-step="6"><strong>6. Confirm</strong><span>Accept</span></div>
       <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step active" data-step="7">
-        <strong>7. Allocate</strong>
-        <span>Assignment complete</span>
-      </div>
+      <div class="flow-step active" data-step="7"><strong>7. Allocate</strong><span>Complete</span></div>
     </div>
     
-    <h3 class="fade-up" style="margin-top: 3rem;">Sophie AI Qualification Flow</h3>
+    <h3 class="fade-up" style="margin-top: 3rem;">Sophie AI Qualification</h3>
     
     <div class="animated-flow" id="sophie-flow">
-      <div class="flow-step" data-step="1">
-        <strong>Greeting</strong>
-        <span>Present job</span>
-      </div>
+      <div class="flow-step" data-step="1"><strong>Greeting</strong><span>Job details</span></div>
       <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step gate" data-step="2">
-        <strong>RTW?</strong>
-        <span>GATE 1</span>
-      </div>
+      <div class="flow-step gate" data-step="2"><strong>RTW?</strong><span>GATE 1</span></div>
       <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step gate" data-step="3">
-        <strong>18+?</strong>
-        <span>GATE 2</span>
-      </div>
+      <div class="flow-step gate" data-step="3"><strong>18+?</strong><span>GATE 2</span></div>
       <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="4">
-        <strong>CSCS</strong>
-        <span>Card check</span>
-      </div>
+      <div class="flow-step" data-step="4"><strong>CSCS</strong><span>Card check</span></div>
       <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="5">
-        <strong>Details</strong>
-        <span>Collect info</span>
-      </div>
+      <div class="flow-step" data-step="5"><strong>Details</strong><span>Info</span></div>
       <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="6">
-        <strong>Docs</strong>
-        <span>Upload request</span>
-      </div>
+      <div class="flow-step" data-step="6"><strong>Docs</strong><span>Upload</span></div>
       <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step active" data-step="7">
-        <strong>Qualified</strong>
-        <span>Pass to Liam</span>
-      </div>
+      <div class="flow-step active" data-step="7"><strong>Qualified</strong><span>→ Liam</span></div>
     </div>
   </div>
 </section>
 
 <!-- ===== 04: DATABASE ===== -->
-<section class="section">
+<section class="section" id="section-3">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -1115,7 +1289,7 @@
     
     <h2 class="fade-up">Database <span class="text-cyan">Schema</span></h2>
     
-    <p class="fade-up">10 core tables with full referential integrity and optimized indexes.</p>
+    <p class="fade-up">10 core tables with full referential integrity.</p>
     
     <div class="er-diagram fade-up">
       <div class="er-table">
@@ -1123,13 +1297,11 @@
         <div class="er-table-cols">
           <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
           <div class="er-col"><span class="name">first_name, last_name</span></div>
-          <div class="er-col"><span class="name">phone, email</span></div>
           <div class="er-col"><span class="fk">→</span> <span class="name">trade_category_id</span></div>
           <div class="er-col"><span class="name">day_rate, status</span></div>
           <div class="er-col"><span class="name">avg_rating</span></div>
         </div>
       </div>
-      
       <div class="er-table">
         <div class="er-table-name">allocations</div>
         <div class="er-table-cols">
@@ -1137,11 +1309,9 @@
           <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span></div>
           <div class="er-col"><span class="fk">→</span> <span class="name">site_id</span></div>
           <div class="er-col"><span class="name">start_date, end_date</span></div>
-          <div class="er-col"><span class="name">agreed_day_rate</span></div>
           <div class="er-col"><span class="name">status</span></div>
         </div>
       </div>
-      
       <div class="er-table">
         <div class="er-table-name">documents</div>
         <div class="er-table-cols">
@@ -1152,86 +1322,57 @@
           <div class="er-col"><span class="name">is_verified</span></div>
         </div>
       </div>
-      
       <div class="er-table">
         <div class="er-table-name">ncrs</div>
         <div class="er-table-cols">
           <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
           <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span></div>
-          <div class="er-col"><span class="fk">→</span> <span class="name">site_id</span></div>
           <div class="er-col"><span class="name">incident_type</span></div>
           <div class="er-col"><span class="name">severity</span></div>
         </div>
       </div>
-      
       <div class="er-table">
         <div class="er-table-name">sites</div>
         <div class="er-table-cols">
           <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
           <div class="er-col"><span class="name">name, address</span></div>
           <div class="er-col"><span class="name">postcode, lat, lng</span></div>
-          <div class="er-col"><span class="fk">→</span> <span class="name">site_manager_id</span></div>
         </div>
       </div>
-      
       <div class="er-table">
-        <div class="er-table-name">communication_log</div>
+        <div class="er-table-name">comms_log</div>
         <div class="er-table-cols">
           <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
           <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span></div>
           <div class="er-col"><span class="name">channel, direction</span></div>
           <div class="er-col"><span class="name">message_body</span></div>
-          <div class="er-col"><span class="name">sent_at</span></div>
         </div>
       </div>
     </div>
     
-    <h3 class="fade-up" style="margin-top: 2rem;">Operatives Table — SQL</h3>
-    
-    <div class="code-block fade-up">
+    <div class="code-block code-typing fade-up" id="sql-code">
       <div class="code-header">
         <span class="code-dot red"></span>
         <span class="code-dot yellow"></span>
         <span class="code-dot green"></span>
         <span class="code-title">operatives.sql</span>
       </div>
-      <pre><span class="keyword">CREATE TABLE</span> <span class="type">operatives</span> (
-  id <span class="type">UUID</span> <span class="keyword">PRIMARY KEY DEFAULT</span> <span class="function">gen_random_uuid</span>(),
-  first_name <span class="type">VARCHAR(100)</span> <span class="keyword">NOT NULL</span>,
-  last_name <span class="type">VARCHAR(100)</span> <span class="keyword">NOT NULL</span>,
-  phone <span class="type">VARCHAR(20)</span> <span class="keyword">NOT NULL UNIQUE</span>,
-  trade_category_id <span class="type">UUID</span> <span class="keyword">REFERENCES</span> trade_categories(id),
-  
-  <span class="comment">-- Rates</span>
-  day_rate <span class="type">DECIMAL(8,2)</span>,
-  hourly_rate <span class="type">DECIMAL(6,2)</span> <span class="keyword">GENERATED ALWAYS AS</span> (day_rate / 8) <span class="keyword">STORED</span>,
-  
-  <span class="comment">-- Compliance (denormalized for fast queries)</span>
-  rtw_verified <span class="type">BOOLEAN</span> <span class="keyword">DEFAULT</span> <span class="string">false</span>,
-  rtw_expiry <span class="type">DATE</span>,
-  cscs_expiry <span class="type">DATE</span>,
-  
-  <span class="comment">-- Performance (auto-calculated)</span>
-  avg_rating <span class="type">DECIMAL(3,2)</span>,
-  total_jobs <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="string">0</span>,
-  
-  <span class="comment">-- Status</span>
-  status <span class="type">VARCHAR(50)</span> <span class="keyword">CHECK</span> (status <span class="keyword">IN</span> (
-    <span class="string">'prospect'</span>, <span class="string">'qualifying'</span>, <span class="string">'verified'</span>,
-    <span class="string">'working'</span>, <span class="string">'available'</span>, <span class="string">'blocked'</span>
-  )) <span class="keyword">DEFAULT</span> <span class="string">'prospect'</span>
-);
-
-<span class="comment">-- Indexes for fast search</span>
-<span class="keyword">CREATE INDEX</span> idx_operatives_status <span class="keyword">ON</span> operatives(status);
-<span class="keyword">CREATE INDEX</span> idx_operatives_trade <span class="keyword">ON</span> operatives(trade_category_id);
-<span class="keyword">CREATE INDEX</span> idx_operatives_rating <span class="keyword">ON</span> operatives(avg_rating <span class="keyword">DESC</span>);</pre>
+      <pre><span class="line"><span class="keyword">CREATE TABLE</span> <span class="type">operatives</span> (</span>
+<span class="line">  id <span class="type">UUID</span> <span class="keyword">PRIMARY KEY</span>,</span>
+<span class="line">  first_name <span class="type">VARCHAR(100)</span> <span class="keyword">NOT NULL</span>,</span>
+<span class="line">  phone <span class="type">VARCHAR(20)</span> <span class="keyword">UNIQUE</span>,</span>
+<span class="line">  day_rate <span class="type">DECIMAL(8,2)</span>,</span>
+<span class="line">  rtw_verified <span class="type">BOOLEAN</span> <span class="keyword">DEFAULT</span> <span class="string">false</span>,</span>
+<span class="line">  cscs_expiry <span class="type">DATE</span>,</span>
+<span class="line">  avg_rating <span class="type">DECIMAL(3,2)</span>,</span>
+<span class="line">  status <span class="type">VARCHAR(50)</span></span>
+<span class="line">);</span></pre>
     </div>
   </div>
 </section>
 
 <!-- ===== 05: WHATSAPP ===== -->
-<section class="section line-grid">
+<section class="section line-grid" id="section-4">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -1240,41 +1381,28 @@
     
     <h2 class="fade-up">WhatsApp <span class="text-green">Integration</span></h2>
     
-    <p class="fade-up">Real message flows for common workflows.</p>
-    
     <div class="grid grid-3 fade-up" style="margin-top: 2rem;">
       <div>
-        <h3 style="color: var(--color-green);">Arrival Confirmation</h3>
-        <div class="whatsapp-chat">
+        <h3 style="color: var(--color-green);">Arrival</h3>
+        <div class="whatsapp-chat" id="wa-chat-1">
           <div class="whatsapp-header">
             <div class="whatsapp-avatar" style="background: var(--color-cyan);">A</div>
             <div>
               <div class="whatsapp-name">Aztec BOS</div>
-              <div class="whatsapp-status">Site Manager Bot</div>
+              <div class="whatsapp-status">Bot</div>
             </div>
           </div>
           <div class="whatsapp-messages">
-            <div class="wa-msg incoming">
-              Good morning! 🌅<br><br>
-              Did <strong>John Smith</strong> arrive at <strong>Westfield Site</strong> today?<br><br>
-              Reply YES or NO
-              <div class="wa-time">07:15</div>
-            </div>
-            <div class="wa-msg outgoing">
-              YES
-              <div class="wa-time">07:18</div>
-            </div>
-            <div class="wa-msg incoming">
-              ✅ John Smith marked as arrived.
-              <div class="wa-time">07:18</div>
-            </div>
+            <div class="wa-msg incoming" data-delay="0">Good morning! 🌅<br>Did <strong>John Smith</strong> arrive?<br>Reply YES/NO<div class="wa-time">07:15</div></div>
+            <div class="wa-msg outgoing" data-delay="1">YES<div class="wa-time">07:18</div></div>
+            <div class="wa-msg incoming" data-delay="2">✅ Marked as arrived<div class="wa-time">07:18</div></div>
           </div>
         </div>
       </div>
       
       <div>
-        <h3 style="color: var(--color-red);">NCR Report</h3>
-        <div class="whatsapp-chat">
+        <h3 style="color: var(--color-red);">NCR</h3>
+        <div class="whatsapp-chat" id="wa-chat-2">
           <div class="whatsapp-header">
             <div class="whatsapp-avatar" style="background: var(--color-red);">!</div>
             <div>
@@ -1283,58 +1411,28 @@
             </div>
           </div>
           <div class="whatsapp-messages">
-            <div class="wa-msg outgoing">
-              Red card John Smith - walked off site
-              <div class="wa-time">14:30</div>
-            </div>
-            <div class="wa-msg incoming">
-              ⚠️ <strong>NCR Logged</strong><br>
-              Operative: John Smith<br>
-              Type: Walk Off<br><br>
-              Need a replacement?<br>Reply YES or NO
-              <div class="wa-time">14:30</div>
-            </div>
-            <div class="wa-msg outgoing">
-              YES
-              <div class="wa-time">14:31</div>
-            </div>
-            <div class="wa-msg incoming">
-              Got it. Liam notified. 🔄
-              <div class="wa-time">14:31</div>
-            </div>
+            <div class="wa-msg outgoing" data-delay="0">Red card John - walk off<div class="wa-time">14:30</div></div>
+            <div class="wa-msg incoming" data-delay="1">⚠️ <strong>NCR Logged</strong><br>Need replacement?<div class="wa-time">14:30</div></div>
+            <div class="wa-msg outgoing" data-delay="2">YES<div class="wa-time">14:31</div></div>
+            <div class="wa-msg incoming" data-delay="3">Liam notified 🔄<div class="wa-time">14:31</div></div>
           </div>
         </div>
       </div>
       
       <div>
-        <h3 style="color: var(--color-gold);">Shift Confirmation</h3>
-        <div class="whatsapp-chat">
+        <h3 style="color: var(--color-gold);">Shift</h3>
+        <div class="whatsapp-chat" id="wa-chat-3">
           <div class="whatsapp-header">
             <div class="whatsapp-avatar" style="background: var(--color-gold);">A</div>
             <div>
               <div class="whatsapp-name">Aztec BOS</div>
-              <div class="whatsapp-status">Operative Flow</div>
+              <div class="whatsapp-status">Operative</div>
             </div>
           </div>
           <div class="whatsapp-messages">
-            <div class="wa-msg incoming">
-              Hi John! 👋<br><br>
-              You've been assigned:<br>
-              📍 Westfield Site, W12<br>
-              📅 Monday 5th Feb<br>
-              💷 £180/day<br>
-              ⏰ 7:00 AM<br><br>
-              Confirm? YES or NO
-              <div class="wa-time">16:00</div>
-            </div>
-            <div class="wa-msg outgoing">
-              YES
-              <div class="wa-time">16:05</div>
-            </div>
-            <div class="wa-msg incoming">
-              ✅ Confirmed! See you Monday 🚧
-              <div class="wa-time">16:05</div>
-            </div>
+            <div class="wa-msg incoming" data-delay="0">Hi John! 👋<br>📍 Westfield, W12<br>📅 Mon 5th Feb<br>💷 £180/day<br>Confirm?<div class="wa-time">16:00</div></div>
+            <div class="wa-msg outgoing" data-delay="1">YES<div class="wa-time">16:05</div></div>
+            <div class="wa-msg incoming" data-delay="2">✅ Confirmed! 🚧<div class="wa-time">16:05</div></div>
           </div>
         </div>
       </div>
@@ -1343,7 +1441,7 @@
 </section>
 
 <!-- ===== 06: COMPLIANCE ===== -->
-<section class="section dot-grid">
+<section class="section dot-grid" id="section-5">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -1352,87 +1450,44 @@
     
     <h2 class="fade-up">Compliance <span class="text-red">Engine</span></h2>
     
-    <p class="fade-up">No operative starts without verified RTW, Photo ID, and in-date CSCS.</p>
-    
     <div class="grid grid-2 fade-up" style="margin-top: 2rem; align-items: start;">
       <div>
-        <h3>Pre-Start Validation</h3>
-        <div class="code-block">
+        <h3>Pre-Start Checks</h3>
+        <div class="code-block code-typing" id="compliance-code">
           <div class="code-header">
             <span class="code-dot red"></span>
             <span class="code-dot yellow"></span>
             <span class="code-dot green"></span>
-            <span class="code-title">compliance/canStart.ts</span>
+            <span class="code-title">canStart.ts</span>
           </div>
-          <pre><span class="keyword">async function</span> <span class="function">canOperativeStart</span>(id: <span class="type">string</span>) {
-  <span class="keyword">const</span> op = <span class="keyword">await</span> db.operative.<span class="function">findById</span>(id);
-  <span class="keyword">const</span> blockers: <span class="type">string</span>[] = [];
-  
-  <span class="comment">// 1. RTW verified</span>
-  <span class="keyword">if</span> (!op.rtwVerified)
-    blockers.<span class="function">push</span>(<span class="string">'RTW not verified'</span>);
-  
-  <span class="comment">// 2. RTW not expired</span>
-  <span class="keyword">if</span> (op.rtwExpiry < <span class="keyword">new</span> <span class="type">Date</span>())
-    blockers.<span class="function">push</span>(<span class="string">'RTW expired'</span>);
-  
-  <span class="comment">// 3. Photo ID on file</span>
-  <span class="keyword">if</span> (!<span class="keyword">await</span> db.documents.<span class="function">hasPhotoId</span>(id))
-    blockers.<span class="function">push</span>(<span class="string">'Photo ID missing'</span>);
-  
-  <span class="comment">// 4. CSCS in date</span>
-  <span class="keyword">if</span> (op.cscsExpiry < <span class="keyword">new</span> <span class="type">Date</span>())
-    blockers.<span class="function">push</span>(<span class="string">'CSCS expired'</span>);
-  
-  <span class="comment">// 5. Not blocked</span>
-  <span class="keyword">if</span> (op.status === <span class="string">'blocked'</span>)
-    blockers.<span class="function">push</span>(<span class="string">`Blocked: ${op.blockedReason}`</span>);
-  
-  <span class="keyword">return</span> { 
-    canStart: blockers.length === <span class="string">0</span>, 
-    blockers 
-  };
-}</pre>
+          <pre><span class="line"><span class="keyword">function</span> <span class="function">canStart</span>(op) {</span>
+<span class="line">  <span class="keyword">const</span> blockers = [];</span>
+<span class="line">  </span>
+<span class="line">  <span class="keyword">if</span> (!op.rtwVerified)</span>
+<span class="line">    blockers.push(<span class="string">'RTW'</span>);</span>
+<span class="line">  <span class="keyword">if</span> (op.cscsExpiry < now)</span>
+<span class="line">    blockers.push(<span class="string">'CSCS'</span>);</span>
+<span class="line">  <span class="keyword">if</span> (op.status === <span class="string">'blocked'</span>)</span>
+<span class="line">    blockers.push(<span class="string">'Blocked'</span>);</span>
+<span class="line">  </span>
+<span class="line">  <span class="keyword">return</span> blockers.length === 0;</span>
+<span class="line">}</span></pre>
         </div>
       </div>
       
       <div>
-        <h3>Document Expiry Alerts</h3>
+        <h3>Document Alerts</h3>
         <table class="table">
-          <thead>
-            <tr>
-              <th>Document</th>
-              <th>Alert Days</th>
-              <th>Action</th>
-            </tr>
-          </thead>
+          <thead><tr><th>Document</th><th>Alert Days</th><th>Action</th></tr></thead>
           <tbody>
-            <tr>
-              <td>Right to Work</td>
-              <td>30, 21, 14, 7, 0</td>
-              <td><span class="badge badge-red">Blocks</span></td>
-            </tr>
-            <tr>
-              <td>CSCS Card</td>
-              <td>60, 30, 14, 7, 0</td>
-              <td><span class="badge badge-red">Blocks</span></td>
-            </tr>
-            <tr>
-              <td>Photo ID</td>
-              <td>—</td>
-              <td><span class="badge badge-red">Required</span></td>
-            </tr>
-            <tr>
-              <td>CPCS/NPORS</td>
-              <td>30, 14, 7</td>
-              <td><span class="badge badge-gold">Warns</span></td>
-            </tr>
+            <tr><td>Right to Work</td><td>30, 14, 7, 0</td><td><span class="badge badge-red">Blocks</span></td></tr>
+            <tr><td>CSCS Card</td><td>60, 30, 14, 0</td><td><span class="badge badge-red">Blocks</span></td></tr>
+            <tr><td>CPCS/NPORS</td><td>30, 14, 7</td><td><span class="badge badge-gold">Warns</span></td></tr>
           </tbody>
         </table>
-        
-        <div class="card" style="margin-top: 1.5rem; border-color: var(--color-red); background: rgba(239, 68, 68, 0.05);">
-          <h4 style="color: var(--color-red);">Zero Exceptions Policy</h4>
-          <p>No manual overrides. If compliance fails, operative cannot be allocated. System enforces at database level.</p>
+        <div class="card" style="margin-top: 1rem; border-color: var(--color-red);">
+          <h4 style="color: var(--color-red);">Zero Exceptions</h4>
+          <p>No overrides. System enforces at database level.</p>
         </div>
       </div>
     </div>
@@ -1440,7 +1495,7 @@
 </section>
 
 <!-- ===== 07: TIMELINE ===== -->
-<section class="section">
+<section class="section" id="section-6">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -1449,8 +1504,6 @@
     
     <h2 class="fade-up">Implementation <span class="text-cyan">Timeline</span></h2>
     
-    <p class="fade-up">12-16 weeks from approval to go-live.</p>
-    
     <div class="grid grid-2 fade-up" style="margin-top: 2rem; align-items: start;">
       <div class="timeline">
         <div class="timeline-item">
@@ -1458,71 +1511,52 @@
           <div class="timeline-content">
             <span class="timeline-phase">Phase 1</span>
             <h4>Discovery & Foundation</h4>
-            <p>Requirements confirmed, database deployed, auth setup.</p>
+            <p>Requirements, database, auth setup.</p>
             <span class="timeline-duration">2 Weeks</span>
           </div>
         </div>
-        
         <div class="timeline-item">
           <div class="timeline-marker"></div>
           <div class="timeline-content">
             <span class="timeline-phase">Phase 2</span>
             <h4>Core Build</h4>
-            <p>Operatives, sites, allocations, documents, compliance, dashboard.</p>
+            <p>Operatives, sites, allocations, compliance.</p>
             <span class="timeline-duration">6 Weeks</span>
           </div>
         </div>
-        
         <div class="timeline-item">
           <div class="timeline-marker"></div>
           <div class="timeline-content">
             <span class="timeline-phase">Phase 3</span>
             <h4>Communications</h4>
-            <p>WhatsApp integration, Sophie AI, NCR flow, templates.</p>
+            <p>WhatsApp, Sophie AI, NCR flow.</p>
             <span class="timeline-duration">3 Weeks</span>
           </div>
         </div>
-        
         <div class="timeline-item">
           <div class="timeline-marker"></div>
           <div class="timeline-content">
             <span class="timeline-phase">Phase 4</span>
             <h4>Polish & Deploy</h4>
-            <p>Testing, training, data migration, go-live, hypercare.</p>
+            <p>Testing, training, go-live.</p>
             <span class="timeline-duration">3 Weeks</span>
           </div>
         </div>
       </div>
       
       <div>
-        <h3>Key Deliverables</h3>
-        
-        <div class="card" style="margin-bottom: 1rem;">
-          <h4 class="text-cyan">Phase 1</h4>
-          <p>✓ Database live in Supabase (London)<br>✓ Auth working with test users<br>✓ Basic dashboard deployed</p>
-        </div>
-        
-        <div class="card" style="margin-bottom: 1rem;">
-          <h4 class="text-gold">Phase 2</h4>
-          <p>✓ Full operative management<br>✓ Document upload & tracking<br>✓ Allocation workflow<br>✓ Performance reviews & NCRs</p>
-        </div>
-        
-        <div class="card" style="margin-bottom: 1rem;">
-          <h4 class="text-green">Phase 3</h4>
-          <p>✓ WhatsApp Business connected<br>✓ Sophie qualifying candidates<br>✓ Arrival confirmations<br>✓ Shift confirmations</p>
-        </div>
-        
-        <div class="card">
-          <h4 class="text-purple">Phase 4</h4>
-          <p>✓ Full UAT complete<br>✓ Liam trained<br>✓ Data migrated<br>✓ Production go-live</p>
-        </div>
+        <h3>Deliverables</h3>
+        <div class="card" style="margin-bottom: 1rem;"><h4 class="text-cyan">Phase 1</h4><p>✓ Database live<br>✓ Auth working<br>✓ Dashboard shell</p></div>
+        <div class="card" style="margin-bottom: 1rem;"><h4 class="text-gold">Phase 2</h4><p>✓ Operative management<br>✓ Document tracking<br>✓ Allocations</p></div>
+        <div class="card" style="margin-bottom: 1rem;"><h4 class="text-green">Phase 3</h4><p>✓ WhatsApp connected<br>✓ Sophie live<br>✓ NCR via WhatsApp</p></div>
+        <div class="card"><h4 class="text-purple">Phase 4</h4><p>✓ UAT complete<br>✓ Training done<br>✓ Go-live</p></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ===== 08: CTA ===== -->
-<section class="section cta-section dot-grid">
+<section class="section cta-section dot-grid" id="section-7">
   <div class="corner tl"></div>
   <div class="corner br"></div>
   
@@ -1537,26 +1571,14 @@
     </h2>
     
     <p class="fade-up" style="max-width: 600px; margin: 0 auto 2rem; text-align: center;">
-      All architecture designed. Database schemas ready. Team standing by.
+      Architecture designed. Schemas ready. Team standing by.
     </p>
     
     <div class="stats-grid fade-up" style="max-width: 800px; margin: 2rem auto;">
-      <div class="stat-item">
-        <div class="stat-number">12-16</div>
-        <div class="stat-label">Weeks to Launch</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">£55k</div>
-        <div class="stat-label">Build Investment</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">£120k</div>
-        <div class="stat-label">Est. Annual Saving</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">&lt;12mo</div>
-        <div class="stat-label">ROI Payback</div>
-      </div>
+      <div class="stat-item"><div class="stat-number">12-16</div><div class="stat-label">Weeks</div></div>
+      <div class="stat-item"><div class="stat-number">£55k</div><div class="stat-label">Investment</div></div>
+      <div class="stat-item"><div class="stat-number">£120k</div><div class="stat-label">Annual Saving</div></div>
+      <div class="stat-item"><div class="stat-number">&lt;12mo</div><div class="stat-label">ROI</div></div>
     </div>
     
     <div class="fade-up" style="margin-top: 3rem; text-align: center;">
@@ -1572,14 +1594,70 @@
 
 <div class="grain"></div>
 
-<!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
 <script>
   gsap.registerPlugin(ScrollTrigger);
   
-  // ===== FADE UP ANIMATIONS =====
+  // ===== PROGRESS BAR =====
+  gsap.to('#progressBar', {
+    width: '100%',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: document.body,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: 0.3
+    }
+  });
+  
+  // ===== SECTION NAV =====
+  const sections = document.querySelectorAll('.section');
+  const navDots = document.querySelectorAll('.nav-dot');
+  
+  sections.forEach((section, i) => {
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top center',
+      end: 'bottom center',
+      onEnter: () => updateNav(i),
+      onEnterBack: () => updateNav(i)
+    });
+  });
+  
+  function updateNav(index) {
+    navDots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index);
+    });
+  }
+  
+  navDots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const sectionIndex = dot.dataset.section;
+      const target = document.getElementById(`section-${sectionIndex}`);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+  
+  // ===== PARALLAX FLOATING ELEMENTS =====
+  document.querySelectorAll('.float-element').forEach(el => {
+    const speed = el.dataset.speed || 0.05;
+    gsap.to(el, {
+      y: () => window.innerHeight * speed,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: el.closest('.section'),
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+  });
+  
+  // ===== FADE UP =====
   gsap.utils.toArray('.fade-up').forEach(el => {
     gsap.to(el, {
       opacity: 1,
@@ -1594,13 +1672,14 @@
     });
   });
   
-  // ===== COUNTER ANIMATIONS =====
+  // ===== STAT COUNTERS =====
   gsap.utils.toArray('.stat-number[data-count]').forEach(stat => {
     const target = parseFloat(stat.dataset.count);
     ScrollTrigger.create({
       trigger: stat,
       start: 'top 80%',
       onEnter: () => {
+        stat.closest('.stat-item')?.classList.add('animate');
         gsap.to(stat, {
           textContent: target,
           duration: 2,
@@ -1628,29 +1707,19 @@
       start: 'top 70%',
       onEnter: () => {
         let delay = 0;
-        
         steps.forEach((step, i) => {
-          // Show step
           setTimeout(() => {
             step.classList.add('visible');
             step.classList.add('active');
-            
-            // Remove active from previous
-            if (i > 0) {
-              setTimeout(() => steps[i-1].classList.remove('active'), 300);
-            }
+            if (i > 0) setTimeout(() => steps[i-1].classList.remove('active'), 300);
           }, delay);
-          
-          // Animate connector
           if (i < connectors.length) {
             setTimeout(() => {
               connectors[i].classList.add('active');
-              // Remove active class after animation
               setTimeout(() => connectors[i].classList.remove('active'), 600);
             }, delay + 300);
           }
-          
-          delay += 400;
+          delay += 350;
         });
       },
       once: true
@@ -1660,19 +1729,38 @@
   animateFlow('#labour-flow');
   animateFlow('#sophie-flow');
   
-  // ===== ARCHITECTURE NODES HOVER =====
+  // ===== CODE TYPING =====
+  document.querySelectorAll('.code-typing').forEach(block => {
+    ScrollTrigger.create({
+      trigger: block,
+      start: 'top 75%',
+      onEnter: () => block.classList.add('animate'),
+      once: true
+    });
+  });
+  
+  // ===== WHATSAPP MESSAGES =====
+  document.querySelectorAll('.whatsapp-chat').forEach(chat => {
+    const messages = chat.querySelectorAll('.wa-msg');
+    ScrollTrigger.create({
+      trigger: chat,
+      start: 'top 75%',
+      onEnter: () => {
+        messages.forEach((msg, i) => {
+          setTimeout(() => msg.classList.add('animate'), i * 400);
+        });
+      },
+      once: true
+    });
+  });
+  
+  // ===== ARCHITECTURE HOVER =====
   document.querySelectorAll('.arch-node').forEach(node => {
     node.addEventListener('mouseenter', () => {
-      gsap.to(node.querySelector('.box'), {
-        strokeWidth: 2.5,
-        duration: 0.3
-      });
+      gsap.to(node.querySelector('.box'), { strokeWidth: 2.5, duration: 0.3 });
     });
     node.addEventListener('mouseleave', () => {
-      gsap.to(node.querySelector('.box'), {
-        strokeWidth: 1.5,
-        duration: 0.3
-      });
+      gsap.to(node.querySelector('.box'), { strokeWidth: 1.5, duration: 0.3 });
     });
   });
 </script>
