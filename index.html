@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aztec B.O.S — Director Presentation</title>
+  <title>Aztec B.O.S — Technical Architecture</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,6 +36,9 @@
       --color-cyan-glow: rgba(6, 182, 212, 0.3);
       --color-gold: #C9A962;
       --color-gold-glow: rgba(201, 169, 98, 0.3);
+      --color-green: #10B981;
+      --color-red: #EF4444;
+      --color-purple: #8B5CF6;
       --color-text-primary: rgba(255, 255, 255, 0.9);
       --color-text-secondary: rgba(255, 255, 255, 0.6);
       --color-text-muted: rgba(255, 255, 255, 0.3);
@@ -45,20 +48,23 @@
     }
     
     .container {
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 0 auto;
       padding: 0 2rem;
     }
     
     .section {
       min-height: 100vh;
-      padding: 8rem 0;
+      padding: 6rem 0;
       position: relative;
     }
     
     .mono { font-family: var(--font-mono); }
     .text-cyan { color: var(--color-cyan); }
     .text-gold { color: var(--color-gold); }
+    .text-green { color: var(--color-green); }
+    .text-red { color: var(--color-red); }
+    .text-purple { color: var(--color-purple); }
     
     /* Animation initial states */
     .fade-up {
@@ -116,7 +122,7 @@
     
     /* Typography */
     h1 {
-      font-size: clamp(3rem, 10vw, 7rem);
+      font-size: clamp(3rem, 10vw, 6rem);
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 0.95;
@@ -124,7 +130,7 @@
     }
     
     h2 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-size: clamp(2rem, 5vw, 3rem);
       font-weight: 700;
       letter-spacing: -0.02em;
       line-height: 1;
@@ -132,7 +138,7 @@
     }
     
     h3 {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 600;
       margin-bottom: 1rem;
       color: var(--color-cyan);
@@ -211,12 +217,20 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
-      margin-top: 3rem;
+      margin-top: 2rem;
+    }
+    
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    
+    @media (max-width: 1024px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
     }
     
     .card {
       position: relative;
-      padding: 2rem;
+      padding: 1.5rem;
       background: var(--color-bg-card);
       border: 1px solid var(--color-border);
       transition: all 0.5s var(--ease-out-expo);
@@ -249,83 +263,99 @@
       font-size: 0.75rem;
       color: var(--color-cyan);
       opacity: 0.5;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
     }
     
     .card h4 {
-      font-size: 1.125rem;
+      font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
       color: var(--color-text-primary);
     }
     
     .card p {
-      font-size: 0.9rem;
+      font-size: 0.875rem;
       margin-bottom: 0;
     }
     
-    /* Flow diagram */
-    .flow {
+    /* Code blocks */
+    .code-block {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--color-border);
+      border-radius: 4px;
+      padding: 1.5rem;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+    
+    .code-block pre {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      line-height: 1.6;
+      color: var(--color-text-secondary);
+      margin: 0;
+      white-space: pre;
+    }
+    
+    .code-block .comment { color: var(--color-text-muted); }
+    .code-block .keyword { color: var(--color-purple); }
+    .code-block .string { color: var(--color-green); }
+    .code-block .type { color: var(--color-cyan); }
+    .code-block .function { color: var(--color-gold); }
+    
+    .code-header {
       display: flex;
       align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 0;
-      margin: 3rem 0;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--color-border);
     }
     
-    .flow-step {
-      padding: 1.5rem 2rem;
-      background: var(--color-bg-card);
-      border: 1px solid var(--color-border);
-      text-align: center;
-      min-width: 140px;
-      opacity: 0;
-      transform: scale(0.9);
+    .code-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
     }
     
-    .flow-step strong {
-      display: block;
-      color: var(--color-text-primary);
-      margin-bottom: 0.25rem;
-    }
+    .code-dot.red { background: #ff5f57; }
+    .code-dot.yellow { background: #febc2e; }
+    .code-dot.green { background: #28c840; }
     
-    .flow-step span {
-      font-size: 0.75rem;
+    .code-title {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
       color: var(--color-text-muted);
+      margin-left: auto;
     }
     
-    .flow-step.active {
-      border-color: var(--color-cyan);
-      box-shadow: 0 0 30px var(--color-cyan-glow);
+    /* Architecture diagram */
+    .arch-diagram {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--color-border);
+      padding: 2rem;
+      margin: 2rem 0;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      line-height: 1.4;
+      overflow-x: auto;
     }
     
-    .flow-connector {
-      width: 40px;
-      height: 2px;
-      background: var(--color-border);
-      position: relative;
-    }
-    
-    .flow-connector::after {
-      content: '→';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: var(--color-cyan);
-      font-size: 1.25rem;
+    .arch-diagram pre {
+      color: var(--color-text-secondary);
+      white-space: pre;
     }
     
     /* Table */
     .table {
       width: 100%;
       border-collapse: collapse;
-      margin: 2rem 0;
+      margin: 1.5rem 0;
+      font-size: 0.875rem;
     }
     
     .table th, .table td {
-      padding: 1rem 1.25rem;
+      padding: 0.75rem 1rem;
       text-align: left;
       border-bottom: 1px solid var(--color-border);
     }
@@ -340,8 +370,16 @@
     }
     
     .table td {
-      font-size: 0.9rem;
       color: var(--color-text-secondary);
+    }
+    
+    .table code {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      background: rgba(6, 182, 212, 0.1);
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      color: var(--color-cyan);
     }
     
     /* Badges */
@@ -358,103 +396,102 @@
     .badge-cyan { background: rgba(6, 182, 212, 0.15); color: var(--color-cyan); }
     .badge-gold { background: rgba(201, 169, 98, 0.15); color: var(--color-gold); }
     .badge-red { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+    .badge-green { background: rgba(16, 185, 129, 0.15); color: var(--color-green); }
+    .badge-purple { background: rgba(139, 92, 246, 0.15); color: var(--color-purple); }
     
     /* Stats */
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin: 3rem 0;
-      text-align: center;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
     }
     
     .stat-item {
-      padding: 2rem;
-      border-left: 1px solid var(--color-border);
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
     }
     
-    .stat-item:first-child { border-left: none; }
-    
     .stat-number {
-      font-size: clamp(3rem, 8vw, 4rem);
+      font-size: 2.5rem;
       font-weight: 700;
       color: var(--color-cyan);
       line-height: 1;
     }
     
     .stat-label {
-      font-size: 1rem;
+      font-size: 0.875rem;
       color: var(--color-text-secondary);
       margin-top: 0.5rem;
     }
     
-    .stat-period {
-      font-family: var(--font-mono);
-      font-size: 0.625rem;
-      color: var(--color-text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-top: 0.25rem;
-    }
-    
-    /* Architecture diagram */
-    .arch-diagram {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--color-border);
-      padding: 3rem;
-      margin: 3rem 0;
-    }
-    
-    .arch-row {
+    /* Flow diagram */
+    .flow {
       display: flex;
-      justify-content: center;
       align-items: center;
-      gap: 2rem;
-      margin: 1.5rem 0;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      margin: 2rem 0;
     }
     
-    .arch-box {
-      padding: 1.5rem 2rem;
-      background: #0a0a0a;
+    .flow-step {
+      padding: 1rem 1.5rem;
+      background: var(--color-bg-card);
       border: 1px solid var(--color-border);
       text-align: center;
-      min-width: 180px;
-      opacity: 0;
-      transform: translateY(20px);
+      min-width: 120px;
     }
     
-    .arch-box strong {
+    .flow-step strong {
       display: block;
-      font-size: 1rem;
+      color: var(--color-text-primary);
+      font-size: 0.875rem;
       margin-bottom: 0.25rem;
     }
     
-    .arch-box span {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
+    .flow-step span {
+      font-size: 0.7rem;
       color: var(--color-text-muted);
     }
     
-    .arch-box.highlight {
-      border-color: var(--color-gold);
+    .flow-step.active {
+      border-color: var(--color-cyan);
+      box-shadow: 0 0 20px var(--color-cyan-glow);
     }
     
-    .arch-box.highlight strong {
-      color: var(--color-gold);
+    .flow-step.gate {
+      border-color: var(--color-red);
+      background: rgba(239, 68, 68, 0.05);
     }
     
-    .arch-connector {
-      width: 2px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--color-cyan), transparent);
-      margin: 0 auto;
-      opacity: 0;
+    .flow-connector {
+      width: 30px;
+      height: 2px;
+      background: var(--color-border);
+      position: relative;
+    }
+    
+    .flow-connector::after {
+      content: '→';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--color-cyan);
+      font-size: 1rem;
     }
     
     /* Timeline */
     .timeline {
       position: relative;
-      margin: 3rem 0;
+      margin: 2rem 0;
       padding-left: 40px;
     }
     
@@ -471,7 +508,7 @@
     
     .timeline-item {
       position: relative;
-      padding-bottom: 2.5rem;
+      padding-bottom: 2rem;
     }
     
     .timeline-marker {
@@ -485,20 +522,10 @@
       background: var(--color-bg);
     }
     
-    .timeline-item:hover .timeline-marker {
-      background: var(--color-cyan);
-      box-shadow: 0 0 20px var(--color-cyan-glow);
-    }
-    
     .timeline-content {
       background: var(--color-bg-card);
       border: 1px solid var(--color-border);
-      padding: 1.5rem;
-      transition: border-color 0.3s ease;
-    }
-    
-    .timeline-content:hover {
-      border-color: var(--color-cyan);
+      padding: 1.25rem;
     }
     
     .timeline-phase {
@@ -510,14 +537,14 @@
     }
     
     .timeline-content h4 {
-      font-size: 1.125rem;
+      font-size: 1rem;
       margin: 0.5rem 0;
       color: var(--color-text-primary);
     }
     
     .timeline-content p {
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
     }
     
     .timeline-duration {
@@ -529,20 +556,81 @@
       display: inline-block;
     }
     
+    /* WhatsApp mockup */
+    .whatsapp-chat {
+      max-width: 400px;
+      margin: 1.5rem auto;
+      background: #0b141a;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .whatsapp-header {
+      background: #1f2c34;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .whatsapp-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--color-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    
+    .whatsapp-name {
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+    
+    .whatsapp-status {
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+    }
+    
+    .whatsapp-messages {
+      padding: 1rem;
+      min-height: 200px;
+    }
+    
+    .wa-msg {
+      max-width: 85%;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+    
+    .wa-msg.incoming {
+      background: #1f2c34;
+      border-top-left-radius: 0;
+    }
+    
+    .wa-msg.outgoing {
+      background: #005c4b;
+      margin-left: auto;
+      border-top-right-radius: 0;
+    }
+    
+    .wa-time {
+      font-size: 0.6rem;
+      color: var(--color-text-muted);
+      text-align: right;
+      margin-top: 0.25rem;
+    }
+    
     /* CTA section */
     .cta-section {
       text-align: center;
-      padding: 10rem 0;
-    }
-    
-    .cta-title {
-      font-size: clamp(2rem, 6vw, 4rem);
-      margin-bottom: 1.5rem;
-    }
-    
-    .cta-text {
-      font-size: 1.25rem;
-      margin: 0 auto 3rem;
+      padding: 8rem 0;
     }
     
     .btn {
@@ -567,28 +655,69 @@
       transform: translateY(-2px);
     }
     
-    .footer-meta {
-      margin-top: 4rem;
-      color: var(--color-text-muted);
-      font-size: 0.875rem;
-    }
-    
-    /* Slide number */
-    .slide-number {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
+    /* File tree */
+    .file-tree {
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      color: var(--color-text-muted);
-      z-index: 100;
+      line-height: 1.8;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--color-border);
+      padding: 1.5rem;
+      color: var(--color-text-secondary);
     }
+    
+    .file-tree .folder { color: var(--color-gold); }
+    .file-tree .file { color: var(--color-text-secondary); }
+    .file-tree .special { color: var(--color-cyan); }
+    .file-tree .config { color: var(--color-purple); }
+    
+    /* Entity relationship */
+    .er-diagram {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .er-table {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+    }
+    
+    .er-table-name {
+      background: rgba(6, 182, 212, 0.1);
+      padding: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-cyan);
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .er-table-cols {
+      padding: 0.5rem 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+    }
+    
+    .er-col {
+      padding: 0.25rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .er-col .key { color: var(--color-gold); }
+    .er-col .fk { color: var(--color-purple); }
+    .er-col .name { color: var(--color-text-secondary); }
+    .er-col .type { color: var(--color-text-muted); font-size: 0.65rem; }
   </style>
 </head>
 <body>
 
 <!-- ===== 01: HERO ===== -->
-<section class="section hero dot-grid" data-slide="01">
+<section class="section hero dot-grid">
   <div class="corner tl"></div>
   <div class="corner br"></div>
   <div class="scan-line"></div>
@@ -596,17 +725,36 @@
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
-      <span class="label">Business Operating System</span>
+      <span class="label">Technical Architecture Overview</span>
     </div>
     
     <h1 class="fade-up">
       Aztec <span class="text-cyan">B.O.S</span>
-      <span class="block">Labour Management Platform</span>
+      <span class="block">System Architecture</span>
     </h1>
     
     <p class="hero-subtitle fade-up">
-      A bespoke enterprise platform engineered for Aztec's operational model, workforce structure, and compliance requirements.
+      A comprehensive technical deep-dive into the labour control, allocation and recruitment engine built for Aztec Landscapes.
     </p>
+    
+    <div class="stats-grid fade-up" style="max-width: 900px; margin: 3rem auto;">
+      <div class="stat-item">
+        <div class="stat-number">10+</div>
+        <div class="stat-label">Core Database Tables</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">25+</div>
+        <div class="stat-label">API Endpoints</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Integration Points</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">1</div>
+        <div class="stat-label">AI Agent (Sophie)</div>
+      </div>
+    </div>
     
     <div class="hero-meta fade-up">
       <span>Prepared by Cold Lava</span>
@@ -616,474 +764,1160 @@
   </div>
 </section>
 
-<!-- ===== 02: OPERATING MODEL ===== -->
-<section class="section" data-slide="02">
+<!-- ===== 02: CORE PRINCIPLES ===== -->
+<section class="section">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
-      <span class="label">Operating Model / 002</span>
+      <span class="label">Foundation / 002</span>
     </div>
     
-    <h2 class="fade-up">Your <span class="text-cyan">Operating</span> Model</h2>
+    <h2 class="fade-up">Core <span class="text-cyan">Principles</span></h2>
     
-    <p class="fade-up">Centralised labour control with one key principle: <span class="text-gold">Reallocation First</span></p>
+    <p class="fade-up">Five non-negotiable principles that drive every architectural decision.</p>
     
-    <div class="grid">
+    <div class="grid" style="margin-top: 2rem;">
       <div class="card fade-up">
         <div class="card-number">01</div>
-        <h4>Central Labour Control</h4>
-        <p>All labour allocation flows through a single point of control, ensuring consistency, compliance, and cost management.</p>
+        <h4>Reallocation First</h4>
+        <p>Before recruiting externally, the system always searches for existing operatives finishing other jobs. Internal pool first, adverts second.</p>
+        <span class="badge badge-cyan" style="margin-top: 0.75rem;">Cost Control</span>
       </div>
       <div class="card fade-up">
         <div class="card-number">02</div>
-        <h4>Reallocation First</h4>
-        <p>Before any external recruitment, the system searches internal workforce for available, qualified operatives.</p>
+        <h4>WhatsApp-Native</h4>
+        <p>Primary communication channel for everyone. Site Managers report arrivals via WhatsApp. Operatives confirm shifts via WhatsApp. Sophie qualifies candidates via WhatsApp.</p>
+        <span class="badge badge-green" style="margin-top: 0.75rem;">User Adoption</span>
       </div>
       <div class="card fade-up">
         <div class="card-number">03</div>
-        <h4>Skills & Rate Governance</h4>
-        <p>Every allocation checks skill requirements against operative qualifications and enforces rate matrices.</p>
+        <h4>Compliance Built-In</h4>
+        <p>No operative can start work without verified RTW, Photo ID, and in-date CSCS. The system blocks non-compliant allocations automatically.</p>
+        <span class="badge badge-red" style="margin-top: 0.75rem;">Zero Exceptions</span>
       </div>
       <div class="card fade-up">
         <div class="card-number">04</div>
-        <h4>Compliance by Default</h4>
-        <p>No operative works without valid documents. The system blocks non-compliant allocations automatically.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 03: LABOUR TYPES ===== -->
-<section class="section line-grid" data-slide="03">
-  <div class="container">
-    <div class="section-label fade-up">
-      <div class="label-line"></div>
-      <span class="label">Labour Types / 003</span>
-    </div>
-    
-    <h2 class="fade-up">Labour <span class="text-cyan">Types</span></h2>
-    
-    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
-      <div class="card fade-up">
-        <h3>Blue Collar Trades</h3>
-        <table class="table">
-          <tbody>
-            <tr><td>Landscapers & Groundworkers</td></tr>
-            <tr><td>Plant Operators (360°, Dumper, Roller)</td></tr>
-            <tr><td>Arborists & Tree Surgeons</td></tr>
-            <tr><td>Fencing & Boundary Specialists</td></tr>
-            <tr><td>Irrigation Technicians</td></tr>
-            <tr><td>General Labourers</td></tr>
-          </tbody>
-        </table>
-        <p><span class="badge badge-cyan">CSCS Required</span> <span class="badge badge-cyan">RTW Verified</span></p>
+        <h4>AI-Assisted Intake</h4>
+        <p>Sophie handles candidate screening 24/7 — collecting details, validating documents, and qualifying candidates before they reach Liam.</p>
+        <span class="badge badge-purple" style="margin-top: 0.75rem;">Automation</span>
       </div>
       <div class="card fade-up">
-        <h3>White Collar Roles</h3>
-        <table class="table">
-          <tbody>
-            <tr><td>Site Managers</td></tr>
-            <tr><td>Supervisors</td></tr>
-            <tr><td>Quantity Surveyors</td></tr>
-            <tr><td>Project Managers</td></tr>
-            <tr><td>Health & Safety Officers</td></tr>
-            <tr><td>Administrative Staff</td></tr>
-          </tbody>
-        </table>
-        <p><span class="badge badge-gold">Qualification Tracked</span></p>
+        <div class="card-number">05</div>
+        <h4>Performance-Tracked</h4>
+        <p>Every operative is graded 1-5 after each job. NCRs are logged instantly. Poor performers are blocked. Quality operatives rise to the top.</p>
+        <span class="badge badge-gold" style="margin-top: 0.75rem;">Quality Control</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== 04: CORE WORKFLOWS ===== -->
-<section class="section dot-grid" data-slide="04">
+<!-- ===== 03: SYSTEM ARCHITECTURE ===== -->
+<section class="section line-grid">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
-      <span class="label">Core Workflows / 004</span>
-    </div>
-    
-    <h2 class="fade-up">Core <span class="text-cyan">Workflows</span></h2>
-    
-    <p class="fade-up">End-to-end labour management from request to completion.</p>
-    
-    <div class="flow" id="workflow-flow">
-      <div class="flow-step"><strong>1. Request</strong><span>Site raises need</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step"><strong>2. Search</strong><span>Internal first</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step"><strong>3. Allocate</strong><span>Match & assign</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step"><strong>4. Induction</strong><span>Site-specific</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step"><strong>5. Track</strong><span>Attendance</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step"><strong>6. Grade</strong><span>Performance</span></div>
-    </div>
-    
-    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
-      <div class="card fade-up">
-        <div class="card-number">01</div>
-        <h4>Automated Matching</h4>
-        <p>System automatically matches operatives based on skills, availability, proximity, and past performance ratings.</p>
-      </div>
-      <div class="card fade-up">
-        <div class="card-number">02</div>
-        <h4>WhatsApp Integration</h4>
-        <p>Operatives receive job offers via WhatsApp, respond instantly, and the system processes their replies automatically.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 05: SOPHIE AI ===== -->
-<section class="section" data-slide="05">
-  <div class="container">
-    <div class="section-label fade-up">
-      <div class="label-line"></div>
-      <span class="label">Sophie AI Agent / 005</span>
-    </div>
-    
-    <h2 class="fade-up"><span class="text-gold">Sophie</span> AI Agent</h2>
-    
-    <p class="fade-up">Your AI-powered recruitment assistant that qualifies candidates 24/7.</p>
-    
-    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
-      <div class="fade-up">
-        <h3>What Sophie Does</h3>
-        <table class="table">
-          <tbody>
-            <tr><td>Responds to applicant enquiries via WhatsApp</td></tr>
-            <tr><td>Collects skills, experience, and certifications</td></tr>
-            <tr><td>Validates CSCS cards and expiry dates</td></tr>
-            <tr><td>Checks availability and location preferences</td></tr>
-            <tr><td>Qualifies candidates before reaching Labour Manager</td></tr>
-            <tr><td>Schedules document uploads and follow-ups</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="fade-up">
-        <h3>Qualifying Logic</h3>
-        <div class="card" style="margin-bottom: 1rem; border-color: var(--color-cyan);">
-          <h4 style="color: var(--color-cyan);">✓ Qualified</h4>
-          <p>Valid CSCS + Right to Work + Required Skills → Passed to Labour Manager</p>
-        </div>
-        <div class="card" style="border-color: var(--color-text-muted);">
-          <h4 style="color: var(--color-text-muted);">✗ Not Qualified</h4>
-          <p>Missing documents or skills → Stored for future roles, requested to complete</p>
-        </div>
-      </div>
-    </div>
-    
-    <p class="fade-up" style="margin-top: 2rem;">
-      <span class="badge badge-gold">~£0.30 per applicant</span> vs £500+ agency fee per placement
-    </p>
-  </div>
-</section>
-
-<!-- ===== 06: COMPLIANCE ENGINE ===== -->
-<section class="section line-grid" data-slide="06">
-  <div class="container">
-    <div class="section-label fade-up">
-      <div class="label-line"></div>
-      <span class="label">Compliance Engine / 006</span>
-    </div>
-    
-    <h2 class="fade-up">Compliance <span class="text-cyan">Engine</span></h2>
-    
-    <p class="fade-up">Automated document management with expiry tracking and enforcement.</p>
-    
-    <table class="table fade-up">
-      <thead>
-        <tr>
-          <th>Document Type</th>
-          <th>Tracking</th>
-          <th>Alerts</th>
-          <th>Enforcement</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Right to Work</td>
-          <td>Expiry date, share code</td>
-          <td>30, 14, 7 days before</td>
-          <td><span class="badge badge-red">Blocks if expired</span></td>
-        </tr>
-        <tr>
-          <td>CSCS Card</td>
-          <td>Card type, number, expiry</td>
-          <td>60, 30, 14 days before</td>
-          <td><span class="badge badge-red">Blocks if expired</span></td>
-        </tr>
-        <tr>
-          <td>Plant Tickets (CPCS/NPORS)</td>
-          <td>Machine categories, expiry</td>
-          <td>30, 14 days before</td>
-          <td><span class="badge badge-gold">Warns if expired</span></td>
-        </tr>
-        <tr>
-          <td>Photo ID</td>
-          <td>Verified flag</td>
-          <td>On upload</td>
-          <td><span class="badge badge-cyan">Required for onboarding</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ===== 07: NCR & PERFORMANCE ===== -->
-<section class="section dot-grid" data-slide="07">
-  <div class="container">
-    <div class="section-label fade-up">
-      <div class="label-line"></div>
-      <span class="label">NCR & Performance / 007</span>
-    </div>
-    
-    <h2 class="fade-up">NCR & <span class="text-cyan">Performance</span></h2>
-    
-    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
-      <div class="fade-up">
-        <h3>NCR Types</h3>
-        <table class="table">
-          <tbody>
-            <tr><td><span class="badge badge-red">No Show</span></td><td>Failed to arrive without notice</td></tr>
-            <tr><td><span class="badge badge-red">Walk Off</span></td><td>Left site without authorisation</td></tr>
-            <tr><td><span class="badge badge-red">Safety Breach</span></td><td>PPE or safety protocol violation</td></tr>
-            <tr><td><span class="badge badge-gold">Poor Attitude</span></td><td>Conduct issues reported</td></tr>
-            <tr><td><span class="badge badge-gold">Skill Mismatch</span></td><td>Unable to perform claimed skills</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="fade-up">
-        <h3>Red Card System</h3>
-        <div class="card">
-          <h4>Automatic Enforcement</h4>
-          <p>NCR triggers automatic review. Multiple NCRs = blocked status. "Would Re-employ" flag from supervisors. Blocked operatives excluded from all searches.</p>
-        </div>
-        <div class="card" style="margin-top: 1rem; border-color: #ef4444; background: rgba(239, 68, 68, 0.05);">
-          <h4 style="color: #ef4444;">Critical NCR = Instant Block</h4>
-          <p>Drugs/alcohol or serious safety breach immediately blocks operative.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 08: SYSTEM ARCHITECTURE ===== -->
-<section class="section" data-slide="08">
-  <div class="container">
-    <div class="section-label fade-up">
-      <div class="label-line"></div>
-      <span class="label">System Architecture / 008</span>
+      <span class="label">Architecture / 003</span>
     </div>
     
     <h2 class="fade-up">System <span class="text-cyan">Architecture</span></h2>
     
-    <div class="arch-diagram fade-up" id="arch-diagram">
-      <div class="arch-row">
-        <div class="arch-box">
-          <strong class="text-cyan">Web Dashboard</strong>
-          <span>Directors, Labour Managers</span>
-        </div>
-        <div class="arch-box">
-          <strong class="text-gold">WhatsApp</strong>
-          <span>Operatives, Sophie AI</span>
-        </div>
-      </div>
-      
-      <div class="arch-connector"></div>
-      
-      <div class="arch-row">
-        <div class="arch-box highlight">
-          <strong>API Layer</strong>
-          <span>Authentication, Business Logic</span>
-        </div>
-      </div>
-      
-      <div class="arch-connector"></div>
-      
-      <div class="arch-row">
-        <div class="arch-box">
-          <strong>Database</strong>
-          <span>PostgreSQL</span>
-        </div>
-        <div class="arch-box">
-          <strong>File Storage</strong>
-          <span>Documents</span>
-        </div>
-        <div class="arch-box">
-          <strong>Cache</strong>
-          <span>Redis</span>
-        </div>
-      </div>
+    <p class="fade-up">Complete technical architecture showing all system components and data flows.</p>
+    
+    <div class="arch-diagram fade-up">
+      <pre>
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    USER INTERFACES                                       │
+├────────────────────┬────────────────────┬────────────────────┬─────────────────────────┤
+│                    │                    │                    │                         │
+│  <span class="text-cyan">LIAM DASHBOARD</span>    │  <span class="text-gold">SITE MANAGER</span>      │  <span class="text-purple">SOPHIE AI</span>         │  <span class="text-green">OPERATIVE</span>             │
+│  (Web Application) │  (WhatsApp Bot)    │  (WhatsApp Agent)  │  (WhatsApp)             │
+│                    │                    │                    │                         │
+│  • Labour Search   │  • Arrival Confirm │  • Candidate Intake│  • Shift Confirmation   │
+│  • Allocations     │  • NCR Reports     │  • Document Upload │  • Induction Forms      │
+│  • Compliance      │  • Performance     │  • Qualification   │  • Availability         │
+│  • Reporting       │  • Replacement Req │  • Follow-ups      │  • Referrals            │
+│                    │                    │                    │                         │
+└─────────┬──────────┴─────────┬──────────┴─────────┬──────────┴───────────┬─────────────┘
+          │                    │                    │                      │
+          │                    │                    │                      │
+          ▼                    ▼                    ▼                      ▼
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                                                                                          │
+│                           <span class="text-cyan">NEXT.JS API LAYER</span> (Serverless Functions)                      │
+│                                                                                          │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌────────────┐ │
+│  │ /operatives  │  │ /allocations │  │ /ncrs        │  │ /documents   │  │ /webhooks  │ │
+│  │ CRUD+Search  │  │ Assign+Track │  │ Log+Block    │  │ Upload+Verify│  │ WhatsApp   │ │
+│  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘  └────────────┘ │
+│                                                                                          │
+└───────────────────────────────────┬──────────────────────────────────────────────────────┘
+                                    │
+          ┌─────────────────────────┼─────────────────────────┐
+          │                         │                         │
+          ▼                         ▼                         ▼
+┌──────────────────┐    ┌────────────────────┐    ┌─────────────────────────────────────┐
+│                  │    │                    │    │                                     │
+│  <span class="text-cyan">POSTGRESQL</span>       │    │  <span class="text-gold">SUPABASE STORAGE</span>  │    │  <span class="text-green">EXTERNAL SERVICES</span>                  │
+│  (Supabase)      │    │  (Documents)       │    │                                     │
+│                  │    │                    │    │  ┌─────────────┐  ┌──────────────┐  │
+│  • operatives    │    │  • CSCS Cards      │    │  │ WhatsApp    │  │ OpenAI GPT-4 │  │
+│  • sites         │    │  • Photo IDs       │    │  │ Business    │  │ (Sophie)     │  │
+│  • allocations   │    │  • RTW Documents   │    │  │ API         │  │              │  │
+│  • documents     │    │  • Plant Tickets   │    │  └─────────────┘  └──────────────┘  │
+│  • ncrs          │    │  • CVs             │    │                                     │
+│  • comms_log     │    │                    │    │  ┌─────────────┐  ┌──────────────┐  │
+│  • attendance    │    │                    │    │  │ Gov.uk RTW  │  │ Twilio       │  │
+│  • reviews       │    │                    │    │  │ Check API   │  │ (SMS Backup) │  │
+│                  │    │                    │    │  └─────────────┘  └──────────────┘  │
+│                  │    │                    │    │                                     │
+└──────────────────┘    └────────────────────┘    └─────────────────────────────────────┘
+      </pre>
     </div>
     
-    <div class="stats-grid fade-up">
-      <div class="stat-item">
-        <div class="stat-number">&lt;100ms</div>
-        <div class="stat-label">Page Load Time</div>
+    <div class="grid grid-3 fade-up">
+      <div class="card">
+        <h4 class="text-cyan">Frontend</h4>
+        <p>Next.js 15 with App Router. Server-side rendering for fast page loads. Real-time updates via Supabase subscriptions.</p>
       </div>
-      <div class="stat-item">
-        <div class="stat-number">99.9%</div>
-        <div class="stat-label">Uptime SLA</div>
+      <div class="card">
+        <h4 class="text-gold">Database</h4>
+        <p>PostgreSQL via Supabase. Row-level security for multi-tenant isolation. Full-text search on operatives.</p>
       </div>
-      <div class="stat-item">
-        <div class="stat-number">∞</div>
-        <div class="stat-label">Scalability</div>
+      <div class="card">
+        <h4 class="text-green">Integrations</h4>
+        <p>WhatsApp Business API for all messaging. OpenAI for Sophie. Gov.uk for RTW verification.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== 09: DATA MODEL ===== -->
-<section class="section line-grid" data-slide="09">
+<!-- ===== 04: DATABASE SCHEMA ===== -->
+<section class="section dot-grid">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
-      <span class="label">Data Model / 009</span>
+      <span class="label">Database / 004</span>
     </div>
     
-    <h2 class="fade-up">Data <span class="text-cyan">Model</span></h2>
+    <h2 class="fade-up">Database <span class="text-cyan">Schema</span></h2>
     
-    <div class="grid">
-      <div class="card fade-up">
-        <div class="card-number">01</div>
-        <h4>Operatives</h4>
-        <p>Personal details, skills, certifications, rates, availability, performance history, NCRs, documents.</p>
+    <p class="fade-up">10 core tables with full referential integrity, optimized indexes, and automated triggers.</p>
+    
+    <div class="er-diagram fade-up">
+      <div class="er-table">
+        <div class="er-table-name">operatives</div>
+        <div class="er-table-cols">
+          <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="name">first_name, last_name</span> <span class="type">VARCHAR</span></div>
+          <div class="er-col"><span class="name">phone, email</span> <span class="type">VARCHAR</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">trade_category_id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="name">day_rate</span> <span class="type">DECIMAL</span></div>
+          <div class="er-col"><span class="name">status</span> <span class="type">ENUM</span></div>
+          <div class="er-col"><span class="name">avg_rating</span> <span class="type">DECIMAL</span></div>
+          <div class="er-col"><span class="name">cscs_expiry, rtw_expiry</span> <span class="type">DATE</span></div>
+        </div>
       </div>
-      <div class="card fade-up">
-        <div class="card-number">02</div>
-        <h4>Sites</h4>
-        <p>Location, address, contact details, site manager, active status, GPS coordinates.</p>
+      
+      <div class="er-table">
+        <div class="er-table-name">sites</div>
+        <div class="er-table-cols">
+          <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="name">name</span> <span class="type">VARCHAR</span></div>
+          <div class="er-col"><span class="name">address, postcode</span> <span class="type">TEXT</span></div>
+          <div class="er-col"><span class="name">lat, lng</span> <span class="type">DECIMAL</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">site_manager_id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="name">is_active</span> <span class="type">BOOLEAN</span></div>
+        </div>
       </div>
-      <div class="card fade-up">
-        <div class="card-number">03</div>
-        <h4>Allocations</h4>
-        <p>Operative → Site assignment with start/end dates, rates, status, induction completion.</p>
+      
+      <div class="er-table">
+        <div class="er-table-name">allocations</div>
+        <div class="er-table-cols">
+          <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">site_id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="name">start_date, end_date</span> <span class="type">DATE</span></div>
+          <div class="er-col"><span class="name">agreed_day_rate</span> <span class="type">DECIMAL</span></div>
+          <div class="er-col"><span class="name">status</span> <span class="type">ENUM</span></div>
+          <div class="er-col"><span class="name">induction_completed</span> <span class="type">BOOLEAN</span></div>
+        </div>
       </div>
-      <div class="card fade-up">
-        <div class="card-number">04</div>
-        <h4>Documents</h4>
-        <p>File storage, document type, issue/expiry dates, verification status, audit trail.</p>
+      
+      <div class="er-table">
+        <div class="er-table-name">documents</div>
+        <div class="er-table-cols">
+          <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="name">document_type</span> <span class="type">ENUM</span></div>
+          <div class="er-col"><span class="name">file_url</span> <span class="type">TEXT</span></div>
+          <div class="er-col"><span class="name">expiry_date</span> <span class="type">DATE</span></div>
+          <div class="er-col"><span class="name">is_verified</span> <span class="type">BOOLEAN</span></div>
+          <div class="er-col"><span class="name">rtw_share_code</span> <span class="type">VARCHAR</span></div>
+        </div>
       </div>
-      <div class="card fade-up">
-        <div class="card-number">05</div>
-        <h4>Shifts & Timesheets</h4>
-        <p>Scheduled work periods, clock in/out, breaks, approval workflow, payroll export.</p>
+      
+      <div class="er-table">
+        <div class="er-table-name">ncrs</div>
+        <div class="er-table-cols">
+          <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">site_id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="name">incident_type</span> <span class="type">ENUM</span></div>
+          <div class="er-col"><span class="name">severity</span> <span class="type">ENUM</span></div>
+          <div class="er-col"><span class="name">description</span> <span class="type">TEXT</span></div>
+          <div class="er-col"><span class="name">resulted_in_block</span> <span class="type">BOOLEAN</span></div>
+        </div>
       </div>
-      <div class="card fade-up">
-        <div class="card-number">06</div>
-        <h4>Communications</h4>
-        <p>WhatsApp, SMS, Email logs with delivery status, templates, campaigns.</p>
+      
+      <div class="er-table">
+        <div class="er-table-name">communication_log</div>
+        <div class="er-table-cols">
+          <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="name">channel</span> <span class="type">ENUM</span></div>
+          <div class="er-col"><span class="name">direction</span> <span class="type">ENUM</span></div>
+          <div class="er-col"><span class="name">message_body</span> <span class="type">TEXT</span></div>
+          <div class="er-col"><span class="name">status</span> <span class="type">VARCHAR</span></div>
+          <div class="er-col"><span class="name">sent_at</span> <span class="type">TIMESTAMP</span></div>
+        </div>
+      </div>
+    </div>
+    
+    <h3 class="fade-up" style="margin-top: 3rem;">Operatives Table — Full Schema</h3>
+    
+    <div class="code-block fade-up">
+      <div class="code-header">
+        <span class="code-dot red"></span>
+        <span class="code-dot yellow"></span>
+        <span class="code-dot green"></span>
+        <span class="code-title">operatives.sql</span>
+      </div>
+      <pre><span class="comment">-- The labour pool: every operative in the system</span>
+<span class="keyword">CREATE TABLE</span> <span class="type">operatives</span> (
+  id <span class="type">UUID</span> <span class="keyword">PRIMARY KEY DEFAULT</span> <span class="function">gen_random_uuid</span>(),
+  
+  <span class="comment">-- Personal Information</span>
+  first_name <span class="type">VARCHAR(100)</span> <span class="keyword">NOT NULL</span>,
+  last_name <span class="type">VARCHAR(100)</span> <span class="keyword">NOT NULL</span>,
+  phone <span class="type">VARCHAR(20)</span> <span class="keyword">NOT NULL UNIQUE</span>,
+  email <span class="type">VARCHAR(255)</span>,
+  date_of_birth <span class="type">DATE</span>,
+  nationality <span class="type">VARCHAR(100)</span>,
+  languages <span class="type">TEXT[]</span>,  <span class="comment">-- ['English', 'Polish', 'Romanian']</span>
+  
+  <span class="comment">-- Location & Travel</span>
+  address <span class="type">TEXT</span>,
+  postcode <span class="type">VARCHAR(10)</span>,
+  travel_radius_miles <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="string">25</span>,
+  
+  <span class="comment">-- Role & Skills</span>
+  labour_type <span class="type">labour_type</span> <span class="keyword">NOT NULL DEFAULT</span> <span class="string">'blue_collar'</span>,
+  trade_category_id <span class="type">UUID</span> <span class="keyword">REFERENCES</span> trade_categories(id),
+  skills <span class="type">TEXT[]</span>,
+  years_experience <span class="type">INT</span>,
+  
+  <span class="comment">-- Rates</span>
+  day_rate <span class="type">DECIMAL(8,2)</span>,
+  hourly_rate <span class="type">DECIMAL(6,2)</span> <span class="keyword">GENERATED ALWAYS AS</span> (day_rate / 8) <span class="keyword">STORED</span>,
+  
+  <span class="comment">-- Compliance (denormalized for fast queries)</span>
+  rtw_verified <span class="type">BOOLEAN</span> <span class="keyword">DEFAULT</span> <span class="string">false</span>,
+  rtw_expiry <span class="type">DATE</span>,
+  cscs_card_type <span class="type">VARCHAR(100)</span>,
+  cscs_expiry <span class="type">DATE</span>,
+  
+  <span class="comment">-- Performance Metrics (auto-calculated via triggers)</span>
+  avg_rating <span class="type">DECIMAL(3,2)</span>,
+  total_jobs <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="string">0</span>,
+  would_reemploy_count <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="string">0</span>,
+  
+  <span class="comment">-- Status Management</span>
+  status <span class="type">VARCHAR(50)</span> <span class="keyword">CHECK</span> (status <span class="keyword">IN</span> (
+    <span class="string">'prospect'</span>,      <span class="comment">-- Responded to ad</span>
+    <span class="string">'qualifying'</span>,    <span class="comment">-- Sophie is screening</span>
+    <span class="string">'pending_docs'</span>,  <span class="comment">-- Awaiting documents</span>
+    <span class="string">'verified'</span>,      <span class="comment">-- Ready to work</span>
+    <span class="string">'working'</span>,       <span class="comment">-- Currently on a job</span>
+    <span class="string">'available'</span>,     <span class="comment">-- Verified and free</span>
+    <span class="string">'blocked'</span>        <span class="comment">-- NCR'd, do not use</span>
+  )) <span class="keyword">DEFAULT</span> <span class="string">'prospect'</span>,
+  
+  blocked_reason <span class="type">TEXT</span>,
+  source <span class="type">VARCHAR(100)</span>,  <span class="comment">-- 'facebook', 'referral', etc.</span>
+  
+  created_at <span class="type">TIMESTAMPTZ</span> <span class="keyword">DEFAULT NOW</span>(),
+  updated_at <span class="type">TIMESTAMPTZ</span> <span class="keyword">DEFAULT NOW</span>()
+);
+
+<span class="comment">-- Indexes for fast searching</span>
+<span class="keyword">CREATE INDEX</span> idx_operatives_status <span class="keyword">ON</span> operatives(status);
+<span class="keyword">CREATE INDEX</span> idx_operatives_trade <span class="keyword">ON</span> operatives(trade_category_id);
+<span class="keyword">CREATE INDEX</span> idx_operatives_postcode <span class="keyword">ON</span> operatives(postcode);
+<span class="keyword">CREATE INDEX</span> idx_operatives_rating <span class="keyword">ON</span> operatives(avg_rating <span class="keyword">DESC NULLS LAST</span>);
+<span class="keyword">CREATE INDEX</span> idx_operatives_cscs_expiry <span class="keyword">ON</span> operatives(cscs_expiry);
+<span class="keyword">CREATE INDEX</span> idx_operatives_available <span class="keyword">ON</span> operatives(status) 
+  <span class="keyword">WHERE</span> status <span class="keyword">IN</span> (<span class="string">'verified'</span>, <span class="string">'available'</span>);</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05: FILE STRUCTURE ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Project Structure / 005</span>
+    </div>
+    
+    <h2 class="fade-up">Project <span class="text-cyan">Structure</span></h2>
+    
+    <p class="fade-up">Organized, scalable Next.js application following enterprise patterns.</p>
+    
+    <div class="grid grid-2 fade-up" style="align-items: start;">
+      <div class="file-tree">
+<pre><span class="folder">aztec-bos/</span>
+├── <span class="folder">src/</span>
+│   ├── <span class="folder">app/</span>                    <span class="comment"># Next.js App Router</span>
+│   │   ├── <span class="folder">(dashboard)/</span>         <span class="comment"># Protected routes</span>
+│   │   │   ├── <span class="folder">dashboard/</span>
+│   │   │   ├── <span class="folder">operatives/</span>
+│   │   │   │   ├── <span class="file">page.tsx</span>       <span class="comment"># List view</span>
+│   │   │   │   ├── <span class="file">[id]/page.tsx</span>  <span class="comment"># Detail view</span>
+│   │   │   │   └── <span class="file">new/page.tsx</span>   <span class="comment"># Create form</span>
+│   │   │   ├── <span class="folder">sites/</span>
+│   │   │   ├── <span class="folder">allocations/</span>
+│   │   │   ├── <span class="folder">ncrs/</span>
+│   │   │   ├── <span class="folder">documents/</span>
+│   │   │   └── <span class="special">layout.tsx</span>       <span class="comment"># Dashboard shell</span>
+│   │   │
+│   │   ├── <span class="folder">api/</span>                  <span class="comment"># API Routes</span>
+│   │   │   ├── <span class="folder">v1/</span>
+│   │   │   │   ├── <span class="folder">operatives/</span>
+│   │   │   │   ├── <span class="folder">allocations/</span>
+│   │   │   │   ├── <span class="folder">ncrs/</span>
+│   │   │   │   └── <span class="folder">documents/</span>
+│   │   │   └── <span class="folder">webhooks/</span>
+│   │   │       └── <span class="special">whatsapp/route.ts</span>
+│   │   │
+│   │   ├── <span class="folder">(auth)/</span>              <span class="comment"># Auth routes</span>
+│   │   │   └── <span class="file">login/page.tsx</span>
+│   │   │
+│   │   ├── <span class="config">layout.tsx</span>           <span class="comment"># Root layout</span>
+│   │   └── <span class="config">globals.css</span>
+│   │
+│   ├── <span class="folder">components/</span>
+│   │   ├── <span class="folder">ui/</span>                  <span class="comment"># shadcn/ui components</span>
+│   │   ├── <span class="folder">operatives/</span>
+│   │   ├── <span class="folder">allocations/</span>
+│   │   └── <span class="folder">dashboard/</span>
+│   │
+│   ├── <span class="folder">lib/</span>
+│   │   ├── <span class="special">supabase/</span>            <span class="comment"># DB client & queries</span>
+│   │   ├── <span class="special">whatsapp/</span>            <span class="comment"># WhatsApp API</span>
+│   │   ├── <span class="special">sophie/</span>              <span class="comment"># AI agent logic</span>
+│   │   └── <span class="file">utils.ts</span>
+│   │
+│   └── <span class="folder">types/</span>
+│       └── <span class="file">database.ts</span>          <span class="comment"># Generated types</span>
+│
+├── <span class="folder">supabase/</span>
+│   └── <span class="folder">migrations/</span>            <span class="comment"># SQL migrations</span>
+│
+├── <span class="config">next.config.ts</span>
+├── <span class="config">package.json</span>
+└── <span class="config">tsconfig.json</span></pre>
+      </div>
+      
+      <div>
+        <h3>Key Directories</h3>
+        
+        <div class="card" style="margin-bottom: 1rem;">
+          <h4><code>src/app/(dashboard)/</code></h4>
+          <p>All authenticated routes. Liam's main workspace. Protected by middleware.</p>
+        </div>
+        
+        <div class="card" style="margin-bottom: 1rem;">
+          <h4><code>src/app/api/v1/</code></h4>
+          <p>RESTful API endpoints. Versioned for future compatibility. Server-side data operations.</p>
+        </div>
+        
+        <div class="card" style="margin-bottom: 1rem;">
+          <h4><code>src/lib/sophie/</code></h4>
+          <p>Sophie AI agent. OpenAI integration. Conversation state machine. Candidate qualification logic.</p>
+        </div>
+        
+        <div class="card" style="margin-bottom: 1rem;">
+          <h4><code>supabase/migrations/</code></h4>
+          <p>Version-controlled database schema. Run in order. Full audit trail of changes.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== 10: SECURITY ===== -->
-<section class="section dot-grid" data-slide="10">
+<!-- ===== 06: API ENDPOINTS ===== -->
+<section class="section line-grid">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
-      <span class="label">Security / 010</span>
+      <span class="label">API Design / 006</span>
     </div>
     
-    <h2 class="fade-up">Security & <span class="text-cyan">Data Protection</span></h2>
+    <h2 class="fade-up">API <span class="text-cyan">Endpoints</span></h2>
     
-    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
-      <div class="fade-up">
-        <h3>Data Protection</h3>
-        <table class="table">
-          <tbody>
-            <tr><td><strong>UK Data Residency</strong></td><td>All data stored in UK/EU</td></tr>
-            <tr><td><strong>Encryption at Rest</strong></td><td>AES-256 for all stored data</td></tr>
-            <tr><td><strong>Encryption in Transit</strong></td><td>TLS 1.3 for all connections</td></tr>
-            <tr><td><strong>GDPR Compliant</strong></td><td>Right to access, rectification, deletion</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="fade-up">
-        <h3>Access Controls</h3>
-        <table class="table">
-          <tbody>
-            <tr><td><strong>Role-Based Access</strong></td><td>Director, Labour Manager, Site Manager</td></tr>
-            <tr><td><strong>Row-Level Security</strong></td><td>Database enforces permissions</td></tr>
-            <tr><td><strong>Multi-Factor Auth</strong></td><td>Optional 2FA for all users</td></tr>
-            <tr><td><strong>Audit Trail</strong></td><td>Every action logged</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    
-    <div class="card fade-up" style="margin-top: 2rem; border-color: var(--color-cyan); background: rgba(6, 182, 212, 0.05);">
-      <h4 style="color: var(--color-cyan);">Complete Audit Trail</h4>
-      <p>Every action logged: who did what, when, from where. Full change history for compliance reporting.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 11: TECHNOLOGY ===== -->
-<section class="section" data-slide="11">
-  <div class="container">
-    <div class="section-label fade-up">
-      <div class="label-line"></div>
-      <span class="label">Technology / 011</span>
-    </div>
-    
-    <h2 class="fade-up">Technology <span class="text-cyan">Foundation</span></h2>
+    <p class="fade-up">RESTful API with 25+ endpoints covering all business operations.</p>
     
     <table class="table fade-up">
       <thead>
         <tr>
-          <th>Layer</th>
-          <th>Technology</th>
-          <th>Why This Choice</th>
+          <th>Method</th>
+          <th>Endpoint</th>
+          <th>Description</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Frontend</td>
-          <td><span class="text-cyan">Next.js 15 + React</span></td>
-          <td>Industry standard, fast, great developer ecosystem</td>
+          <td><span class="badge badge-green">GET</span></td>
+          <td><code>/api/v1/operatives</code></td>
+          <td>List operatives with filters (trade, status, location, rating)</td>
         </tr>
         <tr>
-          <td>Backend</td>
-          <td><span class="text-cyan">Next.js API Routes</span></td>
-          <td>Full-stack in one codebase, serverless scaling</td>
+          <td><span class="badge badge-cyan">POST</span></td>
+          <td><code>/api/v1/operatives</code></td>
+          <td>Create new operative record</td>
         </tr>
         <tr>
-          <td>Database</td>
-          <td><span class="text-cyan">PostgreSQL (Supabase)</span></td>
-          <td>Reliable, mature, excellent for complex queries</td>
+          <td><span class="badge badge-green">GET</span></td>
+          <td><code>/api/v1/operatives/:id</code></td>
+          <td>Get operative details with documents, history</td>
         </tr>
         <tr>
-          <td>Auth</td>
-          <td><span class="text-cyan">Supabase Auth</span></td>
-          <td>Enterprise features, RBAC, audit logs included</td>
+          <td><span class="badge badge-gold">PATCH</span></td>
+          <td><code>/api/v1/operatives/:id</code></td>
+          <td>Update operative (status, details, block)</td>
         </tr>
         <tr>
-          <td>Hosting</td>
-          <td><span class="text-cyan">Vercel</span></td>
-          <td>Global CDN, auto-scaling, zero-downtime deploys</td>
+          <td><span class="badge badge-green">GET</span></td>
+          <td><code>/api/v1/operatives/search</code></td>
+          <td>Advanced search with full-text, geo, filters</td>
+        </tr>
+        <tr><td colspan="3" style="height: 1rem;"></td></tr>
+        <tr>
+          <td><span class="badge badge-cyan">POST</span></td>
+          <td><code>/api/v1/allocations</code></td>
+          <td>Assign operative to site</td>
         </tr>
         <tr>
-          <td>Messaging</td>
-          <td><span class="text-cyan">WhatsApp Business API</span></td>
-          <td>Official API, reliable delivery, templates</td>
+          <td><span class="badge badge-cyan">POST</span></td>
+          <td><code>/api/v1/allocations/:id/confirm</code></td>
+          <td>Operative confirms allocation</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-cyan">POST</span></td>
+          <td><code>/api/v1/allocations/:id/complete</code></td>
+          <td>Mark allocation as complete, trigger review</td>
+        </tr>
+        <tr><td colspan="3" style="height: 1rem;"></td></tr>
+        <tr>
+          <td><span class="badge badge-cyan">POST</span></td>
+          <td><code>/api/v1/ncrs</code></td>
+          <td>Log NCR against operative</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-green">GET</span></td>
+          <td><code>/api/v1/ncrs/operative/:id</code></td>
+          <td>Get all NCRs for an operative</td>
+        </tr>
+        <tr><td colspan="3" style="height: 1rem;"></td></tr>
+        <tr>
+          <td><span class="badge badge-cyan">POST</span></td>
+          <td><code>/api/v1/documents</code></td>
+          <td>Upload document (RTW, CSCS, etc.)</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-green">GET</span></td>
+          <td><code>/api/v1/documents/expiring</code></td>
+          <td>List documents expiring within N days</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-gold">PATCH</span></td>
+          <td><code>/api/v1/documents/:id/verify</code></td>
+          <td>Mark document as verified</td>
+        </tr>
+        <tr><td colspan="3" style="height: 1rem;"></td></tr>
+        <tr>
+          <td><span class="badge badge-cyan">POST</span></td>
+          <td><code>/api/v1/attendance/confirm</code></td>
+          <td>Site Manager confirms arrival</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-cyan">POST</span></td>
+          <td><code>/api/v1/reviews</code></td>
+          <td>Submit performance review (1-5 rating)</td>
+        </tr>
+        <tr><td colspan="3" style="height: 1rem;"></td></tr>
+        <tr>
+          <td><span class="badge badge-purple">POST</span></td>
+          <td><code>/api/webhooks/whatsapp</code></td>
+          <td>Receive WhatsApp messages (route to Sophie or Site Manager handler)</td>
         </tr>
       </tbody>
     </table>
+  </div>
+</section>
+
+<!-- ===== 07: SOPHIE AI ===== -->
+<section class="section dot-grid">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Sophie AI / 007</span>
+    </div>
     
-    <p class="fade-up" style="margin-top: 2rem;">
-      <span class="badge badge-cyan">No Vendor Lock-in</span> — All technologies are open standards.
-    </p>
+    <h2 class="fade-up"><span class="text-purple">Sophie</span> AI Agent</h2>
+    
+    <p class="fade-up">AI-powered recruitment assistant with a structured qualification flow and mandatory gates.</p>
+    
+    <h3 class="fade-up" style="margin-top: 2rem;">Conversation State Machine</h3>
+    
+    <div class="flow fade-up" style="flex-wrap: wrap; gap: 0.5rem;">
+      <div class="flow-step active"><strong>Greeting</strong><span>Present job</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step gate"><strong>RTW Check</strong><span>GATE 1</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step gate"><strong>Age 18+</strong><span>GATE 2</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step"><strong>CSCS</strong><span>Card type</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step"><strong>Personal</strong><span>Name, DOB</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step"><strong>Skills</strong><span>Experience</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step"><strong>Docs</strong><span>Upload request</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step active"><strong>Complete</strong><span>Pass to Liam</span></div>
+    </div>
+    
+    <div class="grid grid-2 fade-up" style="margin-top: 2rem;">
+      <div>
+        <h3>Sophie's Qualification Logic</h3>
+        
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">sophie/qualify.ts</span>
+          </div>
+          <pre><span class="keyword">type</span> <span class="type">SophieState</span> =
+  | <span class="string">'greeting'</span>
+  | <span class="string">'check_rtw'</span>        <span class="comment">// Gate 1: MUST pass</span>
+  | <span class="string">'check_age'</span>        <span class="comment">// Gate 2: MUST pass</span>
+  | <span class="string">'check_cscs'</span>
+  | <span class="string">'collect_name'</span>
+  | <span class="string">'collect_dob'</span>
+  | <span class="string">'collect_nationality'</span>
+  | <span class="string">'collect_languages'</span>
+  | <span class="string">'collect_medical'</span>   <span class="comment">// Required</span>
+  | <span class="string">'collect_skills'</span>
+  | <span class="string">'collect_experience'</span>
+  | <span class="string">'collect_employers'</span>
+  | <span class="string">'request_documents'</span>
+  | <span class="string">'complete'</span>
+  | <span class="string">'rejected'</span>
+
+<span class="keyword">async function</span> <span class="function">processMessage</span>(
+  conversation: <span class="type">SophieConversation</span>,
+  message: <span class="type">string</span>
+) {
+  <span class="keyword">const</span> { state, jobDetails } = conversation;
+  
+  <span class="comment">// Gate 1: Right to Work</span>
+  <span class="keyword">if</span> (state === <span class="string">'check_rtw'</span>) {
+    <span class="keyword">if</span> (!<span class="function">isPositive</span>(message)) {
+      <span class="keyword">return</span> {
+        newState: <span class="string">'rejected'</span>,
+        reply: <span class="string">'Sorry, you must have the right '</span> +
+               <span class="string">'to work in the UK for this role.'</span>
+      };
+    }
+  }
+  
+  <span class="comment">// Gate 2: Age 18+</span>
+  <span class="keyword">if</span> (state === <span class="string">'check_age'</span>) {
+    <span class="keyword">if</span> (!<span class="function">isPositive</span>(message)) {
+      <span class="keyword">return</span> {
+        newState: <span class="string">'rejected'</span>,
+        reply: <span class="string">'Sorry, you must be 18+ '</span> +
+               <span class="string">'for site work.'</span>
+      };
+    }
+  }
+  
+  <span class="comment">// Continue through state machine...</span>
+}</pre>
+        </div>
+      </div>
+      
+      <div>
+        <h3>Sample Conversation</h3>
+        
+        <div class="whatsapp-chat">
+          <div class="whatsapp-header">
+            <div class="whatsapp-avatar">S</div>
+            <div>
+              <div class="whatsapp-name">Sophie @ Aztec</div>
+              <div class="whatsapp-status">AI Assistant</div>
+            </div>
+          </div>
+          <div class="whatsapp-messages">
+            <div class="wa-msg incoming">
+              Hi! 👋 I'm Sophie from Aztec Landscapes.
+              <br><br>
+              I saw you responded to our ad for a <strong>Groundworker</strong> in <strong>Manchester</strong> at <strong>£180/day</strong> starting Monday.
+              <br><br>
+              Are you interested in this role?
+              <div class="wa-time">09:15</div>
+            </div>
+            <div class="wa-msg outgoing">
+              Yes definitely
+              <div class="wa-time">09:16</div>
+            </div>
+            <div class="wa-msg incoming">
+              Great! First question: Do you have the right to work in the UK?
+              <div class="wa-time">09:16</div>
+            </div>
+            <div class="wa-msg outgoing">
+              Yes I'm British
+              <div class="wa-time">09:17</div>
+            </div>
+            <div class="wa-msg incoming">
+              Perfect ✅ And are you 18 or over?
+              <div class="wa-time">09:17</div>
+            </div>
+            <div class="wa-msg outgoing">
+              Yeah 26
+              <div class="wa-time">09:17</div>
+            </div>
+            <div class="wa-msg incoming">
+              Great! Do you have a valid CSCS card? If so, what type and when does it expire?
+              <div class="wa-time">09:18</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 08: WHATSAPP FLOWS ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">WhatsApp Integration / 008</span>
+    </div>
+    
+    <h2 class="fade-up">WhatsApp <span class="text-green">Flows</span></h2>
+    
+    <p class="fade-up">Real message templates for common workflows.</p>
+    
+    <div class="grid grid-3 fade-up" style="margin-top: 2rem;">
+      <div>
+        <h3>Arrival Confirmation</h3>
+        <div class="whatsapp-chat" style="max-width: 100%;">
+          <div class="whatsapp-header">
+            <div class="whatsapp-avatar text-cyan">A</div>
+            <div>
+              <div class="whatsapp-name">Aztec BOS</div>
+              <div class="whatsapp-status">Site Manager Bot</div>
+            </div>
+          </div>
+          <div class="whatsapp-messages" style="min-height: 180px;">
+            <div class="wa-msg incoming">
+              Good morning! 🌅
+              <br><br>
+              Did <strong>John Smith</strong> arrive at <strong>Westfield Site</strong> today?
+              <br><br>
+              Reply YES or NO
+              <div class="wa-time">07:15</div>
+            </div>
+            <div class="wa-msg outgoing">
+              YES
+              <div class="wa-time">07:18</div>
+            </div>
+            <div class="wa-msg incoming">
+              ✅ John Smith marked as arrived.
+              <br>Have a great day!
+              <div class="wa-time">07:18</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h3>NCR Report</h3>
+        <div class="whatsapp-chat" style="max-width: 100%;">
+          <div class="whatsapp-header">
+            <div class="whatsapp-avatar text-red">!</div>
+            <div>
+              <div class="whatsapp-name">Site Manager</div>
+              <div class="whatsapp-status">NCR Flow</div>
+            </div>
+          </div>
+          <div class="whatsapp-messages" style="min-height: 180px;">
+            <div class="wa-msg outgoing">
+              Red card John Smith - walked off site without permission
+              <div class="wa-time">14:30</div>
+            </div>
+            <div class="wa-msg incoming">
+              ⚠️ <strong>NCR Logged</strong>
+              <br>Operative: John Smith
+              <br>Type: Walk Off
+              <br>Site: Westfield
+              <br><br>
+              Do you need a replacement?
+              <br>Reply YES or NO
+              <div class="wa-time">14:30</div>
+            </div>
+            <div class="wa-msg outgoing">
+              YES
+              <div class="wa-time">14:31</div>
+            </div>
+            <div class="wa-msg incoming">
+              Got it. Liam has been notified and will arrange a replacement ASAP. 🔄
+              <div class="wa-time">14:31</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h3>Shift Confirmation</h3>
+        <div class="whatsapp-chat" style="max-width: 100%;">
+          <div class="whatsapp-header">
+            <div class="whatsapp-avatar text-gold">A</div>
+            <div>
+              <div class="whatsapp-name">Aztec BOS</div>
+              <div class="whatsapp-status">Operative Flow</div>
+            </div>
+          </div>
+          <div class="whatsapp-messages" style="min-height: 180px;">
+            <div class="wa-msg incoming">
+              Hi John! 👋
+              <br><br>
+              You've been assigned to:
+              <br>📍 Westfield Site, W12 7GF
+              <br>📅 Monday 5th Feb
+              <br>💷 £180/day
+              <br>⏰ Report: 7:00 AM
+              <br>👤 Ask for: Mike
+              <br><br>
+              Confirm? Reply YES or NO
+              <div class="wa-time">16:00</div>
+            </div>
+            <div class="wa-msg outgoing">
+              YES
+              <div class="wa-time">16:05</div>
+            </div>
+            <div class="wa-msg incoming">
+              ✅ Confirmed for Westfield Site!
+              <br><br>
+              I'll send induction forms shortly.
+              <br>See you Monday! 🚧
+              <div class="wa-time">16:05</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 09: COMPLIANCE ENGINE ===== -->
+<section class="section line-grid">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Compliance / 009</span>
+    </div>
+    
+    <h2 class="fade-up">Compliance <span class="text-red">Engine</span></h2>
+    
+    <p class="fade-up">Automated pre-start checks and document expiry tracking.</p>
+    
+    <div class="grid grid-2 fade-up" style="margin-top: 2rem; align-items: start;">
+      <div>
+        <h3>Pre-Start Validation</h3>
+        
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">compliance/canStart.ts</span>
+          </div>
+          <pre><span class="keyword">async function</span> <span class="function">canOperativeStart</span>(
+  operativeId: <span class="type">string</span>
+): <span class="type">Promise</span>&lt;{
+  canStart: <span class="type">boolean</span>;
+  blockers: <span class="type">string</span>[];
+}&gt; {
+  <span class="keyword">const</span> op = <span class="keyword">await</span> db.operative.<span class="function">findById</span>(operativeId);
+  <span class="keyword">const</span> blockers: <span class="type">string</span>[] = [];
+  
+  <span class="comment">// 1. Right to Work verified</span>
+  <span class="keyword">if</span> (!op.rtwVerified) {
+    blockers.<span class="function">push</span>(<span class="string">'RTW not verified'</span>);
+  }
+  
+  <span class="comment">// 2. RTW not expired</span>
+  <span class="keyword">if</span> (op.rtwExpiry && op.rtwExpiry < <span class="keyword">new</span> <span class="type">Date</span>()) {
+    blockers.<span class="function">push</span>(<span class="string">'RTW expired'</span>);
+  }
+  
+  <span class="comment">// 3. Photo ID on file</span>
+  <span class="keyword">const</span> photoId = <span class="keyword">await</span> db.documents.<span class="function">findOne</span>({
+    operativeId,
+    documentType: <span class="string">'photo_id'</span>
+  });
+  <span class="keyword">if</span> (!photoId) {
+    blockers.<span class="function">push</span>(<span class="string">'Photo ID missing'</span>);
+  }
+  
+  <span class="comment">// 4. CSCS in date</span>
+  <span class="keyword">if</span> (!op.cscsExpiry || op.cscsExpiry < <span class="keyword">new</span> <span class="type">Date</span>()) {
+    blockers.<span class="function">push</span>(<span class="string">'CSCS expired/missing'</span>);
+  }
+  
+  <span class="comment">// 5. Not blocked</span>
+  <span class="keyword">if</span> (op.status === <span class="string">'blocked'</span>) {
+    blockers.<span class="function">push</span>(<span class="string">`Blocked: ${op.blockedReason}`</span>);
+  }
+  
+  <span class="keyword">return</span> {
+    canStart: blockers.length === <span class="string">0</span>,
+    blockers
+  };
+}</pre>
+        </div>
+      </div>
+      
+      <div>
+        <h3>Document Requirements</h3>
+        
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Document</th>
+              <th>Required</th>
+              <th>Expiry Alerts</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Right to Work</td>
+              <td><span class="badge badge-red">Mandatory</span></td>
+              <td>30, 21, 14, 7, 0 days</td>
+            </tr>
+            <tr>
+              <td>Photo ID</td>
+              <td><span class="badge badge-red">Mandatory</span></td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td>CSCS Card</td>
+              <td><span class="badge badge-red">Mandatory</span></td>
+              <td>60, 30, 14, 7, 0 days</td>
+            </tr>
+            <tr>
+              <td>CPCS/NPORS Tickets</td>
+              <td><span class="badge badge-gold">If Required</span></td>
+              <td>30, 14, 7 days</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top: 2rem;">Expiry Monitoring</h3>
+        
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">cron/expiryAlerts.ts</span>
+          </div>
+          <pre><span class="comment">// Runs daily at 06:00 UTC</span>
+<span class="keyword">async function</span> <span class="function">checkExpiringDocuments</span>() {
+  <span class="keyword">const</span> thresholds = [<span class="string">30</span>, <span class="string">21</span>, <span class="string">14</span>, <span class="string">7</span>, <span class="string">0</span>];
+  
+  <span class="keyword">for</span> (<span class="keyword">const</span> days <span class="keyword">of</span> thresholds) {
+    <span class="keyword">const</span> expiring = <span class="keyword">await</span> db.documents
+      .<span class="function">findExpiring</span>(days);
+    
+    <span class="keyword">for</span> (<span class="keyword">const</span> doc <span class="keyword">of</span> expiring) {
+      <span class="comment">// Alert Liam (dashboard + email)</span>
+      <span class="keyword">await</span> <span class="function">notifyLabourManager</span>({
+        type: <span class="string">'document_expiry'</span>,
+        urgency: days === <span class="string">0</span> ? <span class="string">'critical'</span> 
+               : days <= <span class="string">7</span> ? <span class="string">'high'</span> 
+               : <span class="string">'medium'</span>,
+        operative: doc.operative,
+        document: doc
+      });
+      
+      <span class="comment">// Alert operative via WhatsApp</span>
+      <span class="keyword">await</span> <span class="function">sendWhatsApp</span>(
+        doc.operative.phone,
+        <span class="string">`⚠️ Your ${doc.type} expires in `</span> +
+        <span class="string">`${days} days. Please upload a `</span> +
+        <span class="string">`new copy to continue working.`</span>
+      );
+    }
+  }
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 10: SEARCH ALGORITHM ===== -->
+<section class="section dot-grid">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Search / 010</span>
+    </div>
+    
+    <h2 class="fade-up">Labour <span class="text-cyan">Search</span></h2>
+    
+    <p class="fade-up">Intelligent matching based on role, location, rate, experience, and performance.</p>
+    
+    <div class="grid grid-2 fade-up" style="margin-top: 2rem; align-items: start;">
+      <div>
+        <h3>Search Priority (Liam-Defined)</h3>
+        
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Filter</th>
+              <th>Logic</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><strong>Role/Trade</strong></td>
+              <td>Primary filter — always required</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Location</td>
+              <td>Postcode + radius (miles)</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Day Rate</td>
+              <td>Min/max range</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Experience</td>
+              <td>Minimum years</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Certifications</td>
+              <td>Required tickets (CPCS, etc.)</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Availability</td>
+              <td>Status = available/verified</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Rating</td>
+              <td>Minimum avg rating</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="card" style="margin-top: 1.5rem; border-color: var(--color-cyan);">
+          <h4 class="text-cyan">Exclusions</h4>
+          <p>Currently working operatives are <strong>automatically excluded</strong> from search to prevent unnecessary messaging.</p>
+        </div>
+      </div>
+      
+      <div>
+        <h3>Search Query</h3>
+        
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-title">search.sql</span>
+          </div>
+          <pre><span class="keyword">SELECT</span> 
+  o.*,
+  <span class="comment">-- Distance calculation (Haversine)</span>
+  <span class="function">earth_distance</span>(
+    <span class="function">ll_to_earth</span>(o.lat, o.lng),
+    <span class="function">ll_to_earth</span>($lat, $lng)
+  ) / <span class="string">1609.34</span> <span class="keyword">AS</span> distance_miles
+<span class="keyword">FROM</span> operatives o
+<span class="keyword">WHERE</span> 
+  <span class="comment">-- Trade (required)</span>
+  o.trade_category_id = $tradeId
+  
+  <span class="comment">-- Status (available only)</span>
+  <span class="keyword">AND</span> o.status <span class="keyword">IN</span> (<span class="string">'available'</span>, <span class="string">'verified'</span>)
+  
+  <span class="comment">-- Compliance (must be valid)</span>
+  <span class="keyword">AND</span> o.rtw_verified = <span class="string">true</span>
+  <span class="keyword">AND</span> o.rtw_expiry > <span class="function">CURRENT_DATE</span>
+  <span class="keyword">AND</span> o.cscs_expiry > <span class="function">CURRENT_DATE</span>
+  
+  <span class="comment">-- Rate range</span>
+  <span class="keyword">AND</span> o.day_rate <span class="keyword">BETWEEN</span> $rateMin <span class="keyword">AND</span> $rateMax
+  
+  <span class="comment">-- Experience</span>
+  <span class="keyword">AND</span> o.years_experience >= $minExp
+  
+  <span class="comment">-- Rating</span>
+  <span class="keyword">AND</span> (o.avg_rating >= $minRating 
+       <span class="keyword">OR</span> o.avg_rating <span class="keyword">IS NULL</span>)
+  
+  <span class="comment">-- Location radius</span>
+  <span class="keyword">AND</span> <span class="function">earth_distance</span>(
+    <span class="function">ll_to_earth</span>(o.lat, o.lng),
+    <span class="function">ll_to_earth</span>($lat, $lng)
+  ) <= $radiusMiles * <span class="string">1609.34</span>
+  
+  <span class="comment">-- Certifications (if required)</span>
+  <span class="keyword">AND</span> ($certs <span class="keyword">IS NULL OR</span> 
+       o.skills @> $certs)
+
+<span class="keyword">ORDER BY</span> 
+  o.avg_rating <span class="keyword">DESC NULLS LAST</span>,
+  distance_miles <span class="keyword">ASC</span>
+<span class="keyword">LIMIT</span> <span class="string">50</span>;</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 11: SECURITY ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Security / 011</span>
+    </div>
+    
+    <h2 class="fade-up">Security & <span class="text-red">Data Protection</span></h2>
+    
+    <div class="grid grid-2 fade-up" style="margin-top: 2rem;">
+      <div>
+        <h3>Data Protection</h3>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><strong>UK Data Residency</strong></td>
+              <td>Supabase eu-west-2 (London)</td>
+            </tr>
+            <tr>
+              <td><strong>Encryption at Rest</strong></td>
+              <td>AES-256</td>
+            </tr>
+            <tr>
+              <td><strong>Encryption in Transit</strong></td>
+              <td>TLS 1.3</td>
+            </tr>
+            <tr>
+              <td><strong>GDPR Compliant</strong></td>
+              <td>Right to access, rectification, deletion</td>
+            </tr>
+            <tr>
+              <td><strong>Database Download</strong></td>
+              <td>Blocked — no bulk export allowed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>Access Controls</h3>
+        <table class="table">
+          <tbody>
+            <tr>
+              <td><strong>Authentication</strong></td>
+              <td>Supabase Auth (email/password)</td>
+            </tr>
+            <tr>
+              <td><strong>Authorization</strong></td>
+              <td>Role-based (Director, Labour Manager, Site Manager)</td>
+            </tr>
+            <tr>
+              <td><strong>Row-Level Security</strong></td>
+              <td>PostgreSQL RLS policies</td>
+            </tr>
+            <tr>
+              <td><strong>MFA</strong></td>
+              <td>Optional 2FA for all users</td>
+            </tr>
+            <tr>
+              <td><strong>Audit Trail</strong></td>
+              <td>Every action logged with who/when/what</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <h3 class="fade-up" style="margin-top: 2rem;">Row-Level Security Example</h3>
+    
+    <div class="code-block fade-up">
+      <div class="code-header">
+        <span class="code-dot red"></span>
+        <span class="code-dot yellow"></span>
+        <span class="code-dot green"></span>
+        <span class="code-title">rls_policies.sql</span>
+      </div>
+      <pre><span class="comment">-- Enable RLS on operatives table</span>
+<span class="keyword">ALTER TABLE</span> operatives <span class="keyword">ENABLE ROW LEVEL SECURITY</span>;
+
+<span class="comment">-- Users can only see operatives in their organization</span>
+<span class="keyword">CREATE POLICY</span> <span class="string">"Users see own org operatives"</span>
+<span class="keyword">ON</span> operatives <span class="keyword">FOR SELECT</span>
+<span class="keyword">USING</span> (
+  organization_id = (
+    <span class="keyword">SELECT</span> organization_id 
+    <span class="keyword">FROM</span> users 
+    <span class="keyword">WHERE</span> id = <span class="function">auth.uid</span>()
+  )
+);
+
+<span class="comment">-- Only Labour Managers can update operatives</span>
+<span class="keyword">CREATE POLICY</span> <span class="string">"Labour managers update operatives"</span>
+<span class="keyword">ON</span> operatives <span class="keyword">FOR UPDATE</span>
+<span class="keyword">USING</span> (
+  organization_id = (
+    <span class="keyword">SELECT</span> organization_id 
+    <span class="keyword">FROM</span> users 
+    <span class="keyword">WHERE</span> id = <span class="function">auth.uid</span>()
+    <span class="keyword">AND</span> role <span class="keyword">IN</span> (<span class="string">'labour_manager'</span>, <span class="string">'director'</span>, <span class="string">'admin'</span>)
+  )
+);</pre>
+    </div>
   </div>
 </section>
 
 <!-- ===== 12: TIMELINE ===== -->
-<section class="section line-grid" data-slide="12">
+<section class="section line-grid">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -1092,177 +1926,144 @@
     
     <h2 class="fade-up">Implementation <span class="text-cyan">Timeline</span></h2>
     
-    <p class="fade-up">12-16 weeks from kickoff to go-live.</p>
+    <p class="fade-up">12-16 weeks from approval to go-live.</p>
     
-    <div class="timeline">
-      <div class="timeline-item fade-up">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <span class="timeline-phase">Phase 1</span>
-          <h4>Discovery & Design</h4>
-          <p>Requirements confirmed, architecture finalised, data model approved.</p>
-          <span class="timeline-duration">2 Weeks</span>
+    <div class="grid grid-2 fade-up" style="margin-top: 2rem; align-items: start;">
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-phase">Phase 1</span>
+            <h4>Discovery & Foundation</h4>
+            <p>Requirements confirmed, database schema deployed, auth setup, core UI scaffolding.</p>
+            <span class="timeline-duration">2 Weeks</span>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-phase">Phase 2</span>
+            <h4>Core Build</h4>
+            <p>Operatives CRUD, search, sites, allocations, documents, compliance tracking, Liam dashboard.</p>
+            <span class="timeline-duration">6 Weeks</span>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-phase">Phase 3</span>
+            <h4>Communications</h4>
+            <p>WhatsApp integration, Sophie AI agent, Site Manager bot, templates, NCR flow.</p>
+            <span class="timeline-duration">3 Weeks</span>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <span class="timeline-phase">Phase 4</span>
+            <h4>Polish & Deploy</h4>
+            <p>Testing, training, data migration, go-live, 2-week hypercare period.</p>
+            <span class="timeline-duration">3 Weeks</span>
+          </div>
         </div>
       </div>
       
-      <div class="timeline-item fade-up">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <span class="timeline-phase">Phase 2</span>
-          <h4>Core Build</h4>
-          <p>Operative database, sites, allocations, compliance tracking, dashboard.</p>
-          <span class="timeline-duration">6 Weeks</span>
+      <div>
+        <h3>Deliverables Per Phase</h3>
+        
+        <div class="card" style="margin-bottom: 1rem;">
+          <h4 class="text-cyan">Phase 1 Output</h4>
+          <ul style="color: var(--color-text-secondary); font-size: 0.875rem; padding-left: 1.25rem;">
+            <li>Database live in Supabase (London)</li>
+            <li>Auth working with test users</li>
+            <li>Basic dashboard shell deployed</li>
+            <li>Trade categories seeded</li>
+          </ul>
         </div>
-      </div>
-      
-      <div class="timeline-item fade-up">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <span class="timeline-phase">Phase 3</span>
-          <h4>Communications</h4>
-          <p>WhatsApp integration, Sophie AI, bulk messaging, templates.</p>
-          <span class="timeline-duration">3 Weeks</span>
+        
+        <div class="card" style="margin-bottom: 1rem;">
+          <h4 class="text-gold">Phase 2 Output</h4>
+          <ul style="color: var(--color-text-secondary); font-size: 0.875rem; padding-left: 1.25rem;">
+            <li>Full operative management</li>
+            <li>Document upload & tracking</li>
+            <li>Expiry alerts working</li>
+            <li>Allocation workflow</li>
+            <li>Performance reviews & NCRs</li>
+          </ul>
         </div>
-      </div>
-      
-      <div class="timeline-item fade-up">
-        <div class="timeline-marker"></div>
-        <div class="timeline-content">
-          <span class="timeline-phase">Phase 4</span>
-          <h4>Polish & Deploy</h4>
-          <p>Testing, training, data migration, go-live, hypercare.</p>
-          <span class="timeline-duration">3 Weeks</span>
+        
+        <div class="card" style="margin-bottom: 1rem;">
+          <h4 class="text-green">Phase 3 Output</h4>
+          <ul style="color: var(--color-text-secondary); font-size: 0.875rem; padding-left: 1.25rem;">
+            <li>WhatsApp Business connected</li>
+            <li>Sophie qualifying candidates</li>
+            <li>Arrival confirmations working</li>
+            <li>NCR via WhatsApp</li>
+            <li>Shift confirmations</li>
+          </ul>
+        </div>
+        
+        <div class="card">
+          <h4 class="text-purple">Phase 4 Output</h4>
+          <ul style="color: var(--color-text-secondary); font-size: 0.875rem; padding-left: 1.25rem;">
+            <li>Full UAT complete</li>
+            <li>Liam trained</li>
+            <li>Historical data migrated</li>
+            <li>Production go-live</li>
+            <li>2 weeks hypercare support</li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== 13: OUTCOMES ===== -->
-<section class="section dot-grid" data-slide="13">
-  <div class="container">
-    <div class="section-label fade-up">
-      <div class="label-line"></div>
-      <span class="label">Outcomes / 013</span>
-    </div>
-    
-    <h2 class="fade-up">What Aztec <span class="text-gold">Gets</span></h2>
-    
-    <div class="grid">
-      <div class="card fade-up">
-        <div class="card-number">01</div>
-        <h4>Complete Workforce Visibility</h4>
-        <p>Real-time view of every operative: where they are, what they're doing, compliance status.</p>
-      </div>
-      <div class="card fade-up">
-        <div class="card-number">02</div>
-        <h4>Reduced Agency Dependency</h4>
-        <p>Internal workforce utilised first. Only go external when genuinely needed.</p>
-      </div>
-      <div class="card fade-up">
-        <div class="card-number">03</div>
-        <h4>Compliance Confidence</h4>
-        <p>No more spreadsheet tracking. System enforces compliance automatically.</p>
-      </div>
-      <div class="card fade-up">
-        <div class="card-number">04</div>
-        <h4>Quality Control</h4>
-        <p>Performance tracking ensures best operatives get prioritised, poor performers filtered out.</p>
-      </div>
-    </div>
-    
-    <div class="stats-grid fade-up">
-      <div class="stat-item">
-        <div class="stat-number" data-target="20">0</div>
-        <div class="stat-label">% Reduction in Agency Spend</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">£120k</div>
-        <div class="stat-label">Estimated Annual Saving</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">&lt;12mo</div>
-        <div class="stat-label">ROI Payback Period</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 14: PRE-GO-LIVE ===== -->
-<section class="section" data-slide="14">
-  <div class="container">
-    <div class="section-label fade-up">
-      <div class="label-line"></div>
-      <span class="label">Requirements / 014</span>
-    </div>
-    
-    <h2 class="fade-up">What We Need <span class="text-cyan">From Aztec</span></h2>
-    
-    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
-      <div class="fade-up">
-        <h3>Data Requirements</h3>
-        <table class="table">
-          <tbody>
-            <tr><td>Current operative database (Excel/CSV)</td></tr>
-            <tr><td>Site list with addresses and contacts</td></tr>
-            <tr><td>Existing document scans (CSCS, RTW)</td></tr>
-            <tr><td>Rate matrices (pay and charge out)</td></tr>
-            <tr><td>Trade categories and skill definitions</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="fade-up">
-        <h3>Access Requirements</h3>
-        <table class="table">
-          <tbody>
-            <tr><td>Domain for system (e.g., bos.aztec.com)</td></tr>
-            <tr><td>WhatsApp Business account</td></tr>
-            <tr><td>Key stakeholder availability for demos</td></tr>
-            <tr><td>Test users for UAT phase</td></tr>
-            <tr><td>Labour Manager identified for training</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 15: NEXT STEPS ===== -->
-<section class="section cta-section" data-slide="15">
+<!-- ===== 13: CTA ===== -->
+<section class="section cta-section dot-grid">
   <div class="corner tl"></div>
   <div class="corner br"></div>
   
   <div class="container">
     <div class="section-label fade-up" style="justify-content: center;">
       <div class="label-line"></div>
-      <span class="label">Next Steps / 015</span>
+      <span class="label">Next Steps / 013</span>
     </div>
     
-    <h2 class="cta-title fade-up">
-      Ready to <span class="text-gold">Transform</span> Your Operations?
+    <h2 class="fade-up" style="font-size: clamp(2rem, 5vw, 3.5rem);">
+      Ready to <span class="text-gold">Build</span>?
     </h2>
     
-    <p class="cta-text fade-up">
-      Cold Lava is ready to begin immediately upon approval.
+    <p class="fade-up" style="max-width: 600px; margin: 0 auto 2rem;">
+      Cold Lava is ready to begin immediately upon board approval. All architecture has been designed, database schemas are ready, and the team is standing by.
     </p>
     
-    <div class="flow fade-up" id="cta-flow">
-      <div class="flow-step"><strong>Approval</strong><span>Board sign-off</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step"><strong>Contract</strong><span>Terms agreed</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step"><strong>Kickoff</strong><span>Workshop</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step"><strong>Build</strong><span>Development</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step"><strong>Launch</strong><span>Go-live</span></div>
+    <div class="stats-grid fade-up" style="max-width: 800px; margin: 2rem auto;">
+      <div class="stat-item">
+        <div class="stat-number">12-16</div>
+        <div class="stat-label">Weeks to Launch</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">£55k</div>
+        <div class="stat-label">Build Investment</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">£120k</div>
+        <div class="stat-label">Est. Annual Saving</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">&lt;12mo</div>
+        <div class="stat-label">ROI Payback</div>
+      </div>
     </div>
     
     <div class="fade-up" style="margin-top: 3rem;">
       <a href="mailto:oliver@coldlava.ai" class="btn btn-primary">Get Started</a>
     </div>
     
-    <div class="footer-meta fade-up">
+    <div class="fade-up" style="margin-top: 4rem; color: var(--color-text-muted); font-size: 0.875rem;">
       <p>oliver@coldlava.ai • jacob@coldlava.ai</p>
       <p class="mono" style="margin-top: 1rem;">© 2026 Cold Lava AI Ltd</p>
     </div>
@@ -1290,77 +2091,6 @@
         start: 'top 85%',
         toggleActions: 'play none none none'
       }
-    });
-  });
-  
-  // Architecture diagram animation
-  ScrollTrigger.create({
-    trigger: '#arch-diagram',
-    start: 'top 70%',
-    onEnter: () => {
-      gsap.to('#arch-diagram .arch-box', {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: 'power3.out'
-      });
-      gsap.to('#arch-diagram .arch-connector', {
-        opacity: 0.5,
-        duration: 0.4,
-        delay: 0.5,
-        stagger: 0.2
-      });
-    },
-    once: true
-  });
-  
-  // Workflow flow animation
-  function animateFlow(selector) {
-    ScrollTrigger.create({
-      trigger: selector,
-      start: 'top 70%',
-      onEnter: () => {
-        const steps = document.querySelectorAll(`${selector} .flow-step`);
-        gsap.to(steps, {
-          opacity: 1,
-          scale: 1,
-          duration: 0.5,
-          stagger: 0.1,
-          ease: 'back.out(1.7)',
-          onComplete: () => {
-            steps.forEach((step, i) => {
-              setTimeout(() => step.classList.add('active'), i * 100);
-            });
-          }
-        });
-      },
-      once: true
-    });
-  }
-  
-  animateFlow('#workflow-flow');
-  animateFlow('#cta-flow');
-  
-  // Counter animation
-  gsap.utils.toArray('.stat-number[data-target]').forEach(stat => {
-    const target = parseFloat(stat.dataset.target);
-    
-    ScrollTrigger.create({
-      trigger: stat,
-      start: 'top 80%',
-      onEnter: () => {
-        gsap.to(stat, {
-          textContent: target,
-          duration: 2,
-          ease: 'power2.out',
-          snap: { textContent: 1 },
-          onUpdate: function() {
-            stat.textContent = Math.round(this.targets()[0].textContent);
-          }
-        });
-      },
-      once: true
     });
   });
 </script>
