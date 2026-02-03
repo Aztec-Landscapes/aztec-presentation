@@ -1082,6 +1082,176 @@
       box-shadow: 0 0 40px var(--color-gold-glow);
       transform: translateY(-2px);
     }
+    
+    /* ===== MOBILE RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .section {
+        padding: 3rem 0;
+        min-height: auto;
+      }
+      
+      .container {
+        padding: 0 1rem;
+      }
+      
+      h1 {
+        font-size: 2rem !important;
+        line-height: 1.2;
+      }
+      
+      h1 .block {
+        font-size: 1.5rem;
+      }
+      
+      h2 {
+        font-size: 1.5rem !important;
+      }
+      
+      h3 {
+        font-size: 1.1rem !important;
+      }
+      
+      /* Hero logo */
+      .hero img[alt="Aztec Landscapes"] {
+        height: 60px !important;
+      }
+      
+      /* Architecture SVG - scale and scroll */
+      .arch-svg-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 1rem;
+      }
+      
+      .arch-svg {
+        min-width: 700px;
+        height: auto;
+      }
+      
+      /* ER Diagram - horizontal scroll */
+      .er-diagram {
+        display: flex;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        gap: 1rem;
+        padding-bottom: 1rem;
+      }
+      
+      .er-table {
+        min-width: 180px;
+        flex-shrink: 0;
+      }
+      
+      /* WhatsApp chats - full width */
+      .whatsapp-chat {
+        max-width: 100%;
+      }
+      
+      .wa-msg {
+        max-width: 90%;
+        font-size: 0.75rem;
+      }
+      
+      /* Timeline adjustments */
+      .timeline-item {
+        padding-left: 1.5rem;
+      }
+      
+      .timeline-content h4 {
+        font-size: 1rem;
+      }
+      
+      /* Tables - scroll horizontally */
+      .table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      /* Cards - reduce padding */
+      .card {
+        padding: 1rem;
+      }
+      
+      /* Stats - smaller text */
+      .stat-number {
+        font-size: 2rem !important;
+      }
+      
+      .stat-label {
+        font-size: 0.7rem;
+      }
+      
+      /* Flow steps - stack vertically */
+      .animated-flow {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      
+      .flow-step {
+        width: 100%;
+        min-width: unset;
+      }
+      
+      .flow-connector {
+        transform: rotate(90deg);
+        margin: 0.25rem 0;
+      }
+      
+      /* Problems grid */
+      .card .grid-2 {
+        grid-template-columns: 1fr !important;
+      }
+      
+      /* Reduce animation intensity on mobile for performance */
+      .card:hover {
+        transform: none;
+      }
+      
+      /* Section label */
+      .section-label {
+        margin-bottom: 1rem;
+      }
+      
+      /* Progress bar thicker for touch */
+      .progress-bar {
+        height: 4px;
+      }
+    }
+    
+    /* Small phones */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.75rem !important;
+      }
+      
+      h1 .block {
+        font-size: 1.25rem;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+      }
+      
+      .stat-item {
+        padding: 1rem 0.5rem;
+      }
+      
+      .stat-number {
+        font-size: 1.5rem !important;
+      }
+      
+      /* WhatsApp even smaller */
+      .whatsapp-messages {
+        padding: 0.5rem;
+      }
+      
+      .wa-msg {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.6rem;
+      }
+    }
   </style>
 </head>
 <body>
