@@ -33,9 +33,9 @@
       --color-bg: #000000;
       --color-bg-card: rgba(255, 255, 255, 0.02);
       --color-cyan: #06B6D4;
-      --color-cyan-glow: rgba(6, 182, 212, 0.3);
+      --color-cyan-glow: rgba(6, 182, 212, 0.4);
       --color-gold: #C9A962;
-      --color-gold-glow: rgba(201, 169, 98, 0.3);
+      --color-gold-glow: rgba(201, 169, 98, 0.4);
       --color-green: #10B981;
       --color-red: #EF4444;
       --color-purple: #8B5CF6;
@@ -66,13 +66,11 @@
     .text-red { color: var(--color-red); }
     .text-purple { color: var(--color-purple); }
     
-    /* Animation initial states */
     .fade-up {
       opacity: 0;
       transform: translateY(40px);
     }
     
-    /* Backgrounds */
     .dot-grid {
       background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
       background-size: 32px 32px;
@@ -85,7 +83,6 @@
       background-size: 60px 60px;
     }
     
-    /* Grain overlay */
     .grain {
       position: fixed;
       top: 0;
@@ -98,7 +95,6 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
     }
     
-    /* Section labels */
     .section-label {
       display: flex;
       align-items: center;
@@ -120,7 +116,6 @@
       color: var(--color-text-muted);
     }
     
-    /* Typography */
     h1 {
       font-size: clamp(3rem, 10vw, 6rem);
       font-weight: 700;
@@ -150,7 +145,6 @@
       max-width: 700px;
     }
     
-    /* Hero */
     .hero {
       display: flex;
       align-items: center;
@@ -166,20 +160,6 @@
       font-style: italic;
     }
     
-    .hero-subtitle {
-      margin: 0 auto 3rem;
-    }
-    
-    .hero-meta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      font-size: 0.875rem;
-      color: var(--color-text-muted);
-    }
-    
-    /* Corner decorations */
     .corner {
       position: absolute;
       width: 100px;
@@ -193,7 +173,6 @@
     .corner.tl { top: 2rem; left: 2rem; border-top-width: 1px; border-left-width: 1px; }
     .corner.br { bottom: 2rem; right: 2rem; border-bottom-width: 1px; border-right-width: 1px; }
     
-    /* Scan line */
     .scan-line {
       position: absolute;
       top: 0;
@@ -212,7 +191,6 @@
       100% { top: 100%; opacity: 0; }
     }
     
-    /* Cards */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -222,10 +200,9 @@
     
     .grid-2 { grid-template-columns: repeat(2, 1fr); }
     .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    .grid-4 { grid-template-columns: repeat(4, 1fr); }
     
     @media (max-width: 1024px) {
-      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
     }
     
     .card {
@@ -276,6 +253,124 @@
     .card p {
       font-size: 0.875rem;
       margin-bottom: 0;
+    }
+    
+    .badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 2px;
+    }
+    
+    .badge-cyan { background: rgba(6, 182, 212, 0.15); color: var(--color-cyan); }
+    .badge-gold { background: rgba(201, 169, 98, 0.15); color: var(--color-gold); }
+    .badge-red { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+    .badge-green { background: rgba(16, 185, 129, 0.15); color: var(--color-green); }
+    .badge-purple { background: rgba(139, 92, 246, 0.15); color: var(--color-purple); }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    
+    .stat-item {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--color-cyan);
+      line-height: 1;
+    }
+    
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      margin-top: 0.5rem;
+    }
+    
+    /* ===== SVG ARCHITECTURE DIAGRAM ===== */
+    .arch-svg-container {
+      width: 100%;
+      margin: 3rem 0;
+      overflow: visible;
+    }
+    
+    .arch-svg {
+      width: 100%;
+      height: auto;
+      min-height: 500px;
+    }
+    
+    .arch-svg .box {
+      fill: #0a0a0a;
+      stroke-width: 1.5;
+      transition: all 0.3s ease;
+    }
+    
+    .arch-svg .box:hover {
+      filter: url(#glow);
+    }
+    
+    .arch-svg .box-cyan { stroke: var(--color-cyan); }
+    .arch-svg .box-gold { stroke: var(--color-gold); }
+    .arch-svg .box-green { stroke: var(--color-green); }
+    .arch-svg .box-purple { stroke: var(--color-purple); }
+    
+    .arch-svg .label-text {
+      fill: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .arch-svg .sub-text {
+      fill: rgba(255,255,255,0.5);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+    }
+    
+    .arch-svg .connection {
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+    
+    .arch-svg .connection-cyan { stroke: var(--color-cyan); }
+    .arch-svg .connection-gold { stroke: var(--color-gold); }
+    
+    /* Animated dashes */
+    .arch-svg .flow-line {
+      stroke-dasharray: 8 4;
+      animation: flowDash 1s linear infinite;
+    }
+    
+    @keyframes flowDash {
+      to { stroke-dashoffset: -12; }
+    }
+    
+    /* Data particles */
+    .data-particle {
+      fill: var(--color-cyan);
+      filter: url(#glow);
+    }
+    
+    .data-particle-gold {
+      fill: var(--color-gold);
+      filter: url(#glowGold);
     }
     
     /* Code blocks */
@@ -329,23 +424,6 @@
       margin-left: auto;
     }
     
-    /* Architecture diagram */
-    .arch-diagram {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--color-border);
-      padding: 2rem;
-      margin: 2rem 0;
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      line-height: 1.4;
-      overflow-x: auto;
-    }
-    
-    .arch-diagram pre {
-      color: var(--color-text-secondary);
-      white-space: pre;
-    }
-    
     /* Table */
     .table {
       width: 100%;
@@ -382,88 +460,108 @@
       color: var(--color-cyan);
     }
     
-    /* Badges */
-    .badge {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 0.625rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 0.25rem 0.75rem;
-      border-radius: 2px;
+    /* WhatsApp mockup */
+    .whatsapp-chat {
+      max-width: 360px;
+      margin: 1.5rem 0;
+      background: #0b141a;
+      border-radius: 8px;
+      overflow: hidden;
     }
     
-    .badge-cyan { background: rgba(6, 182, 212, 0.15); color: var(--color-cyan); }
-    .badge-gold { background: rgba(201, 169, 98, 0.15); color: var(--color-gold); }
-    .badge-red { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
-    .badge-green { background: rgba(16, 185, 129, 0.15); color: var(--color-green); }
-    .badge-purple { background: rgba(139, 92, 246, 0.15); color: var(--color-purple); }
-    
-    /* Stats */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin: 2rem 0;
+    .whatsapp-header {
+      background: #1f2c34;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
     
-    @media (max-width: 768px) {
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .whatsapp-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--color-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
     }
     
-    .stat-item {
-      text-align: center;
-      padding: 1.5rem;
-      background: var(--color-bg-card);
-      border: 1px solid var(--color-border);
+    .whatsapp-name {
+      font-weight: 500;
+      font-size: 0.85rem;
     }
     
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--color-cyan);
-      line-height: 1;
+    .whatsapp-status {
+      font-size: 0.65rem;
+      color: var(--color-text-muted);
     }
     
-    .stat-label {
-      font-size: 0.875rem;
-      color: var(--color-text-secondary);
-      margin-top: 0.5rem;
+    .whatsapp-messages {
+      padding: 1rem;
+      min-height: 180px;
+    }
+    
+    .wa-msg {
+      max-width: 85%;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    
+    .wa-msg.incoming {
+      background: #1f2c34;
+      border-top-left-radius: 0;
+    }
+    
+    .wa-msg.outgoing {
+      background: #005c4b;
+      margin-left: auto;
+      border-top-right-radius: 0;
+    }
+    
+    .wa-time {
+      font-size: 0.55rem;
+      color: var(--color-text-muted);
+      text-align: right;
+      margin-top: 0.25rem;
     }
     
     /* Flow diagram */
-    .flow {
+    .animated-flow {
       display: flex;
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
       gap: 0;
       margin: 2rem 0;
+      padding: 2rem 0;
     }
     
     .flow-step {
-      padding: 1rem 1.5rem;
+      padding: 1rem 1.25rem;
       background: var(--color-bg-card);
       border: 1px solid var(--color-border);
       text-align: center;
-      min-width: 120px;
+      min-width: 100px;
+      position: relative;
+      opacity: 0;
+      transform: scale(0.8);
     }
     
-    .flow-step strong {
-      display: block;
-      color: var(--color-text-primary);
-      font-size: 0.875rem;
-      margin-bottom: 0.25rem;
-    }
-    
-    .flow-step span {
-      font-size: 0.7rem;
-      color: var(--color-text-muted);
+    .flow-step.visible {
+      opacity: 1;
+      transform: scale(1);
+      transition: all 0.5s var(--ease-out-expo);
     }
     
     .flow-step.active {
       border-color: var(--color-cyan);
-      box-shadow: 0 0 20px var(--color-cyan-glow);
+      box-shadow: 0 0 25px var(--color-cyan-glow);
     }
     
     .flow-step.gate {
@@ -471,21 +569,50 @@
       background: rgba(239, 68, 68, 0.05);
     }
     
+    .flow-step.gate.active {
+      box-shadow: 0 0 25px rgba(239, 68, 68, 0.4);
+    }
+    
+    .flow-step strong {
+      display: block;
+      color: var(--color-text-primary);
+      font-size: 0.8rem;
+      margin-bottom: 0.2rem;
+    }
+    
+    .flow-step span {
+      font-size: 0.65rem;
+      color: var(--color-text-muted);
+    }
+    
     .flow-connector {
       width: 30px;
       height: 2px;
       background: var(--color-border);
       position: relative;
+      overflow: visible;
     }
     
-    .flow-connector::after {
-      content: '→';
+    .flow-connector .pulse {
       position: absolute;
+      width: 8px;
+      height: 8px;
+      background: var(--color-cyan);
+      border-radius: 50%;
       top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: var(--color-cyan);
-      font-size: 1rem;
+      transform: translateY(-50%);
+      left: -4px;
+      opacity: 0;
+      box-shadow: 0 0 10px var(--color-cyan);
+    }
+    
+    .flow-connector.active .pulse {
+      animation: pulseMove 0.6s ease-out forwards;
+    }
+    
+    @keyframes pulseMove {
+      0% { left: -4px; opacity: 1; }
+      100% { left: calc(100% - 4px); opacity: 0; }
     }
     
     /* Timeline */
@@ -520,12 +647,23 @@
       border: 2px solid var(--color-cyan);
       border-radius: 50%;
       background: var(--color-bg);
+      transition: all 0.3s ease;
+    }
+    
+    .timeline-item:hover .timeline-marker {
+      background: var(--color-cyan);
+      box-shadow: 0 0 20px var(--color-cyan-glow);
     }
     
     .timeline-content {
       background: var(--color-bg-card);
       border: 1px solid var(--color-border);
       padding: 1.25rem;
+      transition: border-color 0.3s ease;
+    }
+    
+    .timeline-content:hover {
+      border-color: var(--color-cyan);
     }
     
     .timeline-phase {
@@ -556,78 +694,7 @@
       display: inline-block;
     }
     
-    /* WhatsApp mockup */
-    .whatsapp-chat {
-      max-width: 400px;
-      margin: 1.5rem auto;
-      background: #0b141a;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    
-    .whatsapp-header {
-      background: #1f2c34;
-      padding: 0.75rem 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    
-    .whatsapp-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--color-cyan);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-    
-    .whatsapp-name {
-      font-weight: 500;
-      font-size: 0.9rem;
-    }
-    
-    .whatsapp-status {
-      font-size: 0.7rem;
-      color: var(--color-text-muted);
-    }
-    
-    .whatsapp-messages {
-      padding: 1rem;
-      min-height: 200px;
-    }
-    
-    .wa-msg {
-      max-width: 85%;
-      padding: 0.5rem 0.75rem;
-      border-radius: 8px;
-      margin-bottom: 0.5rem;
-      font-size: 0.85rem;
-      line-height: 1.4;
-    }
-    
-    .wa-msg.incoming {
-      background: #1f2c34;
-      border-top-left-radius: 0;
-    }
-    
-    .wa-msg.outgoing {
-      background: #005c4b;
-      margin-left: auto;
-      border-top-right-radius: 0;
-    }
-    
-    .wa-time {
-      font-size: 0.6rem;
-      color: var(--color-text-muted);
-      text-align: right;
-      margin-top: 0.25rem;
-    }
-    
-    /* CTA section */
+    /* CTA */
     .cta-section {
       text-align: center;
       padding: 8rem 0;
@@ -658,23 +725,22 @@
     /* File tree */
     .file-tree {
       font-family: var(--font-mono);
-      font-size: 0.75rem;
-      line-height: 1.8;
+      font-size: 0.7rem;
+      line-height: 1.7;
       background: rgba(0, 0, 0, 0.3);
       border: 1px solid var(--color-border);
-      padding: 1.5rem;
+      padding: 1.25rem;
       color: var(--color-text-secondary);
     }
     
     .file-tree .folder { color: var(--color-gold); }
     .file-tree .file { color: var(--color-text-secondary); }
     .file-tree .special { color: var(--color-cyan); }
-    .file-tree .config { color: var(--color-purple); }
     
-    /* Entity relationship */
+    /* ER diagram */
     .er-diagram {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 1rem;
       margin: 2rem 0;
     }
@@ -683,13 +749,19 @@
       background: var(--color-bg-card);
       border: 1px solid var(--color-border);
       overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .er-table:hover {
+      border-color: var(--color-cyan);
+      box-shadow: 0 0 20px var(--color-cyan-glow);
     }
     
     .er-table-name {
       background: rgba(6, 182, 212, 0.1);
-      padding: 0.75rem;
+      padding: 0.6rem 0.75rem;
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: var(--color-cyan);
       border-bottom: 1px solid var(--color-border);
@@ -698,20 +770,20 @@
     .er-table-cols {
       padding: 0.5rem 0.75rem;
       font-family: var(--font-mono);
-      font-size: 0.7rem;
+      font-size: 0.65rem;
     }
     
     .er-col {
-      padding: 0.25rem 0;
+      padding: 0.2rem 0;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
     }
     
     .er-col .key { color: var(--color-gold); }
     .er-col .fk { color: var(--color-purple); }
     .er-col .name { color: var(--color-text-secondary); }
-    .er-col .type { color: var(--color-text-muted); font-size: 0.65rem; }
+    .er-col .type { color: var(--color-text-muted); font-size: 0.6rem; }
   </style>
 </head>
 <body>
@@ -733,166 +805,308 @@
       <span class="block">System Architecture</span>
     </h1>
     
-    <p class="hero-subtitle fade-up">
+    <p style="margin: 0 auto 2rem; text-align: center;" class="fade-up">
       A comprehensive technical deep-dive into the labour control, allocation and recruitment engine built for Aztec Landscapes.
     </p>
     
     <div class="stats-grid fade-up" style="max-width: 900px; margin: 3rem auto;">
       <div class="stat-item">
-        <div class="stat-number">10+</div>
+        <div class="stat-number" data-count="10">0</div>
         <div class="stat-label">Core Database Tables</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">25+</div>
+        <div class="stat-number" data-count="25">0</div>
         <div class="stat-label">API Endpoints</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">3</div>
+        <div class="stat-number" data-count="3">0</div>
         <div class="stat-label">Integration Points</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">1</div>
+        <div class="stat-number" data-count="1">0</div>
         <div class="stat-label">AI Agent (Sophie)</div>
       </div>
     </div>
     
-    <div class="hero-meta fade-up">
+    <div style="text-align: center; color: var(--color-text-muted); font-size: 0.875rem;" class="fade-up">
       <span>Prepared by Cold Lava</span>
-      <span class="text-cyan">•</span>
+      <span class="text-cyan" style="margin: 0 0.5rem;">•</span>
       <span>February 2026</span>
     </div>
   </div>
 </section>
 
-<!-- ===== 02: CORE PRINCIPLES ===== -->
-<section class="section">
-  <div class="container">
-    <div class="section-label fade-up">
-      <div class="label-line"></div>
-      <span class="label">Foundation / 002</span>
-    </div>
-    
-    <h2 class="fade-up">Core <span class="text-cyan">Principles</span></h2>
-    
-    <p class="fade-up">Five non-negotiable principles that drive every architectural decision.</p>
-    
-    <div class="grid" style="margin-top: 2rem;">
-      <div class="card fade-up">
-        <div class="card-number">01</div>
-        <h4>Reallocation First</h4>
-        <p>Before recruiting externally, the system always searches for existing operatives finishing other jobs. Internal pool first, adverts second.</p>
-        <span class="badge badge-cyan" style="margin-top: 0.75rem;">Cost Control</span>
-      </div>
-      <div class="card fade-up">
-        <div class="card-number">02</div>
-        <h4>WhatsApp-Native</h4>
-        <p>Primary communication channel for everyone. Site Managers report arrivals via WhatsApp. Operatives confirm shifts via WhatsApp. Sophie qualifies candidates via WhatsApp.</p>
-        <span class="badge badge-green" style="margin-top: 0.75rem;">User Adoption</span>
-      </div>
-      <div class="card fade-up">
-        <div class="card-number">03</div>
-        <h4>Compliance Built-In</h4>
-        <p>No operative can start work without verified RTW, Photo ID, and in-date CSCS. The system blocks non-compliant allocations automatically.</p>
-        <span class="badge badge-red" style="margin-top: 0.75rem;">Zero Exceptions</span>
-      </div>
-      <div class="card fade-up">
-        <div class="card-number">04</div>
-        <h4>AI-Assisted Intake</h4>
-        <p>Sophie handles candidate screening 24/7 — collecting details, validating documents, and qualifying candidates before they reach Liam.</p>
-        <span class="badge badge-purple" style="margin-top: 0.75rem;">Automation</span>
-      </div>
-      <div class="card fade-up">
-        <div class="card-number">05</div>
-        <h4>Performance-Tracked</h4>
-        <p>Every operative is graded 1-5 after each job. NCRs are logged instantly. Poor performers are blocked. Quality operatives rise to the top.</p>
-        <span class="badge badge-gold" style="margin-top: 0.75rem;">Quality Control</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 03: SYSTEM ARCHITECTURE ===== -->
+<!-- ===== 02: ANIMATED ARCHITECTURE ===== -->
 <section class="section line-grid">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
-      <span class="label">Architecture / 003</span>
+      <span class="label">Live Architecture / 002</span>
     </div>
     
     <h2 class="fade-up">System <span class="text-cyan">Architecture</span></h2>
     
-    <p class="fade-up">Complete technical architecture showing all system components and data flows.</p>
+    <p class="fade-up">Watch data flow through the system in real-time.</p>
     
-    <div class="arch-diagram fade-up">
-      <pre>
-┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                                    USER INTERFACES                                       │
-├────────────────────┬────────────────────┬────────────────────┬─────────────────────────┤
-│                    │                    │                    │                         │
-│  <span class="text-cyan">LIAM DASHBOARD</span>    │  <span class="text-gold">SITE MANAGER</span>      │  <span class="text-purple">SOPHIE AI</span>         │  <span class="text-green">OPERATIVE</span>             │
-│  (Web Application) │  (WhatsApp Bot)    │  (WhatsApp Agent)  │  (WhatsApp)             │
-│                    │                    │                    │                         │
-│  • Labour Search   │  • Arrival Confirm │  • Candidate Intake│  • Shift Confirmation   │
-│  • Allocations     │  • NCR Reports     │  • Document Upload │  • Induction Forms      │
-│  • Compliance      │  • Performance     │  • Qualification   │  • Availability         │
-│  • Reporting       │  • Replacement Req │  • Follow-ups      │  • Referrals            │
-│                    │                    │                    │                         │
-└─────────┬──────────┴─────────┬──────────┴─────────┬──────────┴───────────┬─────────────┘
-          │                    │                    │                      │
-          │                    │                    │                      │
-          ▼                    ▼                    ▼                      ▼
-┌─────────────────────────────────────────────────────────────────────────────────────────┐
-│                                                                                          │
-│                           <span class="text-cyan">NEXT.JS API LAYER</span> (Serverless Functions)                      │
-│                                                                                          │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌────────────┐ │
-│  │ /operatives  │  │ /allocations │  │ /ncrs        │  │ /documents   │  │ /webhooks  │ │
-│  │ CRUD+Search  │  │ Assign+Track │  │ Log+Block    │  │ Upload+Verify│  │ WhatsApp   │ │
-│  └──────────────┘  └──────────────┘  └──────────────┘  └──────────────┘  └────────────┘ │
-│                                                                                          │
-└───────────────────────────────────┬──────────────────────────────────────────────────────┘
-                                    │
-          ┌─────────────────────────┼─────────────────────────┐
-          │                         │                         │
-          ▼                         ▼                         ▼
-┌──────────────────┐    ┌────────────────────┐    ┌─────────────────────────────────────┐
-│                  │    │                    │    │                                     │
-│  <span class="text-cyan">POSTGRESQL</span>       │    │  <span class="text-gold">SUPABASE STORAGE</span>  │    │  <span class="text-green">EXTERNAL SERVICES</span>                  │
-│  (Supabase)      │    │  (Documents)       │    │                                     │
-│                  │    │                    │    │  ┌─────────────┐  ┌──────────────┐  │
-│  • operatives    │    │  • CSCS Cards      │    │  │ WhatsApp    │  │ OpenAI GPT-4 │  │
-│  • sites         │    │  • Photo IDs       │    │  │ Business    │  │ (Sophie)     │  │
-│  • allocations   │    │  • RTW Documents   │    │  │ API         │  │              │  │
-│  • documents     │    │  • Plant Tickets   │    │  └─────────────┘  └──────────────┘  │
-│  • ncrs          │    │  • CVs             │    │                                     │
-│  • comms_log     │    │                    │    │  ┌─────────────┐  ┌──────────────┐  │
-│  • attendance    │    │                    │    │  │ Gov.uk RTW  │  │ Twilio       │  │
-│  • reviews       │    │                    │    │  │ Check API   │  │ (SMS Backup) │  │
-│                  │    │                    │    │  └─────────────┘  └──────────────┘  │
-│                  │    │                    │    │                                     │
-└──────────────────┘    └────────────────────┘    └─────────────────────────────────────┘
-      </pre>
+    <div class="arch-svg-container fade-up">
+      <svg class="arch-svg" viewBox="0 0 1000 550">
+        <defs>
+          <!-- Glow filters -->
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <filter id="glowGold" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          
+          <!-- Arrow markers -->
+          <marker id="arrowCyan" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#06B6D4"/>
+          </marker>
+        </defs>
+        
+        <!-- ===== USER INTERFACES ROW ===== -->
+        <text x="500" y="30" text-anchor="middle" class="sub-text" style="font-size: 10px; fill: rgba(255,255,255,0.4);">USER INTERFACES</text>
+        
+        <!-- Liam Dashboard -->
+        <g class="arch-node" data-node="dashboard">
+          <rect x="60" y="50" width="160" height="80" rx="4" class="box box-cyan"/>
+          <text x="140" y="85" text-anchor="middle" class="label-text">Liam Dashboard</text>
+          <text x="140" y="105" text-anchor="middle" class="sub-text">Web Application</text>
+        </g>
+        
+        <!-- Site Manager -->
+        <g class="arch-node" data-node="site-manager">
+          <rect x="260" y="50" width="160" height="80" rx="4" class="box box-green"/>
+          <text x="340" y="85" text-anchor="middle" class="label-text">Site Manager</text>
+          <text x="340" y="105" text-anchor="middle" class="sub-text">WhatsApp Bot</text>
+        </g>
+        
+        <!-- Sophie AI -->
+        <g class="arch-node" data-node="sophie">
+          <rect x="460" y="50" width="160" height="80" rx="4" class="box box-purple"/>
+          <text x="540" y="85" text-anchor="middle" class="label-text">Sophie AI</text>
+          <text x="540" y="105" text-anchor="middle" class="sub-text">WhatsApp Agent</text>
+        </g>
+        
+        <!-- Operative -->
+        <g class="arch-node" data-node="operative">
+          <rect x="660" y="50" width="160" height="80" rx="4" class="box box-gold"/>
+          <text x="740" y="85" text-anchor="middle" class="label-text">Operative</text>
+          <text x="740" y="105" text-anchor="middle" class="sub-text">WhatsApp</text>
+        </g>
+        
+        <!-- ===== API LAYER ===== -->
+        <text x="500" y="180" text-anchor="middle" class="sub-text" style="font-size: 10px; fill: rgba(255,255,255,0.4);">API LAYER</text>
+        
+        <g class="arch-node" data-node="api">
+          <rect x="200" y="200" width="600" height="90" rx="4" class="box box-cyan" style="stroke-width: 2;"/>
+          <text x="500" y="235" text-anchor="middle" class="label-text" style="font-size: 14px;">Next.js API Layer</text>
+          <text x="280" y="265" text-anchor="middle" class="sub-text">/operatives</text>
+          <text x="400" y="265" text-anchor="middle" class="sub-text">/allocations</text>
+          <text x="520" y="265" text-anchor="middle" class="sub-text">/ncrs</text>
+          <text x="640" y="265" text-anchor="middle" class="sub-text">/webhooks</text>
+          <text x="740" y="265" text-anchor="middle" class="sub-text">/documents</text>
+        </g>
+        
+        <!-- ===== DATA LAYER ===== -->
+        <text x="500" y="340" text-anchor="middle" class="sub-text" style="font-size: 10px; fill: rgba(255,255,255,0.4);">DATA & SERVICES</text>
+        
+        <!-- PostgreSQL -->
+        <g class="arch-node" data-node="database">
+          <rect x="100" y="360" width="200" height="90" rx="4" class="box box-cyan"/>
+          <text x="200" y="400" text-anchor="middle" class="label-text">PostgreSQL</text>
+          <text x="200" y="425" text-anchor="middle" class="sub-text">Supabase • London</text>
+        </g>
+        
+        <!-- Storage -->
+        <g class="arch-node" data-node="storage">
+          <rect x="340" y="360" width="160" height="90" rx="4" class="box box-gold"/>
+          <text x="420" y="400" text-anchor="middle" class="label-text">File Storage</text>
+          <text x="420" y="425" text-anchor="middle" class="sub-text">Documents</text>
+        </g>
+        
+        <!-- External Services -->
+        <g class="arch-node" data-node="external">
+          <rect x="540" y="360" width="260" height="90" rx="4" class="box box-green"/>
+          <text x="670" y="395" text-anchor="middle" class="label-text">External Services</text>
+          <text x="600" y="420" text-anchor="middle" class="sub-text">WhatsApp</text>
+          <text x="670" y="420" text-anchor="middle" class="sub-text">OpenAI</text>
+          <text x="740" y="420" text-anchor="middle" class="sub-text">Gov.uk</text>
+        </g>
+        
+        <!-- ===== CONNECTION LINES ===== -->
+        <g class="connections">
+          <!-- Dashboard to API -->
+          <path d="M 140 130 L 140 160 L 300 160 L 300 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
+          
+          <!-- Site Manager to API -->
+          <path d="M 340 130 L 340 160 L 400 160 L 400 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
+          
+          <!-- Sophie to API -->
+          <path d="M 540 130 L 540 160 L 500 160 L 500 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
+          
+          <!-- Operative to API -->
+          <path d="M 740 130 L 740 160 L 600 160 L 600 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
+          
+          <!-- API to Database -->
+          <path d="M 350 290 L 350 320 L 200 320 L 200 360" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
+          
+          <!-- API to Storage -->
+          <path d="M 450 290 L 450 320 L 420 320 L 420 360" class="connection connection-gold flow-line" style="opacity: 0.6;"/>
+          
+          <!-- API to External -->
+          <path d="M 600 290 L 600 320 L 670 320 L 670 360" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
+        </g>
+        
+        <!-- ===== DATA PARTICLES ===== -->
+        <g class="particles">
+          <!-- Particle 1: Dashboard → API → DB -->
+          <circle class="data-particle" r="5">
+            <animate attributeName="opacity" values="0;1;1;1;0" dur="3s" repeatCount="indefinite"/>
+            <animateMotion dur="3s" repeatCount="indefinite" path="M 140 130 L 140 160 L 300 160 L 300 200 L 350 245 L 350 290 L 350 320 L 200 320 L 200 360"/>
+          </circle>
+          
+          <!-- Particle 2: Operative → API → Storage -->
+          <circle class="data-particle-gold" r="5">
+            <animate attributeName="opacity" values="0;1;1;1;0" dur="4s" repeatCount="indefinite" begin="1s"/>
+            <animateMotion dur="4s" repeatCount="indefinite" begin="1s" path="M 740 130 L 740 160 L 600 160 L 600 200 L 500 245 L 450 290 L 450 320 L 420 320 L 420 360"/>
+          </circle>
+          
+          <!-- Particle 3: Sophie → API → External -->
+          <circle class="data-particle" r="5">
+            <animate attributeName="opacity" values="0;1;1;1;0" dur="3.5s" repeatCount="indefinite" begin="2s"/>
+            <animateMotion dur="3.5s" repeatCount="indefinite" begin="2s" path="M 540 130 L 540 160 L 500 160 L 500 200 L 550 245 L 600 290 L 600 320 L 670 320 L 670 360"/>
+          </circle>
+        </g>
+        
+        <!-- ===== LIVE INDICATOR ===== -->
+        <g transform="translate(900, 20)">
+          <circle r="5" fill="#10B981">
+            <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <text x="15" y="4" class="sub-text" style="fill: #10B981;">LIVE</text>
+        </g>
+      </svg>
     </div>
     
     <div class="grid grid-3 fade-up">
       <div class="card">
-        <h4 class="text-cyan">Frontend</h4>
-        <p>Next.js 15 with App Router. Server-side rendering for fast page loads. Real-time updates via Supabase subscriptions.</p>
+        <h4 class="text-cyan">4 User Interfaces</h4>
+        <p>Liam's dashboard, Site Manager bot, Sophie AI agent, and Operative messaging — all connected.</p>
       </div>
       <div class="card">
-        <h4 class="text-gold">Database</h4>
-        <p>PostgreSQL via Supabase. Row-level security for multi-tenant isolation. Full-text search on operatives.</p>
+        <h4 class="text-gold">Unified API Layer</h4>
+        <p>Single API handling all operations. Serverless, auto-scaling, sub-100ms response times.</p>
       </div>
       <div class="card">
-        <h4 class="text-green">Integrations</h4>
-        <p>WhatsApp Business API for all messaging. OpenAI for Sophie. Gov.uk for RTW verification.</p>
+        <h4 class="text-green">3 External Integrations</h4>
+        <p>WhatsApp Business API, OpenAI for Sophie, Gov.uk for RTW verification.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== 04: DATABASE SCHEMA ===== -->
+<!-- ===== 03: DATA FLOW ===== -->
 <section class="section dot-grid">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Data Flow / 003</span>
+    </div>
+    
+    <h2 class="fade-up">Labour Request <span class="text-cyan">Flow</span></h2>
+    
+    <p class="fade-up">Watch a labour request flow through the system — from site need to operative allocation.</p>
+    
+    <div class="animated-flow" id="labour-flow">
+      <div class="flow-step" data-step="1">
+        <strong>1. Request</strong>
+        <span>Site raises need</span>
+      </div>
+      <div class="flow-connector"><div class="pulse"></div></div>
+      <div class="flow-step" data-step="2">
+        <strong>2. Realloc</strong>
+        <span>Check finishing jobs</span>
+      </div>
+      <div class="flow-connector"><div class="pulse"></div></div>
+      <div class="flow-step" data-step="3">
+        <strong>3. Search</strong>
+        <span>Query labour pool</span>
+      </div>
+      <div class="flow-connector"><div class="pulse"></div></div>
+      <div class="flow-step" data-step="4">
+        <strong>4. Match</strong>
+        <span>Skills + location</span>
+      </div>
+      <div class="flow-connector"><div class="pulse"></div></div>
+      <div class="flow-step" data-step="5">
+        <strong>5. Offer</strong>
+        <span>WhatsApp message</span>
+      </div>
+      <div class="flow-connector"><div class="pulse"></div></div>
+      <div class="flow-step" data-step="6">
+        <strong>6. Confirm</strong>
+        <span>Operative accepts</span>
+      </div>
+      <div class="flow-connector"><div class="pulse"></div></div>
+      <div class="flow-step active" data-step="7">
+        <strong>7. Allocate</strong>
+        <span>Assignment complete</span>
+      </div>
+    </div>
+    
+    <h3 class="fade-up" style="margin-top: 3rem;">Sophie AI Qualification Flow</h3>
+    
+    <div class="animated-flow" id="sophie-flow">
+      <div class="flow-step" data-step="1">
+        <strong>Greeting</strong>
+        <span>Present job</span>
+      </div>
+      <div class="flow-connector"><div class="pulse"></div></div>
+      <div class="flow-step gate" data-step="2">
+        <strong>RTW?</strong>
+        <span>GATE 1</span>
+      </div>
+      <div class="flow-connector"><div class="pulse"></div></div>
+      <div class="flow-step gate" data-step="3">
+        <strong>18+?</strong>
+        <span>GATE 2</span>
+      </div>
+      <div class="flow-connector"><div class="pulse"></div></div>
+      <div class="flow-step" data-step="4">
+        <strong>CSCS</strong>
+        <span>Card check</span>
+      </div>
+      <div class="flow-connector"><div class="pulse"></div></div>
+      <div class="flow-step" data-step="5">
+        <strong>Details</strong>
+        <span>Collect info</span>
+      </div>
+      <div class="flow-connector"><div class="pulse"></div></div>
+      <div class="flow-step" data-step="6">
+        <strong>Docs</strong>
+        <span>Upload request</span>
+      </div>
+      <div class="flow-connector"><div class="pulse"></div></div>
+      <div class="flow-step active" data-step="7">
+        <strong>Qualified</strong>
+        <span>Pass to Liam</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04: DATABASE ===== -->
+<section class="section">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -901,32 +1115,18 @@
     
     <h2 class="fade-up">Database <span class="text-cyan">Schema</span></h2>
     
-    <p class="fade-up">10 core tables with full referential integrity, optimized indexes, and automated triggers.</p>
+    <p class="fade-up">10 core tables with full referential integrity and optimized indexes.</p>
     
     <div class="er-diagram fade-up">
       <div class="er-table">
         <div class="er-table-name">operatives</div>
         <div class="er-table-cols">
           <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
-          <div class="er-col"><span class="name">first_name, last_name</span> <span class="type">VARCHAR</span></div>
-          <div class="er-col"><span class="name">phone, email</span> <span class="type">VARCHAR</span></div>
-          <div class="er-col"><span class="fk">→</span> <span class="name">trade_category_id</span> <span class="type">UUID</span></div>
-          <div class="er-col"><span class="name">day_rate</span> <span class="type">DECIMAL</span></div>
-          <div class="er-col"><span class="name">status</span> <span class="type">ENUM</span></div>
-          <div class="er-col"><span class="name">avg_rating</span> <span class="type">DECIMAL</span></div>
-          <div class="er-col"><span class="name">cscs_expiry, rtw_expiry</span> <span class="type">DATE</span></div>
-        </div>
-      </div>
-      
-      <div class="er-table">
-        <div class="er-table-name">sites</div>
-        <div class="er-table-cols">
-          <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
-          <div class="er-col"><span class="name">name</span> <span class="type">VARCHAR</span></div>
-          <div class="er-col"><span class="name">address, postcode</span> <span class="type">TEXT</span></div>
-          <div class="er-col"><span class="name">lat, lng</span> <span class="type">DECIMAL</span></div>
-          <div class="er-col"><span class="fk">→</span> <span class="name">site_manager_id</span> <span class="type">UUID</span></div>
-          <div class="er-col"><span class="name">is_active</span> <span class="type">BOOLEAN</span></div>
+          <div class="er-col"><span class="name">first_name, last_name</span></div>
+          <div class="er-col"><span class="name">phone, email</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">trade_category_id</span></div>
+          <div class="er-col"><span class="name">day_rate, status</span></div>
+          <div class="er-col"><span class="name">avg_rating</span></div>
         </div>
       </div>
       
@@ -934,12 +1134,11 @@
         <div class="er-table-name">allocations</div>
         <div class="er-table-cols">
           <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
-          <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span> <span class="type">UUID</span></div>
-          <div class="er-col"><span class="fk">→</span> <span class="name">site_id</span> <span class="type">UUID</span></div>
-          <div class="er-col"><span class="name">start_date, end_date</span> <span class="type">DATE</span></div>
-          <div class="er-col"><span class="name">agreed_day_rate</span> <span class="type">DECIMAL</span></div>
-          <div class="er-col"><span class="name">status</span> <span class="type">ENUM</span></div>
-          <div class="er-col"><span class="name">induction_completed</span> <span class="type">BOOLEAN</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">site_id</span></div>
+          <div class="er-col"><span class="name">start_date, end_date</span></div>
+          <div class="er-col"><span class="name">agreed_day_rate</span></div>
+          <div class="er-col"><span class="name">status</span></div>
         </div>
       </div>
       
@@ -947,12 +1146,10 @@
         <div class="er-table-name">documents</div>
         <div class="er-table-cols">
           <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
-          <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span> <span class="type">UUID</span></div>
-          <div class="er-col"><span class="name">document_type</span> <span class="type">ENUM</span></div>
-          <div class="er-col"><span class="name">file_url</span> <span class="type">TEXT</span></div>
-          <div class="er-col"><span class="name">expiry_date</span> <span class="type">DATE</span></div>
-          <div class="er-col"><span class="name">is_verified</span> <span class="type">BOOLEAN</span></div>
-          <div class="er-col"><span class="name">rtw_share_code</span> <span class="type">VARCHAR</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span></div>
+          <div class="er-col"><span class="name">document_type</span></div>
+          <div class="er-col"><span class="name">expiry_date</span></div>
+          <div class="er-col"><span class="name">is_verified</span></div>
         </div>
       </div>
       
@@ -960,12 +1157,20 @@
         <div class="er-table-name">ncrs</div>
         <div class="er-table-cols">
           <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
-          <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span> <span class="type">UUID</span></div>
-          <div class="er-col"><span class="fk">→</span> <span class="name">site_id</span> <span class="type">UUID</span></div>
-          <div class="er-col"><span class="name">incident_type</span> <span class="type">ENUM</span></div>
-          <div class="er-col"><span class="name">severity</span> <span class="type">ENUM</span></div>
-          <div class="er-col"><span class="name">description</span> <span class="type">TEXT</span></div>
-          <div class="er-col"><span class="name">resulted_in_block</span> <span class="type">BOOLEAN</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">site_id</span></div>
+          <div class="er-col"><span class="name">incident_type</span></div>
+          <div class="er-col"><span class="name">severity</span></div>
+        </div>
+      </div>
+      
+      <div class="er-table">
+        <div class="er-table-name">sites</div>
+        <div class="er-table-cols">
+          <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
+          <div class="er-col"><span class="name">name, address</span></div>
+          <div class="er-col"><span class="name">postcode, lat, lng</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">site_manager_id</span></div>
         </div>
       </div>
       
@@ -973,17 +1178,15 @@
         <div class="er-table-name">communication_log</div>
         <div class="er-table-cols">
           <div class="er-col"><span class="key">🔑</span> <span class="name">id</span> <span class="type">UUID</span></div>
-          <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span> <span class="type">UUID</span></div>
-          <div class="er-col"><span class="name">channel</span> <span class="type">ENUM</span></div>
-          <div class="er-col"><span class="name">direction</span> <span class="type">ENUM</span></div>
-          <div class="er-col"><span class="name">message_body</span> <span class="type">TEXT</span></div>
-          <div class="er-col"><span class="name">status</span> <span class="type">VARCHAR</span></div>
-          <div class="er-col"><span class="name">sent_at</span> <span class="type">TIMESTAMP</span></div>
+          <div class="er-col"><span class="fk">→</span> <span class="name">operative_id</span></div>
+          <div class="er-col"><span class="name">channel, direction</span></div>
+          <div class="er-col"><span class="name">message_body</span></div>
+          <div class="er-col"><span class="name">sent_at</span></div>
         </div>
       </div>
     </div>
     
-    <h3 class="fade-up" style="margin-top: 3rem;">Operatives Table — Full Schema</h3>
+    <h3 class="fade-up" style="margin-top: 2rem;">Operatives Table — SQL</h3>
     
     <div class="code-block fade-up">
       <div class="code-header">
@@ -992,29 +1195,12 @@
         <span class="code-dot green"></span>
         <span class="code-title">operatives.sql</span>
       </div>
-      <pre><span class="comment">-- The labour pool: every operative in the system</span>
-<span class="keyword">CREATE TABLE</span> <span class="type">operatives</span> (
+      <pre><span class="keyword">CREATE TABLE</span> <span class="type">operatives</span> (
   id <span class="type">UUID</span> <span class="keyword">PRIMARY KEY DEFAULT</span> <span class="function">gen_random_uuid</span>(),
-  
-  <span class="comment">-- Personal Information</span>
   first_name <span class="type">VARCHAR(100)</span> <span class="keyword">NOT NULL</span>,
   last_name <span class="type">VARCHAR(100)</span> <span class="keyword">NOT NULL</span>,
   phone <span class="type">VARCHAR(20)</span> <span class="keyword">NOT NULL UNIQUE</span>,
-  email <span class="type">VARCHAR(255)</span>,
-  date_of_birth <span class="type">DATE</span>,
-  nationality <span class="type">VARCHAR(100)</span>,
-  languages <span class="type">TEXT[]</span>,  <span class="comment">-- ['English', 'Polish', 'Romanian']</span>
-  
-  <span class="comment">-- Location & Travel</span>
-  address <span class="type">TEXT</span>,
-  postcode <span class="type">VARCHAR(10)</span>,
-  travel_radius_miles <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="string">25</span>,
-  
-  <span class="comment">-- Role & Skills</span>
-  labour_type <span class="type">labour_type</span> <span class="keyword">NOT NULL DEFAULT</span> <span class="string">'blue_collar'</span>,
   trade_category_id <span class="type">UUID</span> <span class="keyword">REFERENCES</span> trade_categories(id),
-  skills <span class="type">TEXT[]</span>,
-  years_experience <span class="type">INT</span>,
   
   <span class="comment">-- Rates</span>
   day_rate <span class="type">DECIMAL(8,2)</span>,
@@ -1023,422 +1209,54 @@
   <span class="comment">-- Compliance (denormalized for fast queries)</span>
   rtw_verified <span class="type">BOOLEAN</span> <span class="keyword">DEFAULT</span> <span class="string">false</span>,
   rtw_expiry <span class="type">DATE</span>,
-  cscs_card_type <span class="type">VARCHAR(100)</span>,
   cscs_expiry <span class="type">DATE</span>,
   
-  <span class="comment">-- Performance Metrics (auto-calculated via triggers)</span>
+  <span class="comment">-- Performance (auto-calculated)</span>
   avg_rating <span class="type">DECIMAL(3,2)</span>,
   total_jobs <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="string">0</span>,
-  would_reemploy_count <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="string">0</span>,
   
-  <span class="comment">-- Status Management</span>
+  <span class="comment">-- Status</span>
   status <span class="type">VARCHAR(50)</span> <span class="keyword">CHECK</span> (status <span class="keyword">IN</span> (
-    <span class="string">'prospect'</span>,      <span class="comment">-- Responded to ad</span>
-    <span class="string">'qualifying'</span>,    <span class="comment">-- Sophie is screening</span>
-    <span class="string">'pending_docs'</span>,  <span class="comment">-- Awaiting documents</span>
-    <span class="string">'verified'</span>,      <span class="comment">-- Ready to work</span>
-    <span class="string">'working'</span>,       <span class="comment">-- Currently on a job</span>
-    <span class="string">'available'</span>,     <span class="comment">-- Verified and free</span>
-    <span class="string">'blocked'</span>        <span class="comment">-- NCR'd, do not use</span>
-  )) <span class="keyword">DEFAULT</span> <span class="string">'prospect'</span>,
-  
-  blocked_reason <span class="type">TEXT</span>,
-  source <span class="type">VARCHAR(100)</span>,  <span class="comment">-- 'facebook', 'referral', etc.</span>
-  
-  created_at <span class="type">TIMESTAMPTZ</span> <span class="keyword">DEFAULT NOW</span>(),
-  updated_at <span class="type">TIMESTAMPTZ</span> <span class="keyword">DEFAULT NOW</span>()
+    <span class="string">'prospect'</span>, <span class="string">'qualifying'</span>, <span class="string">'verified'</span>,
+    <span class="string">'working'</span>, <span class="string">'available'</span>, <span class="string">'blocked'</span>
+  )) <span class="keyword">DEFAULT</span> <span class="string">'prospect'</span>
 );
 
-<span class="comment">-- Indexes for fast searching</span>
+<span class="comment">-- Indexes for fast search</span>
 <span class="keyword">CREATE INDEX</span> idx_operatives_status <span class="keyword">ON</span> operatives(status);
 <span class="keyword">CREATE INDEX</span> idx_operatives_trade <span class="keyword">ON</span> operatives(trade_category_id);
-<span class="keyword">CREATE INDEX</span> idx_operatives_postcode <span class="keyword">ON</span> operatives(postcode);
-<span class="keyword">CREATE INDEX</span> idx_operatives_rating <span class="keyword">ON</span> operatives(avg_rating <span class="keyword">DESC NULLS LAST</span>);
-<span class="keyword">CREATE INDEX</span> idx_operatives_cscs_expiry <span class="keyword">ON</span> operatives(cscs_expiry);
-<span class="keyword">CREATE INDEX</span> idx_operatives_available <span class="keyword">ON</span> operatives(status) 
-  <span class="keyword">WHERE</span> status <span class="keyword">IN</span> (<span class="string">'verified'</span>, <span class="string">'available'</span>);</pre>
+<span class="keyword">CREATE INDEX</span> idx_operatives_rating <span class="keyword">ON</span> operatives(avg_rating <span class="keyword">DESC</span>);</pre>
     </div>
   </div>
 </section>
 
-<!-- ===== 05: FILE STRUCTURE ===== -->
-<section class="section">
-  <div class="container">
-    <div class="section-label fade-up">
-      <div class="label-line"></div>
-      <span class="label">Project Structure / 005</span>
-    </div>
-    
-    <h2 class="fade-up">Project <span class="text-cyan">Structure</span></h2>
-    
-    <p class="fade-up">Organized, scalable Next.js application following enterprise patterns.</p>
-    
-    <div class="grid grid-2 fade-up" style="align-items: start;">
-      <div class="file-tree">
-<pre><span class="folder">aztec-bos/</span>
-├── <span class="folder">src/</span>
-│   ├── <span class="folder">app/</span>                    <span class="comment"># Next.js App Router</span>
-│   │   ├── <span class="folder">(dashboard)/</span>         <span class="comment"># Protected routes</span>
-│   │   │   ├── <span class="folder">dashboard/</span>
-│   │   │   ├── <span class="folder">operatives/</span>
-│   │   │   │   ├── <span class="file">page.tsx</span>       <span class="comment"># List view</span>
-│   │   │   │   ├── <span class="file">[id]/page.tsx</span>  <span class="comment"># Detail view</span>
-│   │   │   │   └── <span class="file">new/page.tsx</span>   <span class="comment"># Create form</span>
-│   │   │   ├── <span class="folder">sites/</span>
-│   │   │   ├── <span class="folder">allocations/</span>
-│   │   │   ├── <span class="folder">ncrs/</span>
-│   │   │   ├── <span class="folder">documents/</span>
-│   │   │   └── <span class="special">layout.tsx</span>       <span class="comment"># Dashboard shell</span>
-│   │   │
-│   │   ├── <span class="folder">api/</span>                  <span class="comment"># API Routes</span>
-│   │   │   ├── <span class="folder">v1/</span>
-│   │   │   │   ├── <span class="folder">operatives/</span>
-│   │   │   │   ├── <span class="folder">allocations/</span>
-│   │   │   │   ├── <span class="folder">ncrs/</span>
-│   │   │   │   └── <span class="folder">documents/</span>
-│   │   │   └── <span class="folder">webhooks/</span>
-│   │   │       └── <span class="special">whatsapp/route.ts</span>
-│   │   │
-│   │   ├── <span class="folder">(auth)/</span>              <span class="comment"># Auth routes</span>
-│   │   │   └── <span class="file">login/page.tsx</span>
-│   │   │
-│   │   ├── <span class="config">layout.tsx</span>           <span class="comment"># Root layout</span>
-│   │   └── <span class="config">globals.css</span>
-│   │
-│   ├── <span class="folder">components/</span>
-│   │   ├── <span class="folder">ui/</span>                  <span class="comment"># shadcn/ui components</span>
-│   │   ├── <span class="folder">operatives/</span>
-│   │   ├── <span class="folder">allocations/</span>
-│   │   └── <span class="folder">dashboard/</span>
-│   │
-│   ├── <span class="folder">lib/</span>
-│   │   ├── <span class="special">supabase/</span>            <span class="comment"># DB client & queries</span>
-│   │   ├── <span class="special">whatsapp/</span>            <span class="comment"># WhatsApp API</span>
-│   │   ├── <span class="special">sophie/</span>              <span class="comment"># AI agent logic</span>
-│   │   └── <span class="file">utils.ts</span>
-│   │
-│   └── <span class="folder">types/</span>
-│       └── <span class="file">database.ts</span>          <span class="comment"># Generated types</span>
-│
-├── <span class="folder">supabase/</span>
-│   └── <span class="folder">migrations/</span>            <span class="comment"># SQL migrations</span>
-│
-├── <span class="config">next.config.ts</span>
-├── <span class="config">package.json</span>
-└── <span class="config">tsconfig.json</span></pre>
-      </div>
-      
-      <div>
-        <h3>Key Directories</h3>
-        
-        <div class="card" style="margin-bottom: 1rem;">
-          <h4><code>src/app/(dashboard)/</code></h4>
-          <p>All authenticated routes. Liam's main workspace. Protected by middleware.</p>
-        </div>
-        
-        <div class="card" style="margin-bottom: 1rem;">
-          <h4><code>src/app/api/v1/</code></h4>
-          <p>RESTful API endpoints. Versioned for future compatibility. Server-side data operations.</p>
-        </div>
-        
-        <div class="card" style="margin-bottom: 1rem;">
-          <h4><code>src/lib/sophie/</code></h4>
-          <p>Sophie AI agent. OpenAI integration. Conversation state machine. Candidate qualification logic.</p>
-        </div>
-        
-        <div class="card" style="margin-bottom: 1rem;">
-          <h4><code>supabase/migrations/</code></h4>
-          <p>Version-controlled database schema. Run in order. Full audit trail of changes.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 06: API ENDPOINTS ===== -->
+<!-- ===== 05: WHATSAPP ===== -->
 <section class="section line-grid">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
-      <span class="label">API Design / 006</span>
+      <span class="label">WhatsApp / 005</span>
     </div>
     
-    <h2 class="fade-up">API <span class="text-cyan">Endpoints</span></h2>
+    <h2 class="fade-up">WhatsApp <span class="text-green">Integration</span></h2>
     
-    <p class="fade-up">RESTful API with 25+ endpoints covering all business operations.</p>
-    
-    <table class="table fade-up">
-      <thead>
-        <tr>
-          <th>Method</th>
-          <th>Endpoint</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><span class="badge badge-green">GET</span></td>
-          <td><code>/api/v1/operatives</code></td>
-          <td>List operatives with filters (trade, status, location, rating)</td>
-        </tr>
-        <tr>
-          <td><span class="badge badge-cyan">POST</span></td>
-          <td><code>/api/v1/operatives</code></td>
-          <td>Create new operative record</td>
-        </tr>
-        <tr>
-          <td><span class="badge badge-green">GET</span></td>
-          <td><code>/api/v1/operatives/:id</code></td>
-          <td>Get operative details with documents, history</td>
-        </tr>
-        <tr>
-          <td><span class="badge badge-gold">PATCH</span></td>
-          <td><code>/api/v1/operatives/:id</code></td>
-          <td>Update operative (status, details, block)</td>
-        </tr>
-        <tr>
-          <td><span class="badge badge-green">GET</span></td>
-          <td><code>/api/v1/operatives/search</code></td>
-          <td>Advanced search with full-text, geo, filters</td>
-        </tr>
-        <tr><td colspan="3" style="height: 1rem;"></td></tr>
-        <tr>
-          <td><span class="badge badge-cyan">POST</span></td>
-          <td><code>/api/v1/allocations</code></td>
-          <td>Assign operative to site</td>
-        </tr>
-        <tr>
-          <td><span class="badge badge-cyan">POST</span></td>
-          <td><code>/api/v1/allocations/:id/confirm</code></td>
-          <td>Operative confirms allocation</td>
-        </tr>
-        <tr>
-          <td><span class="badge badge-cyan">POST</span></td>
-          <td><code>/api/v1/allocations/:id/complete</code></td>
-          <td>Mark allocation as complete, trigger review</td>
-        </tr>
-        <tr><td colspan="3" style="height: 1rem;"></td></tr>
-        <tr>
-          <td><span class="badge badge-cyan">POST</span></td>
-          <td><code>/api/v1/ncrs</code></td>
-          <td>Log NCR against operative</td>
-        </tr>
-        <tr>
-          <td><span class="badge badge-green">GET</span></td>
-          <td><code>/api/v1/ncrs/operative/:id</code></td>
-          <td>Get all NCRs for an operative</td>
-        </tr>
-        <tr><td colspan="3" style="height: 1rem;"></td></tr>
-        <tr>
-          <td><span class="badge badge-cyan">POST</span></td>
-          <td><code>/api/v1/documents</code></td>
-          <td>Upload document (RTW, CSCS, etc.)</td>
-        </tr>
-        <tr>
-          <td><span class="badge badge-green">GET</span></td>
-          <td><code>/api/v1/documents/expiring</code></td>
-          <td>List documents expiring within N days</td>
-        </tr>
-        <tr>
-          <td><span class="badge badge-gold">PATCH</span></td>
-          <td><code>/api/v1/documents/:id/verify</code></td>
-          <td>Mark document as verified</td>
-        </tr>
-        <tr><td colspan="3" style="height: 1rem;"></td></tr>
-        <tr>
-          <td><span class="badge badge-cyan">POST</span></td>
-          <td><code>/api/v1/attendance/confirm</code></td>
-          <td>Site Manager confirms arrival</td>
-        </tr>
-        <tr>
-          <td><span class="badge badge-cyan">POST</span></td>
-          <td><code>/api/v1/reviews</code></td>
-          <td>Submit performance review (1-5 rating)</td>
-        </tr>
-        <tr><td colspan="3" style="height: 1rem;"></td></tr>
-        <tr>
-          <td><span class="badge badge-purple">POST</span></td>
-          <td><code>/api/webhooks/whatsapp</code></td>
-          <td>Receive WhatsApp messages (route to Sophie or Site Manager handler)</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ===== 07: SOPHIE AI ===== -->
-<section class="section dot-grid">
-  <div class="container">
-    <div class="section-label fade-up">
-      <div class="label-line"></div>
-      <span class="label">Sophie AI / 007</span>
-    </div>
-    
-    <h2 class="fade-up"><span class="text-purple">Sophie</span> AI Agent</h2>
-    
-    <p class="fade-up">AI-powered recruitment assistant with a structured qualification flow and mandatory gates.</p>
-    
-    <h3 class="fade-up" style="margin-top: 2rem;">Conversation State Machine</h3>
-    
-    <div class="flow fade-up" style="flex-wrap: wrap; gap: 0.5rem;">
-      <div class="flow-step active"><strong>Greeting</strong><span>Present job</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step gate"><strong>RTW Check</strong><span>GATE 1</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step gate"><strong>Age 18+</strong><span>GATE 2</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step"><strong>CSCS</strong><span>Card type</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step"><strong>Personal</strong><span>Name, DOB</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step"><strong>Skills</strong><span>Experience</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step"><strong>Docs</strong><span>Upload request</span></div>
-      <div class="flow-connector"></div>
-      <div class="flow-step active"><strong>Complete</strong><span>Pass to Liam</span></div>
-    </div>
-    
-    <div class="grid grid-2 fade-up" style="margin-top: 2rem;">
-      <div>
-        <h3>Sophie's Qualification Logic</h3>
-        
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-dot red"></span>
-            <span class="code-dot yellow"></span>
-            <span class="code-dot green"></span>
-            <span class="code-title">sophie/qualify.ts</span>
-          </div>
-          <pre><span class="keyword">type</span> <span class="type">SophieState</span> =
-  | <span class="string">'greeting'</span>
-  | <span class="string">'check_rtw'</span>        <span class="comment">// Gate 1: MUST pass</span>
-  | <span class="string">'check_age'</span>        <span class="comment">// Gate 2: MUST pass</span>
-  | <span class="string">'check_cscs'</span>
-  | <span class="string">'collect_name'</span>
-  | <span class="string">'collect_dob'</span>
-  | <span class="string">'collect_nationality'</span>
-  | <span class="string">'collect_languages'</span>
-  | <span class="string">'collect_medical'</span>   <span class="comment">// Required</span>
-  | <span class="string">'collect_skills'</span>
-  | <span class="string">'collect_experience'</span>
-  | <span class="string">'collect_employers'</span>
-  | <span class="string">'request_documents'</span>
-  | <span class="string">'complete'</span>
-  | <span class="string">'rejected'</span>
-
-<span class="keyword">async function</span> <span class="function">processMessage</span>(
-  conversation: <span class="type">SophieConversation</span>,
-  message: <span class="type">string</span>
-) {
-  <span class="keyword">const</span> { state, jobDetails } = conversation;
-  
-  <span class="comment">// Gate 1: Right to Work</span>
-  <span class="keyword">if</span> (state === <span class="string">'check_rtw'</span>) {
-    <span class="keyword">if</span> (!<span class="function">isPositive</span>(message)) {
-      <span class="keyword">return</span> {
-        newState: <span class="string">'rejected'</span>,
-        reply: <span class="string">'Sorry, you must have the right '</span> +
-               <span class="string">'to work in the UK for this role.'</span>
-      };
-    }
-  }
-  
-  <span class="comment">// Gate 2: Age 18+</span>
-  <span class="keyword">if</span> (state === <span class="string">'check_age'</span>) {
-    <span class="keyword">if</span> (!<span class="function">isPositive</span>(message)) {
-      <span class="keyword">return</span> {
-        newState: <span class="string">'rejected'</span>,
-        reply: <span class="string">'Sorry, you must be 18+ '</span> +
-               <span class="string">'for site work.'</span>
-      };
-    }
-  }
-  
-  <span class="comment">// Continue through state machine...</span>
-}</pre>
-        </div>
-      </div>
-      
-      <div>
-        <h3>Sample Conversation</h3>
-        
-        <div class="whatsapp-chat">
-          <div class="whatsapp-header">
-            <div class="whatsapp-avatar">S</div>
-            <div>
-              <div class="whatsapp-name">Sophie @ Aztec</div>
-              <div class="whatsapp-status">AI Assistant</div>
-            </div>
-          </div>
-          <div class="whatsapp-messages">
-            <div class="wa-msg incoming">
-              Hi! 👋 I'm Sophie from Aztec Landscapes.
-              <br><br>
-              I saw you responded to our ad for a <strong>Groundworker</strong> in <strong>Manchester</strong> at <strong>£180/day</strong> starting Monday.
-              <br><br>
-              Are you interested in this role?
-              <div class="wa-time">09:15</div>
-            </div>
-            <div class="wa-msg outgoing">
-              Yes definitely
-              <div class="wa-time">09:16</div>
-            </div>
-            <div class="wa-msg incoming">
-              Great! First question: Do you have the right to work in the UK?
-              <div class="wa-time">09:16</div>
-            </div>
-            <div class="wa-msg outgoing">
-              Yes I'm British
-              <div class="wa-time">09:17</div>
-            </div>
-            <div class="wa-msg incoming">
-              Perfect ✅ And are you 18 or over?
-              <div class="wa-time">09:17</div>
-            </div>
-            <div class="wa-msg outgoing">
-              Yeah 26
-              <div class="wa-time">09:17</div>
-            </div>
-            <div class="wa-msg incoming">
-              Great! Do you have a valid CSCS card? If so, what type and when does it expire?
-              <div class="wa-time">09:18</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 08: WHATSAPP FLOWS ===== -->
-<section class="section">
-  <div class="container">
-    <div class="section-label fade-up">
-      <div class="label-line"></div>
-      <span class="label">WhatsApp Integration / 008</span>
-    </div>
-    
-    <h2 class="fade-up">WhatsApp <span class="text-green">Flows</span></h2>
-    
-    <p class="fade-up">Real message templates for common workflows.</p>
+    <p class="fade-up">Real message flows for common workflows.</p>
     
     <div class="grid grid-3 fade-up" style="margin-top: 2rem;">
       <div>
-        <h3>Arrival Confirmation</h3>
-        <div class="whatsapp-chat" style="max-width: 100%;">
+        <h3 style="color: var(--color-green);">Arrival Confirmation</h3>
+        <div class="whatsapp-chat">
           <div class="whatsapp-header">
-            <div class="whatsapp-avatar text-cyan">A</div>
+            <div class="whatsapp-avatar" style="background: var(--color-cyan);">A</div>
             <div>
               <div class="whatsapp-name">Aztec BOS</div>
               <div class="whatsapp-status">Site Manager Bot</div>
             </div>
           </div>
-          <div class="whatsapp-messages" style="min-height: 180px;">
+          <div class="whatsapp-messages">
             <div class="wa-msg incoming">
-              Good morning! 🌅
-              <br><br>
-              Did <strong>John Smith</strong> arrive at <strong>Westfield Site</strong> today?
-              <br><br>
+              Good morning! 🌅<br><br>
+              Did <strong>John Smith</strong> arrive at <strong>Westfield Site</strong> today?<br><br>
               Reply YES or NO
               <div class="wa-time">07:15</div>
             </div>
@@ -1448,7 +1266,6 @@
             </div>
             <div class="wa-msg incoming">
               ✅ John Smith marked as arrived.
-              <br>Have a great day!
               <div class="wa-time">07:18</div>
             </div>
           </div>
@@ -1456,28 +1273,25 @@
       </div>
       
       <div>
-        <h3>NCR Report</h3>
-        <div class="whatsapp-chat" style="max-width: 100%;">
+        <h3 style="color: var(--color-red);">NCR Report</h3>
+        <div class="whatsapp-chat">
           <div class="whatsapp-header">
-            <div class="whatsapp-avatar text-red">!</div>
+            <div class="whatsapp-avatar" style="background: var(--color-red);">!</div>
             <div>
               <div class="whatsapp-name">Site Manager</div>
               <div class="whatsapp-status">NCR Flow</div>
             </div>
           </div>
-          <div class="whatsapp-messages" style="min-height: 180px;">
+          <div class="whatsapp-messages">
             <div class="wa-msg outgoing">
-              Red card John Smith - walked off site without permission
+              Red card John Smith - walked off site
               <div class="wa-time">14:30</div>
             </div>
             <div class="wa-msg incoming">
-              ⚠️ <strong>NCR Logged</strong>
-              <br>Operative: John Smith
-              <br>Type: Walk Off
-              <br>Site: Westfield
-              <br><br>
-              Do you need a replacement?
-              <br>Reply YES or NO
+              ⚠️ <strong>NCR Logged</strong><br>
+              Operative: John Smith<br>
+              Type: Walk Off<br><br>
+              Need a replacement?<br>Reply YES or NO
               <div class="wa-time">14:30</div>
             </div>
             <div class="wa-msg outgoing">
@@ -1485,7 +1299,7 @@
               <div class="wa-time">14:31</div>
             </div>
             <div class="wa-msg incoming">
-              Got it. Liam has been notified and will arrange a replacement ASAP. 🔄
+              Got it. Liam notified. 🔄
               <div class="wa-time">14:31</div>
             </div>
           </div>
@@ -1493,27 +1307,24 @@
       </div>
       
       <div>
-        <h3>Shift Confirmation</h3>
-        <div class="whatsapp-chat" style="max-width: 100%;">
+        <h3 style="color: var(--color-gold);">Shift Confirmation</h3>
+        <div class="whatsapp-chat">
           <div class="whatsapp-header">
-            <div class="whatsapp-avatar text-gold">A</div>
+            <div class="whatsapp-avatar" style="background: var(--color-gold);">A</div>
             <div>
               <div class="whatsapp-name">Aztec BOS</div>
               <div class="whatsapp-status">Operative Flow</div>
             </div>
           </div>
-          <div class="whatsapp-messages" style="min-height: 180px;">
+          <div class="whatsapp-messages">
             <div class="wa-msg incoming">
-              Hi John! 👋
-              <br><br>
-              You've been assigned to:
-              <br>📍 Westfield Site, W12 7GF
-              <br>📅 Monday 5th Feb
-              <br>💷 £180/day
-              <br>⏰ Report: 7:00 AM
-              <br>👤 Ask for: Mike
-              <br><br>
-              Confirm? Reply YES or NO
+              Hi John! 👋<br><br>
+              You've been assigned:<br>
+              📍 Westfield Site, W12<br>
+              📅 Monday 5th Feb<br>
+              💷 £180/day<br>
+              ⏰ 7:00 AM<br><br>
+              Confirm? YES or NO
               <div class="wa-time">16:00</div>
             </div>
             <div class="wa-msg outgoing">
@@ -1521,10 +1332,7 @@
               <div class="wa-time">16:05</div>
             </div>
             <div class="wa-msg incoming">
-              ✅ Confirmed for Westfield Site!
-              <br><br>
-              I'll send induction forms shortly.
-              <br>See you Monday! 🚧
+              ✅ Confirmed! See you Monday 🚧
               <div class="wa-time">16:05</div>
             </div>
           </div>
@@ -1534,22 +1342,21 @@
   </div>
 </section>
 
-<!-- ===== 09: COMPLIANCE ENGINE ===== -->
-<section class="section line-grid">
+<!-- ===== 06: COMPLIANCE ===== -->
+<section class="section dot-grid">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
-      <span class="label">Compliance / 009</span>
+      <span class="label">Compliance / 006</span>
     </div>
     
     <h2 class="fade-up">Compliance <span class="text-red">Engine</span></h2>
     
-    <p class="fade-up">Automated pre-start checks and document expiry tracking.</p>
+    <p class="fade-up">No operative starts without verified RTW, Photo ID, and in-date CSCS.</p>
     
     <div class="grid grid-2 fade-up" style="margin-top: 2rem; align-items: start;">
       <div>
         <h3>Pre-Start Validation</h3>
-        
         <div class="code-block">
           <div class="code-header">
             <span class="code-dot red"></span>
@@ -1557,371 +1364,87 @@
             <span class="code-dot green"></span>
             <span class="code-title">compliance/canStart.ts</span>
           </div>
-          <pre><span class="keyword">async function</span> <span class="function">canOperativeStart</span>(
-  operativeId: <span class="type">string</span>
-): <span class="type">Promise</span>&lt;{
-  canStart: <span class="type">boolean</span>;
-  blockers: <span class="type">string</span>[];
-}&gt; {
-  <span class="keyword">const</span> op = <span class="keyword">await</span> db.operative.<span class="function">findById</span>(operativeId);
+          <pre><span class="keyword">async function</span> <span class="function">canOperativeStart</span>(id: <span class="type">string</span>) {
+  <span class="keyword">const</span> op = <span class="keyword">await</span> db.operative.<span class="function">findById</span>(id);
   <span class="keyword">const</span> blockers: <span class="type">string</span>[] = [];
   
-  <span class="comment">// 1. Right to Work verified</span>
-  <span class="keyword">if</span> (!op.rtwVerified) {
+  <span class="comment">// 1. RTW verified</span>
+  <span class="keyword">if</span> (!op.rtwVerified)
     blockers.<span class="function">push</span>(<span class="string">'RTW not verified'</span>);
-  }
   
   <span class="comment">// 2. RTW not expired</span>
-  <span class="keyword">if</span> (op.rtwExpiry && op.rtwExpiry < <span class="keyword">new</span> <span class="type">Date</span>()) {
+  <span class="keyword">if</span> (op.rtwExpiry < <span class="keyword">new</span> <span class="type">Date</span>())
     blockers.<span class="function">push</span>(<span class="string">'RTW expired'</span>);
-  }
   
   <span class="comment">// 3. Photo ID on file</span>
-  <span class="keyword">const</span> photoId = <span class="keyword">await</span> db.documents.<span class="function">findOne</span>({
-    operativeId,
-    documentType: <span class="string">'photo_id'</span>
-  });
-  <span class="keyword">if</span> (!photoId) {
+  <span class="keyword">if</span> (!<span class="keyword">await</span> db.documents.<span class="function">hasPhotoId</span>(id))
     blockers.<span class="function">push</span>(<span class="string">'Photo ID missing'</span>);
-  }
   
   <span class="comment">// 4. CSCS in date</span>
-  <span class="keyword">if</span> (!op.cscsExpiry || op.cscsExpiry < <span class="keyword">new</span> <span class="type">Date</span>()) {
-    blockers.<span class="function">push</span>(<span class="string">'CSCS expired/missing'</span>);
-  }
+  <span class="keyword">if</span> (op.cscsExpiry < <span class="keyword">new</span> <span class="type">Date</span>())
+    blockers.<span class="function">push</span>(<span class="string">'CSCS expired'</span>);
   
   <span class="comment">// 5. Not blocked</span>
-  <span class="keyword">if</span> (op.status === <span class="string">'blocked'</span>) {
+  <span class="keyword">if</span> (op.status === <span class="string">'blocked'</span>)
     blockers.<span class="function">push</span>(<span class="string">`Blocked: ${op.blockedReason}`</span>);
-  }
   
-  <span class="keyword">return</span> {
-    canStart: blockers.length === <span class="string">0</span>,
-    blockers
+  <span class="keyword">return</span> { 
+    canStart: blockers.length === <span class="string">0</span>, 
+    blockers 
   };
 }</pre>
         </div>
       </div>
       
       <div>
-        <h3>Document Requirements</h3>
-        
+        <h3>Document Expiry Alerts</h3>
         <table class="table">
           <thead>
             <tr>
               <th>Document</th>
-              <th>Required</th>
-              <th>Expiry Alerts</th>
+              <th>Alert Days</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Right to Work</td>
-              <td><span class="badge badge-red">Mandatory</span></td>
-              <td>30, 21, 14, 7, 0 days</td>
-            </tr>
-            <tr>
-              <td>Photo ID</td>
-              <td><span class="badge badge-red">Mandatory</span></td>
-              <td>—</td>
+              <td>30, 21, 14, 7, 0</td>
+              <td><span class="badge badge-red">Blocks</span></td>
             </tr>
             <tr>
               <td>CSCS Card</td>
-              <td><span class="badge badge-red">Mandatory</span></td>
-              <td>60, 30, 14, 7, 0 days</td>
+              <td>60, 30, 14, 7, 0</td>
+              <td><span class="badge badge-red">Blocks</span></td>
             </tr>
             <tr>
-              <td>CPCS/NPORS Tickets</td>
-              <td><span class="badge badge-gold">If Required</span></td>
-              <td>30, 14, 7 days</td>
+              <td>Photo ID</td>
+              <td>—</td>
+              <td><span class="badge badge-red">Required</span></td>
+            </tr>
+            <tr>
+              <td>CPCS/NPORS</td>
+              <td>30, 14, 7</td>
+              <td><span class="badge badge-gold">Warns</span></td>
             </tr>
           </tbody>
         </table>
         
-        <h3 style="margin-top: 2rem;">Expiry Monitoring</h3>
-        
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-dot red"></span>
-            <span class="code-dot yellow"></span>
-            <span class="code-dot green"></span>
-            <span class="code-title">cron/expiryAlerts.ts</span>
-          </div>
-          <pre><span class="comment">// Runs daily at 06:00 UTC</span>
-<span class="keyword">async function</span> <span class="function">checkExpiringDocuments</span>() {
-  <span class="keyword">const</span> thresholds = [<span class="string">30</span>, <span class="string">21</span>, <span class="string">14</span>, <span class="string">7</span>, <span class="string">0</span>];
-  
-  <span class="keyword">for</span> (<span class="keyword">const</span> days <span class="keyword">of</span> thresholds) {
-    <span class="keyword">const</span> expiring = <span class="keyword">await</span> db.documents
-      .<span class="function">findExpiring</span>(days);
-    
-    <span class="keyword">for</span> (<span class="keyword">const</span> doc <span class="keyword">of</span> expiring) {
-      <span class="comment">// Alert Liam (dashboard + email)</span>
-      <span class="keyword">await</span> <span class="function">notifyLabourManager</span>({
-        type: <span class="string">'document_expiry'</span>,
-        urgency: days === <span class="string">0</span> ? <span class="string">'critical'</span> 
-               : days <= <span class="string">7</span> ? <span class="string">'high'</span> 
-               : <span class="string">'medium'</span>,
-        operative: doc.operative,
-        document: doc
-      });
-      
-      <span class="comment">// Alert operative via WhatsApp</span>
-      <span class="keyword">await</span> <span class="function">sendWhatsApp</span>(
-        doc.operative.phone,
-        <span class="string">`⚠️ Your ${doc.type} expires in `</span> +
-        <span class="string">`${days} days. Please upload a `</span> +
-        <span class="string">`new copy to continue working.`</span>
-      );
-    }
-  }
-}</pre>
+        <div class="card" style="margin-top: 1.5rem; border-color: var(--color-red); background: rgba(239, 68, 68, 0.05);">
+          <h4 style="color: var(--color-red);">Zero Exceptions Policy</h4>
+          <p>No manual overrides. If compliance fails, operative cannot be allocated. System enforces at database level.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== 10: SEARCH ALGORITHM ===== -->
-<section class="section dot-grid">
-  <div class="container">
-    <div class="section-label fade-up">
-      <div class="label-line"></div>
-      <span class="label">Search / 010</span>
-    </div>
-    
-    <h2 class="fade-up">Labour <span class="text-cyan">Search</span></h2>
-    
-    <p class="fade-up">Intelligent matching based on role, location, rate, experience, and performance.</p>
-    
-    <div class="grid grid-2 fade-up" style="margin-top: 2rem; align-items: start;">
-      <div>
-        <h3>Search Priority (Liam-Defined)</h3>
-        
-        <table class="table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Filter</th>
-              <th>Logic</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td><strong>Role/Trade</strong></td>
-              <td>Primary filter — always required</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Location</td>
-              <td>Postcode + radius (miles)</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Day Rate</td>
-              <td>Min/max range</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Experience</td>
-              <td>Minimum years</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Certifications</td>
-              <td>Required tickets (CPCS, etc.)</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>Availability</td>
-              <td>Status = available/verified</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>Rating</td>
-              <td>Minimum avg rating</td>
-            </tr>
-          </tbody>
-        </table>
-        
-        <div class="card" style="margin-top: 1.5rem; border-color: var(--color-cyan);">
-          <h4 class="text-cyan">Exclusions</h4>
-          <p>Currently working operatives are <strong>automatically excluded</strong> from search to prevent unnecessary messaging.</p>
-        </div>
-      </div>
-      
-      <div>
-        <h3>Search Query</h3>
-        
-        <div class="code-block">
-          <div class="code-header">
-            <span class="code-dot red"></span>
-            <span class="code-dot yellow"></span>
-            <span class="code-dot green"></span>
-            <span class="code-title">search.sql</span>
-          </div>
-          <pre><span class="keyword">SELECT</span> 
-  o.*,
-  <span class="comment">-- Distance calculation (Haversine)</span>
-  <span class="function">earth_distance</span>(
-    <span class="function">ll_to_earth</span>(o.lat, o.lng),
-    <span class="function">ll_to_earth</span>($lat, $lng)
-  ) / <span class="string">1609.34</span> <span class="keyword">AS</span> distance_miles
-<span class="keyword">FROM</span> operatives o
-<span class="keyword">WHERE</span> 
-  <span class="comment">-- Trade (required)</span>
-  o.trade_category_id = $tradeId
-  
-  <span class="comment">-- Status (available only)</span>
-  <span class="keyword">AND</span> o.status <span class="keyword">IN</span> (<span class="string">'available'</span>, <span class="string">'verified'</span>)
-  
-  <span class="comment">-- Compliance (must be valid)</span>
-  <span class="keyword">AND</span> o.rtw_verified = <span class="string">true</span>
-  <span class="keyword">AND</span> o.rtw_expiry > <span class="function">CURRENT_DATE</span>
-  <span class="keyword">AND</span> o.cscs_expiry > <span class="function">CURRENT_DATE</span>
-  
-  <span class="comment">-- Rate range</span>
-  <span class="keyword">AND</span> o.day_rate <span class="keyword">BETWEEN</span> $rateMin <span class="keyword">AND</span> $rateMax
-  
-  <span class="comment">-- Experience</span>
-  <span class="keyword">AND</span> o.years_experience >= $minExp
-  
-  <span class="comment">-- Rating</span>
-  <span class="keyword">AND</span> (o.avg_rating >= $minRating 
-       <span class="keyword">OR</span> o.avg_rating <span class="keyword">IS NULL</span>)
-  
-  <span class="comment">-- Location radius</span>
-  <span class="keyword">AND</span> <span class="function">earth_distance</span>(
-    <span class="function">ll_to_earth</span>(o.lat, o.lng),
-    <span class="function">ll_to_earth</span>($lat, $lng)
-  ) <= $radiusMiles * <span class="string">1609.34</span>
-  
-  <span class="comment">-- Certifications (if required)</span>
-  <span class="keyword">AND</span> ($certs <span class="keyword">IS NULL OR</span> 
-       o.skills @> $certs)
-
-<span class="keyword">ORDER BY</span> 
-  o.avg_rating <span class="keyword">DESC NULLS LAST</span>,
-  distance_miles <span class="keyword">ASC</span>
-<span class="keyword">LIMIT</span> <span class="string">50</span>;</pre>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 11: SECURITY ===== -->
+<!-- ===== 07: TIMELINE ===== -->
 <section class="section">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
-      <span class="label">Security / 011</span>
-    </div>
-    
-    <h2 class="fade-up">Security & <span class="text-red">Data Protection</span></h2>
-    
-    <div class="grid grid-2 fade-up" style="margin-top: 2rem;">
-      <div>
-        <h3>Data Protection</h3>
-        <table class="table">
-          <tbody>
-            <tr>
-              <td><strong>UK Data Residency</strong></td>
-              <td>Supabase eu-west-2 (London)</td>
-            </tr>
-            <tr>
-              <td><strong>Encryption at Rest</strong></td>
-              <td>AES-256</td>
-            </tr>
-            <tr>
-              <td><strong>Encryption in Transit</strong></td>
-              <td>TLS 1.3</td>
-            </tr>
-            <tr>
-              <td><strong>GDPR Compliant</strong></td>
-              <td>Right to access, rectification, deletion</td>
-            </tr>
-            <tr>
-              <td><strong>Database Download</strong></td>
-              <td>Blocked — no bulk export allowed</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <h3>Access Controls</h3>
-        <table class="table">
-          <tbody>
-            <tr>
-              <td><strong>Authentication</strong></td>
-              <td>Supabase Auth (email/password)</td>
-            </tr>
-            <tr>
-              <td><strong>Authorization</strong></td>
-              <td>Role-based (Director, Labour Manager, Site Manager)</td>
-            </tr>
-            <tr>
-              <td><strong>Row-Level Security</strong></td>
-              <td>PostgreSQL RLS policies</td>
-            </tr>
-            <tr>
-              <td><strong>MFA</strong></td>
-              <td>Optional 2FA for all users</td>
-            </tr>
-            <tr>
-              <td><strong>Audit Trail</strong></td>
-              <td>Every action logged with who/when/what</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    
-    <h3 class="fade-up" style="margin-top: 2rem;">Row-Level Security Example</h3>
-    
-    <div class="code-block fade-up">
-      <div class="code-header">
-        <span class="code-dot red"></span>
-        <span class="code-dot yellow"></span>
-        <span class="code-dot green"></span>
-        <span class="code-title">rls_policies.sql</span>
-      </div>
-      <pre><span class="comment">-- Enable RLS on operatives table</span>
-<span class="keyword">ALTER TABLE</span> operatives <span class="keyword">ENABLE ROW LEVEL SECURITY</span>;
-
-<span class="comment">-- Users can only see operatives in their organization</span>
-<span class="keyword">CREATE POLICY</span> <span class="string">"Users see own org operatives"</span>
-<span class="keyword">ON</span> operatives <span class="keyword">FOR SELECT</span>
-<span class="keyword">USING</span> (
-  organization_id = (
-    <span class="keyword">SELECT</span> organization_id 
-    <span class="keyword">FROM</span> users 
-    <span class="keyword">WHERE</span> id = <span class="function">auth.uid</span>()
-  )
-);
-
-<span class="comment">-- Only Labour Managers can update operatives</span>
-<span class="keyword">CREATE POLICY</span> <span class="string">"Labour managers update operatives"</span>
-<span class="keyword">ON</span> operatives <span class="keyword">FOR UPDATE</span>
-<span class="keyword">USING</span> (
-  organization_id = (
-    <span class="keyword">SELECT</span> organization_id 
-    <span class="keyword">FROM</span> users 
-    <span class="keyword">WHERE</span> id = <span class="function">auth.uid</span>()
-    <span class="keyword">AND</span> role <span class="keyword">IN</span> (<span class="string">'labour_manager'</span>, <span class="string">'director'</span>, <span class="string">'admin'</span>)
-  )
-);</pre>
-    </div>
-  </div>
-</section>
-
-<!-- ===== 12: TIMELINE ===== -->
-<section class="section line-grid">
-  <div class="container">
-    <div class="section-label fade-up">
-      <div class="label-line"></div>
-      <span class="label">Timeline / 012</span>
+      <span class="label">Timeline / 007</span>
     </div>
     
     <h2 class="fade-up">Implementation <span class="text-cyan">Timeline</span></h2>
@@ -1935,7 +1458,7 @@
           <div class="timeline-content">
             <span class="timeline-phase">Phase 1</span>
             <h4>Discovery & Foundation</h4>
-            <p>Requirements confirmed, database schema deployed, auth setup, core UI scaffolding.</p>
+            <p>Requirements confirmed, database deployed, auth setup.</p>
             <span class="timeline-duration">2 Weeks</span>
           </div>
         </div>
@@ -1945,7 +1468,7 @@
           <div class="timeline-content">
             <span class="timeline-phase">Phase 2</span>
             <h4>Core Build</h4>
-            <p>Operatives CRUD, search, sites, allocations, documents, compliance tracking, Liam dashboard.</p>
+            <p>Operatives, sites, allocations, documents, compliance, dashboard.</p>
             <span class="timeline-duration">6 Weeks</span>
           </div>
         </div>
@@ -1955,7 +1478,7 @@
           <div class="timeline-content">
             <span class="timeline-phase">Phase 3</span>
             <h4>Communications</h4>
-            <p>WhatsApp integration, Sophie AI agent, Site Manager bot, templates, NCR flow.</p>
+            <p>WhatsApp integration, Sophie AI, NCR flow, templates.</p>
             <span class="timeline-duration">3 Weeks</span>
           </div>
         </div>
@@ -1965,63 +1488,40 @@
           <div class="timeline-content">
             <span class="timeline-phase">Phase 4</span>
             <h4>Polish & Deploy</h4>
-            <p>Testing, training, data migration, go-live, 2-week hypercare period.</p>
+            <p>Testing, training, data migration, go-live, hypercare.</p>
             <span class="timeline-duration">3 Weeks</span>
           </div>
         </div>
       </div>
       
       <div>
-        <h3>Deliverables Per Phase</h3>
+        <h3>Key Deliverables</h3>
         
         <div class="card" style="margin-bottom: 1rem;">
-          <h4 class="text-cyan">Phase 1 Output</h4>
-          <ul style="color: var(--color-text-secondary); font-size: 0.875rem; padding-left: 1.25rem;">
-            <li>Database live in Supabase (London)</li>
-            <li>Auth working with test users</li>
-            <li>Basic dashboard shell deployed</li>
-            <li>Trade categories seeded</li>
-          </ul>
+          <h4 class="text-cyan">Phase 1</h4>
+          <p>✓ Database live in Supabase (London)<br>✓ Auth working with test users<br>✓ Basic dashboard deployed</p>
         </div>
         
         <div class="card" style="margin-bottom: 1rem;">
-          <h4 class="text-gold">Phase 2 Output</h4>
-          <ul style="color: var(--color-text-secondary); font-size: 0.875rem; padding-left: 1.25rem;">
-            <li>Full operative management</li>
-            <li>Document upload & tracking</li>
-            <li>Expiry alerts working</li>
-            <li>Allocation workflow</li>
-            <li>Performance reviews & NCRs</li>
-          </ul>
+          <h4 class="text-gold">Phase 2</h4>
+          <p>✓ Full operative management<br>✓ Document upload & tracking<br>✓ Allocation workflow<br>✓ Performance reviews & NCRs</p>
         </div>
         
         <div class="card" style="margin-bottom: 1rem;">
-          <h4 class="text-green">Phase 3 Output</h4>
-          <ul style="color: var(--color-text-secondary); font-size: 0.875rem; padding-left: 1.25rem;">
-            <li>WhatsApp Business connected</li>
-            <li>Sophie qualifying candidates</li>
-            <li>Arrival confirmations working</li>
-            <li>NCR via WhatsApp</li>
-            <li>Shift confirmations</li>
-          </ul>
+          <h4 class="text-green">Phase 3</h4>
+          <p>✓ WhatsApp Business connected<br>✓ Sophie qualifying candidates<br>✓ Arrival confirmations<br>✓ Shift confirmations</p>
         </div>
         
         <div class="card">
-          <h4 class="text-purple">Phase 4 Output</h4>
-          <ul style="color: var(--color-text-secondary); font-size: 0.875rem; padding-left: 1.25rem;">
-            <li>Full UAT complete</li>
-            <li>Liam trained</li>
-            <li>Historical data migrated</li>
-            <li>Production go-live</li>
-            <li>2 weeks hypercare support</li>
-          </ul>
+          <h4 class="text-purple">Phase 4</h4>
+          <p>✓ Full UAT complete<br>✓ Liam trained<br>✓ Data migrated<br>✓ Production go-live</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== 13: CTA ===== -->
+<!-- ===== 08: CTA ===== -->
 <section class="section cta-section dot-grid">
   <div class="corner tl"></div>
   <div class="corner br"></div>
@@ -2029,15 +1529,15 @@
   <div class="container">
     <div class="section-label fade-up" style="justify-content: center;">
       <div class="label-line"></div>
-      <span class="label">Next Steps / 013</span>
+      <span class="label">Next Steps / 008</span>
     </div>
     
     <h2 class="fade-up" style="font-size: clamp(2rem, 5vw, 3.5rem);">
       Ready to <span class="text-gold">Build</span>?
     </h2>
     
-    <p class="fade-up" style="max-width: 600px; margin: 0 auto 2rem;">
-      Cold Lava is ready to begin immediately upon board approval. All architecture has been designed, database schemas are ready, and the team is standing by.
+    <p class="fade-up" style="max-width: 600px; margin: 0 auto 2rem; text-align: center;">
+      All architecture designed. Database schemas ready. Team standing by.
     </p>
     
     <div class="stats-grid fade-up" style="max-width: 800px; margin: 2rem auto;">
@@ -2059,11 +1559,11 @@
       </div>
     </div>
     
-    <div class="fade-up" style="margin-top: 3rem;">
+    <div class="fade-up" style="margin-top: 3rem; text-align: center;">
       <a href="mailto:oliver@coldlava.ai" class="btn btn-primary">Get Started</a>
     </div>
     
-    <div class="fade-up" style="margin-top: 4rem; color: var(--color-text-muted); font-size: 0.875rem;">
+    <div class="fade-up" style="margin-top: 4rem; color: var(--color-text-muted); font-size: 0.875rem; text-align: center;">
       <p>oliver@coldlava.ai • jacob@coldlava.ai</p>
       <p class="mono" style="margin-top: 1rem;">© 2026 Cold Lava AI Ltd</p>
     </div>
@@ -2079,7 +1579,7 @@
 <script>
   gsap.registerPlugin(ScrollTrigger);
   
-  // Fade up animations
+  // ===== FADE UP ANIMATIONS =====
   gsap.utils.toArray('.fade-up').forEach(el => {
     gsap.to(el, {
       opacity: 1,
@@ -2091,6 +1591,88 @@
         start: 'top 85%',
         toggleActions: 'play none none none'
       }
+    });
+  });
+  
+  // ===== COUNTER ANIMATIONS =====
+  gsap.utils.toArray('.stat-number[data-count]').forEach(stat => {
+    const target = parseFloat(stat.dataset.count);
+    ScrollTrigger.create({
+      trigger: stat,
+      start: 'top 80%',
+      onEnter: () => {
+        gsap.to(stat, {
+          textContent: target,
+          duration: 2,
+          ease: 'power2.out',
+          snap: { textContent: 1 },
+          onUpdate: function() {
+            stat.textContent = Math.round(this.targets()[0].textContent);
+          }
+        });
+      },
+      once: true
+    });
+  });
+  
+  // ===== ANIMATED FLOW =====
+  function animateFlow(selector) {
+    const container = document.querySelector(selector);
+    if (!container) return;
+    
+    const steps = container.querySelectorAll('.flow-step');
+    const connectors = container.querySelectorAll('.flow-connector');
+    
+    ScrollTrigger.create({
+      trigger: container,
+      start: 'top 70%',
+      onEnter: () => {
+        let delay = 0;
+        
+        steps.forEach((step, i) => {
+          // Show step
+          setTimeout(() => {
+            step.classList.add('visible');
+            step.classList.add('active');
+            
+            // Remove active from previous
+            if (i > 0) {
+              setTimeout(() => steps[i-1].classList.remove('active'), 300);
+            }
+          }, delay);
+          
+          // Animate connector
+          if (i < connectors.length) {
+            setTimeout(() => {
+              connectors[i].classList.add('active');
+              // Remove active class after animation
+              setTimeout(() => connectors[i].classList.remove('active'), 600);
+            }, delay + 300);
+          }
+          
+          delay += 400;
+        });
+      },
+      once: true
+    });
+  }
+  
+  animateFlow('#labour-flow');
+  animateFlow('#sophie-flow');
+  
+  // ===== ARCHITECTURE NODES HOVER =====
+  document.querySelectorAll('.arch-node').forEach(node => {
+    node.addEventListener('mouseenter', () => {
+      gsap.to(node.querySelector('.box'), {
+        strokeWidth: 2.5,
+        duration: 0.3
+      });
+    });
+    node.addEventListener('mouseleave', () => {
+      gsap.to(node.querySelector('.box'), {
+        strokeWidth: 1.5,
+        duration: 0.3
+      });
     });
   });
 </script>
