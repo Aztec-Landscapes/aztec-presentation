@@ -1957,144 +1957,119 @@
     <h3 class="fade-up" style="margin-top: 3rem;">App Integration Flow</h3>
     <p class="fade-up" style="margin-bottom: 1.5rem;">Watch how data flows between the apps in real-time scenarios.</p>
     
-    <div class="app-flow-container fade-up">
-      <svg class="app-flow-svg" viewBox="0 0 900 450">
+    <!-- App Integration Flow - Architectural Style (matching system architecture) -->
+    <div class="fade-up" style="margin: 2rem 0; overflow-x: auto;">
+      <svg viewBox="0 0 1000 450" style="width: 100%; min-width: 800px; height: auto;">
         <defs>
-          <filter id="appGlow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
+          <filter id="appGlow2">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
-          <marker id="arrowCyan" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="var(--color-cyan)" opacity="0.8"/>
-          </marker>
-          <marker id="arrowGold" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="var(--color-gold)" opacity="0.8"/>
-          </marker>
-          <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="var(--color-purple)" opacity="0.8"/>
-          </marker>
-          <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="var(--color-green)" opacity="0.8"/>
-          </marker>
-          <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="var(--color-red)" opacity="0.8"/>
-          </marker>
         </defs>
         
-        <!-- Central Hub: Liam Dashboard -->
-        <g class="app-node" transform="translate(450, 225)">
-          <circle r="70" fill="rgba(34, 211, 238, 0.08)" stroke="var(--color-cyan)" stroke-width="2"/>
-          <circle r="55" fill="rgba(34, 211, 238, 0.04)" stroke="var(--color-cyan)" stroke-width="1" opacity="0.5"/>
-          <text y="-10" text-anchor="middle" fill="var(--color-cyan)" font-weight="700" font-size="14">Liam</text>
-          <text y="8" text-anchor="middle" fill="var(--color-text-primary)" font-size="10">Dashboard</text>
-          <text y="22" text-anchor="middle" fill="var(--color-text-muted)" font-size="8">Control Centre</text>
+        <!-- Section Label: WHO USES IT -->
+        <text x="500" y="25" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="11" letter-spacing="3" font-family="'JetBrains Mono', monospace">WHO USES IT</text>
+        
+        <!-- Top Row: User Interfaces -->
+        <g transform="translate(40, 45)">
+          <rect width="180" height="70" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <text x="90" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">Liam Dashboard</text>
+          <text x="90" y="48" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10">Web Application</text>
         </g>
         
-        <!-- Applicant (far left) -->
-        <g class="app-node" transform="translate(60, 80)">
-          <circle r="30" fill="rgba(255, 255, 255, 0.03)" stroke="var(--color-border)" stroke-width="1"/>
-          <text y="-3" text-anchor="middle" fill="var(--color-text-muted)" font-size="9">📱</text>
-          <text y="12" text-anchor="middle" fill="var(--color-text-muted)" font-size="8">Applicant</text>
+        <g transform="translate(260, 45)">
+          <rect width="180" height="70" rx="6" fill="rgba(52, 211, 153, 0.08)" stroke="#34D399" stroke-width="1.5"/>
+          <text x="90" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">Site Manager</text>
+          <text x="90" y="48" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10">WhatsApp Bot</text>
         </g>
         
-        <!-- Sophie AI -->
-        <g class="app-node" transform="translate(200, 80)">
-          <circle r="50" fill="rgba(167, 139, 250, 0.1)" stroke="var(--color-purple)" stroke-width="2"/>
-          <text y="-8" text-anchor="middle" fill="var(--color-purple)" font-weight="600" font-size="12">Sophie AI</text>
-          <text y="8" text-anchor="middle" fill="var(--color-text-secondary)" font-size="9">Recruitment Bot</text>
+        <g transform="translate(560, 45)">
+          <rect width="180" height="70" rx="6" fill="rgba(167, 139, 250, 0.08)" stroke="#A78BFA" stroke-width="1.5"/>
+          <text x="90" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">Sophie AI</text>
+          <text x="90" y="48" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10">WhatsApp Agent</text>
         </g>
         
-        <!-- Site Manager -->
-        <g class="app-node" transform="translate(750, 120)">
-          <circle r="50" fill="rgba(52, 211, 153, 0.1)" stroke="var(--color-green)" stroke-width="2"/>
-          <text y="-8" text-anchor="middle" fill="var(--color-green)" font-weight="600" font-size="12">Site Manager</text>
-          <text y="8" text-anchor="middle" fill="var(--color-text-secondary)" font-size="9">On-Site Control</text>
+        <g transform="translate(780, 45)">
+          <rect width="180" height="70" rx="6" fill="rgba(212, 175, 55, 0.08)" stroke="#D4AF37" stroke-width="1.5"/>
+          <text x="90" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">Operative</text>
+          <text x="90" y="48" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10">WhatsApp</text>
         </g>
         
-        <!-- Operative Pool (bottom left) -->
-        <g class="app-node" transform="translate(200, 370)">
-          <circle r="50" fill="rgba(212, 175, 55, 0.1)" stroke="var(--color-gold)" stroke-width="2"/>
-          <text y="-8" text-anchor="middle" fill="var(--color-gold)" font-weight="600" font-size="12">Operatives</text>
-          <text y="8" text-anchor="middle" fill="var(--color-text-secondary)" font-size="9">Labour Pool</text>
+        <!-- Connectors from top boxes down to junction -->
+        <line x1="130" y1="115" x2="130" y2="155" stroke="#22D3EE" stroke-width="1.5" opacity="0.5"/>
+        <line x1="350" y1="115" x2="350" y2="155" stroke="#34D399" stroke-width="1.5" opacity="0.5"/>
+        <line x1="650" y1="115" x2="650" y2="155" stroke="#A78BFA" stroke-width="1.5" opacity="0.5"/>
+        <line x1="870" y1="115" x2="870" y2="155" stroke="#D4AF37" stroke-width="1.5" opacity="0.5"/>
+        
+        <!-- Junction dots -->
+        <circle cx="130" cy="155" r="4" fill="#22D3EE" filter="url(#appGlow2)"/>
+        <circle cx="350" cy="155" r="4" fill="#34D399" filter="url(#appGlow2)"/>
+        <circle cx="650" cy="155" r="4" fill="#A78BFA" filter="url(#appGlow2)"/>
+        <circle cx="870" cy="155" r="4" fill="#D4AF37" filter="url(#appGlow2)"/>
+        
+        <!-- Horizontal connector to central processing -->
+        <line x1="130" y1="155" x2="870" y2="155" stroke="#22D3EE" stroke-width="1.5" opacity="0.3"/>
+        
+        <!-- Central junction down -->
+        <circle cx="500" cy="155" r="5" fill="#22D3EE" filter="url(#appGlow2)"/>
+        <line x1="500" y1="155" x2="500" y2="185" stroke="#22D3EE" stroke-width="2" opacity="0.5"/>
+        
+        <!-- Section Label: THE BRAIN -->
+        <text x="500" y="180" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="11" letter-spacing="3" font-family="'JetBrains Mono', monospace">THE BRAIN</text>
+        
+        <!-- Central Processing Box -->
+        <g transform="translate(150, 195)">
+          <rect width="700" height="100" rx="8" fill="rgba(34, 211, 238, 0.1)" stroke="#22D3EE" stroke-width="2"/>
+          <text x="350" y="35" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">Central Processing</text>
+          <!-- Sub-modules -->
+          <circle cx="100" cy="70" r="4" fill="#22D3EE"/>
+          <text x="100" y="85" text-anchor="middle" fill="#22D3EE" font-size="10">People</text>
+          <text x="230" y="70" text-anchor="middle" fill="#22D3EE" font-size="10">Assignments</text>
+          <text x="350" y="70" text-anchor="middle" fill="#22D3EE" font-size="10">Issues</text>
+          <text x="470" y="70" text-anchor="middle" fill="#22D3EE" font-size="10">Messages</text>
+          <text x="600" y="70" text-anchor="middle" fill="#22D3EE" font-size="10">Documents</text>
         </g>
         
-        <!-- Active Site (bottom right) -->
-        <g class="app-node" transform="translate(750, 340)">
-          <circle r="50" fill="rgba(248, 113, 113, 0.1)" stroke="var(--color-red)" stroke-width="2"/>
-          <text y="-8" text-anchor="middle" fill="var(--color-red)" font-weight="600" font-size="12">Active Site</text>
-          <text y="8" text-anchor="middle" fill="var(--color-text-secondary)" font-size="9">Work Location</text>
+        <!-- Central box down to data layer -->
+        <line x1="500" y1="295" x2="500" y2="330" stroke="#22D3EE" stroke-width="2" opacity="0.5"/>
+        <circle cx="500" cy="330" r="5" fill="#22D3EE" filter="url(#appGlow2)"/>
+        
+        <!-- Horizontal line to data stores -->
+        <line x1="200" y1="330" x2="800" y2="330" stroke="#22D3EE" stroke-width="1.5" opacity="0.3"/>
+        
+        <!-- Junction dots for data layer -->
+        <circle cx="250" cy="330" r="4" fill="#22D3EE" filter="url(#appGlow2)"/>
+        <circle cx="500" cy="330" r="4" fill="#22D3EE" filter="url(#appGlow2)"/>
+        <circle cx="750" cy="330" r="4" fill="#25D366" filter="url(#appGlow2)"/>
+        
+        <!-- Lines down to data boxes -->
+        <line x1="250" y1="330" x2="250" y2="360" stroke="#22D3EE" stroke-width="1.5" opacity="0.5"/>
+        <line x1="500" y1="330" x2="500" y2="360" stroke="#22D3EE" stroke-width="1.5" opacity="0.5"/>
+        <line x1="750" y1="330" x2="750" y2="360" stroke="#25D366" stroke-width="1.5" opacity="0.5"/>
+        
+        <!-- Section Label: WHERE DATA LIVES -->
+        <text x="500" y="355" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="11" letter-spacing="3" font-family="'JetBrains Mono', monospace">WHERE DATA LIVES</text>
+        
+        <!-- Bottom Row: Data Storage -->
+        <g transform="translate(100, 370)">
+          <rect width="300" height="70" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <text x="150" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">PostgreSQL</text>
+          <text x="150" y="48" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10">Supabase • London</text>
         </g>
         
-        <!-- === FLOW 1: Recruitment === -->
-        <!-- Applicant → Sophie -->
-        <path d="M 90 80 L 150 80" stroke="var(--color-purple)" stroke-width="2" stroke-dasharray="5 3" opacity="0.5" marker-end="url(#arrowPurple)"/>
-        <!-- Sophie → Liam (qualified) -->
-        <path d="M 250 95 Q 350 140 380 200" stroke="var(--color-purple)" stroke-width="2" stroke-dasharray="5 3" opacity="0.6" marker-end="url(#arrowPurple)"/>
+        <g transform="translate(350, 370)">
+          <rect width="300" height="70" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <text x="150" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">File Storage</text>
+          <text x="150" y="48" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10">Documents</text>
+        </g>
         
-        <!-- === FLOW 2: Allocation === -->
-        <!-- Liam → Operatives (shift offers) -->
-        <path d="M 400 280 Q 300 330 250 350" stroke="var(--color-gold)" stroke-width="2" stroke-dasharray="5 3" opacity="0.6" marker-end="url(#arrowGold)"/>
-        
-        <!-- === FLOW 3: Deployment === -->
-        <!-- Operatives → Site (assigned workers) -->
-        <path d="M 250 370 Q 450 400 700 350" stroke="var(--color-gold)" stroke-width="2" stroke-dasharray="5 3" opacity="0.5" marker-end="url(#arrowGold)"/>
-        
-        <!-- === FLOW 4: Site Management === -->
-        <!-- Site Manager manages Site -->
-        <path d="M 750 170 L 750 290" stroke="var(--color-green)" stroke-width="2" stroke-dasharray="5 3" opacity="0.5" marker-end="url(#arrowGreen)"/>
-        <!-- Site Manager reports to Liam -->
-        <path d="M 700 120 Q 600 150 520 200" stroke="var(--color-green)" stroke-width="2" stroke-dasharray="5 3" opacity="0.6" marker-end="url(#arrowGreen)"/>
-        
-        <!-- === FLOW 5: NCR/Issues === -->
-        <!-- Site issues → Liam -->
-        <path d="M 700 330 Q 600 300 520 250" stroke="var(--color-red)" stroke-width="2" stroke-dasharray="5 3" opacity="0.5" marker-end="url(#arrowRed)"/>
-        
-        <!-- === FLOW 6: Liam oversight === -->
-        <!-- Liam → Site (overview) -->
-        <path d="M 510 260 Q 620 300 700 320" stroke="var(--color-cyan)" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.4" marker-end="url(#arrowCyan)"/>
-        
-        <!-- === Animated particles === -->
-        <!-- Recruitment flow -->
-        <circle r="5" fill="var(--color-purple)" filter="url(#appGlow)">
-          <animate attributeName="opacity" values="0;1;1;1;0" dur="4s" repeatCount="indefinite"/>
-          <animateMotion dur="4s" repeatCount="indefinite" path="M 90 80 L 150 80 L 200 80 Q 350 140 380 200"/>
-        </circle>
-        
-        <!-- Allocation flow -->
-        <circle r="5" fill="var(--color-gold)" filter="url(#appGlow)">
-          <animate attributeName="opacity" values="0;1;1;1;0" dur="3.5s" repeatCount="indefinite" begin="1s"/>
-          <animateMotion dur="3.5s" repeatCount="indefinite" begin="1s" path="M 400 280 Q 300 330 250 350"/>
-        </circle>
-        
-        <!-- Deployment flow -->
-        <circle r="5" fill="var(--color-gold)" filter="url(#appGlow)">
-          <animate attributeName="opacity" values="0;1;1;1;0" dur="5s" repeatCount="indefinite" begin="2.5s"/>
-          <animateMotion dur="5s" repeatCount="indefinite" begin="2.5s" path="M 250 370 Q 450 400 700 350"/>
-        </circle>
-        
-        <!-- Site Manager reporting -->
-        <circle r="5" fill="var(--color-green)" filter="url(#appGlow)">
-          <animate attributeName="opacity" values="0;1;1;1;0" dur="3.5s" repeatCount="indefinite" begin="3.5s"/>
-          <animateMotion dur="3.5s" repeatCount="indefinite" begin="3.5s" path="M 700 120 Q 600 150 520 200"/>
-        </circle>
-        
-        <!-- NCR/Issue reporting -->
-        <circle r="5" fill="var(--color-red)" filter="url(#appGlow)">
-          <animate attributeName="opacity" values="0;1;1;1;0" dur="4s" repeatCount="indefinite" begin="5s"/>
-          <animateMotion dur="4s" repeatCount="indefinite" begin="5s" path="M 700 330 Q 600 300 520 250"/>
-        </circle>
-        
-        <!-- Flow labels -->
-        <text x="120" y="65" fill="var(--color-purple)" font-size="8" opacity="0.8">Applies</text>
-        <text x="310" y="125" fill="var(--color-purple)" font-size="8" opacity="0.8">Qualified</text>
-        <text x="300" y="300" fill="var(--color-gold)" font-size="8" opacity="0.8">Shift Offer</text>
-        <text x="480" y="395" fill="var(--color-gold)" font-size="8" opacity="0.8">Deployed</text>
-        <text x="600" y="145" fill="var(--color-green)" font-size="8" opacity="0.8">Status</text>
-        <text x="620" y="280" fill="var(--color-red)" font-size="8" opacity="0.8">NCR</text>
-        <text x="765" y="235" fill="var(--color-green)" font-size="8" opacity="0.8">Manages</text>
+        <g transform="translate(600, 370)">
+          <rect width="300" height="70" rx="6" fill="rgba(37, 211, 102, 0.08)" stroke="#25D366" stroke-width="1.5"/>
+          <text x="150" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">External Services</text>
+          <text x="75" y="55" text-anchor="middle" fill="#25D366" font-size="9">WhatsApp</text>
+          <text x="150" y="55" text-anchor="middle" fill="#10a37f" font-size="9">OpenAI</text>
+          <text x="225" y="55" text-anchor="middle" fill="#D4AF37" font-size="9">Gov.uk</text>
+        </g>
       </svg>
     </div>
     
@@ -2375,38 +2350,144 @@
     
     <p class="fade-up">Watch a labour request flow through the system.</p>
     
-    <div class="animated-flow" id="labour-flow">
-      <div class="flow-step" data-step="1"><strong>1. Request</strong><span>Site need</span></div>
-      <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="2"><strong>2. Realloc</strong><span>Check jobs</span></div>
-      <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="3"><strong>3. Search</strong><span>Labour pool</span></div>
-      <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="4"><strong>4. Match</strong><span>Skills+loc</span></div>
-      <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="5"><strong>5. Offer</strong><span>WhatsApp</span></div>
-      <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="6"><strong>6. Confirm</strong><span>Accept</span></div>
-      <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step active" data-step="7"><strong>7. Allocate</strong><span>Complete</span></div>
+    <!-- Labour Request Flow - Architectural Style -->
+    <div class="fade-up" style="margin: 2rem 0; overflow-x: auto;">
+      <svg viewBox="0 0 900 180" style="width: 100%; min-width: 700px; height: auto;">
+        <defs>
+          <filter id="flowGlow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        
+        <!-- Main horizontal connector line -->
+        <line x1="80" y1="90" x2="820" y2="90" stroke="#22D3EE" stroke-width="1.5" opacity="0.3"/>
+        
+        <!-- Step 1: Request -->
+        <g transform="translate(30, 50)">
+          <rect width="100" height="80" rx="6" fill="rgba(248, 113, 113, 0.08)" stroke="#F87171" stroke-width="1.5"/>
+          <text x="50" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Request</text>
+          <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Site need</text>
+        </g>
+        <circle cx="80" cy="90" r="4" fill="#F87171" filter="url(#flowGlow)"/>
+        <line x1="130" y1="90" x2="145" y2="90" stroke="#F87171" stroke-width="1.5" opacity="0.5"/>
+        
+        <!-- Step 2: Realloc -->
+        <g transform="translate(145, 50)">
+          <rect width="100" height="80" rx="6" fill="rgba(212, 175, 55, 0.08)" stroke="#D4AF37" stroke-width="1.5"/>
+          <text x="50" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Realloc</text>
+          <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Check jobs</text>
+        </g>
+        <circle cx="195" cy="90" r="4" fill="#D4AF37" filter="url(#flowGlow)"/>
+        
+        <!-- Step 3: Search -->
+        <g transform="translate(260, 50)">
+          <rect width="100" height="80" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <text x="50" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Search</text>
+          <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Labour pool</text>
+        </g>
+        <circle cx="310" cy="90" r="4" fill="#22D3EE" filter="url(#flowGlow)"/>
+        
+        <!-- Step 4: Match -->
+        <g transform="translate(375, 50)">
+          <rect width="100" height="80" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <text x="50" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Match</text>
+          <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Skills + location</text>
+        </g>
+        <circle cx="425" cy="90" r="4" fill="#22D3EE" filter="url(#flowGlow)"/>
+        
+        <!-- Step 5: Offer -->
+        <g transform="translate(490, 50)">
+          <rect width="100" height="80" rx="6" fill="rgba(37, 211, 102, 0.08)" stroke="#25D366" stroke-width="1.5"/>
+          <text x="50" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Offer</text>
+          <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">WhatsApp</text>
+        </g>
+        <circle cx="540" cy="90" r="4" fill="#25D366" filter="url(#flowGlow)"/>
+        
+        <!-- Step 6: Confirm -->
+        <g transform="translate(605, 50)">
+          <rect width="100" height="80" rx="6" fill="rgba(37, 211, 102, 0.08)" stroke="#25D366" stroke-width="1.5"/>
+          <text x="50" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Confirm</text>
+          <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Accept</text>
+        </g>
+        <circle cx="655" cy="90" r="4" fill="#25D366" filter="url(#flowGlow)"/>
+        
+        <!-- Step 7: Allocate (final) -->
+        <g transform="translate(720, 50)">
+          <rect width="100" height="80" rx="6" fill="rgba(52, 211, 153, 0.15)" stroke="#34D399" stroke-width="2"/>
+          <text x="50" y="35" text-anchor="middle" fill="#34D399" font-size="12" font-weight="700">Allocate</text>
+          <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9">Complete ✓</text>
+        </g>
+        <circle cx="770" cy="90" r="5" fill="#34D399" filter="url(#flowGlow)"/>
+      </svg>
     </div>
     
     <h3 class="fade-up" style="margin-top: 3rem;">Sophie AI Qualification</h3>
     
-    <div class="animated-flow" id="sophie-flow">
-      <div class="flow-step" data-step="1"><strong>Greeting</strong><span>Job details</span></div>
-      <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step gate" data-step="2"><strong>RTW?</strong><span>GATE 1</span></div>
-      <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step gate" data-step="3"><strong>18+?</strong><span>GATE 2</span></div>
-      <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="4"><strong>CSCS</strong><span>Card check</span></div>
-      <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="5"><strong>Details</strong><span>Info</span></div>
-      <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step" data-step="6"><strong>Docs</strong><span>Upload</span></div>
-      <div class="flow-connector"><div class="pulse"></div></div>
-      <div class="flow-step active" data-step="7"><strong>Qualified</strong><span>→ Liam</span></div>
+    <!-- Sophie AI Flow - Architectural Style with Gates -->
+    <div class="fade-up" style="margin: 2rem 0; overflow-x: auto;">
+      <svg viewBox="0 0 900 180" style="width: 100%; min-width: 700px; height: auto;">
+        <!-- Main horizontal connector line -->
+        <line x1="80" y1="90" x2="820" y2="90" stroke="#A78BFA" stroke-width="1.5" opacity="0.3"/>
+        
+        <!-- Step 1: Greeting -->
+        <g transform="translate(30, 50)">
+          <rect width="100" height="80" rx="6" fill="rgba(167, 139, 250, 0.08)" stroke="#A78BFA" stroke-width="1.5"/>
+          <text x="50" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Greeting</text>
+          <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Job details</text>
+        </g>
+        <circle cx="80" cy="90" r="4" fill="#A78BFA" filter="url(#flowGlow)"/>
+        
+        <!-- Step 2: RTW Gate -->
+        <g transform="translate(145, 45)">
+          <rect width="100" height="90" rx="6" fill="rgba(248, 113, 113, 0.1)" stroke="#F87171" stroke-width="2"/>
+          <text x="50" y="30" text-anchor="middle" fill="#F87171" font-size="9" font-weight="600">GATE 1</text>
+          <text x="50" y="50" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">RTW?</text>
+          <text x="50" y="67" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Right to Work</text>
+        </g>
+        <circle cx="195" cy="90" r="5" fill="#F87171" filter="url(#flowGlow)"/>
+        
+        <!-- Step 3: 18+ Gate -->
+        <g transform="translate(260, 45)">
+          <rect width="100" height="90" rx="6" fill="rgba(248, 113, 113, 0.1)" stroke="#F87171" stroke-width="2"/>
+          <text x="50" y="30" text-anchor="middle" fill="#F87171" font-size="9" font-weight="600">GATE 2</text>
+          <text x="50" y="50" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">18+?</text>
+          <text x="50" y="67" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Age check</text>
+        </g>
+        <circle cx="310" cy="90" r="5" fill="#F87171" filter="url(#flowGlow)"/>
+        
+        <!-- Step 4: CSCS -->
+        <g transform="translate(375, 50)">
+          <rect width="100" height="80" rx="6" fill="rgba(212, 175, 55, 0.08)" stroke="#D4AF37" stroke-width="1.5"/>
+          <text x="50" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">CSCS</text>
+          <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Card check</text>
+        </g>
+        <circle cx="425" cy="90" r="4" fill="#D4AF37" filter="url(#flowGlow)"/>
+        
+        <!-- Step 5: Details -->
+        <g transform="translate(490, 50)">
+          <rect width="100" height="80" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <text x="50" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Details</text>
+          <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Personal info</text>
+        </g>
+        <circle cx="540" cy="90" r="4" fill="#22D3EE" filter="url(#flowGlow)"/>
+        
+        <!-- Step 6: Docs -->
+        <g transform="translate(605, 50)">
+          <rect width="100" height="80" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <text x="50" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Docs</text>
+          <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Upload</text>
+        </g>
+        <circle cx="655" cy="90" r="4" fill="#22D3EE" filter="url(#flowGlow)"/>
+        
+        <!-- Step 7: Qualified (final) -->
+        <g transform="translate(720, 50)">
+          <rect width="100" height="80" rx="6" fill="rgba(52, 211, 153, 0.15)" stroke="#34D399" stroke-width="2"/>
+          <text x="50" y="35" text-anchor="middle" fill="#34D399" font-size="12" font-weight="700">Qualified</text>
+          <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9">→ Liam</text>
+        </g>
+        <circle cx="770" cy="90" r="5" fill="#34D399" filter="url(#flowGlow)"/>
+      </svg>
     </div>
   </div>
 </section>
