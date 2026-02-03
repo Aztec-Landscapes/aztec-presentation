@@ -530,6 +530,15 @@
       filter: url(#glowGold);
     }
     
+    .data-particle-purple {
+      fill: var(--color-purple);
+      filter: drop-shadow(0 0 6px var(--color-purple));
+    }
+    
+    .connection-purple {
+      stroke: var(--color-purple);
+    }
+    
     /* ===== CODE BLOCKS ===== */
     .code-block {
       background: rgba(0, 0, 0, 0.5);
@@ -717,17 +726,29 @@
       font-size: 0.8rem;
       line-height: 1.4;
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(10px) scale(0.95);
+      position: relative;
     }
     
     .wa-msg.animate {
-      animation: msgIn 0.4s ease forwards;
+      animation: msgIn 0.3s ease forwards;
+    }
+    
+    .wa-msg.fade-out {
+      animation: msgOut 0.3s ease forwards;
     }
     
     @keyframes msgIn {
       to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    @keyframes msgOut {
+      to {
+        opacity: 0;
+        transform: translateY(-5px) scale(0.95);
       }
     }
     
@@ -742,11 +763,63 @@
       border-top-right-radius: 0;
     }
     
+    .wa-msg.outgoing::after {
+      content: '✓✓';
+      font-size: 0.5rem;
+      color: #53bdeb;
+      position: absolute;
+      right: 0.5rem;
+      bottom: 0.25rem;
+    }
+    
     .wa-time {
       font-size: 0.55rem;
       color: var(--color-text-muted);
       text-align: right;
       margin-top: 0.25rem;
+      margin-right: 1rem;
+    }
+    
+    /* Typing indicator */
+    .wa-typing {
+      display: none;
+      background: #1f2c34;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      border-top-left-radius: 0;
+      width: fit-content;
+      margin-bottom: 0.5rem;
+    }
+    
+    .wa-typing.show {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+    
+    .wa-typing-dot {
+      width: 6px;
+      height: 6px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 50%;
+      animation: typingBounce 1.4s infinite;
+    }
+    
+    .wa-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .wa-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); background: rgba(255,255,255,0.3); }
+      30% { transform: translateY(-4px); background: rgba(255,255,255,0.7); }
+    }
+    
+    /* Status indicators */
+    .wa-status-bar {
+      font-size: 0.6rem;
+      color: var(--color-text-muted);
+      text-align: center;
+      padding: 0.25rem;
+      background: rgba(0,0,0,0.3);
     }
     
     /* ===== ANIMATED FLOW ===== */
@@ -1260,30 +1333,38 @@
         </g>
         
         <g class="connections">
-          <path d="M 140 130 L 140 160 L 300 160 L 300 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
-          <path d="M 340 130 L 340 160 L 400 160 L 400 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
-          <path d="M 540 130 L 540 160 L 500 160 L 500 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
-          <path d="M 740 130 L 740 160 L 600 160 L 600 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
+          <!-- UI to API: Each connects at the x-coordinate matching its downstream path -->
+          <path d="M 140 130 L 140 160 L 250 160 L 250 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
+          <path d="M 340 130 L 340 160 L 350 160 L 350 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
+          <path d="M 540 130 L 540 160 L 600 160 L 600 200" class="connection connection-purple flow-line" style="opacity: 0.6;"/>
+          <path d="M 740 130 L 740 160 L 700 160 L 700 200" class="connection connection-gold flow-line" style="opacity: 0.6;"/>
+          <!-- API to Data: Straight down from entry points -->
+          <path d="M 250 290 L 250 320 L 200 320 L 200 360" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
           <path d="M 350 290 L 350 320 L 200 320 L 200 360" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
-          <path d="M 450 290 L 450 320 L 420 320 L 420 360" class="connection connection-gold flow-line" style="opacity: 0.6;"/>
-          <path d="M 600 290 L 600 320 L 670 320 L 670 360" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
+          <path d="M 600 290 L 600 320 L 670 320 L 670 360" class="connection connection-purple flow-line" style="opacity: 0.6;"/>
+          <path d="M 700 290 L 700 320 L 670 320 L 670 360" class="connection connection-gold flow-line" style="opacity: 0.6;"/>
         </g>
         
         <g class="particles">
-          <!-- Particle 1: Dashboard → API → Database (clean path) -->
+          <!-- Particle 1: Dashboard → API → Database (straight through) -->
           <circle class="data-particle" r="4">
-            <animate attributeName="opacity" values="0;1;1;1;1;0" dur="4s" repeatCount="indefinite"/>
-            <animateMotion dur="4s" repeatCount="indefinite" path="M 140 130 L 140 160 L 300 160 L 300 200 L 300 290 L 350 290 L 350 320 L 200 320 L 200 360"/>
+            <animate attributeName="opacity" values="0;1;1;1;1;0" dur="3.5s" repeatCount="indefinite"/>
+            <animateMotion dur="3.5s" repeatCount="indefinite" path="M 140 130 L 140 160 L 250 160 L 250 200 L 250 290 L 250 320 L 200 320 L 200 360"/>
           </circle>
-          <!-- Particle 2: Operative → API → Storage (gold, clean path) -->
+          <!-- Particle 2: Site Manager → API → Database (straight through) -->
+          <circle class="data-particle" r="4">
+            <animate attributeName="opacity" values="0;1;1;1;1;0" dur="3.2s" repeatCount="indefinite" begin="1s"/>
+            <animateMotion dur="3.2s" repeatCount="indefinite" begin="1s" path="M 340 130 L 340 160 L 350 160 L 350 200 L 350 290 L 350 320 L 200 320 L 200 360"/>
+          </circle>
+          <!-- Particle 3: Sophie → API → External (straight through) -->
+          <circle class="data-particle-purple" r="4">
+            <animate attributeName="opacity" values="0;1;1;1;1;0" dur="3.8s" repeatCount="indefinite" begin="2s"/>
+            <animateMotion dur="3.8s" repeatCount="indefinite" begin="2s" path="M 540 130 L 540 160 L 600 160 L 600 200 L 600 290 L 600 320 L 670 320 L 670 360"/>
+          </circle>
+          <!-- Particle 4: Operative → API → External (straight through) -->
           <circle class="data-particle-gold" r="4">
-            <animate attributeName="opacity" values="0;1;1;1;1;0" dur="5s" repeatCount="indefinite" begin="1.5s"/>
-            <animateMotion dur="5s" repeatCount="indefinite" begin="1.5s" path="M 740 130 L 740 160 L 600 160 L 600 200 L 600 290 L 450 290 L 450 320 L 420 320 L 420 360"/>
-          </circle>
-          <!-- Particle 3: Sophie → API → External Services (clean path) -->
-          <circle class="data-particle" r="4">
-            <animate attributeName="opacity" values="0;1;1;1;1;0" dur="4.5s" repeatCount="indefinite" begin="3s"/>
-            <animateMotion dur="4.5s" repeatCount="indefinite" begin="3s" path="M 540 130 L 540 160 L 500 160 L 500 200 L 500 290 L 600 290 L 600 320 L 670 320 L 670 360"/>
+            <animate attributeName="opacity" values="0;1;1;1;1;0" dur="4s" repeatCount="indefinite" begin="3s"/>
+            <animateMotion dur="4s" repeatCount="indefinite" begin="3s" path="M 740 130 L 740 160 L 700 160 L 700 200 L 700 290 L 700 320 L 670 320 L 670 360"/>
           </circle>
         </g>
         
@@ -1595,56 +1676,66 @@
     
     <div class="grid grid-3 fade-up" style="margin-top: 2rem;">
       <div>
-        <h3 style="color: var(--color-green);">Arrival</h3>
-        <div class="whatsapp-chat" id="wa-chat-1">
+        <h3 style="color: var(--color-green);">Arrival Check</h3>
+        <div class="whatsapp-chat wa-loop" id="wa-chat-1">
           <div class="whatsapp-header">
-            <div class="whatsapp-avatar" style="background: var(--color-cyan);">A</div>
+            <div class="whatsapp-avatar" style="background: linear-gradient(135deg, #25D366, #128C7E);">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" style="width: 16px; height: 16px; filter: brightness(10);">
+            </div>
             <div>
               <div class="whatsapp-name">Aztec BOS</div>
-              <div class="whatsapp-status">Bot</div>
+              <div class="whatsapp-status">online</div>
             </div>
           </div>
+          <div class="wa-status-bar">TODAY</div>
           <div class="whatsapp-messages">
-            <div class="wa-msg incoming" data-delay="0">Good morning! 🌅<br>Did <strong>John Smith</strong> arrive?<br>Reply YES/NO<div class="wa-time">07:15</div></div>
-            <div class="wa-msg outgoing" data-delay="1">YES<div class="wa-time">07:18</div></div>
-            <div class="wa-msg incoming" data-delay="2">✅ Marked as arrived<div class="wa-time">07:18</div></div>
+            <div class="wa-typing"><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div></div>
+            <div class="wa-msg incoming" data-delay="800">Good morning! 🌅<br>Did <strong>John Smith</strong> arrive at <strong>Westfield</strong>?<br><br>Reply YES or NO<div class="wa-time">07:15</div></div>
+            <div class="wa-msg outgoing" data-delay="2500">YES<div class="wa-time">07:18</div></div>
+            <div class="wa-msg incoming" data-delay="3500">✅ <strong>Arrival confirmed</strong><br>Clock-in: 07:18<br>Site: Westfield Shopping Centre<div class="wa-time">07:18</div></div>
           </div>
         </div>
       </div>
       
       <div>
-        <h3 style="color: var(--color-red);">NCR</h3>
-        <div class="whatsapp-chat" id="wa-chat-2">
+        <h3 style="color: var(--color-red);">NCR Report</h3>
+        <div class="whatsapp-chat wa-loop" id="wa-chat-2">
           <div class="whatsapp-header">
-            <div class="whatsapp-avatar" style="background: var(--color-red);">!</div>
+            <div class="whatsapp-avatar" style="background: linear-gradient(135deg, var(--color-red), #b91c1c);">PM</div>
             <div>
-              <div class="whatsapp-name">Site Manager</div>
-              <div class="whatsapp-status">NCR Flow</div>
+              <div class="whatsapp-name">Marcus (PM)</div>
+              <div class="whatsapp-status">online</div>
             </div>
           </div>
+          <div class="wa-status-bar">TODAY</div>
           <div class="whatsapp-messages">
-            <div class="wa-msg outgoing" data-delay="0">Red card John - walk off<div class="wa-time">14:30</div></div>
-            <div class="wa-msg incoming" data-delay="1">⚠️ <strong>NCR Logged</strong><br>Need replacement?<div class="wa-time">14:30</div></div>
-            <div class="wa-msg outgoing" data-delay="2">YES<div class="wa-time">14:31</div></div>
-            <div class="wa-msg incoming" data-delay="3">Liam notified 🔄<div class="wa-time">14:31</div></div>
+            <div class="wa-typing"><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div></div>
+            <div class="wa-msg outgoing" data-delay="500">Red card John Smith - walked off site at 2pm<div class="wa-time">14:30</div></div>
+            <div class="wa-msg incoming" data-delay="1800">⚠️ <strong>NCR #247 Created</strong><br><br>Operative: John Smith<br>Type: Walk-off<br>Time: 14:00<br><br>Need replacement?<div class="wa-time">14:30</div></div>
+            <div class="wa-msg outgoing" data-delay="3500">YES urgent<div class="wa-time">14:31</div></div>
+            <div class="wa-msg incoming" data-delay="4500">🔄 Liam notified<br>Searching available operatives...<div class="wa-time">14:31</div></div>
           </div>
         </div>
       </div>
       
       <div>
-        <h3 style="color: var(--color-gold);">Shift</h3>
-        <div class="whatsapp-chat" id="wa-chat-3">
+        <h3 style="color: var(--color-gold);">Shift Offer</h3>
+        <div class="whatsapp-chat wa-loop" id="wa-chat-3">
           <div class="whatsapp-header">
-            <div class="whatsapp-avatar" style="background: var(--color-gold);">A</div>
+            <div class="whatsapp-avatar" style="background: linear-gradient(135deg, #25D366, #128C7E);">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="" style="width: 16px; height: 16px; filter: brightness(10);">
+            </div>
             <div>
               <div class="whatsapp-name">Aztec BOS</div>
-              <div class="whatsapp-status">Operative</div>
+              <div class="whatsapp-status">online</div>
             </div>
           </div>
+          <div class="wa-status-bar">TODAY</div>
           <div class="whatsapp-messages">
-            <div class="wa-msg incoming" data-delay="0">Hi John! 👋<br>📍 Westfield, W12<br>📅 Mon 5th Feb<br>💷 £180/day<br>Confirm?<div class="wa-time">16:00</div></div>
-            <div class="wa-msg outgoing" data-delay="1">YES<div class="wa-time">16:05</div></div>
-            <div class="wa-msg incoming" data-delay="2">✅ Confirmed! 🚧<div class="wa-time">16:05</div></div>
+            <div class="wa-typing"><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div></div>
+            <div class="wa-msg incoming" data-delay="800">Hi Dave! 👋<br><br>Shift available:<br>📍 <strong>Westfield</strong>, W12 7GF<br>📅 Tomorrow, 7am start<br>💷 £180/day<br>🔧 General Labourer<br><br>Reply YES to confirm<div class="wa-time">16:00</div></div>
+            <div class="wa-msg outgoing" data-delay="3000">YES<div class="wa-time">16:02</div></div>
+            <div class="wa-msg incoming" data-delay="4000">✅ <strong>Shift Confirmed!</strong><br><br>📍 Westfield Shopping Centre<br>📅 Mon 5th Feb, 07:00<br>👷 Report to: Marcus<br><br>Good luck! 🚧<div class="wa-time">16:02</div></div>
           </div>
         </div>
       </div>
@@ -2076,20 +2167,76 @@
     });
   });
   
-  // ===== WHATSAPP MESSAGES =====
-  document.querySelectorAll('.whatsapp-chat').forEach(chat => {
+  // ===== WHATSAPP MESSAGES (LOOPING) =====
+  function animateWhatsAppChat(chat) {
     const messages = chat.querySelectorAll('.wa-msg');
+    const typing = chat.querySelector('.wa-typing');
+    let currentIndex = 0;
+    let isAnimating = false;
+    
+    function resetChat() {
+      messages.forEach(msg => {
+        msg.classList.remove('animate', 'fade-out');
+        msg.style.display = 'none';
+      });
+      if (typing) typing.classList.remove('show');
+      currentIndex = 0;
+    }
+    
+    function showNextMessage() {
+      if (currentIndex >= messages.length) {
+        // All messages shown, wait then reset
+        setTimeout(() => {
+          // Fade out all messages
+          messages.forEach(msg => msg.classList.add('fade-out'));
+          setTimeout(() => {
+            resetChat();
+            setTimeout(showNextMessage, 500);
+          }, 400);
+        }, 3000);
+        return;
+      }
+      
+      const msg = messages[currentIndex];
+      const delay = parseInt(msg.dataset.delay) || 800;
+      const isIncoming = msg.classList.contains('incoming');
+      
+      // Show typing indicator for incoming messages
+      if (isIncoming && typing) {
+        typing.classList.add('show');
+        setTimeout(() => {
+          typing.classList.remove('show');
+          msg.style.display = 'block';
+          msg.classList.add('animate');
+          currentIndex++;
+          setTimeout(showNextMessage, 300);
+        }, delay);
+      } else {
+        // Outgoing message - shorter delay
+        setTimeout(() => {
+          msg.style.display = 'block';
+          msg.classList.add('animate');
+          currentIndex++;
+          setTimeout(showNextMessage, 300);
+        }, delay);
+      }
+    }
+    
+    // Start animation when chat enters viewport
     ScrollTrigger.create({
       trigger: chat,
       start: 'top 75%',
       onEnter: () => {
-        messages.forEach((msg, i) => {
-          setTimeout(() => msg.classList.add('animate'), i * 400);
-        });
-      },
-      once: true
+        if (!isAnimating) {
+          isAnimating = true;
+          resetChat();
+          setTimeout(showNextMessage, 500);
+        }
+      }
     });
-  });
+  }
+  
+  document.querySelectorAll('.whatsapp-chat.wa-loop').forEach(animateWhatsAppChat);
   
   // ===== ARCHITECTURE HOVER =====
   document.querySelectorAll('.arch-node').forEach(node => {
