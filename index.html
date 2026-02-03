@@ -2205,60 +2205,42 @@
           <text x="150" y="75" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="10">Zero-Downtime Deployments</text>
         </g>
         
-        <!-- Vercel down to junction -->
-        <line x1="450" y1="275" x2="450" y2="305" stroke="#D4AF37" stroke-width="2" opacity="0.6"/>
-        <circle cx="450" cy="305" r="5" fill="#22D3EE" filter="url(#techGlow)"/>
+        <!-- Vercel down to Supabase -->
+        <line x1="450" y1="275" x2="450" y2="350" stroke="#D4AF37" stroke-width="2" opacity="0.6"/>
+        <circle cx="450" cy="310" r="5" fill="#22D3EE" filter="url(#techGlow)"/>
         
         <!-- Section Label: WHERE DATA LIVES -->
-        <text x="450" y="330" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="11" letter-spacing="3" font-family="'JetBrains Mono', monospace">WHERE DATA LIVES</text>
+        <text x="450" y="335" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="11" letter-spacing="3" font-family="'JetBrains Mono', monospace">WHERE DATA LIVES</text>
         
-        <!-- Horizontal connector line for data layer -->
-        <line x1="165" y1="305" x2="735" y2="305" stroke="#22D3EE" stroke-width="1.5" opacity="0.3"/>
-        
-        <!-- Junction dots on horizontal line -->
-        <circle cx="165" cy="305" r="4" fill="#22D3EE" filter="url(#techGlow)"/>
-        <circle cx="450" cy="305" r="4" fill="#22D3EE" filter="url(#techGlow)"/>
-        <circle cx="735" cy="305" r="4" fill="#25D366" filter="url(#techGlow)"/>
-        
-        <!-- Vertical connectors down to data boxes -->
-        <line x1="165" y1="305" x2="165" y2="350" stroke="#22D3EE" stroke-width="1.5" opacity="0.5"/>
-        <line x1="450" y1="305" x2="450" y2="350" stroke="#22D3EE" stroke-width="1.5" opacity="0.5"/>
-        <line x1="735" y1="305" x2="735" y2="350" stroke="#25D366" stroke-width="1.5" opacity="0.5"/>
-        
-        <!-- Bottom Row: Data Layer -->
-        <!-- PostgreSQL / Supabase -->
-        <g transform="translate(50, 350)">
-          <rect x="0" y="0" width="230" height="100" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
-          <text x="115" y="35" text-anchor="middle" fill="#fff" font-size="16" font-weight="600">PostgreSQL</text>
-          <text x="115" y="55" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11">Supabase • London</text>
+        <!-- Bottom Row: Supabase (combined) + External Services -->
+        <!-- Supabase (single large box) -->
+        <g transform="translate(115, 350)">
+          <rect x="0" y="0" width="360" height="100" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <text x="180" y="32" text-anchor="middle" fill="#fff" font-size="17" font-weight="600">Supabase</text>
+          <text x="180" y="50" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11">PostgreSQL + Storage • London</text>
           <!-- Sub items -->
-          <text x="60" y="80" text-anchor="middle" fill="#22D3EE" font-size="9">People</text>
-          <text x="115" y="80" text-anchor="middle" fill="#22D3EE" font-size="9">Assignments</text>
-          <text x="175" y="80" text-anchor="middle" fill="#22D3EE" font-size="9">Issues</text>
-        </g>
-        
-        <!-- File Storage -->
-        <g transform="translate(335, 350)">
-          <rect x="0" y="0" width="230" height="100" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
-          <text x="115" y="35" text-anchor="middle" fill="#fff" font-size="16" font-weight="600">File Storage</text>
-          <text x="115" y="55" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11">Supabase Storage</text>
-          <!-- Sub items -->
-          <text x="75" y="80" text-anchor="middle" fill="#22D3EE" font-size="9">Documents</text>
-          <text x="155" y="80" text-anchor="middle" fill="#22D3EE" font-size="9">Photos</text>
+          <text x="72" y="78" text-anchor="middle" fill="#22D3EE" font-size="9">People</text>
+          <text x="144" y="78" text-anchor="middle" fill="#22D3EE" font-size="9">Assignments</text>
+          <text x="216" y="78" text-anchor="middle" fill="#22D3EE" font-size="9">Documents</text>
+          <text x="288" y="78" text-anchor="middle" fill="#22D3EE" font-size="9">Messages</text>
         </g>
         
         <!-- External Services -->
-        <g transform="translate(620, 350)">
-          <rect x="0" y="0" width="230" height="100" rx="6" fill="rgba(37, 211, 102, 0.08)" stroke="#25D366" stroke-width="1.5"/>
-          <text x="115" y="35" text-anchor="middle" fill="#fff" font-size="16" font-weight="600">External Services</text>
+        <g transform="translate(540, 350)">
+          <rect x="0" y="0" width="240" height="100" rx="6" fill="rgba(37, 211, 102, 0.08)" stroke="#25D366" stroke-width="1.5"/>
+          <text x="120" y="32" text-anchor="middle" fill="#fff" font-size="17" font-weight="600">External Services</text>
           <!-- Sub items -->
-          <text x="55" y="65" text-anchor="middle" fill="#25D366" font-size="10">WhatsApp</text>
-          <text x="115" y="65" text-anchor="middle" fill="#10a37f" font-size="10">OpenAI</text>
-          <text x="175" y="65" text-anchor="middle" fill="#D4AF37" font-size="10">Gov.uk</text>
-          <text x="55" y="82" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8">Messaging</text>
-          <text x="115" y="82" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8">Sophie AI</text>
-          <text x="175" y="82" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8">Verification</text>
+          <text x="60" y="60" text-anchor="middle" fill="#25D366" font-size="10">WhatsApp</text>
+          <text x="120" y="60" text-anchor="middle" fill="#10a37f" font-size="10">OpenAI</text>
+          <text x="180" y="60" text-anchor="middle" fill="#D4AF37" font-size="10">Gov.uk</text>
+          <text x="60" y="78" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8">Messaging</text>
+          <text x="120" y="78" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8">Sophie AI</text>
+          <text x="180" y="78" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8">Verification</text>
         </g>
+        
+        <!-- Connector: Supabase to External Services (horizontal) -->
+        <line x1="475" y1="400" x2="540" y2="400" stroke="#22D3EE" stroke-width="1.5" opacity="0.4"/>
+        <circle cx="507" cy="400" r="4" fill="#25D366" filter="url(#techGlow)"/>
       </svg>
     </div>
     
