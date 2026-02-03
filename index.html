@@ -2151,7 +2151,139 @@
     
     <p class="fade-up">Every technology chosen for reliability, security, and long-term support. Here's what we're using and why.</p>
     
-    <div class="grid grid-2 fade-up" style="margin-top: 2rem; align-items: start;">
+    <!-- Architecture Diagram with Connectors -->
+    <div class="fade-up" style="margin: 3rem 0; position: relative;">
+      <svg class="tech-architecture-svg" viewBox="0 0 800 320" style="width: 100%; height: auto; max-width: 800px; margin: 0 auto; display: block;">
+        <!-- Connection Lines with Animation -->
+        <defs>
+          <linearGradient id="lineGradientCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#22D3EE;stop-opacity:0.3"/>
+            <stop offset="50%" style="stop-color:#22D3EE;stop-opacity:0.8"/>
+            <stop offset="100%" style="stop-color:#22D3EE;stop-opacity:0.3"/>
+          </linearGradient>
+          <linearGradient id="lineGradientGold" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.3"/>
+            <stop offset="50%" style="stop-color:#D4AF37;stop-opacity:0.8"/>
+            <stop offset="100%" style="stop-color:#D4AF37;stop-opacity:0.3"/>
+          </linearGradient>
+          <linearGradient id="lineGradientGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#34D399;stop-opacity:0.3"/>
+            <stop offset="50%" style="stop-color:#34D399;stop-opacity:0.8"/>
+            <stop offset="100%" style="stop-color:#34D399;stop-opacity:0.3"/>
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <!-- Animated dash pattern -->
+          <pattern id="flowPattern" patternUnits="userSpaceOnUse" width="20" height="1">
+            <rect width="10" height="1" fill="#22D3EE" opacity="0.6">
+              <animate attributeName="x" from="0" to="20" dur="1s" repeatCount="indefinite"/>
+            </rect>
+          </pattern>
+        </defs>
+        
+        <!-- Background glow circles -->
+        <circle cx="400" cy="160" r="100" fill="url(#lineGradientCyan)" opacity="0.05"/>
+        
+        <!-- Connection: GitHub → Vercel -->
+        <path d="M 160 80 Q 280 80 280 160" fill="none" stroke="url(#lineGradientGold)" stroke-width="2" stroke-dasharray="6 4" filter="url(#glow)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.5s" repeatCount="indefinite"/>
+        </path>
+        
+        <!-- Connection: Next.js → Vercel -->
+        <path d="M 160 240 Q 280 240 280 160" fill="none" stroke="url(#lineGradientGold)" stroke-width="2" stroke-dasharray="6 4" filter="url(#glow)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.5s" repeatCount="indefinite"/>
+        </path>
+        
+        <!-- Connection: Vercel ↔ Supabase (center) -->
+        <line x1="340" y1="160" x2="460" y2="160" stroke="url(#lineGradientCyan)" stroke-width="3" stroke-dasharray="8 4" filter="url(#glow)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-24" dur="1s" repeatCount="indefinite"/>
+        </line>
+        
+        <!-- Connection: WhatsApp → Supabase -->
+        <path d="M 640 80 Q 520 80 520 160" fill="none" stroke="url(#lineGradientGreen)" stroke-width="2" stroke-dasharray="6 4" filter="url(#glow)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.5s" repeatCount="indefinite"/>
+        </path>
+        
+        <!-- Connection: OpenAI → Supabase -->
+        <path d="M 640 240 Q 520 240 520 160" fill="none" stroke="url(#lineGradientGreen)" stroke-width="2" stroke-dasharray="6 4" filter="url(#glow)">
+          <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.5s" repeatCount="indefinite"/>
+        </path>
+        
+        <!-- Tech Nodes -->
+        <!-- GitHub -->
+        <g class="tech-node" transform="translate(100, 50)">
+          <rect x="0" y="0" width="120" height="60" rx="8" fill="rgba(167, 139, 250, 0.1)" stroke="#A78BFA" stroke-width="1.5"/>
+          <image href="https://cdn.brandfetch.io/github.com/w/64/h/64/theme/dark/symbol" x="10" y="15" width="30" height="30"/>
+          <text x="50" y="35" fill="#fff" font-size="13" font-weight="600">GitHub</text>
+          <text x="50" y="48" fill="rgba(255,255,255,0.5)" font-size="9">Code Storage</text>
+        </g>
+        
+        <!-- Next.js -->
+        <g class="tech-node" transform="translate(100, 210)">
+          <rect x="0" y="0" width="120" height="60" rx="8" fill="rgba(52, 211, 153, 0.1)" stroke="#34D399" stroke-width="1.5"/>
+          <image href="https://cdn.brandfetch.io/nextjs.org/w/64/h/64/theme/dark/symbol" x="10" y="15" width="30" height="30"/>
+          <text x="50" y="35" fill="#fff" font-size="13" font-weight="600">Next.js</text>
+          <text x="50" y="48" fill="rgba(255,255,255,0.5)" font-size="9">Framework</text>
+        </g>
+        
+        <!-- Vercel (center left) -->
+        <g class="tech-node" transform="translate(280, 120)">
+          <rect x="0" y="0" width="120" height="80" rx="10" fill="rgba(212, 175, 55, 0.15)" stroke="#D4AF37" stroke-width="2"/>
+          <image href="https://cdn.brandfetch.io/vercel.com/w/64/h/64/theme/dark/symbol" x="10" y="25" width="30" height="30"/>
+          <text x="50" y="40" fill="#fff" font-size="14" font-weight="700">Vercel</text>
+          <text x="50" y="55" fill="rgba(255,255,255,0.5)" font-size="10">Hosting + CDN</text>
+        </g>
+        
+        <!-- Supabase (center right) -->
+        <g class="tech-node" transform="translate(400, 120)">
+          <rect x="0" y="0" width="120" height="80" rx="10" fill="rgba(34, 211, 238, 0.15)" stroke="#22D3EE" stroke-width="2"/>
+          <image href="https://cdn.brandfetch.io/supabase.com/w/64/h/64/symbol" x="10" y="25" width="30" height="30"/>
+          <text x="50" y="40" fill="#fff" font-size="14" font-weight="700">Supabase</text>
+          <text x="50" y="55" fill="rgba(255,255,255,0.5)" font-size="10">Database + Auth</text>
+        </g>
+        
+        <!-- WhatsApp -->
+        <g class="tech-node" transform="translate(580, 50)">
+          <rect x="0" y="0" width="120" height="60" rx="8" fill="rgba(37, 211, 102, 0.1)" stroke="#25D366" stroke-width="1.5"/>
+          <image href="https://cdn.brandfetch.io/whatsapp.com/w/64/h/64/symbol" x="10" y="15" width="30" height="30"/>
+          <text x="50" y="35" fill="#fff" font-size="13" font-weight="600">WhatsApp</text>
+          <text x="50" y="48" fill="rgba(255,255,255,0.5)" font-size="9">Messaging</text>
+        </g>
+        
+        <!-- OpenAI -->
+        <g class="tech-node" transform="translate(580, 210)">
+          <rect x="0" y="0" width="120" height="60" rx="8" fill="rgba(16, 163, 127, 0.1)" stroke="#10a37f" stroke-width="1.5"/>
+          <image href="https://cdn.brandfetch.io/openai.com/w/64/h/64/theme/dark/symbol" x="10" y="15" width="30" height="30"/>
+          <text x="50" y="35" fill="#fff" font-size="13" font-weight="600">OpenAI</text>
+          <text x="50" y="48" fill="rgba(255,255,255,0.5)" font-size="9">Sophie AI</text>
+        </g>
+        
+        <!-- Flow direction arrows -->
+        <polygon points="455,160 445,155 445,165" fill="#22D3EE" opacity="0.8">
+          <animate attributeName="opacity" values="0.4;1;0.4" dur="1.5s" repeatCount="indefinite"/>
+        </polygon>
+      </svg>
+      
+      <div style="text-align: center; margin-top: 1rem; color: var(--color-text-muted); font-size: 0.8rem;">
+        <span style="display: inline-flex; align-items: center; gap: 0.5rem; margin-right: 1.5rem;">
+          <span style="width: 20px; height: 2px; background: linear-gradient(90deg, #D4AF37, transparent); display: inline-block;"></span>
+          Deploy Flow
+        </span>
+        <span style="display: inline-flex; align-items: center; gap: 0.5rem;">
+          <span style="width: 20px; height: 2px; background: linear-gradient(90deg, #22D3EE, transparent); display: inline-block;"></span>
+          Data Flow
+        </span>
+      </div>
+    </div>
+    
+    <h3 class="fade-up" style="margin-top: 2rem; margin-bottom: 1.5rem;">Technology Details</h3>
+    
+    <div class="grid grid-2 fade-up" style="align-items: start;">
       <!-- Supabase -->
       <div class="card" style="border-left: 3px solid var(--color-cyan);">
         <h4 style="display: flex; align-items: center; gap: 0.5rem;">
