@@ -2827,6 +2827,48 @@
       <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-secondary);">System matches job requirements to operative certifications. No cert = no assignment to that equipment.</p>
     </div>
     
+    <h3 class="fade-up" style="margin-top: 3rem;">Performance & Rating System</h3>
+    <p class="fade-up">Every operative has a performance score that influences future allocation priority:</p>
+    
+    <div class="grid grid-2 fade-up" style="margin-top: 1.5rem; align-items: start;">
+      <div class="card" style="border-color: var(--color-purple);">
+        <h4 style="color: var(--color-purple);">⭐ 1-5 Star Rating</h4>
+        <p style="margin-bottom: 1rem;">Site managers rate operatives via WhatsApp at end of assignment:</p>
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+          <span style="font-size: 1.5rem;">⭐⭐⭐⭐⭐</span>
+        </div>
+        <ul style="font-size: 0.85rem; color: var(--color-text-secondary); padding-left: 1rem;">
+          <li>Collected automatically via WhatsApp</li>
+          <li>Average score displayed on profile</li>
+          <li>Higher rated = priority in allocation</li>
+        </ul>
+      </div>
+      
+      <div class="card" style="border-color: var(--color-red);">
+        <h4 style="color: var(--color-red);">🚫 Re-employability Flags</h4>
+        <p style="margin-bottom: 1rem;">System tracks workers who shouldn't be rehired:</p>
+        <table class="table" style="font-size: 0.85rem;">
+          <tbody>
+            <tr><td><span class="badge badge-green">Active</span></td><td>Available for work</td></tr>
+            <tr><td><span class="badge badge-gold">Caution</span></td><td>Requires approval</td></tr>
+            <tr><td><span class="badge badge-red">Do Not Rehire</span></td><td>Blocked permanently</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="card fade-up" style="margin-top: 1.5rem; border-color: var(--color-cyan); background: rgba(34, 211, 238, 0.05);">
+      <h4 style="color: var(--color-cyan);">Smart Allocation Priority</h4>
+      <p>When filling a labour request, the system automatically ranks candidates by:</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+        <span class="badge badge-cyan">1. Average Rating</span>
+        <span class="badge badge-gold">2. Recent Work History</span>
+        <span class="badge badge-green">3. Skills Match</span>
+        <span class="badge badge-purple">4. Location/Travel Time</span>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-secondary);">Best performers get offered work first. Poor performers drop to bottom of queue.</p>
+    </div>
+    
     <h3 class="fade-up" style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">Technical Detail</h3>
     <div class="code-block code-typing fade-up" id="compliance-code">
       <div class="code-header">
