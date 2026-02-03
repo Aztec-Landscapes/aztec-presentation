@@ -1022,8 +1022,9 @@
   <div class="nav-dot" data-section="4"><span class="tooltip">Database</span></div>
   <div class="nav-dot" data-section="5"><span class="tooltip">WhatsApp</span></div>
   <div class="nav-dot" data-section="6"><span class="tooltip">Compliance</span></div>
-  <div class="nav-dot" data-section="7"><span class="tooltip">Timeline</span></div>
-  <div class="nav-dot" data-section="8"><span class="tooltip">Approval</span></div>
+  <div class="nav-dot" data-section="7"><span class="tooltip">Security</span></div>
+  <div class="nav-dot" data-section="8"><span class="tooltip">Timeline</span></div>
+  <div class="nav-dot" data-section="9"><span class="tooltip">Approval</span></div>
 </nav>
 
 <!-- ===== 01: HERO ===== -->
@@ -1570,8 +1571,73 @@
   </div>
 </section>
 
-<!-- ===== 07: TIMELINE ===== -->
+<!-- ===== 07: SECURITY ===== -->
 <section class="section" id="section-7">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Security / 007</span>
+    </div>
+    
+    <h2 class="fade-up">Security & <span class="text-red">Data Protection</span></h2>
+    
+    <div class="grid grid-2 fade-up" style="margin-top: 2rem;">
+      <div>
+        <h3 style="color: var(--color-cyan);">Data Protection</h3>
+        <table class="table">
+          <tbody>
+            <tr><td><strong>UK Data Residency</strong></td><td>Supabase eu-west-2 (London)</td></tr>
+            <tr><td><strong>Encryption at Rest</strong></td><td>AES-256</td></tr>
+            <tr><td><strong>Encryption in Transit</strong></td><td>TLS 1.3</td></tr>
+            <tr><td><strong>GDPR Compliant</strong></td><td>Right to access, rectification, deletion</td></tr>
+            <tr><td><strong>Database Download</strong></td><td><span class="badge badge-red">Blocked</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3 style="color: var(--color-gold);">Access Controls</h3>
+        <table class="table">
+          <tbody>
+            <tr><td><strong>Authentication</strong></td><td>Supabase Auth (email/password)</td></tr>
+            <tr><td><strong>Authorization</strong></td><td>Role-based (Director, Labour Manager, Site Manager)</td></tr>
+            <tr><td><strong>Row-Level Security</strong></td><td>PostgreSQL RLS policies</td></tr>
+            <tr><td><strong>MFA</strong></td><td>Optional 2FA available</td></tr>
+            <tr><td><strong>Audit Trail</strong></td><td>Every action logged (who/when/what)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <h3 class="fade-up" style="margin-top: 2rem;">Row-Level Security Policy</h3>
+    
+    <div class="code-block code-typing fade-up">
+      <div class="code-header">
+        <span class="code-dot red"></span>
+        <span class="code-dot yellow"></span>
+        <span class="code-dot green"></span>
+        <span class="code-title">rls_policy.sql</span>
+      </div>
+      <pre><span class="line"><span class="comment">-- Users only see their organization's data</span></span>
+<span class="line"><span class="keyword">CREATE POLICY</span> <span class="string">"org_isolation"</span></span>
+<span class="line"><span class="keyword">ON</span> operatives <span class="keyword">FOR SELECT</span></span>
+<span class="line"><span class="keyword">USING</span> (</span>
+<span class="line">  organization_id = (</span>
+<span class="line">    <span class="keyword">SELECT</span> organization_id</span>
+<span class="line">    <span class="keyword">FROM</span> users</span>
+<span class="line">    <span class="keyword">WHERE</span> id = <span class="function">auth.uid</span>()</span>
+<span class="line">  )</span>
+<span class="line">);</span></pre>
+    </div>
+    
+    <div class="card fade-up" style="margin-top: 1.5rem; border-color: var(--color-red);">
+      <h4 style="color: var(--color-red);">Database Cannot Be Downloaded</h4>
+      <p>Per BOS Bible: Controls in place to ensure the operative database cannot be bulk exported. Data stays in the system.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 08: TIMELINE ===== -->
+<section class="section line-grid" id="section-8">
   <div class="container">
     <div class="section-label fade-up">
       <div class="label-line"></div>
@@ -1632,7 +1698,7 @@
 </section>
 
 <!-- ===== 08: CTA ===== -->
-<section class="section cta-section dot-grid" id="section-8">
+<section class="section cta-section dot-grid" id="section-9">
   <div class="corner tl"></div>
   <div class="corner br"></div>
   
