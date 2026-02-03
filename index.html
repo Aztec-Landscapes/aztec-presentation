@@ -2350,6 +2350,30 @@
     
     <p class="fade-up">Watch a labour request flow through the system.</p>
     
+    <!-- Reallocation First Principle -->
+    <div class="card fade-up" style="margin: 2rem 0; border-color: var(--color-gold); background: rgba(212, 175, 55, 0.05);">
+      <h4 style="color: var(--color-gold); margin-bottom: 1rem;">⚡ Reallocation First — The Core Principle</h4>
+      <p style="margin-bottom: 1rem;">Before any external recruitment, the system follows this priority:</p>
+      <div class="grid grid-3" style="gap: 1rem; margin-bottom: 1rem;">
+        <div style="text-align: center; padding: 1rem; background: rgba(212, 175, 55, 0.1); border-radius: 8px;">
+          <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-gold);">1</div>
+          <div style="font-weight: 600;">Reallocate</div>
+          <div style="font-size: 0.8rem; color: var(--color-text-secondary);">Workers finishing current jobs</div>
+        </div>
+        <div style="text-align: center; padding: 1rem; background: rgba(34, 211, 238, 0.1); border-radius: 8px;">
+          <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-cyan);">2</div>
+          <div style="font-weight: 600;">Internal Search</div>
+          <div style="font-size: 0.8rem; color: var(--color-text-secondary);">Available pool matches</div>
+        </div>
+        <div style="text-align: center; padding: 1rem; background: rgba(167, 139, 250, 0.1); border-radius: 8px;">
+          <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-purple);">3</div>
+          <div style="font-weight: 600;">External Recruit</div>
+          <div style="font-size: 0.8rem; color: var(--color-text-secondary);">Only if pool exhausted</div>
+        </div>
+      </div>
+      <p style="font-size: 0.9rem; color: var(--color-text-secondary);"><strong>Why this matters:</strong> Agencies make money on placement fees. This system prioritises your existing workers first, cutting external recruitment costs by maximising internal utilisation.</p>
+    </div>
+    
     <!-- Labour Request Flow - Architectural Style -->
     <div class="fade-up" style="margin: 2rem 0; overflow-x: auto;">
       <svg viewBox="0 0 900 180" style="width: 100%; min-width: 700px; height: auto;">
@@ -2772,6 +2796,37 @@
       </div>
     </div>
     
+    <h3 class="fade-up" style="margin-top: 3rem;">UK Working Time Regulations</h3>
+    <p class="fade-up">The system enforces UK labour law automatically on every shift assignment:</p>
+    
+    <div class="grid grid-3 fade-up" style="margin-top: 1.5rem;">
+      <div class="card" style="border-color: var(--color-cyan);">
+        <h4 style="color: var(--color-cyan);">48-Hour Week</h4>
+        <p style="font-size: 0.9rem;">System tracks weekly hours across all sites. Warns at 44hrs, blocks at 48hrs (unless opt-out on file).</p>
+      </div>
+      <div class="card" style="border-color: var(--color-cyan);">
+        <h4 style="color: var(--color-cyan);">11-Hour Rest</h4>
+        <p style="font-size: 0.9rem;">Minimum 11 hours between shifts enforced. System won't allow back-to-back assignments that violate rest periods.</p>
+      </div>
+      <div class="card" style="border-color: var(--color-cyan);">
+        <h4 style="color: var(--color-cyan);">Break Entitlement</h4>
+        <p style="font-size: 0.9rem;">6+ hour shifts require 20min break. System calculates and records break compliance automatically.</p>
+      </div>
+    </div>
+    
+    <div class="card fade-up" style="margin-top: 1.5rem; border-color: var(--color-gold); background: rgba(212, 175, 55, 0.05);">
+      <h4 style="color: var(--color-gold);">Plant & Equipment Certification</h4>
+      <p style="margin-bottom: 1rem;">Workers can only be assigned to equipment they're certified for:</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+        <span class="badge badge-gold">CPCS</span>
+        <span class="badge badge-gold">NPORS</span>
+        <span class="badge badge-green">LANTRA</span>
+        <span class="badge badge-green">CS30-CS42 (Chainsaw)</span>
+        <span class="badge badge-cyan">First Aid</span>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-secondary);">System matches job requirements to operative certifications. No cert = no assignment to that equipment.</p>
+    </div>
+    
     <h3 class="fade-up" style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">Technical Detail</h3>
     <div class="code-block code-typing fade-up" id="compliance-code">
       <div class="code-header">
@@ -2789,6 +2844,8 @@
 <span class="line">    blockers.push(<span class="string">'CSCS Expired'</span>);</span>
 <span class="line">  <span class="keyword">if</span> (operative.status === <span class="string">'blocked'</span>)</span>
 <span class="line">    blockers.push(<span class="string">'Blocked'</span>);</span>
+<span class="line">  <span class="keyword">if</span> (weeklyHours(operative) >= 48)</span>
+<span class="line">    blockers.push(<span class="string">'Working Time Limit'</span>);</span>
 <span class="line">  </span>
 <span class="line">  <span class="keyword">return</span> blockers.length === 0;</span>
 <span class="line">}</span></pre>
