@@ -2030,45 +2030,44 @@
           <text x="600" y="70" text-anchor="middle" fill="#22D3EE" font-size="10">Documents</text>
         </g>
         
-        <!-- Central box down to data layer -->
+        <!-- Central box down to junction -->
         <line x1="500" y1="295" x2="500" y2="330" stroke="#22D3EE" stroke-width="2" opacity="0.5"/>
         <circle cx="500" cy="330" r="5" fill="#22D3EE" filter="url(#appGlow2)"/>
-        
-        <!-- Horizontal line to data stores -->
-        <line x1="200" y1="330" x2="800" y2="330" stroke="#22D3EE" stroke-width="1.5" opacity="0.3"/>
-        
-        <!-- Junction dots for data layer -->
-        <circle cx="250" cy="330" r="4" fill="#22D3EE" filter="url(#appGlow2)"/>
-        <circle cx="500" cy="330" r="4" fill="#22D3EE" filter="url(#appGlow2)"/>
-        <circle cx="750" cy="330" r="4" fill="#25D366" filter="url(#appGlow2)"/>
-        
-        <!-- Lines down to data boxes -->
-        <line x1="250" y1="330" x2="250" y2="360" stroke="#22D3EE" stroke-width="1.5" opacity="0.5"/>
-        <line x1="500" y1="330" x2="500" y2="360" stroke="#22D3EE" stroke-width="1.5" opacity="0.5"/>
-        <line x1="750" y1="330" x2="750" y2="360" stroke="#25D366" stroke-width="1.5" opacity="0.5"/>
         
         <!-- Section Label: WHERE DATA LIVES -->
         <text x="500" y="355" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="11" letter-spacing="3" font-family="'JetBrains Mono', monospace">WHERE DATA LIVES</text>
         
-        <!-- Bottom Row: Data Storage -->
+        <!-- TWO paths only: Supabase (left) and External Services (right) -->
+        <line x1="500" y1="330" x2="300" y2="330" stroke="#22D3EE" stroke-width="1.5" opacity="0.4"/>
+        <line x1="500" y1="330" x2="700" y2="330" stroke="#25D366" stroke-width="1.5" opacity="0.4"/>
+        
+        <!-- Junction dots -->
+        <circle cx="300" cy="330" r="4" fill="#22D3EE" filter="url(#appGlow2)"/>
+        <circle cx="700" cy="330" r="4" fill="#25D366" filter="url(#appGlow2)"/>
+        
+        <!-- Lines down to boxes -->
+        <line x1="300" y1="330" x2="300" y2="370" stroke="#22D3EE" stroke-width="1.5" opacity="0.5"/>
+        <line x1="700" y1="330" x2="700" y2="370" stroke="#25D366" stroke-width="1.5" opacity="0.5"/>
+        
+        <!-- Bottom Row: TWO boxes only -->
+        <!-- Supabase (combined PostgreSQL + File Storage) -->
         <g transform="translate(100, 370)">
-          <rect width="300" height="70" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
-          <text x="150" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">PostgreSQL</text>
-          <text x="150" y="48" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10">Supabase • London</text>
+          <rect width="400" height="70" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <text x="200" y="28" text-anchor="middle" fill="#fff" font-size="15" font-weight="600">Supabase</text>
+          <text x="200" y="45" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10">London Data Centre</text>
+          <text x="120" y="62" text-anchor="middle" fill="#22D3EE" font-size="9">PostgreSQL</text>
+          <text x="200" y="62" text-anchor="middle" fill="#22D3EE" font-size="9">File Storage</text>
+          <text x="280" y="62" text-anchor="middle" fill="#22D3EE" font-size="9">Auth</text>
         </g>
         
-        <g transform="translate(350, 370)">
-          <rect width="300" height="70" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
-          <text x="150" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">File Storage</text>
-          <text x="150" y="48" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10">Documents</text>
-        </g>
-        
-        <g transform="translate(600, 370)">
-          <rect width="300" height="70" rx="6" fill="rgba(37, 211, 102, 0.08)" stroke="#25D366" stroke-width="1.5"/>
-          <text x="150" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">External Services</text>
-          <text x="75" y="55" text-anchor="middle" fill="#25D366" font-size="9">WhatsApp</text>
-          <text x="150" y="55" text-anchor="middle" fill="#10a37f" font-size="9">OpenAI</text>
-          <text x="225" y="55" text-anchor="middle" fill="#D4AF37" font-size="9">Gov.uk</text>
+        <!-- External Services -->
+        <g transform="translate(500, 370)">
+          <rect width="400" height="70" rx="6" fill="rgba(37, 211, 102, 0.08)" stroke="#25D366" stroke-width="1.5"/>
+          <text x="200" y="28" text-anchor="middle" fill="#fff" font-size="15" font-weight="600">External Services</text>
+          <text x="200" y="45" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10">Third-Party APIs</text>
+          <text x="100" y="62" text-anchor="middle" fill="#25D366" font-size="9">WhatsApp</text>
+          <text x="200" y="62" text-anchor="middle" fill="#10a37f" font-size="9">OpenAI</text>
+          <text x="300" y="62" text-anchor="middle" fill="#D4AF37" font-size="9">Gov.uk</text>
         </g>
       </svg>
     </div>
@@ -2179,42 +2178,43 @@
           <text x="150" y="75" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="10">Zero-Downtime Deployments</text>
         </g>
         
-        <!-- Vercel down to Supabase -->
-        <line x1="450" y1="275" x2="450" y2="350" stroke="#D4AF37" stroke-width="2" opacity="0.6"/>
+        <!-- Vercel down to junction, then splits to two destinations -->
+        <line x1="450" y1="275" x2="450" y2="310" stroke="#D4AF37" stroke-width="2" opacity="0.6"/>
         <circle cx="450" cy="310" r="5" fill="#22D3EE" filter="url(#techGlow)"/>
         
         <!-- Section Label: WHERE DATA LIVES -->
         <text x="450" y="335" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="11" letter-spacing="3" font-family="'JetBrains Mono', monospace">WHERE DATA LIVES</text>
         
-        <!-- Bottom Row: Supabase (combined) + External Services -->
-        <!-- Supabase (single large box) -->
-        <g transform="translate(115, 350)">
-          <rect x="0" y="0" width="360" height="100" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
-          <text x="180" y="32" text-anchor="middle" fill="#fff" font-size="17" font-weight="600">Supabase</text>
-          <text x="180" y="50" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11">PostgreSQL + Storage • London</text>
-          <!-- Sub items -->
-          <text x="72" y="78" text-anchor="middle" fill="#22D3EE" font-size="9">People</text>
-          <text x="144" y="78" text-anchor="middle" fill="#22D3EE" font-size="9">Assignments</text>
-          <text x="216" y="78" text-anchor="middle" fill="#22D3EE" font-size="9">Documents</text>
-          <text x="288" y="78" text-anchor="middle" fill="#22D3EE" font-size="9">Messages</text>
+        <!-- TWO paths from junction: left to Supabase, right to External -->
+        <line x1="450" y1="310" x2="295" y2="310" stroke="#22D3EE" stroke-width="1.5" opacity="0.5"/>
+        <line x1="450" y1="310" x2="660" y2="310" stroke="#25D366" stroke-width="1.5" opacity="0.5"/>
+        
+        <circle cx="295" cy="310" r="4" fill="#22D3EE" filter="url(#techGlow)"/>
+        <circle cx="660" cy="310" r="4" fill="#25D366" filter="url(#techGlow)"/>
+        
+        <line x1="295" y1="310" x2="295" y2="350" stroke="#22D3EE" stroke-width="1.5" opacity="0.5"/>
+        <line x1="660" y1="310" x2="660" y2="350" stroke="#25D366" stroke-width="1.5" opacity="0.5"/>
+        
+        <!-- Bottom Row: TWO boxes -->
+        <!-- Supabase -->
+        <g transform="translate(100, 350)">
+          <rect x="0" y="0" width="390" height="100" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <text x="195" y="32" text-anchor="middle" fill="#fff" font-size="17" font-weight="600">Supabase</text>
+          <text x="195" y="50" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11">PostgreSQL + Storage • London</text>
+          <text x="100" y="78" text-anchor="middle" fill="#22D3EE" font-size="9">Database</text>
+          <text x="195" y="78" text-anchor="middle" fill="#22D3EE" font-size="9">File Storage</text>
+          <text x="290" y="78" text-anchor="middle" fill="#22D3EE" font-size="9">Auth</text>
         </g>
         
         <!-- External Services -->
-        <g transform="translate(540, 350)">
-          <rect x="0" y="0" width="240" height="100" rx="6" fill="rgba(37, 211, 102, 0.08)" stroke="#25D366" stroke-width="1.5"/>
-          <text x="120" y="32" text-anchor="middle" fill="#fff" font-size="17" font-weight="600">External Services</text>
-          <!-- Sub items -->
-          <text x="60" y="60" text-anchor="middle" fill="#25D366" font-size="10">WhatsApp</text>
-          <text x="120" y="60" text-anchor="middle" fill="#10a37f" font-size="10">OpenAI</text>
-          <text x="180" y="60" text-anchor="middle" fill="#D4AF37" font-size="10">Gov.uk</text>
-          <text x="60" y="78" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8">Messaging</text>
-          <text x="120" y="78" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8">Sophie AI</text>
-          <text x="180" y="78" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="8">Verification</text>
+        <g transform="translate(465, 350)">
+          <rect x="0" y="0" width="390" height="100" rx="6" fill="rgba(37, 211, 102, 0.08)" stroke="#25D366" stroke-width="1.5"/>
+          <text x="195" y="32" text-anchor="middle" fill="#fff" font-size="17" font-weight="600">External Services</text>
+          <text x="195" y="50" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11">Third-Party APIs</text>
+          <text x="100" y="78" text-anchor="middle" fill="#25D366" font-size="9">WhatsApp</text>
+          <text x="195" y="78" text-anchor="middle" fill="#10a37f" font-size="9">OpenAI</text>
+          <text x="290" y="78" text-anchor="middle" fill="#D4AF37" font-size="9">Gov.uk</text>
         </g>
-        
-        <!-- Connector: Supabase to External Services (horizontal) -->
-        <line x1="475" y1="400" x2="540" y2="400" stroke="#22D3EE" stroke-width="1.5" opacity="0.4"/>
-        <circle cx="507" cy="400" r="4" fill="#25D366" filter="url(#techGlow)"/>
       </svg>
     </div>
     
