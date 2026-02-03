@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aztec B.O.S — Director Presentation</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    :root {
+      --color-bg: #000000;
+      --color-bg-card: rgba(255, 255, 255, 0.02);
+      --color-cyan: #06B6D4;
+      --color-cyan-glow: rgba(6, 182, 212, 0.3);
+      --color-gold: #C9A962;
+      --color-gold-glow: rgba(201, 169, 98, 0.3);
+      --color-text-primary: rgba(255, 255, 255, 0.9);
+      --color-text-secondary: rgba(255, 255, 255, 0.6);
+      --color-text-muted: rgba(255, 255, 255, 0.3);
+      --color-border: rgba(255, 255, 255, 0.1);
+      --font-mono: 'JetBrains Mono', monospace;
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    .section {
+      min-height: 100vh;
+      padding: 8rem 0;
+      position: relative;
+    }
+    
+    .mono { font-family: var(--font-mono); }
+    .text-cyan { color: var(--color-cyan); }
+    .text-gold { color: var(--color-gold); }
+    
+    /* Animation initial states */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    
+    /* Backgrounds */
+    .dot-grid {
+      background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    
+    .line-grid {
+      background-image: 
+        linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    
+    /* Grain overlay */
+    .grain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+    
+    /* Section labels */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .label-line {
+      width: 48px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--color-cyan), transparent);
+    }
+    
+    .label {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-text-muted);
+    }
+    
+    /* Typography */
+    h1 {
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      margin-bottom: 1.5rem;
+    }
+    
+    h2 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 2rem;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--color-cyan);
+    }
+    
+    p {
+      color: var(--color-text-secondary);
+      font-size: 1.125rem;
+      max-width: 700px;
+    }
+    
+    /* Hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+    
+    .hero-title .block {
+      display: block;
+      color: var(--color-text-muted);
+      font-weight: 300;
+      font-style: italic;
+    }
+    
+    .hero-subtitle {
+      margin: 0 auto 3rem;
+    }
+    
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      font-size: 0.875rem;
+      color: var(--color-text-muted);
+    }
+    
+    /* Corner decorations */
+    .corner {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-color: var(--color-cyan);
+      border-style: solid;
+      border-width: 0;
+      opacity: 0.3;
+    }
+    
+    .corner.tl { top: 2rem; left: 2rem; border-top-width: 1px; border-left-width: 1px; }
+    .corner.br { bottom: 2rem; right: 2rem; border-bottom-width: 1px; border-right-width: 1px; }
+    
+    /* Scan line */
+    .scan-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
+      opacity: 0.5;
+      animation: scan 4s ease-in-out infinite;
+    }
+    
+    @keyframes scan {
+      0%, 100% { top: 0; opacity: 0; }
+      10% { opacity: 0.5; }
+      90% { opacity: 0.5; }
+      100% { top: 100%; opacity: 0; }
+    }
+    
+    /* Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    
+    .card {
+      position: relative;
+      padding: 2rem;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      transition: all 0.5s var(--ease-out-expo);
+    }
+    
+    .card::before, .card::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: var(--color-cyan);
+      border-style: solid;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .card::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+    
+    .card:hover {
+      border-color: var(--color-cyan);
+      box-shadow: 0 0 40px var(--color-cyan-glow);
+      transform: translateY(-4px);
+    }
+    
+    .card:hover::before, .card:hover::after { opacity: 0.6; }
+    
+    .card-number {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-cyan);
+      opacity: 0.5;
+      margin-bottom: 1rem;
+    }
+    
+    .card h4 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--color-text-primary);
+    }
+    
+    .card p {
+      font-size: 0.9rem;
+      margin-bottom: 0;
+    }
+    
+    /* Flow diagram */
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      margin: 3rem 0;
+    }
+    
+    .flow-step {
+      padding: 1.5rem 2rem;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      text-align: center;
+      min-width: 140px;
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    
+    .flow-step strong {
+      display: block;
+      color: var(--color-text-primary);
+      margin-bottom: 0.25rem;
+    }
+    
+    .flow-step span {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+    }
+    
+    .flow-step.active {
+      border-color: var(--color-cyan);
+      box-shadow: 0 0 30px var(--color-cyan-glow);
+    }
+    
+    .flow-connector {
+      width: 40px;
+      height: 2px;
+      background: var(--color-border);
+      position: relative;
+    }
+    
+    .flow-connector::after {
+      content: '→';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: var(--color-cyan);
+      font-size: 1.25rem;
+    }
+    
+    /* Table */
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+    }
+    
+    .table th, .table td {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .table th {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-cyan);
+      background: rgba(6, 182, 212, 0.05);
+    }
+    
+    .table td {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+    }
+    
+    /* Badges */
+    .badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 2px;
+    }
+    
+    .badge-cyan { background: rgba(6, 182, 212, 0.15); color: var(--color-cyan); }
+    .badge-gold { background: rgba(201, 169, 98, 0.15); color: var(--color-gold); }
+    .badge-red { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+    
+    /* Stats */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 3rem 0;
+      text-align: center;
+    }
+    
+    .stat-item {
+      padding: 2rem;
+      border-left: 1px solid var(--color-border);
+    }
+    
+    .stat-item:first-child { border-left: none; }
+    
+    .stat-number {
+      font-size: clamp(3rem, 8vw, 4rem);
+      font-weight: 700;
+      color: var(--color-cyan);
+      line-height: 1;
+    }
+    
+    .stat-label {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      margin-top: 0.5rem;
+    }
+    
+    .stat-period {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-top: 0.25rem;
+    }
+    
+    /* Architecture diagram */
+    .arch-diagram {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--color-border);
+      padding: 3rem;
+      margin: 3rem 0;
+    }
+    
+    .arch-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      margin: 1.5rem 0;
+    }
+    
+    .arch-box {
+      padding: 1.5rem 2rem;
+      background: #0a0a0a;
+      border: 1px solid var(--color-border);
+      text-align: center;
+      min-width: 180px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .arch-box strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .arch-box span {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+    }
+    
+    .arch-box.highlight {
+      border-color: var(--color-gold);
+    }
+    
+    .arch-box.highlight strong {
+      color: var(--color-gold);
+    }
+    
+    .arch-connector {
+      width: 2px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--color-cyan), transparent);
+      margin: 0 auto;
+      opacity: 0;
+    }
+    
+    /* Timeline */
+    .timeline {
+      position: relative;
+      margin: 3rem 0;
+      padding-left: 40px;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--color-cyan), transparent);
+      opacity: 0.3;
+    }
+    
+    .timeline-item {
+      position: relative;
+      padding-bottom: 2.5rem;
+    }
+    
+    .timeline-marker {
+      position: absolute;
+      left: -40px;
+      top: 0;
+      width: 16px;
+      height: 16px;
+      border: 2px solid var(--color-cyan);
+      border-radius: 50%;
+      background: var(--color-bg);
+    }
+    
+    .timeline-item:hover .timeline-marker {
+      background: var(--color-cyan);
+      box-shadow: 0 0 20px var(--color-cyan-glow);
+    }
+    
+    .timeline-content {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      padding: 1.5rem;
+      transition: border-color 0.3s ease;
+    }
+    
+    .timeline-content:hover {
+      border-color: var(--color-cyan);
+    }
+    
+    .timeline-phase {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      color: var(--color-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+    
+    .timeline-content h4 {
+      font-size: 1.125rem;
+      margin: 0.5rem 0;
+      color: var(--color-text-primary);
+    }
+    
+    .timeline-content p {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    
+    .timeline-duration {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-gold);
+      background: rgba(201, 169, 98, 0.1);
+      padding: 0.25rem 0.5rem;
+      display: inline-block;
+    }
+    
+    /* CTA section */
+    .cta-section {
+      text-align: center;
+      padding: 10rem 0;
+    }
+    
+    .cta-title {
+      font-size: clamp(2rem, 6vw, 4rem);
+      margin-bottom: 1.5rem;
+    }
+    
+    .cta-text {
+      font-size: 1.25rem;
+      margin: 0 auto 3rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 1rem 2.5rem;
+      text-decoration: none;
+      transition: all 0.4s var(--ease-out-expo);
+    }
+    
+    .btn-primary {
+      background: var(--color-gold);
+      color: #000;
+    }
+    
+    .btn-primary:hover {
+      background: #D4B76E;
+      box-shadow: 0 0 40px var(--color-gold-glow);
+      transform: translateY(-2px);
+    }
+    
+    .footer-meta {
+      margin-top: 4rem;
+      color: var(--color-text-muted);
+      font-size: 0.875rem;
+    }
+    
+    /* Slide number */
+    .slide-number {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== 01: HERO ===== -->
+<section class="section hero dot-grid" data-slide="01">
+  <div class="corner tl"></div>
+  <div class="corner br"></div>
+  <div class="scan-line"></div>
+  
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Business Operating System</span>
+    </div>
+    
+    <h1 class="fade-up">
+      Aztec <span class="text-cyan">B.O.S</span>
+      <span class="block">Labour Management Platform</span>
+    </h1>
+    
+    <p class="hero-subtitle fade-up">
+      A bespoke enterprise platform engineered for Aztec's operational model, workforce structure, and compliance requirements.
+    </p>
+    
+    <div class="hero-meta fade-up">
+      <span>Prepared by Cold Lava</span>
+      <span class="text-cyan">•</span>
+      <span>February 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 02: OPERATING MODEL ===== -->
+<section class="section" data-slide="02">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Operating Model / 002</span>
+    </div>
+    
+    <h2 class="fade-up">Your <span class="text-cyan">Operating</span> Model</h2>
+    
+    <p class="fade-up">Centralised labour control with one key principle: <span class="text-gold">Reallocation First</span></p>
+    
+    <div class="grid">
+      <div class="card fade-up">
+        <div class="card-number">01</div>
+        <h4>Central Labour Control</h4>
+        <p>All labour allocation flows through a single point of control, ensuring consistency, compliance, and cost management.</p>
+      </div>
+      <div class="card fade-up">
+        <div class="card-number">02</div>
+        <h4>Reallocation First</h4>
+        <p>Before any external recruitment, the system searches internal workforce for available, qualified operatives.</p>
+      </div>
+      <div class="card fade-up">
+        <div class="card-number">03</div>
+        <h4>Skills & Rate Governance</h4>
+        <p>Every allocation checks skill requirements against operative qualifications and enforces rate matrices.</p>
+      </div>
+      <div class="card fade-up">
+        <div class="card-number">04</div>
+        <h4>Compliance by Default</h4>
+        <p>No operative works without valid documents. The system blocks non-compliant allocations automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03: LABOUR TYPES ===== -->
+<section class="section line-grid" data-slide="03">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Labour Types / 003</span>
+    </div>
+    
+    <h2 class="fade-up">Labour <span class="text-cyan">Types</span></h2>
+    
+    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="card fade-up">
+        <h3>Blue Collar Trades</h3>
+        <table class="table">
+          <tbody>
+            <tr><td>Landscapers & Groundworkers</td></tr>
+            <tr><td>Plant Operators (360°, Dumper, Roller)</td></tr>
+            <tr><td>Arborists & Tree Surgeons</td></tr>
+            <tr><td>Fencing & Boundary Specialists</td></tr>
+            <tr><td>Irrigation Technicians</td></tr>
+            <tr><td>General Labourers</td></tr>
+          </tbody>
+        </table>
+        <p><span class="badge badge-cyan">CSCS Required</span> <span class="badge badge-cyan">RTW Verified</span></p>
+      </div>
+      <div class="card fade-up">
+        <h3>White Collar Roles</h3>
+        <table class="table">
+          <tbody>
+            <tr><td>Site Managers</td></tr>
+            <tr><td>Supervisors</td></tr>
+            <tr><td>Quantity Surveyors</td></tr>
+            <tr><td>Project Managers</td></tr>
+            <tr><td>Health & Safety Officers</td></tr>
+            <tr><td>Administrative Staff</td></tr>
+          </tbody>
+        </table>
+        <p><span class="badge badge-gold">Qualification Tracked</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04: CORE WORKFLOWS ===== -->
+<section class="section dot-grid" data-slide="04">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Core Workflows / 004</span>
+    </div>
+    
+    <h2 class="fade-up">Core <span class="text-cyan">Workflows</span></h2>
+    
+    <p class="fade-up">End-to-end labour management from request to completion.</p>
+    
+    <div class="flow" id="workflow-flow">
+      <div class="flow-step"><strong>1. Request</strong><span>Site raises need</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step"><strong>2. Search</strong><span>Internal first</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step"><strong>3. Allocate</strong><span>Match & assign</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step"><strong>4. Induction</strong><span>Site-specific</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step"><strong>5. Track</strong><span>Attendance</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step"><strong>6. Grade</strong><span>Performance</span></div>
+    </div>
+    
+    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="card fade-up">
+        <div class="card-number">01</div>
+        <h4>Automated Matching</h4>
+        <p>System automatically matches operatives based on skills, availability, proximity, and past performance ratings.</p>
+      </div>
+      <div class="card fade-up">
+        <div class="card-number">02</div>
+        <h4>WhatsApp Integration</h4>
+        <p>Operatives receive job offers via WhatsApp, respond instantly, and the system processes their replies automatically.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05: SOPHIE AI ===== -->
+<section class="section" data-slide="05">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Sophie AI Agent / 005</span>
+    </div>
+    
+    <h2 class="fade-up"><span class="text-gold">Sophie</span> AI Agent</h2>
+    
+    <p class="fade-up">Your AI-powered recruitment assistant that qualifies candidates 24/7.</p>
+    
+    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="fade-up">
+        <h3>What Sophie Does</h3>
+        <table class="table">
+          <tbody>
+            <tr><td>Responds to applicant enquiries via WhatsApp</td></tr>
+            <tr><td>Collects skills, experience, and certifications</td></tr>
+            <tr><td>Validates CSCS cards and expiry dates</td></tr>
+            <tr><td>Checks availability and location preferences</td></tr>
+            <tr><td>Qualifies candidates before reaching Labour Manager</td></tr>
+            <tr><td>Schedules document uploads and follow-ups</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fade-up">
+        <h3>Qualifying Logic</h3>
+        <div class="card" style="margin-bottom: 1rem; border-color: var(--color-cyan);">
+          <h4 style="color: var(--color-cyan);">✓ Qualified</h4>
+          <p>Valid CSCS + Right to Work + Required Skills → Passed to Labour Manager</p>
+        </div>
+        <div class="card" style="border-color: var(--color-text-muted);">
+          <h4 style="color: var(--color-text-muted);">✗ Not Qualified</h4>
+          <p>Missing documents or skills → Stored for future roles, requested to complete</p>
+        </div>
+      </div>
+    </div>
+    
+    <p class="fade-up" style="margin-top: 2rem;">
+      <span class="badge badge-gold">~£0.30 per applicant</span> vs £500+ agency fee per placement
+    </p>
+  </div>
+</section>
+
+<!-- ===== 06: COMPLIANCE ENGINE ===== -->
+<section class="section line-grid" data-slide="06">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Compliance Engine / 006</span>
+    </div>
+    
+    <h2 class="fade-up">Compliance <span class="text-cyan">Engine</span></h2>
+    
+    <p class="fade-up">Automated document management with expiry tracking and enforcement.</p>
+    
+    <table class="table fade-up">
+      <thead>
+        <tr>
+          <th>Document Type</th>
+          <th>Tracking</th>
+          <th>Alerts</th>
+          <th>Enforcement</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Right to Work</td>
+          <td>Expiry date, share code</td>
+          <td>30, 14, 7 days before</td>
+          <td><span class="badge badge-red">Blocks if expired</span></td>
+        </tr>
+        <tr>
+          <td>CSCS Card</td>
+          <td>Card type, number, expiry</td>
+          <td>60, 30, 14 days before</td>
+          <td><span class="badge badge-red">Blocks if expired</span></td>
+        </tr>
+        <tr>
+          <td>Plant Tickets (CPCS/NPORS)</td>
+          <td>Machine categories, expiry</td>
+          <td>30, 14 days before</td>
+          <td><span class="badge badge-gold">Warns if expired</span></td>
+        </tr>
+        <tr>
+          <td>Photo ID</td>
+          <td>Verified flag</td>
+          <td>On upload</td>
+          <td><span class="badge badge-cyan">Required for onboarding</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 07: NCR & PERFORMANCE ===== -->
+<section class="section dot-grid" data-slide="07">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">NCR & Performance / 007</span>
+    </div>
+    
+    <h2 class="fade-up">NCR & <span class="text-cyan">Performance</span></h2>
+    
+    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="fade-up">
+        <h3>NCR Types</h3>
+        <table class="table">
+          <tbody>
+            <tr><td><span class="badge badge-red">No Show</span></td><td>Failed to arrive without notice</td></tr>
+            <tr><td><span class="badge badge-red">Walk Off</span></td><td>Left site without authorisation</td></tr>
+            <tr><td><span class="badge badge-red">Safety Breach</span></td><td>PPE or safety protocol violation</td></tr>
+            <tr><td><span class="badge badge-gold">Poor Attitude</span></td><td>Conduct issues reported</td></tr>
+            <tr><td><span class="badge badge-gold">Skill Mismatch</span></td><td>Unable to perform claimed skills</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fade-up">
+        <h3>Red Card System</h3>
+        <div class="card">
+          <h4>Automatic Enforcement</h4>
+          <p>NCR triggers automatic review. Multiple NCRs = blocked status. "Would Re-employ" flag from supervisors. Blocked operatives excluded from all searches.</p>
+        </div>
+        <div class="card" style="margin-top: 1rem; border-color: #ef4444; background: rgba(239, 68, 68, 0.05);">
+          <h4 style="color: #ef4444;">Critical NCR = Instant Block</h4>
+          <p>Drugs/alcohol or serious safety breach immediately blocks operative.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 08: SYSTEM ARCHITECTURE ===== -->
+<section class="section" data-slide="08">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">System Architecture / 008</span>
+    </div>
+    
+    <h2 class="fade-up">System <span class="text-cyan">Architecture</span></h2>
+    
+    <div class="arch-diagram fade-up" id="arch-diagram">
+      <div class="arch-row">
+        <div class="arch-box">
+          <strong class="text-cyan">Web Dashboard</strong>
+          <span>Directors, Labour Managers</span>
+        </div>
+        <div class="arch-box">
+          <strong class="text-gold">WhatsApp</strong>
+          <span>Operatives, Sophie AI</span>
+        </div>
+      </div>
+      
+      <div class="arch-connector"></div>
+      
+      <div class="arch-row">
+        <div class="arch-box highlight">
+          <strong>API Layer</strong>
+          <span>Authentication, Business Logic</span>
+        </div>
+      </div>
+      
+      <div class="arch-connector"></div>
+      
+      <div class="arch-row">
+        <div class="arch-box">
+          <strong>Database</strong>
+          <span>PostgreSQL</span>
+        </div>
+        <div class="arch-box">
+          <strong>File Storage</strong>
+          <span>Documents</span>
+        </div>
+        <div class="arch-box">
+          <strong>Cache</strong>
+          <span>Redis</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="stats-grid fade-up">
+      <div class="stat-item">
+        <div class="stat-number">&lt;100ms</div>
+        <div class="stat-label">Page Load Time</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">99.9%</div>
+        <div class="stat-label">Uptime SLA</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Scalability</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 09: DATA MODEL ===== -->
+<section class="section line-grid" data-slide="09">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Data Model / 009</span>
+    </div>
+    
+    <h2 class="fade-up">Data <span class="text-cyan">Model</span></h2>
+    
+    <div class="grid">
+      <div class="card fade-up">
+        <div class="card-number">01</div>
+        <h4>Operatives</h4>
+        <p>Personal details, skills, certifications, rates, availability, performance history, NCRs, documents.</p>
+      </div>
+      <div class="card fade-up">
+        <div class="card-number">02</div>
+        <h4>Sites</h4>
+        <p>Location, address, contact details, site manager, active status, GPS coordinates.</p>
+      </div>
+      <div class="card fade-up">
+        <div class="card-number">03</div>
+        <h4>Allocations</h4>
+        <p>Operative → Site assignment with start/end dates, rates, status, induction completion.</p>
+      </div>
+      <div class="card fade-up">
+        <div class="card-number">04</div>
+        <h4>Documents</h4>
+        <p>File storage, document type, issue/expiry dates, verification status, audit trail.</p>
+      </div>
+      <div class="card fade-up">
+        <div class="card-number">05</div>
+        <h4>Shifts & Timesheets</h4>
+        <p>Scheduled work periods, clock in/out, breaks, approval workflow, payroll export.</p>
+      </div>
+      <div class="card fade-up">
+        <div class="card-number">06</div>
+        <h4>Communications</h4>
+        <p>WhatsApp, SMS, Email logs with delivery status, templates, campaigns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 10: SECURITY ===== -->
+<section class="section dot-grid" data-slide="10">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Security / 010</span>
+    </div>
+    
+    <h2 class="fade-up">Security & <span class="text-cyan">Data Protection</span></h2>
+    
+    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="fade-up">
+        <h3>Data Protection</h3>
+        <table class="table">
+          <tbody>
+            <tr><td><strong>UK Data Residency</strong></td><td>All data stored in UK/EU</td></tr>
+            <tr><td><strong>Encryption at Rest</strong></td><td>AES-256 for all stored data</td></tr>
+            <tr><td><strong>Encryption in Transit</strong></td><td>TLS 1.3 for all connections</td></tr>
+            <tr><td><strong>GDPR Compliant</strong></td><td>Right to access, rectification, deletion</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fade-up">
+        <h3>Access Controls</h3>
+        <table class="table">
+          <tbody>
+            <tr><td><strong>Role-Based Access</strong></td><td>Director, Labour Manager, Site Manager</td></tr>
+            <tr><td><strong>Row-Level Security</strong></td><td>Database enforces permissions</td></tr>
+            <tr><td><strong>Multi-Factor Auth</strong></td><td>Optional 2FA for all users</td></tr>
+            <tr><td><strong>Audit Trail</strong></td><td>Every action logged</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="card fade-up" style="margin-top: 2rem; border-color: var(--color-cyan); background: rgba(6, 182, 212, 0.05);">
+      <h4 style="color: var(--color-cyan);">Complete Audit Trail</h4>
+      <p>Every action logged: who did what, when, from where. Full change history for compliance reporting.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 11: TECHNOLOGY ===== -->
+<section class="section" data-slide="11">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Technology / 011</span>
+    </div>
+    
+    <h2 class="fade-up">Technology <span class="text-cyan">Foundation</span></h2>
+    
+    <table class="table fade-up">
+      <thead>
+        <tr>
+          <th>Layer</th>
+          <th>Technology</th>
+          <th>Why This Choice</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Frontend</td>
+          <td><span class="text-cyan">Next.js 15 + React</span></td>
+          <td>Industry standard, fast, great developer ecosystem</td>
+        </tr>
+        <tr>
+          <td>Backend</td>
+          <td><span class="text-cyan">Next.js API Routes</span></td>
+          <td>Full-stack in one codebase, serverless scaling</td>
+        </tr>
+        <tr>
+          <td>Database</td>
+          <td><span class="text-cyan">PostgreSQL (Supabase)</span></td>
+          <td>Reliable, mature, excellent for complex queries</td>
+        </tr>
+        <tr>
+          <td>Auth</td>
+          <td><span class="text-cyan">Supabase Auth</span></td>
+          <td>Enterprise features, RBAC, audit logs included</td>
+        </tr>
+        <tr>
+          <td>Hosting</td>
+          <td><span class="text-cyan">Vercel</span></td>
+          <td>Global CDN, auto-scaling, zero-downtime deploys</td>
+        </tr>
+        <tr>
+          <td>Messaging</td>
+          <td><span class="text-cyan">WhatsApp Business API</span></td>
+          <td>Official API, reliable delivery, templates</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <p class="fade-up" style="margin-top: 2rem;">
+      <span class="badge badge-cyan">No Vendor Lock-in</span> — All technologies are open standards.
+    </p>
+  </div>
+</section>
+
+<!-- ===== 12: TIMELINE ===== -->
+<section class="section line-grid" data-slide="12">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Timeline / 012</span>
+    </div>
+    
+    <h2 class="fade-up">Implementation <span class="text-cyan">Timeline</span></h2>
+    
+    <p class="fade-up">12-16 weeks from kickoff to go-live.</p>
+    
+    <div class="timeline">
+      <div class="timeline-item fade-up">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <span class="timeline-phase">Phase 1</span>
+          <h4>Discovery & Design</h4>
+          <p>Requirements confirmed, architecture finalised, data model approved.</p>
+          <span class="timeline-duration">2 Weeks</span>
+        </div>
+      </div>
+      
+      <div class="timeline-item fade-up">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <span class="timeline-phase">Phase 2</span>
+          <h4>Core Build</h4>
+          <p>Operative database, sites, allocations, compliance tracking, dashboard.</p>
+          <span class="timeline-duration">6 Weeks</span>
+        </div>
+      </div>
+      
+      <div class="timeline-item fade-up">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <span class="timeline-phase">Phase 3</span>
+          <h4>Communications</h4>
+          <p>WhatsApp integration, Sophie AI, bulk messaging, templates.</p>
+          <span class="timeline-duration">3 Weeks</span>
+        </div>
+      </div>
+      
+      <div class="timeline-item fade-up">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <span class="timeline-phase">Phase 4</span>
+          <h4>Polish & Deploy</h4>
+          <p>Testing, training, data migration, go-live, hypercare.</p>
+          <span class="timeline-duration">3 Weeks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 13: OUTCOMES ===== -->
+<section class="section dot-grid" data-slide="13">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Outcomes / 013</span>
+    </div>
+    
+    <h2 class="fade-up">What Aztec <span class="text-gold">Gets</span></h2>
+    
+    <div class="grid">
+      <div class="card fade-up">
+        <div class="card-number">01</div>
+        <h4>Complete Workforce Visibility</h4>
+        <p>Real-time view of every operative: where they are, what they're doing, compliance status.</p>
+      </div>
+      <div class="card fade-up">
+        <div class="card-number">02</div>
+        <h4>Reduced Agency Dependency</h4>
+        <p>Internal workforce utilised first. Only go external when genuinely needed.</p>
+      </div>
+      <div class="card fade-up">
+        <div class="card-number">03</div>
+        <h4>Compliance Confidence</h4>
+        <p>No more spreadsheet tracking. System enforces compliance automatically.</p>
+      </div>
+      <div class="card fade-up">
+        <div class="card-number">04</div>
+        <h4>Quality Control</h4>
+        <p>Performance tracking ensures best operatives get prioritised, poor performers filtered out.</p>
+      </div>
+    </div>
+    
+    <div class="stats-grid fade-up">
+      <div class="stat-item">
+        <div class="stat-number" data-target="20">0</div>
+        <div class="stat-label">% Reduction in Agency Spend</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">£120k</div>
+        <div class="stat-label">Estimated Annual Saving</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">&lt;12mo</div>
+        <div class="stat-label">ROI Payback Period</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 14: PRE-GO-LIVE ===== -->
+<section class="section" data-slide="14">
+  <div class="container">
+    <div class="section-label fade-up">
+      <div class="label-line"></div>
+      <span class="label">Requirements / 014</span>
+    </div>
+    
+    <h2 class="fade-up">What We Need <span class="text-cyan">From Aztec</span></h2>
+    
+    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
+      <div class="fade-up">
+        <h3>Data Requirements</h3>
+        <table class="table">
+          <tbody>
+            <tr><td>Current operative database (Excel/CSV)</td></tr>
+            <tr><td>Site list with addresses and contacts</td></tr>
+            <tr><td>Existing document scans (CSCS, RTW)</td></tr>
+            <tr><td>Rate matrices (pay and charge out)</td></tr>
+            <tr><td>Trade categories and skill definitions</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fade-up">
+        <h3>Access Requirements</h3>
+        <table class="table">
+          <tbody>
+            <tr><td>Domain for system (e.g., bos.aztec.com)</td></tr>
+            <tr><td>WhatsApp Business account</td></tr>
+            <tr><td>Key stakeholder availability for demos</td></tr>
+            <tr><td>Test users for UAT phase</td></tr>
+            <tr><td>Labour Manager identified for training</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 15: NEXT STEPS ===== -->
+<section class="section cta-section" data-slide="15">
+  <div class="corner tl"></div>
+  <div class="corner br"></div>
+  
+  <div class="container">
+    <div class="section-label fade-up" style="justify-content: center;">
+      <div class="label-line"></div>
+      <span class="label">Next Steps / 015</span>
+    </div>
+    
+    <h2 class="cta-title fade-up">
+      Ready to <span class="text-gold">Transform</span> Your Operations?
+    </h2>
+    
+    <p class="cta-text fade-up">
+      Cold Lava is ready to begin immediately upon approval.
+    </p>
+    
+    <div class="flow fade-up" id="cta-flow">
+      <div class="flow-step"><strong>Approval</strong><span>Board sign-off</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step"><strong>Contract</strong><span>Terms agreed</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step"><strong>Kickoff</strong><span>Workshop</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step"><strong>Build</strong><span>Development</span></div>
+      <div class="flow-connector"></div>
+      <div class="flow-step"><strong>Launch</strong><span>Go-live</span></div>
+    </div>
+    
+    <div class="fade-up" style="margin-top: 3rem;">
+      <a href="mailto:oliver@coldlava.ai" class="btn btn-primary">Get Started</a>
+    </div>
+    
+    <div class="footer-meta fade-up">
+      <p>oliver@coldlava.ai • jacob@coldlava.ai</p>
+      <p class="mono" style="margin-top: 1rem;">© 2026 Cold Lava AI Ltd</p>
+    </div>
+  </div>
+</section>
+
+<div class="grain"></div>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+  
+  // Fade up animations
+  gsap.utils.toArray('.fade-up').forEach(el => {
+    gsap.to(el, {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    });
+  });
+  
+  // Architecture diagram animation
+  ScrollTrigger.create({
+    trigger: '#arch-diagram',
+    start: 'top 70%',
+    onEnter: () => {
+      gsap.to('#arch-diagram .arch-box', {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: 'power3.out'
+      });
+      gsap.to('#arch-diagram .arch-connector', {
+        opacity: 0.5,
+        duration: 0.4,
+        delay: 0.5,
+        stagger: 0.2
+      });
+    },
+    once: true
+  });
+  
+  // Workflow flow animation
+  function animateFlow(selector) {
+    ScrollTrigger.create({
+      trigger: selector,
+      start: 'top 70%',
+      onEnter: () => {
+        const steps = document.querySelectorAll(`${selector} .flow-step`);
+        gsap.to(steps, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: 'back.out(1.7)',
+          onComplete: () => {
+            steps.forEach((step, i) => {
+              setTimeout(() => step.classList.add('active'), i * 100);
+            });
+          }
+        });
+      },
+      once: true
+    });
+  }
+  
+  animateFlow('#workflow-flow');
+  animateFlow('#cta-flow');
+  
+  // Counter animation
+  gsap.utils.toArray('.stat-number[data-target]').forEach(stat => {
+    const target = parseFloat(stat.dataset.target);
+    
+    ScrollTrigger.create({
+      trigger: stat,
+      start: 'top 80%',
+      onEnter: () => {
+        gsap.to(stat, {
+          textContent: target,
+          duration: 2,
+          ease: 'power2.out',
+          snap: { textContent: 1 },
+          onUpdate: function() {
+            stat.textContent = Math.round(this.targets()[0].textContent);
+          }
+        });
+      },
+      once: true
+    });
+  });
+</script>
+
+</body>
+</html>
