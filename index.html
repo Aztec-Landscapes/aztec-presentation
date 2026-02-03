@@ -1544,11 +1544,13 @@
           <!-- UI to API: Each connects at the x-coordinate matching its downstream path -->
           <path d="M 140 130 L 140 160 L 250 160 L 250 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
           <path d="M 340 130 L 340 160 L 350 160 L 350 200" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
+          <path d="M 340 130 L 340 160 L 450 160 L 450 200" class="connection connection-gold flow-line" style="opacity: 0.6;"/>
           <path d="M 540 130 L 540 160 L 600 160 L 600 200" class="connection connection-purple flow-line" style="opacity: 0.6;"/>
           <path d="M 740 130 L 740 160 L 700 160 L 700 200" class="connection connection-gold flow-line" style="opacity: 0.6;"/>
           <!-- API to Data: Straight down from entry points -->
           <path d="M 250 290 L 250 320 L 200 320 L 200 360" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
           <path d="M 350 290 L 350 320 L 200 320 L 200 360" class="connection connection-cyan flow-line" style="opacity: 0.6;"/>
+          <path d="M 450 290 L 450 320 L 420 320 L 420 360" class="connection connection-gold flow-line" style="opacity: 0.6;"/>
           <path d="M 600 290 L 600 320 L 670 320 L 670 360" class="connection connection-purple flow-line" style="opacity: 0.6;"/>
           <path d="M 700 290 L 700 320 L 670 320 L 670 360" class="connection connection-gold flow-line" style="opacity: 0.6;"/>
         </g>
@@ -1573,6 +1575,11 @@
           <circle class="data-particle-gold" r="4">
             <animate attributeName="opacity" values="0;1;1;1;1;0" dur="4s" repeatCount="indefinite" begin="3s"/>
             <animateMotion dur="4s" repeatCount="indefinite" begin="3s" path="M 740 130 L 740 160 L 700 160 L 700 200 L 700 290 L 700 320 L 670 320 L 670 360"/>
+          </circle>
+          <!-- Particle 5: Site Manager → API → File Storage (documents) -->
+          <circle class="data-particle-gold" r="4">
+            <animate attributeName="opacity" values="0;1;1;1;1;0" dur="4.2s" repeatCount="indefinite" begin="4s"/>
+            <animateMotion dur="4.2s" repeatCount="indefinite" begin="4s" path="M 340 130 L 340 160 L 450 160 L 450 200 L 450 290 L 450 320 L 420 320 L 420 360"/>
           </circle>
         </g>
         
