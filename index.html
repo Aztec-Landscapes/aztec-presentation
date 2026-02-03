@@ -2890,20 +2890,102 @@
     });
   });
   
-  // ===== FADE UP =====
-  gsap.utils.toArray('.fade-up').forEach(el => {
-    gsap.to(el, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
+  // ===== PREMIUM FADE UP WITH STAGGER =====
+  // Group fade-ups by section for staggered reveal
+  document.querySelectorAll('.section').forEach(section => {
+    const fadeEls = section.querySelectorAll('.fade-up');
+    if (fadeEls.length === 0) return;
+    
+    gsap.fromTo(fadeEls, 
+      { 
+        opacity: 0, 
+        y: 60,
+        scale: 0.98
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 1.2,
+        ease: 'power4.out',
+        stagger: 0.15,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 75%',
+          toggleActions: 'play none none none'
+        }
       }
+    );
+  });
+  
+  // ===== PREMIUM CARD HOVER EFFECTS =====
+  document.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, {
+        scale: 1.02,
+        duration: 0.4,
+        ease: 'power2.out'
+      });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, {
+        scale: 1,
+        duration: 0.6,
+        ease: 'elastic.out(1, 0.5)'
+      });
     });
   });
+  
+  // ===== HERO PARALLAX =====
+  const heroSection = document.querySelector('.hero');
+  if (heroSection) {
+    gsap.to(heroSection.querySelector('h1'), {
+      y: 100,
+      opacity: 0.3,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: heroSection,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1.5
+      }
+    });
+  }
+  
+  // ===== SVG ARCHITECTURE DRAW-IN =====
+  const archSvg = document.querySelector('.arch-svg');
+  if (archSvg) {
+    const paths = archSvg.querySelectorAll('.connection');
+    paths.forEach(path => {
+      const length = path.getTotalLength ? path.getTotalLength() : 300;
+      gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
+      gsap.to(path, {
+        strokeDashoffset: 0,
+        duration: 2,
+        ease: 'power2.inOut',
+        scrollTrigger: {
+          trigger: archSvg,
+          start: 'top 70%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+  }
+  
+  // ===== SMOOTH NUMBER REVEAL =====
+  const smoothReveal = (el, delay = 0) => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 30, rotateX: -30 },
+      { 
+        opacity: 1, 
+        y: 0, 
+        rotateX: 0,
+        duration: 0.8,
+        delay,
+        ease: 'back.out(1.2)'
+      }
+    );
+  };
   
   // ===== STAT COUNTERS =====
   gsap.utils.toArray('.stat-number[data-count]').forEach(stat => {
@@ -3043,14 +3125,124 @@
   
   document.querySelectorAll('.whatsapp-chat.wa-loop').forEach(animateWhatsAppChat);
   
-  // ===== ARCHITECTURE HOVER =====
+  // ===== PREMIUM ARCHITECTURE HOVER =====
   document.querySelectorAll('.arch-node').forEach(node => {
+    const box = node.querySelector('.box');
     node.addEventListener('mouseenter', () => {
-      gsap.to(node.querySelector('.box'), { strokeWidth: 2.5, duration: 0.3 });
+      gsap.to(box, { 
+        strokeWidth: 3, 
+        scale: 1.02,
+        filter: 'url(#glow)',
+        duration: 0.4,
+        ease: 'power2.out'
+      });
     });
     node.addEventListener('mouseleave', () => {
-      gsap.to(node.querySelector('.box'), { strokeWidth: 1.5, duration: 0.3 });
+      gsap.to(box, { 
+        strokeWidth: 1.5, 
+        scale: 1,
+        filter: 'none',
+        duration: 0.5,
+        ease: 'power2.inOut'
+      });
     });
+  });
+  
+  // ===== PREMIUM SECTION PARALLAX =====
+  document.querySelectorAll('.section').forEach((section, i) => {
+    // Alternate parallax directions
+    const direction = i % 2 === 0 ? 1 : -1;
+    
+    gsap.to(section.querySelector('.container'), {
+      y: 30 * direction,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 2
+      }
+    });
+  });
+  
+  // ===== PREMIUM TABLE REVEAL =====
+  document.querySelectorAll('.table').forEach(table => {
+    const rows = table.querySelectorAll('tr');
+    gsap.fromTo(rows,
+      { opacity: 0, x: -20 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: table,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  });
+  
+  // ===== PREMIUM CODE BLOCK REVEAL =====
+  document.querySelectorAll('.code-block').forEach(block => {
+    gsap.fromTo(block,
+      { opacity: 0, y: 30, scale: 0.95 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.8,
+        ease: 'back.out(1.5)',
+        scrollTrigger: {
+          trigger: block,
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  });
+  
+  // ===== APP FLOW DIAGRAM ANIMATION =====
+  const appFlowSvg = document.querySelector('.app-flow-svg');
+  if (appFlowSvg) {
+    const nodes = appFlowSvg.querySelectorAll('.app-node');
+    gsap.fromTo(nodes,
+      { opacity: 0, scale: 0 },
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'back.out(2)',
+        scrollTrigger: {
+          trigger: appFlowSvg,
+          start: 'top 70%',
+          toggleActions: 'play none none none'
+        }
+      }
+    );
+  }
+  
+  // ===== BADGE MICRO-INTERACTIONS =====
+  document.querySelectorAll('.badge').forEach(badge => {
+    badge.addEventListener('mouseenter', () => {
+      gsap.to(badge, { scale: 1.1, duration: 0.2, ease: 'back.out(3)' });
+    });
+    badge.addEventListener('mouseleave', () => {
+      gsap.to(badge, { scale: 1, duration: 0.3, ease: 'power2.out' });
+    });
+  });
+  
+  // ===== SMOOTH SCROLL MOMENTUM =====
+  let scrollTimeout;
+  window.addEventListener('scroll', () => {
+    document.body.classList.add('is-scrolling');
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      document.body.classList.remove('is-scrolling');
+    }, 150);
   });
 </script>
 
