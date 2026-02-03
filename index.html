@@ -338,9 +338,14 @@
     .grid-2 { grid-template-columns: repeat(2, 1fr); }
     .grid-3 { grid-template-columns: repeat(3, 1fr); }
     .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-5 { grid-template-columns: repeat(5, 1fr); }
     
     @media (max-width: 1024px) {
-      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+    }
+    
+    @media (min-width: 600px) and (max-width: 1024px) {
+      .grid-5 { grid-template-columns: repeat(3, 1fr); }
     }
     
     /* ===== CARDS ===== */
@@ -1594,6 +1599,30 @@
         <p>WhatsApp for messaging, OpenAI for Sophie, Gov.uk for right-to-work verification.</p>
       </div>
     </div>
+    
+    <h3 class="fade-up" style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">Technical Detail — API Endpoints</h3>
+    <div class="grid grid-5 fade-up" style="gap: 0.75rem; margin-top: 1rem;">
+      <div class="card" style="padding: 0.75rem; text-align: center;">
+        <code style="color: var(--color-cyan); font-size: 0.75rem;">/api/operatives</code>
+        <p style="font-size: 0.7rem; margin-top: 0.25rem;">Manage workers</p>
+      </div>
+      <div class="card" style="padding: 0.75rem; text-align: center;">
+        <code style="color: var(--color-cyan); font-size: 0.75rem;">/api/allocations</code>
+        <p style="font-size: 0.7rem; margin-top: 0.25rem;">Assign to sites</p>
+      </div>
+      <div class="card" style="padding: 0.75rem; text-align: center;">
+        <code style="color: var(--color-cyan); font-size: 0.75rem;">/api/ncrs</code>
+        <p style="font-size: 0.7rem; margin-top: 0.25rem;">Log issues</p>
+      </div>
+      <div class="card" style="padding: 0.75rem; text-align: center;">
+        <code style="color: var(--color-cyan); font-size: 0.75rem;">/api/webhooks</code>
+        <p style="font-size: 0.7rem; margin-top: 0.25rem;">Receive messages</p>
+      </div>
+      <div class="card" style="padding: 0.75rem; text-align: center;">
+        <code style="color: var(--color-cyan); font-size: 0.75rem;">/api/documents</code>
+        <p style="font-size: 0.7rem; margin-top: 0.25rem;">Store files</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1861,6 +1890,26 @@
         </div>
       </div>
     </div>
+    
+    <h3 class="fade-up" style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">Technical Detail</h3>
+    <div class="code-block code-typing fade-up" id="sql-code">
+      <div class="code-header">
+        <span class="code-dot red"></span>
+        <span class="code-dot yellow"></span>
+        <span class="code-dot green"></span>
+        <span class="code-title">operatives.sql</span>
+      </div>
+      <pre><span class="line"><span class="keyword">CREATE TABLE</span> <span class="type">operatives</span> (</span>
+<span class="line">  id <span class="type">UUID</span> <span class="keyword">PRIMARY KEY</span>,</span>
+<span class="line">  first_name <span class="type">VARCHAR(100)</span> <span class="keyword">NOT NULL</span>,</span>
+<span class="line">  phone <span class="type">VARCHAR(20)</span> <span class="keyword">UNIQUE</span>,</span>
+<span class="line">  day_rate <span class="type">DECIMAL(8,2)</span>,</span>
+<span class="line">  rtw_verified <span class="type">BOOLEAN</span> <span class="keyword">DEFAULT</span> <span class="string">false</span>,</span>
+<span class="line">  cscs_expiry <span class="type">DATE</span>,</span>
+<span class="line">  avg_rating <span class="type">DECIMAL(3,2)</span>,</span>
+<span class="line">  status <span class="type">VARCHAR(50)</span></span>
+<span class="line">);</span></pre>
+    </div>
   </div>
 </section>
 
@@ -2034,6 +2083,28 @@
         </div>
       </div>
     </div>
+    
+    <h3 class="fade-up" style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">Technical Detail</h3>
+    <div class="code-block code-typing fade-up" id="compliance-code">
+      <div class="code-header">
+        <span class="code-dot red"></span>
+        <span class="code-dot yellow"></span>
+        <span class="code-dot green"></span>
+        <span class="code-title">canStart.ts</span>
+      </div>
+      <pre><span class="line"><span class="keyword">function</span> <span class="function">canStart</span>(operative) {</span>
+<span class="line">  <span class="keyword">const</span> blockers = [];</span>
+<span class="line">  </span>
+<span class="line">  <span class="keyword">if</span> (!operative.rtwVerified)</span>
+<span class="line">    blockers.push(<span class="string">'Right to Work'</span>);</span>
+<span class="line">  <span class="keyword">if</span> (operative.cscsExpiry < today)</span>
+<span class="line">    blockers.push(<span class="string">'CSCS Expired'</span>);</span>
+<span class="line">  <span class="keyword">if</span> (operative.status === <span class="string">'blocked'</span>)</span>
+<span class="line">    blockers.push(<span class="string">'Blocked'</span>);</span>
+<span class="line">  </span>
+<span class="line">  <span class="keyword">return</span> blockers.length === 0;</span>
+<span class="line">}</span></pre>
+    </div>
   </div>
 </section>
 
@@ -2077,6 +2148,26 @@
         <h4 style="color: var(--color-red);">Database Cannot Be Downloaded</h4>
         <p>Per BOS Bible: Controls in place to ensure the operative database cannot be bulk exported. Your data stays in the system.</p>
       </div>
+    </div>
+    
+    <h3 class="fade-up" style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">Technical Detail — Row-Level Security</h3>
+    <div class="code-block code-typing fade-up">
+      <div class="code-header">
+        <span class="code-dot red"></span>
+        <span class="code-dot yellow"></span>
+        <span class="code-dot green"></span>
+        <span class="code-title">rls_policy.sql</span>
+      </div>
+      <pre><span class="line"><span class="comment">-- Users only see their organization's data</span></span>
+<span class="line"><span class="keyword">CREATE POLICY</span> <span class="string">"org_isolation"</span></span>
+<span class="line"><span class="keyword">ON</span> operatives <span class="keyword">FOR SELECT</span></span>
+<span class="line"><span class="keyword">USING</span> (</span>
+<span class="line">  organization_id = (</span>
+<span class="line">    <span class="keyword">SELECT</span> organization_id</span>
+<span class="line">    <span class="keyword">FROM</span> users</span>
+<span class="line">    <span class="keyword">WHERE</span> id = <span class="function">auth.uid</span>()</span>
+<span class="line">  )</span>
+<span class="line">);</span></pre>
     </div>
   </div>
 </section>
