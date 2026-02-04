@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aztec B.O.S — Technical Architecture</title>
+  <title>Aztec B.O.S: Technical Architecture</title>
   
   <link rel="icon" type="image/png" href="https://cdn.brandfetch.io/coldlava.ai/w/64/h/64/icon">
   <link rel="apple-touch-icon" href="https://cdn.brandfetch.io/coldlava.ai/w/180/h/180/icon">
@@ -346,23 +346,7 @@
     .corner.tl { top: 2rem; left: 2rem; border-top-width: 1px; border-left-width: 1px; }
     .corner.br { bottom: 2rem; right: 2rem; border-bottom-width: 1px; border-right-width: 1px; }
     
-    .scan-line {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
-      opacity: 0.5;
-      animation: scan 4s ease-in-out infinite;
-    }
-    
-    @keyframes scan {
-      0%, 100% { top: 0; opacity: 0; }
-      10% { opacity: 0.5; }
-      90% { opacity: 0.5; }
-      100% { top: 100%; opacity: 0; }
-    }
+    /* Scan line removed for cleaner design */
     
     /* Animated background lines */
     .hero-bg-lines {
@@ -1593,7 +1577,7 @@
   
   <div class="corner tl"></div>
   <div class="corner br"></div>
-  <div class="scan-line"></div>
+  <!-- Scan line removed -->
   
   <!-- Floating elements for parallax -->
   <div class="float-element float-circle" style="top: 10%; left: -5%;" data-speed="0.05"></div>
@@ -1614,17 +1598,17 @@
     </h1>
     
     <p style="margin: 0 auto 1.5rem; text-align: center; font-size: 1.25rem; max-width: 700px;" class="fade-up">
-      One system to manage your entire workforce — from recruitment to allocation to compliance.
+      One system to manage your entire workforce, from recruitment to allocation to compliance.
     </p>
     
     <div class="card fade-up" style="max-width: 800px; margin: 0 auto 2rem; border-color: var(--color-gold); background: rgba(201, 169, 98, 0.05); text-align: left;">
       <h4 style="color: var(--color-gold); margin-bottom: 1rem;">What This System Does</h4>
       <ul style="color: var(--color-text-secondary); line-height: 2;">
-        <li><strong>Replaces your spreadsheets</strong> — all operative data in one searchable database</li>
-        <li><strong>Automates recruitment</strong> — Sophie AI qualifies candidates 24/7 via WhatsApp</li>
-        <li><strong>Manages compliance</strong> — blocks anyone without valid CSCS/RTW automatically</li>
-        <li><strong>Streamlines allocation</strong> — match skills to sites, send offers via WhatsApp</li>
-        <li><strong>Tracks everything</strong> — arrivals, NCRs, performance, documents</li>
+        <li><strong>Replaces your spreadsheets:</strong> all operative data in one searchable database</li>
+        <li><strong>Automates recruitment:</strong> Sophie AI qualifies candidates 24/7 via WhatsApp</li>
+        <li><strong>Manages compliance:</strong> blocks anyone without valid CSCS/RTW automatically</li>
+        <li><strong>Streamlines allocation:</strong> match skills to sites, send offers via WhatsApp</li>
+        <li><strong>Tracks everything:</strong> arrivals, NCRs, performance, documents</li>
       </ul>
     </div>
     
@@ -1656,14 +1640,14 @@
       <h4 style="color: var(--color-red); margin-bottom: 1rem;">The Problems We're Solving</h4>
       <div class="grid grid-2" style="gap: 1rem;">
         <div>
-          <p style="margin-bottom: 0.75rem;">❌ <strong>Spreadsheet chaos</strong> — operative data scattered across files</p>
-          <p style="margin-bottom: 0.75rem;">❌ <strong>Compliance risk</strong> — expired CSCS cards slip through</p>
-          <p>❌ <strong>Manual recruitment</strong> — hours spent on unqualified applicants</p>
+          <p style="margin-bottom: 0.75rem;">❌ <strong>Spreadsheet chaos:</strong> operative data scattered across files</p>
+          <p style="margin-bottom: 0.75rem;">❌ <strong>Compliance risk:</strong> expired CSCS cards slip through</p>
+          <p>❌ <strong>Manual recruitment:</strong> hours spent on unqualified applicants</p>
         </div>
         <div>
-          <p style="margin-bottom: 0.75rem;">❌ <strong>No visibility</strong> — who's working where, when?</p>
-          <p style="margin-bottom: 0.75rem;">❌ <strong>Slow allocation</strong> — phone tag to fill urgent gaps</p>
-          <p>❌ <strong>Database poaching</strong> — staff leave and take contacts</p>
+          <p style="margin-bottom: 0.75rem;">❌ <strong>No visibility:</strong> who's working where, when?</p>
+          <p style="margin-bottom: 0.75rem;">❌ <strong>Slow allocation:</strong> phone tag to fill urgent gaps</p>
+          <p>❌ <strong>Database poaching:</strong> staff leave and take contacts</p>
         </div>
       </div>
     </div>
@@ -1918,7 +1902,7 @@
     <div class="grid grid-3 fade-up">
       <div class="card">
         <h4 class="text-cyan">4 Ways In</h4>
-        <p>Liam's dashboard, Site Manager WhatsApp, Sophie AI for recruitment, and Operative messages — all connected.</p>
+        <p>Liam's dashboard, Site Manager WhatsApp, Sophie AI for recruitment, and Operative messages. All connected.</p>
       </div>
       <div class="card">
         <h4 class="text-gold">One Central Brain</h4>
@@ -1930,7 +1914,7 @@
       </div>
     </div>
     
-    <h3 class="fade-up" style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">Technical Detail — API Endpoints</h3>
+    <h3 class="fade-up" style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">Technical Detail: API Endpoints</h3>
     <div class="grid grid-5 fade-up" style="gap: 0.75rem; margin-top: 1rem;">
       <div class="card" style="padding: 0.75rem; text-align: center;">
         <code style="color: var(--color-cyan); font-size: 0.75rem;">/api/operatives</code>
@@ -2226,10 +2210,10 @@
         <h4 style="display: flex; align-items: center; gap: 0.5rem;">
           <img src="https://cdn.brandfetch.io/supabase.com/w/64/h/64/symbol" alt="Supabase" style="width: 24px; height: 24px;"> Supabase
         </h4>
-        <p style="margin-bottom: 1rem;"><strong>What it is:</strong> A managed database service built on PostgreSQL — the same database technology used by Instagram, Spotify, and Netflix.</p>
+        <p style="margin-bottom: 1rem;"><strong>What it is:</strong> A managed database service built on PostgreSQL, the same database technology used by Instagram, Spotify, and Netflix.</p>
         <p style="margin-bottom: 1rem;"><strong>Why we chose it:</strong></p>
         <ul style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 1.25rem; margin-bottom: 1rem;">
-          <li>UK data centre (London) — your data stays in the UK</li>
+          <li>UK data centre (London). Your data stays in the UK</li>
           <li>Built-in authentication and security</li>
           <li>Row-level security for multi-tenant isolation</li>
           <li>Real-time subscriptions for live updates</li>
@@ -2248,10 +2232,10 @@
         <p style="margin-bottom: 1rem;"><strong>What it is:</strong> A cloud hosting platform that runs your web application. Think of it as the "building" where your software lives.</p>
         <p style="margin-bottom: 1rem;"><strong>Why we chose it:</strong></p>
         <ul style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 1.25rem; margin-bottom: 1rem;">
-          <li>Global edge network — fast for users anywhere in the UK</li>
-          <li>Automatic scaling — handles 10 users or 10,000 users</li>
-          <li>Zero-downtime deployments — updates without interruption</li>
-          <li>Built-in SSL certificates — secure by default</li>
+          <li>Global edge network. Fast for users anywhere in the UK</li>
+          <li>Automatic scaling. Handles 10 users or 10,000 users</li>
+          <li>Zero-downtime deployments. Updates without interruption</li>
+          <li>Built-in SSL certificates. Secure by default</li>
           <li>Used by McDonald's, Twitch, and The Washington Post</li>
         </ul>
         <span class="badge badge-gold">Hosting</span>
@@ -2263,14 +2247,14 @@
         <h4 style="display: flex; align-items: center; gap: 0.5rem;">
           <img src="https://cdn.brandfetch.io/nextjs.org/w/64/h/64/theme/dark/symbol" alt="Next.js" style="width: 24px; height: 24px;"> Next.js
         </h4>
-        <p style="margin-bottom: 1rem;"><strong>What it is:</strong> The framework that builds the actual web application — the screens, buttons, and interactions Liam will use daily.</p>
+        <p style="margin-bottom: 1rem;"><strong>What it is:</strong> The framework that builds the actual web application: the screens, buttons, and interactions Liam will use daily.</p>
         <p style="margin-bottom: 1rem;"><strong>Why we chose it:</strong></p>
         <ul style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 1.25rem; margin-bottom: 1rem;">
-          <li>Industry standard — used by Nike, Hulu, TikTok</li>
-          <li>Fast page loads — content appears instantly</li>
-          <li>Built by Vercel — perfect integration</li>
-          <li>Huge developer ecosystem — easy to maintain</li>
-          <li>Server and client in one codebase — simpler, faster</li>
+          <li>Industry standard. Used by Nike, Hulu, TikTok</li>
+          <li>Fast page loads. Content appears instantly</li>
+          <li>Built by Vercel. Perfect integration</li>
+          <li>Huge developer ecosystem. Easy to maintain</li>
+          <li>Server and client in one codebase. Simpler, faster</li>
         </ul>
         <span class="badge badge-green">Framework</span>
         <span class="badge badge-cyan">React</span>
@@ -2284,11 +2268,11 @@
         <p style="margin-bottom: 1rem;"><strong>What it is:</strong> Where all the code is stored and versioned. Like a filing cabinet that tracks every change ever made.</p>
         <p style="margin-bottom: 1rem;"><strong>Why we chose it:</strong></p>
         <ul style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 1.25rem; margin-bottom: 1rem;">
-          <li>Industry standard — 100 million developers use it</li>
-          <li>Complete history — see every change, who made it, when</li>
-          <li>Owned by Microsoft — not going anywhere</li>
-          <li>Automatic backups — code is never lost</li>
-          <li>Collaboration tools — multiple developers can work safely</li>
+          <li>Industry standard. Used by 100 million developers</li>
+          <li>Complete history. See every change, who made it, when</li>
+          <li>Owned by Microsoft. Not going anywhere</li>
+          <li>Automatic backups. Code is never lost</li>
+          <li>Collaboration tools. Multiple developers can work safely</li>
         </ul>
         <span class="badge badge-purple">Code Storage</span>
         <span class="badge badge-gold">Version Control</span>
@@ -2302,11 +2286,11 @@
         <p style="margin-bottom: 1rem;"><strong>What it is:</strong> The official way for businesses to send and receive WhatsApp messages programmatically.</p>
         <p style="margin-bottom: 1rem;"><strong>Why we chose it:</strong></p>
         <ul style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 1.25rem; margin-bottom: 1rem;">
-          <li>Everyone already has WhatsApp — no app to download</li>
-          <li>Official Meta API — reliable, compliant, supported</li>
-          <li>End-to-end encryption — messages are secure</li>
-          <li>Delivery receipts — know when messages are read</li>
-          <li>~£0.03 per message — much cheaper than SMS</li>
+          <li>Everyone already has WhatsApp. No app to download</li>
+          <li>Official Meta API. Reliable, compliant, supported</li>
+          <li>End-to-end encryption. Messages are secure</li>
+          <li>Delivery receipts. Know when messages are read</li>
+          <li>~£0.03 per message. Much cheaper than SMS</li>
         </ul>
         <span class="badge" style="background: rgba(37, 211, 102, 0.15); color: #25D366;">Messaging</span>
         <span class="badge badge-cyan">Official API</span>
@@ -2320,11 +2304,11 @@
         <p style="margin-bottom: 1rem;"><strong>What it is:</strong> The AI technology powering Sophie, your recruitment assistant who qualifies candidates 24/7.</p>
         <p style="margin-bottom: 1rem;"><strong>Why we chose it:</strong></p>
         <ul style="color: var(--color-text-secondary); font-size: 0.85rem; padding-left: 1.25rem; margin-bottom: 1rem;">
-          <li>GPT-4 — the most capable AI model available</li>
-          <li>Natural conversations — candidates don't know it's AI</li>
-          <li>Understands context — handles follow-up questions</li>
-          <li>~£0.30 per applicant — vs £500+ agency fee</li>
-          <li>Works 24/7 — never sleeps, never takes holidays</li>
+          <li>GPT-4. The most capable AI model available</li>
+          <li>Natural conversations. Candidates won't know it's AI</li>
+          <li>Understands context. Handles follow-up questions</li>
+          <li>~£0.30 per applicant. Compare to £500+ agency fee</li>
+          <li>Works 24/7. Never sleeps, never takes holidays</li>
         </ul>
         <span class="badge" style="background: rgba(16, 163, 127, 0.15); color: #10a37f;">AI</span>
         <span class="badge badge-gold">GPT-4</span>
@@ -2352,7 +2336,7 @@
     
     <!-- Reallocation First Principle -->
     <div class="card fade-up" style="margin: 2rem 0; border-color: var(--color-gold); background: rgba(212, 175, 55, 0.05);">
-      <h4 style="color: var(--color-gold); margin-bottom: 1rem;">⚡ Reallocation First — The Core Principle</h4>
+      <h4 style="color: var(--color-gold); margin-bottom: 1rem;">⚡ Reallocation First: The Core Principle</h4>
       <p style="margin-bottom: 1rem;">Before any external recruitment, the system follows this priority:</p>
       <div class="grid grid-3" style="gap: 1rem; margin-bottom: 1rem;">
         <div style="text-align: center; padding: 1rem; background: rgba(212, 175, 55, 0.1); border-radius: 8px;">
@@ -2592,7 +2576,7 @@
       <div class="grid grid-2" style="gap: 1.5rem;">
         <div>
           <p style="margin-bottom: 0.5rem;"><strong>Operatives:</strong> Names, phone numbers, day rates, skills, certifications, ratings</p>
-          <p style="margin-bottom: 0.5rem;"><strong>Documents:</strong> CSCS cards, RTW proof, photo IDs — with expiry dates</p>
+          <p style="margin-bottom: 0.5rem;"><strong>Documents:</strong> CSCS cards, RTW proof, photo IDs, with expiry dates</p>
           <p><strong>Sites:</strong> All your work locations with addresses and postcodes</p>
         </div>
         <div>
@@ -2771,9 +2755,9 @@
         <div class="card" style="border-color: var(--color-red); background: rgba(239, 68, 68, 0.05);">
           <p style="margin-bottom: 1rem;">Before any operative can be allocated to a site, the system automatically checks:</p>
           <ul style="color: var(--color-text-secondary); line-height: 2;">
-            <li><strong>Right to Work</strong> — Must be verified ✓</li>
-            <li><strong>CSCS Card</strong> — Must not be expired ✓</li>
-            <li><strong>Status</strong> — Must not be blocked ✓</li>
+            <li><strong>Right to Work:</strong> must be verified ✓</li>
+            <li><strong>CSCS Card:</strong> must not be expired ✓</li>
+            <li><strong>Status:</strong> must not be blocked ✓</li>
           </ul>
           <p style="margin-top: 1rem; color: var(--color-red);"><strong>If any check fails → Allocation blocked automatically</strong></p>
         </div>
@@ -2909,19 +2893,19 @@
       <div class="card" style="border-color: var(--color-cyan);">
         <h3 style="color: var(--color-cyan); margin-bottom: 1rem;">Data Protection</h3>
         <ul style="color: var(--color-text-secondary); line-height: 2.2;">
-          <li><strong>Stored in the UK</strong> — London data centre, your data never leaves the country</li>
-          <li><strong>Fully encrypted</strong> — Data is scrambled when stored and when transmitted</li>
-          <li><strong>GDPR compliant</strong> — Workers can request their data or ask for deletion</li>
-          <li><strong>Cannot be downloaded</strong> — No bulk export of the operative database</li>
+          <li><strong>Stored in the UK.</strong> London data centre, your data never leaves the country</li>
+          <li><strong>Fully encrypted.</strong> Data is scrambled when stored and when transmitted</li>
+          <li><strong>GDPR compliant.</strong> Workers can request their data or ask for deletion</li>
+          <li><strong>Cannot be downloaded.</strong> No bulk export of the operative database</li>
         </ul>
       </div>
       <div class="card" style="border-color: var(--color-gold);">
         <h3 style="color: var(--color-gold); margin-bottom: 1rem;">Access Controls</h3>
         <ul style="color: var(--color-text-secondary); line-height: 2.2;">
-          <li><strong>Login required</strong> — Email and password to access the system</li>
-          <li><strong>Role-based access</strong> — Directors see everything, Site Managers see their sites</li>
-          <li><strong>Two-factor available</strong> — Extra security layer if wanted</li>
-          <li><strong>Full audit trail</strong> — Every action logged (who did what, when)</li>
+          <li><strong>Login required.</strong> Email and password to access the system</li>
+          <li><strong>Role-based access.</strong> Directors see everything, Site Managers see their sites</li>
+          <li><strong>Two-factor available.</strong> Extra security layer if wanted</li>
+          <li><strong>Full audit trail.</strong> Every action logged (who did what, when)</li>
         </ul>
       </div>
     </div>
@@ -2929,7 +2913,7 @@
     <div class="grid grid-2 fade-up" style="margin-top: 2rem; gap: 1.5rem;">
       <div class="card" style="border-color: var(--color-cyan);">
         <h4 style="color: var(--color-cyan);">Data Isolation</h4>
-        <p>Each user only sees their own organisation's data. The database enforces this automatically — it's impossible to access another company's operatives.</p>
+        <p>Each user only sees their own organisation's data. The database enforces this automatically, making it impossible to access another company's operatives.</p>
       </div>
       <div class="card" style="border-color: var(--color-red);">
         <h4 style="color: var(--color-red);">No Bulk Downloads</h4>
@@ -2937,7 +2921,7 @@
       </div>
     </div>
     
-    <h3 class="fade-up" style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">Technical Detail — Row-Level Security</h3>
+    <h3 class="fade-up" style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">Technical Detail: Row-Level Security</h3>
     <div class="code-block code-typing fade-up">
       <div class="code-header">
         <span class="code-dot red"></span>
@@ -3063,7 +3047,7 @@
         
         <div class="card" style="margin-bottom: 1rem; border-color: var(--color-green);">
           <h4 style="color: var(--color-green);">✓ Full Documentation</h4>
-          <p>Every system is documented. Database schemas, API specs, deployment guides — all maintained in the repository.</p>
+          <p>Every system is documented. Database schemas, API specs, deployment guides, all maintained in the repository.</p>
         </div>
         
         <div class="card" style="border-color: var(--color-green);">
