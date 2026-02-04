@@ -862,7 +862,9 @@
     
     .whatsapp-messages {
       padding: 1rem;
-      min-height: 200px;
+      height: 280px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
     }
     
     .wa-msg {
@@ -3350,9 +3352,16 @@
   // ===== WHATSAPP MESSAGES (LOOPING) =====
   function animateWhatsAppChat(chat) {
     const messages = chat.querySelectorAll('.wa-msg');
+    const messagesContainer = chat.querySelector('.whatsapp-messages');
     const typing = chat.querySelector('.wa-typing');
     let currentIndex = 0;
     let isAnimating = false;
+    
+    function scrollToBottom() {
+      if (messagesContainer) {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    }
     
     function resetChat() {
       messages.forEach(msg => {
@@ -3360,6 +3369,7 @@
         msg.style.display = 'none';
       });
       if (typing) typing.classList.remove('show');
+      if (messagesContainer) messagesContainer.scrollTop = 0;
       currentIndex = 0;
     }
     
@@ -3384,10 +3394,12 @@
       // Show typing indicator for incoming messages
       if (isIncoming && typing) {
         typing.classList.add('show');
+        scrollToBottom();
         setTimeout(() => {
           typing.classList.remove('show');
           msg.style.display = 'block';
           msg.classList.add('animate');
+          scrollToBottom();
           currentIndex++;
           setTimeout(showNextMessage, 300);
         }, delay);
@@ -3396,6 +3408,7 @@
         setTimeout(() => {
           msg.style.display = 'block';
           msg.classList.add('animate');
+          scrollToBottom();
           currentIndex++;
           setTimeout(showNextMessage, 300);
         }, delay);
