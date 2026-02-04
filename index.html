@@ -348,6 +348,34 @@
     
     /* Scan line removed for cleaner design */
     
+    /* Flow step animations */
+    @keyframes flowPulse {
+      0%, 100% { opacity: 0.6; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.02); box-shadow: 0 0 20px currentColor; }
+    }
+    
+    .flow-step {
+      animation: flowPulse 3s ease-in-out infinite;
+    }
+    
+    .flow-step:nth-child(1) { animation-delay: 0s; }
+    .flow-step:nth-child(3) { animation-delay: 0.4s; }
+    .flow-step:nth-child(5) { animation-delay: 0.8s; }
+    .flow-step:nth-child(7) { animation-delay: 1.2s; }
+    .flow-step:nth-child(9) { animation-delay: 1.6s; }
+    .flow-step:nth-child(11) { animation-delay: 2s; }
+    .flow-step:nth-child(13) { animation-delay: 2.4s; }
+    
+    .flow-arrow {
+      animation: flowPulse 3s ease-in-out infinite;
+    }
+    .flow-arrow:nth-child(2) { animation-delay: 0.2s; }
+    .flow-arrow:nth-child(4) { animation-delay: 0.6s; }
+    .flow-arrow:nth-child(6) { animation-delay: 1s; }
+    .flow-arrow:nth-child(8) { animation-delay: 1.4s; }
+    .flow-arrow:nth-child(10) { animation-delay: 1.8s; }
+    .flow-arrow:nth-child(12) { animation-delay: 2.2s; }
+    
     /* Animated background lines */
     .hero-bg-lines {
       position: absolute;
@@ -2358,53 +2386,53 @@
       <p style="font-size: 0.9rem; color: var(--color-text-secondary);"><strong>Why this matters:</strong> Agencies make money on placement fees. This system prioritises your existing workers first, cutting external recruitment costs by maximising internal utilisation.</p>
     </div>
     
-    <!-- Labour Request Flow - Clean Card Style -->
+    <!-- Labour Request Flow - Clean Card Style with Animation -->
     <div class="fade-up" style="margin: 2rem 0;">
       <div style="display: flex; gap: 0.75rem; overflow-x: auto; padding: 1rem 0;">
         <!-- Step 1: Request -->
-        <div style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(248, 113, 113, 0.08); border: 1.5px solid #F87171; border-radius: 8px; text-align: center;">
-          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Request</div>
+        <div class="flow-step" style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(248, 113, 113, 0.08); border: 1.5px solid #F87171; border-radius: 8px; text-align: center; color: #F87171;">
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; color: #fff;">Request</div>
           <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Site need</div>
         </div>
-        <div style="display: flex; align-items: center; color: rgba(255,255,255,0.3);">→</div>
+        <div class="flow-arrow" style="display: flex; align-items: center; color: #F87171; font-size: 1.2rem;">→</div>
         
         <!-- Step 2: Realloc -->
-        <div style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(212, 175, 55, 0.08); border: 1.5px solid #D4AF37; border-radius: 8px; text-align: center;">
-          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Realloc</div>
+        <div class="flow-step" style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(212, 175, 55, 0.08); border: 1.5px solid #D4AF37; border-radius: 8px; text-align: center; color: #D4AF37;">
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; color: #fff;">Realloc</div>
           <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Check jobs</div>
         </div>
-        <div style="display: flex; align-items: center; color: rgba(255,255,255,0.3);">→</div>
+        <div class="flow-arrow" style="display: flex; align-items: center; color: #D4AF37; font-size: 1.2rem;">→</div>
         
         <!-- Step 3: Search -->
-        <div style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(212, 175, 55, 0.08); border: 1.5px solid #D4AF37; border-radius: 8px; text-align: center;">
-          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Search</div>
+        <div class="flow-step" style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(212, 175, 55, 0.08); border: 1.5px solid #D4AF37; border-radius: 8px; text-align: center; color: #D4AF37;">
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; color: #fff;">Search</div>
           <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Labour pool</div>
         </div>
-        <div style="display: flex; align-items: center; color: rgba(255,255,255,0.3);">→</div>
+        <div class="flow-arrow" style="display: flex; align-items: center; color: #D4AF37; font-size: 1.2rem;">→</div>
         
         <!-- Step 4: Match -->
-        <div style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(212, 175, 55, 0.08); border: 1.5px solid #D4AF37; border-radius: 8px; text-align: center;">
-          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Match</div>
+        <div class="flow-step" style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(212, 175, 55, 0.08); border: 1.5px solid #D4AF37; border-radius: 8px; text-align: center; color: #D4AF37;">
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; color: #fff;">Match</div>
           <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Skills + location</div>
         </div>
-        <div style="display: flex; align-items: center; color: rgba(255,255,255,0.3);">→</div>
+        <div class="flow-arrow" style="display: flex; align-items: center; color: #D4AF37; font-size: 1.2rem;">→</div>
         
         <!-- Step 5: Offer -->
-        <div style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(37, 211, 102, 0.08); border: 1.5px solid #25D366; border-radius: 8px; text-align: center;">
-          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Offer</div>
+        <div class="flow-step" style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(37, 211, 102, 0.08); border: 1.5px solid #25D366; border-radius: 8px; text-align: center; color: #25D366;">
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; color: #fff;">Offer</div>
           <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">WhatsApp</div>
         </div>
-        <div style="display: flex; align-items: center; color: rgba(255,255,255,0.3);">→</div>
+        <div class="flow-arrow" style="display: flex; align-items: center; color: #25D366; font-size: 1.2rem;">→</div>
         
         <!-- Step 6: Confirm -->
-        <div style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(37, 211, 102, 0.08); border: 1.5px solid #25D366; border-radius: 8px; text-align: center;">
-          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Confirm</div>
+        <div class="flow-step" style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(37, 211, 102, 0.08); border: 1.5px solid #25D366; border-radius: 8px; text-align: center; color: #25D366;">
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; color: #fff;">Confirm</div>
           <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Accept</div>
         </div>
-        <div style="display: flex; align-items: center; color: rgba(255,255,255,0.3);">→</div>
+        <div class="flow-arrow" style="display: flex; align-items: center; color: #25D366; font-size: 1.2rem;">→</div>
         
         <!-- Step 7: Allocate -->
-        <div style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(52, 211, 153, 0.15); border: 2px solid #34D399; border-radius: 8px; text-align: center;">
+        <div class="flow-step" style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(52, 211, 153, 0.15); border: 2px solid #34D399; border-radius: 8px; text-align: center; color: #34D399;">
           <div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 0.25rem; color: #34D399;">Allocate</div>
           <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Complete ✓</div>
         </div>
@@ -2413,55 +2441,55 @@
     
     <h3 class="fade-up" style="margin-top: 3rem;">Sophie AI Qualification</h3>
     
-    <!-- Sophie AI Flow - Clean Card Style with Gates -->
+    <!-- Sophie AI Flow - Clean Card Style with Gates and Animation -->
     <div class="fade-up" style="margin: 2rem 0;">
       <div style="display: flex; gap: 0.75rem; overflow-x: auto; padding: 1rem 0;">
         <!-- Step 1: Greeting -->
-        <div style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(167, 139, 250, 0.08); border: 1.5px solid #A78BFA; border-radius: 8px; text-align: center;">
-          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Greeting</div>
+        <div class="flow-step" style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(167, 139, 250, 0.08); border: 1.5px solid #A78BFA; border-radius: 8px; text-align: center; color: #A78BFA;">
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; color: #fff;">Greeting</div>
           <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Job details</div>
         </div>
-        <div style="display: flex; align-items: center; color: rgba(255,255,255,0.3);">→</div>
+        <div class="flow-arrow" style="display: flex; align-items: center; color: #A78BFA; font-size: 1.2rem;">→</div>
         
         <!-- Step 2: RTW Gate -->
-        <div style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(248, 113, 113, 0.1); border: 2px solid #F87171; border-radius: 8px; text-align: center;">
+        <div class="flow-step" style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(248, 113, 113, 0.1); border: 2px solid #F87171; border-radius: 8px; text-align: center; color: #F87171;">
           <div style="font-size: 0.65rem; color: #F87171; font-weight: 600; margin-bottom: 0.25rem;">GATE 1</div>
-          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">RTW?</div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; color: #fff;">RTW?</div>
           <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Right to Work</div>
         </div>
-        <div style="display: flex; align-items: center; color: rgba(255,255,255,0.3);">→</div>
+        <div class="flow-arrow" style="display: flex; align-items: center; color: #F87171; font-size: 1.2rem;">→</div>
         
         <!-- Step 3: 18+ Gate -->
-        <div style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(248, 113, 113, 0.1); border: 2px solid #F87171; border-radius: 8px; text-align: center;">
+        <div class="flow-step" style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(248, 113, 113, 0.1); border: 2px solid #F87171; border-radius: 8px; text-align: center; color: #F87171;">
           <div style="font-size: 0.65rem; color: #F87171; font-weight: 600; margin-bottom: 0.25rem;">GATE 2</div>
-          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">18+?</div>
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; color: #fff;">18+?</div>
           <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Age check</div>
         </div>
-        <div style="display: flex; align-items: center; color: rgba(255,255,255,0.3);">→</div>
+        <div class="flow-arrow" style="display: flex; align-items: center; color: #F87171; font-size: 1.2rem;">→</div>
         
         <!-- Step 4: CSCS -->
-        <div style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(212, 175, 55, 0.08); border: 1.5px solid #D4AF37; border-radius: 8px; text-align: center;">
-          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">CSCS</div>
+        <div class="flow-step" style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(212, 175, 55, 0.08); border: 1.5px solid #D4AF37; border-radius: 8px; text-align: center; color: #D4AF37;">
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; color: #fff;">CSCS</div>
           <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Card check</div>
         </div>
-        <div style="display: flex; align-items: center; color: rgba(255,255,255,0.3);">→</div>
+        <div class="flow-arrow" style="display: flex; align-items: center; color: #D4AF37; font-size: 1.2rem;">→</div>
         
         <!-- Step 5: Details -->
-        <div style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(212, 175, 55, 0.08); border: 1.5px solid #D4AF37; border-radius: 8px; text-align: center;">
-          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Details</div>
+        <div class="flow-step" style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(212, 175, 55, 0.08); border: 1.5px solid #D4AF37; border-radius: 8px; text-align: center; color: #D4AF37;">
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; color: #fff;">Details</div>
           <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Personal info</div>
         </div>
-        <div style="display: flex; align-items: center; color: rgba(255,255,255,0.3);">→</div>
+        <div class="flow-arrow" style="display: flex; align-items: center; color: #D4AF37; font-size: 1.2rem;">→</div>
         
         <!-- Step 6: Docs -->
-        <div style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(212, 175, 55, 0.08); border: 1.5px solid #D4AF37; border-radius: 8px; text-align: center;">
-          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">Docs</div>
+        <div class="flow-step" style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(212, 175, 55, 0.08); border: 1.5px solid #D4AF37; border-radius: 8px; text-align: center; color: #D4AF37;">
+          <div style="font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; color: #fff;">Docs</div>
           <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">Upload</div>
         </div>
-        <div style="display: flex; align-items: center; color: rgba(255,255,255,0.3);">→</div>
+        <div class="flow-arrow" style="display: flex; align-items: center; color: #D4AF37; font-size: 1.2rem;">→</div>
         
         <!-- Step 7: Qualified -->
-        <div style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(52, 211, 153, 0.15); border: 2px solid #34D399; border-radius: 8px; text-align: center;">
+        <div class="flow-step" style="flex: 0 0 auto; width: 110px; padding: 1rem; background: rgba(52, 211, 153, 0.15); border: 2px solid #34D399; border-radius: 8px; text-align: center; color: #34D399;">
           <div style="font-weight: 700; font-size: 0.9rem; margin-bottom: 0.25rem; color: #34D399;">Qualified</div>
           <div style="font-size: 0.75rem; color: rgba(255,255,255,0.5);">→ Liam</div>
         </div>
