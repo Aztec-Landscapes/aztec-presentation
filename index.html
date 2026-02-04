@@ -932,51 +932,51 @@
     
     .whatsapp-header {
       background: #1f2c34;
-      padding: 2.5rem 1rem 0.75rem 1rem;
+      padding: 2rem 0.75rem 0.5rem 0.75rem;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.5rem;
       flex-shrink: 0;
     }
     
     .whatsapp-avatar {
-      width: 36px;
-      height: 36px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: var(--color-gold);
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.7rem;
     }
     
     .whatsapp-name {
       font-weight: 500;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
     }
     
     .whatsapp-status {
-      font-size: 0.65rem;
+      font-size: 0.55rem;
       color: var(--color-text-muted);
     }
     
     .whatsapp-messages {
-      padding: 0.75rem;
+      padding: 0.5rem;
       flex: 1;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: flex-start;
     }
     
     .wa-msg {
-      max-width: 85%;
-      padding: 0.5rem 0.75rem;
-      border-radius: 8px;
-      margin-bottom: 0.5rem;
-      font-size: 0.8rem;
-      line-height: 1.4;
+      max-width: 88%;
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      margin-bottom: 0.35rem;
+      font-size: 0.65rem;
+      line-height: 1.35;
       opacity: 0;
       transform: translateY(10px) scale(0.95);
       position: relative;
@@ -1025,11 +1025,11 @@
     }
     
     .wa-time {
-      font-size: 0.55rem;
+      font-size: 0.5rem;
       color: var(--color-text-muted);
       text-align: right;
-      margin-top: 0.25rem;
-      margin-right: 1rem;
+      margin-top: 0.15rem;
+      margin-right: 0.8rem;
     }
     
     /* Typing indicator */
@@ -3487,6 +3487,7 @@
   // ===== WHATSAPP MESSAGES (LOOPING) =====
   function animateWhatsAppChat(chat) {
     const messages = chat.querySelectorAll('.wa-msg');
+    const messagesContainer = chat.querySelector('.whatsapp-messages');
     const typing = chat.querySelector('.wa-typing');
     let currentIndex = 0;
     let isAnimating = false;
@@ -3500,41 +3501,45 @@
       currentIndex = 0;
     }
     
+    function scrollToBottom() {
+      if (messagesContainer) {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    }
+    
     function showNextMessage() {
       if (currentIndex >= messages.length) {
-        // All messages shown, wait then reset
-        setTimeout(() => {
-          // Fade out all messages
-          messages.forEach(msg => msg.classList.add('fade-out'));
-          setTimeout(() => {
-            resetChat();
-            setTimeout(showNextMessage, 500);
-          }, 400);
-        }, 3000);
+        // All messages shown - hide typing, leave messages visible for scrolling
+        if (typing) typing.style.display = 'none';
+        // Scroll to top so user can read from beginning
+        if (messagesContainer) messagesContainer.scrollTop = 0;
         return;
       }
       
       const msg = messages[currentIndex];
-      const delay = parseInt(msg.dataset.delay) || 800;
+      const delay = parseInt(msg.dataset.delay) || 600;
       const isIncoming = msg.classList.contains('incoming');
       
       // Show typing indicator for incoming messages
       if (isIncoming && typing) {
         typing.classList.add('show');
+        scrollToBottom();
         setTimeout(() => {
           typing.classList.remove('show');
           msg.style.display = 'block';
           msg.classList.add('animate');
+          scrollToBottom();
           currentIndex++;
-          setTimeout(showNextMessage, 300);
+          setTimeout(showNextMessage, 200);
         }, delay);
       } else {
         // Outgoing message - shorter delay
         setTimeout(() => {
           msg.style.display = 'block';
           msg.classList.add('animate');
+          scrollToBottom();
           currentIndex++;
-          setTimeout(showNextMessage, 300);
+          setTimeout(showNextMessage, 200);
         }, delay);
       }
     }
@@ -3547,7 +3552,7 @@
         if (!isAnimating) {
           isAnimating = true;
           resetChat();
-          setTimeout(showNextMessage, 500);
+          setTimeout(showNextMessage, 400);
         }
       }
     });
