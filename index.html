@@ -862,9 +862,11 @@
     
     .whatsapp-messages {
       padding: 1rem;
-      min-height: 200px;
-      max-height: 300px;
+      height: 320px;
       overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
     }
     
     .wa-msg {
@@ -2608,10 +2610,10 @@
           </div>
           <div class="wa-status-bar">TODAY</div>
           <div class="whatsapp-messages">
-            <div class="wa-typing"><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div></div>
             <div class="wa-msg incoming" data-delay="800">Good morning! 🌅<br>Did <strong>John Smith</strong> arrive at <strong>Westfield</strong>?<br><br>Reply YES or NO<div class="wa-time">07:15</div></div>
             <div class="wa-msg outgoing" data-delay="2500">YES<div class="wa-time">07:18</div></div>
             <div class="wa-msg incoming" data-delay="3500">✅ <strong>Arrival confirmed</strong><br>Clock-in: 07:18<br>Site: Westfield Shopping Centre<div class="wa-time">07:18</div></div>
+            <div class="wa-typing"><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div></div>
           </div>
         </div>
       </div>
@@ -2628,11 +2630,11 @@
           </div>
           <div class="wa-status-bar">TODAY</div>
           <div class="whatsapp-messages">
-            <div class="wa-typing"><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div></div>
             <div class="wa-msg outgoing" data-delay="500">Red card John Smith - walked off site at 2pm<div class="wa-time">14:30</div></div>
             <div class="wa-msg incoming" data-delay="1800">⚠️ <strong>NCR #247 Created</strong><br><br>Operative: John Smith<br>Type: Walk-off<br>Time: 14:00<br><br>Need replacement?<div class="wa-time">14:30</div></div>
             <div class="wa-msg outgoing" data-delay="3500">YES urgent<div class="wa-time">14:31</div></div>
             <div class="wa-msg incoming" data-delay="4500">🔄 Liam notified<br>Searching available operatives...<div class="wa-time">14:31</div></div>
+            <div class="wa-typing"><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div></div>
           </div>
         </div>
       </div>
@@ -2651,10 +2653,10 @@
           </div>
           <div class="wa-status-bar">TODAY</div>
           <div class="whatsapp-messages">
-            <div class="wa-typing"><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div></div>
             <div class="wa-msg incoming" data-delay="800">Hi Dave! 👋<br><br>Shift available:<br>📍 <strong>Westfield</strong>, W12 7GF<br>📅 Tomorrow, 7am start<br>💷 £180/day<br>🔧 General Labourer<br><br>Reply YES to confirm<div class="wa-time">16:00</div></div>
             <div class="wa-msg outgoing" data-delay="3000">YES<div class="wa-time">16:02</div></div>
             <div class="wa-msg incoming" data-delay="4000">✅ <strong>Shift Confirmed!</strong><br><br>📍 Westfield Shopping Centre<br>📅 Mon 5th Feb, 07:00<br>👷 Report to: Marcus<br><br>Good luck! 🚧<div class="wa-time">16:02</div></div>
+            <div class="wa-typing"><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div></div>
           </div>
         </div>
       </div>
@@ -2676,7 +2678,6 @@
           </div>
           <div class="wa-status-bar">TODAY</div>
           <div class="whatsapp-messages">
-            <div class="wa-typing"><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div></div>
             <div class="wa-msg incoming" data-delay="800">Hi! 👋 I'm Sophie from Aztec Landscapes.<br><br>Thanks for applying! Quick questions to check you're a fit:<br><br>Do you have a valid CSCS card?<div class="wa-time">09:15</div></div>
             <div class="wa-msg outgoing" data-delay="2500">Yes green card<div class="wa-time">09:16</div></div>
             <div class="wa-msg incoming" data-delay="3500">Great! ✅<br><br>Do you have the right to work in the UK?<div class="wa-time">09:16</div></div>
@@ -2684,6 +2685,7 @@
             <div class="wa-msg incoming" data-delay="6000">Perfect! ✅<br><br>How many years landscaping experience?<div class="wa-time">09:17</div></div>
             <div class="wa-msg outgoing" data-delay="7500">4 years<div class="wa-time">09:18</div></div>
             <div class="wa-msg incoming" data-delay="8500">Excellent! 🎉<br><br>You're <strong>qualified</strong>. Liam will call you today to discuss rates and start dates.<br><br>Welcome to Aztec! 🌿<div class="wa-time">09:18</div></div>
+            <div class="wa-typing"><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div></div>
           </div>
         </div>
       </div>
@@ -2700,12 +2702,12 @@
           </div>
           <div class="wa-status-bar">TODAY</div>
           <div class="whatsapp-messages">
-            <div class="wa-typing"><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div></div>
             <div class="wa-msg incoming" data-delay="800">Hi! 👋 I'm Sophie from Aztec Landscapes.<br><br>Thanks for applying! Quick questions to check you're a fit:<br><br>Do you have a valid CSCS card?<div class="wa-time">11:30</div></div>
             <div class="wa-msg outgoing" data-delay="2500">No not yet<div class="wa-time">11:31</div></div>
             <div class="wa-msg incoming" data-delay="3500">No problem! Are you planning to get one?<div class="wa-time">11:31</div></div>
             <div class="wa-msg outgoing" data-delay="5000">Maybe later<div class="wa-time">11:32</div></div>
             <div class="wa-msg incoming" data-delay="6000">Thanks for your honesty.<br><br>Unfortunately we need all operatives to have a valid CSCS card for site access.<br><br>Once you have one, feel free to reapply! Here's how to get started:<br>👉 cscs.uk.com<br><br>Good luck! 👍<div class="wa-time">11:32</div></div>
+            <div class="wa-typing"><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div><div class="wa-typing-dot"></div></div>
           </div>
         </div>
       </div>
