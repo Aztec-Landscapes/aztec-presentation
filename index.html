@@ -348,33 +348,13 @@
     
     /* Scan line removed for cleaner design */
     
-    /* Flow step animations */
-    @keyframes flowPulse {
-      0%, 100% { opacity: 0.6; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.02); box-shadow: 0 0 20px currentColor; }
-    }
-    
+    /* Flow steps - no animation, static display */
     .flow-step {
-      animation: flowPulse 3s ease-in-out infinite;
+      transition: box-shadow 0.3s ease;
     }
-    
-    .flow-step:nth-child(1) { animation-delay: 0s; }
-    .flow-step:nth-child(3) { animation-delay: 0.4s; }
-    .flow-step:nth-child(5) { animation-delay: 0.8s; }
-    .flow-step:nth-child(7) { animation-delay: 1.2s; }
-    .flow-step:nth-child(9) { animation-delay: 1.6s; }
-    .flow-step:nth-child(11) { animation-delay: 2s; }
-    .flow-step:nth-child(13) { animation-delay: 2.4s; }
-    
-    .flow-arrow {
-      animation: flowPulse 3s ease-in-out infinite;
+    .flow-step:hover {
+      box-shadow: 0 0 15px currentColor;
     }
-    .flow-arrow:nth-child(2) { animation-delay: 0.2s; }
-    .flow-arrow:nth-child(4) { animation-delay: 0.6s; }
-    .flow-arrow:nth-child(6) { animation-delay: 1s; }
-    .flow-arrow:nth-child(8) { animation-delay: 1.4s; }
-    .flow-arrow:nth-child(10) { animation-delay: 1.8s; }
-    .flow-arrow:nth-child(12) { animation-delay: 2.2s; }
     
     /* Animated background lines */
     .hero-bg-lines {
