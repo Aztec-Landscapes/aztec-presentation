@@ -38,8 +38,8 @@
       --color-bg-elevated: #0a0a0f;
       --color-bg-card: rgba(255, 255, 255, 0.02);
       --color-bg-glass: rgba(255, 255, 255, 0.03);
-      --color-cyan: #22D3EE;
-      --color-cyan-glow: rgba(34, 211, 238, 0.35);
+      --color-cyan: #D4AF37;
+      --color-cyan-glow: rgba(212, 175, 55, 0.35);
       --color-gold: #D4AF37;
       --color-gold-glow: rgba(212, 175, 55, 0.35);
       --color-green: #34D399;
@@ -82,7 +82,7 @@
       width: 200%;
       height: 200%;
       background: 
-        radial-gradient(ellipse at 20% 20%, rgba(34, 211, 238, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
         radial-gradient(ellipse at 80% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
         radial-gradient(ellipse at 50% 50%, rgba(167, 139, 250, 0.02) 0%, transparent 40%);
       pointer-events: none;
@@ -103,10 +103,10 @@
       left: 0;
       width: 0%;
       height: 2px;
-      background: linear-gradient(90deg, var(--color-cyan), var(--color-gold), var(--color-purple));
+      background: linear-gradient(90deg, var(--color-gold), var(--color-gold), var(--color-purple));
       z-index: 10000;
       transition: width 0.15s var(--ease-smooth);
-      box-shadow: 0 0 20px var(--color-cyan-glow), 0 0 40px var(--color-gold-glow);
+      box-shadow: 0 0 20px var(--color-gold-glow), 0 0 40px var(--color-gold-glow);
     }
     
     /* ===== SECTION NAV ===== */
@@ -133,14 +133,14 @@
     }
     
     .nav-dot:hover {
-      border-color: var(--color-cyan);
+      border-color: var(--color-gold);
       transform: scale(1.2);
     }
     
     .nav-dot.active {
-      background: var(--color-cyan);
-      border-color: var(--color-cyan);
-      box-shadow: 0 0 15px var(--color-cyan-glow);
+      background: var(--color-gold);
+      border-color: var(--color-gold);
+      box-shadow: 0 0 15px var(--color-gold-glow);
     }
     
     .nav-dot .tooltip {
@@ -181,7 +181,7 @@
     }
     
     .mono { font-family: var(--font-mono); }
-    .text-cyan { color: var(--color-cyan); }
+    .text-gold { color: var(--color-gold); }
     .text-gold { color: var(--color-gold); }
     .text-green { color: var(--color-green); }
     .text-red { color: var(--color-red); }
@@ -221,7 +221,7 @@
       width: 300px;
       height: 300px;
       border-radius: 50%;
-      border: 1px solid var(--color-cyan);
+      border: 1px solid var(--color-gold);
     }
     
     .float-square {
@@ -254,7 +254,7 @@
     .label-line {
       width: 60px;
       height: 1px;
-      background: linear-gradient(90deg, var(--color-gold), var(--color-cyan), transparent);
+      background: linear-gradient(90deg, var(--color-gold), var(--color-gold), transparent);
       opacity: 0.6;
     }
     
@@ -281,8 +281,8 @@
       background-clip: text;
     }
     
-    h1 .text-cyan {
-      background: linear-gradient(135deg, var(--color-cyan), #67E8F9);
+    h1 .text-gold {
+      background: linear-gradient(135deg, var(--color-gold), #E5C158);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -300,7 +300,7 @@
       font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 1rem;
-      color: var(--color-cyan);
+      color: var(--color-gold);
       letter-spacing: -0.01em;
     }
     
@@ -337,7 +337,7 @@
       position: absolute;
       width: 100px;
       height: 100px;
-      border-color: var(--color-cyan);
+      border-color: var(--color-gold);
       border-style: solid;
       border-width: 0;
       opacity: 0.3;
@@ -363,7 +363,7 @@
       position: absolute;
       width: 1px;
       height: 100%;
-      background: linear-gradient(to bottom, transparent, var(--color-cyan), transparent);
+      background: linear-gradient(to bottom, transparent, var(--color-gold), transparent);
       opacity: 0.1;
       animation: linePulse 3s ease-in-out infinite;
     }
@@ -440,7 +440,7 @@
       border-color: rgba(255, 255, 255, 0.15);
       box-shadow: 
         0 20px 40px -15px rgba(0, 0, 0, 0.5),
-        0 0 60px -20px var(--color-cyan-glow),
+        0 0 60px -20px var(--color-gold-glow),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
       transform: translateY(-6px);
     }
@@ -456,7 +456,7 @@
     .card-number {
       font-family: var(--font-mono);
       font-size: 0.7rem;
-      color: var(--color-cyan);
+      color: var(--color-gold);
       opacity: 0.6;
       margin-bottom: 0.75rem;
       letter-spacing: 0.1em;
@@ -512,7 +512,7 @@
       transform: translateX(-50%);
       width: 60%;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
+      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
       opacity: 0.5;
     }
     
@@ -523,7 +523,7 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, var(--color-cyan), var(--color-gold));
+      background: linear-gradient(90deg, var(--color-gold), var(--color-gold));
       transform: scaleX(0);
       transition: transform 1.2s var(--ease-out-expo);
     }
@@ -535,7 +535,7 @@
     .stat-number {
       font-size: 2.75rem;
       font-weight: 800;
-      background: linear-gradient(135deg, var(--color-cyan), var(--color-gold));
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -570,10 +570,10 @@
       transform: translateY(-1px);
     }
     
-    .badge-cyan { 
-      background: rgba(34, 211, 238, 0.1); 
-      color: var(--color-cyan); 
-      border-color: rgba(34, 211, 238, 0.2);
+    .badge-gold { 
+      background: rgba(212, 175, 55, 0.1); 
+      color: var(--color-gold); 
+      border-color: rgba(212, 175, 55, 0.2);
     }
     .badge-gold { 
       background: rgba(212, 175, 55, 0.1); 
@@ -620,7 +620,7 @@
       cursor: pointer;
     }
     
-    .arch-svg .box-cyan { stroke: var(--color-cyan); }
+    .arch-svg .box-cyan { stroke: var(--color-gold); }
     .arch-svg .box-gold { stroke: var(--color-gold); }
     .arch-svg .box-green { stroke: var(--color-green); }
     .arch-svg .box-purple { stroke: var(--color-purple); }
@@ -644,7 +644,7 @@
       stroke-linecap: round;
     }
     
-    .arch-svg .connection-cyan { stroke: var(--color-cyan); }
+    .arch-svg .connection-cyan { stroke: var(--color-gold); }
     .arch-svg .connection-gold { stroke: var(--color-gold); }
     
     .arch-svg .flow-line {
@@ -657,7 +657,7 @@
     }
     
     .data-particle {
-      fill: var(--color-cyan);
+      fill: var(--color-gold);
       filter: url(#glow);
     }
     
@@ -702,7 +702,7 @@
       left: 0;
       right: 0;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--color-cyan), transparent);
+      background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
     }
     
     .code-block pre {
@@ -717,7 +717,7 @@
     .code-block .comment { color: var(--color-text-muted); }
     .code-block .keyword { color: var(--color-purple); }
     .code-block .string { color: var(--color-green); }
-    .code-block .type { color: var(--color-cyan); }
+    .code-block .type { color: var(--color-gold); }
     .code-block .function { color: var(--color-gold); }
     
     .code-header {
@@ -793,7 +793,7 @@
       font-size: 0.625rem;
       text-transform: uppercase;
       letter-spacing: 0.15em;
-      color: var(--color-cyan);
+      color: var(--color-gold);
       background: rgba(6, 182, 212, 0.05);
     }
     
@@ -815,7 +815,7 @@
       background: rgba(6, 182, 212, 0.1);
       padding: 0.15rem 0.4rem;
       border-radius: 3px;
-      color: var(--color-cyan);
+      color: var(--color-gold);
     }
     
     /* ===== WHATSAPP ===== */
@@ -840,7 +840,7 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: var(--color-cyan);
+      background: var(--color-gold);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -996,8 +996,8 @@
     }
     
     .flow-step.active {
-      border-color: var(--color-cyan);
-      box-shadow: 0 0 25px var(--color-cyan-glow);
+      border-color: var(--color-gold);
+      box-shadow: 0 0 25px var(--color-gold-glow);
     }
     
     .flow-step.gate {
@@ -1033,13 +1033,13 @@
       position: absolute;
       width: 8px;
       height: 8px;
-      background: var(--color-cyan);
+      background: var(--color-gold);
       border-radius: 50%;
       top: 50%;
       transform: translateY(-50%);
       left: -4px;
       opacity: 0;
-      box-shadow: 0 0 10px var(--color-cyan);
+      box-shadow: 0 0 10px var(--color-gold);
     }
     
     .flow-connector.active .pulse {
@@ -1065,7 +1065,7 @@
       top: 0;
       bottom: 0;
       width: 1px;
-      background: linear-gradient(to bottom, var(--color-cyan), transparent);
+      background: linear-gradient(to bottom, var(--color-gold), transparent);
       opacity: 0.3;
     }
     
@@ -1080,15 +1080,15 @@
       top: 0;
       width: 16px;
       height: 16px;
-      border: 2px solid var(--color-cyan);
+      border: 2px solid var(--color-gold);
       border-radius: 50%;
       background: var(--color-bg);
       transition: all 0.3s ease;
     }
     
     .timeline-item:hover .timeline-marker {
-      background: var(--color-cyan);
-      box-shadow: 0 0 20px var(--color-cyan-glow);
+      background: var(--color-gold);
+      box-shadow: 0 0 20px var(--color-gold-glow);
     }
     
     .timeline-content {
@@ -1099,14 +1099,14 @@
     }
     
     .timeline-content:hover {
-      border-color: var(--color-cyan);
+      border-color: var(--color-gold);
       transform: translateX(4px);
     }
     
     .timeline-phase {
       font-family: var(--font-mono);
       font-size: 0.625rem;
-      color: var(--color-cyan);
+      color: var(--color-gold);
       text-transform: uppercase;
       letter-spacing: 0.15em;
     }
@@ -1147,8 +1147,8 @@
     }
     
     .er-table:hover {
-      border-color: var(--color-cyan);
-      box-shadow: 0 0 20px var(--color-cyan-glow);
+      border-color: var(--color-gold);
+      box-shadow: 0 0 20px var(--color-gold-glow);
       transform: translateY(-2px);
     }
     
@@ -1158,7 +1158,7 @@
       font-family: var(--font-mono);
       font-size: 0.75rem;
       font-weight: 600;
-      color: var(--color-cyan);
+      color: var(--color-gold);
       border-bottom: 1px solid var(--color-border);
     }
     
@@ -1468,8 +1468,8 @@
     }
     
     .loader-spinner::before {
-      border-top-color: var(--color-cyan);
-      border-right-color: var(--color-cyan);
+      border-top-color: var(--color-gold);
+      border-right-color: var(--color-gold);
       animation: spinnerRotate 1.2s linear infinite;
     }
     
@@ -1511,7 +1511,7 @@
     .loader-progress-bar {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, var(--color-cyan), var(--color-gold));
+      background: linear-gradient(90deg, var(--color-gold), var(--color-gold));
       transition: width 0.3s var(--ease-smooth);
     }
     
@@ -1594,7 +1594,7 @@
     </div>
     
     <h1 class="fade-up">
-      Aztec <span class="text-cyan">B.O.S</span>
+      Aztec <span class="text-gold">B.O.S</span>
     </h1>
     
     <p style="margin: 0 auto 1.5rem; text-align: center; font-size: 1.25rem; max-width: 700px;" class="fade-up">
@@ -1633,7 +1633,7 @@
     
     <div style="text-align: center; color: var(--color-text-muted); font-size: 0.875rem;" class="fade-up">
       <span>Prepared by Cold Lava</span>
-      <span class="text-cyan" style="margin: 0 0.5rem;">•</span>
+      <span class="text-gold" style="margin: 0 0.5rem;">•</span>
       <span>February 2026</span>
     </div>
     <div class="card fade-up" style="max-width: 900px; margin: 2rem auto 0; border-color: var(--color-red); background: rgba(239, 68, 68, 0.03); text-align: left;">
@@ -1664,7 +1664,7 @@
     
     <h2 class="fade-up">Your <span class="text-gold">Operating</span> Model</h2>
     
-    <p class="fade-up">Central labour control with one key principle: <strong class="text-cyan">Reallocation First</strong></p>
+    <p class="fade-up">Central labour control with one key principle: <strong class="text-gold">Reallocation First</strong></p>
     
     <div class="grid fade-up" style="margin-top: 2rem;">
       <div class="card">
@@ -1693,15 +1693,15 @@
     
     <div class="grid grid-2 fade-up" style="margin-top: 1rem;">
       <div>
-        <h4 style="color: var(--color-cyan); font-size: 0.9rem; margin-bottom: 1rem;">Blue Collar</h4>
+        <h4 style="color: var(--color-gold); font-size: 0.9rem; margin-bottom: 1rem;">Blue Collar</h4>
         <table class="table" style="font-size: 0.8rem;">
           <tbody>
-            <tr><td>Skilled Landscapers</td><td><span class="badge badge-cyan">CSCS Green</span></td></tr>
-            <tr><td>General Labourers</td><td><span class="badge badge-cyan">CSCS Green</span></td></tr>
-            <tr><td>Groundworkers</td><td><span class="badge badge-cyan">CSCS Green</span></td></tr>
-            <tr><td>Pavers / Kerb Layers</td><td><span class="badge badge-cyan">CSCS Green</span></td></tr>
+            <tr><td>Skilled Landscapers</td><td><span class="badge badge-gold">CSCS Green</span></td></tr>
+            <tr><td>General Labourers</td><td><span class="badge badge-gold">CSCS Green</span></td></tr>
+            <tr><td>Groundworkers</td><td><span class="badge badge-gold">CSCS Green</span></td></tr>
+            <tr><td>Pavers / Kerb Layers</td><td><span class="badge badge-gold">CSCS Green</span></td></tr>
             <tr><td>Plant Operators</td><td><span class="badge badge-gold">CPCS/NPORS</span></td></tr>
-            <tr><td>Drainage Operatives</td><td><span class="badge badge-cyan">CSCS Green</span></td></tr>
+            <tr><td>Drainage Operatives</td><td><span class="badge badge-gold">CSCS Green</span></td></tr>
             <tr><td>Carpenters</td><td><span class="badge badge-purple">CSCS Blue</span></td></tr>
             <tr><td>Bricklayers</td><td><span class="badge badge-purple">CSCS Blue</span></td></tr>
             <tr><td>Stone Masons</td><td><span class="badge badge-purple">CSCS Blue</span></td></tr>
@@ -1737,7 +1737,7 @@
       <span class="label">Live Architecture / 002</span>
     </div>
     
-    <h2 class="fade-up">How It All <span class="text-cyan">Connects</span></h2>
+    <h2 class="fade-up">How It All <span class="text-gold">Connects</span></h2>
     
     <p class="fade-up">Four ways in, one central brain, secure storage. Watch data flow through the system.</p>
     
@@ -1901,7 +1901,7 @@
     
     <div class="grid grid-3 fade-up">
       <div class="card">
-        <h4 class="text-cyan">4 Ways In</h4>
+        <h4 class="text-gold">4 Ways In</h4>
         <p>Liam's dashboard, Site Manager WhatsApp, Sophie AI for recruitment, and Operative messages. All connected.</p>
       </div>
       <div class="card">
@@ -1917,23 +1917,23 @@
     <h3 class="fade-up" style="margin-top: 2rem; color: var(--color-text-muted); font-size: 0.9rem;">Technical Detail: API Endpoints</h3>
     <div class="grid grid-5 fade-up" style="gap: 0.75rem; margin-top: 1rem;">
       <div class="card" style="padding: 0.75rem; text-align: center;">
-        <code style="color: var(--color-cyan); font-size: 0.75rem;">/api/operatives</code>
+        <code style="color: var(--color-gold); font-size: 0.75rem;">/api/operatives</code>
         <p style="font-size: 0.7rem; margin-top: 0.25rem;">Manage workers</p>
       </div>
       <div class="card" style="padding: 0.75rem; text-align: center;">
-        <code style="color: var(--color-cyan); font-size: 0.75rem;">/api/allocations</code>
+        <code style="color: var(--color-gold); font-size: 0.75rem;">/api/allocations</code>
         <p style="font-size: 0.7rem; margin-top: 0.25rem;">Assign to sites</p>
       </div>
       <div class="card" style="padding: 0.75rem; text-align: center;">
-        <code style="color: var(--color-cyan); font-size: 0.75rem;">/api/ncrs</code>
+        <code style="color: var(--color-gold); font-size: 0.75rem;">/api/ncrs</code>
         <p style="font-size: 0.7rem; margin-top: 0.25rem;">Log issues</p>
       </div>
       <div class="card" style="padding: 0.75rem; text-align: center;">
-        <code style="color: var(--color-cyan); font-size: 0.75rem;">/api/webhooks</code>
+        <code style="color: var(--color-gold); font-size: 0.75rem;">/api/webhooks</code>
         <p style="font-size: 0.7rem; margin-top: 0.25rem;">Receive messages</p>
       </div>
       <div class="card" style="padding: 0.75rem; text-align: center;">
-        <code style="color: var(--color-cyan); font-size: 0.75rem;">/api/documents</code>
+        <code style="color: var(--color-gold); font-size: 0.75rem;">/api/documents</code>
         <p style="font-size: 0.7rem; margin-top: 0.25rem;">Store files</p>
       </div>
     </div>
@@ -1956,7 +1956,7 @@
         
         <!-- Top Row: User Interfaces -->
         <g transform="translate(40, 45)">
-          <rect width="180" height="70" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <rect width="180" height="70" rx="6" fill="rgba(212, 175, 55, 0.08)" stroke="#D4AF37" stroke-width="1.5"/>
           <text x="90" y="30" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">Liam Dashboard</text>
           <text x="90" y="48" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10">Web Application</text>
         </g>
@@ -1980,68 +1980,68 @@
         </g>
         
         <!-- Connectors from top boxes down to junction -->
-        <line x1="130" y1="115" x2="130" y2="155" stroke="#22D3EE" stroke-width="1.5" opacity="0.5"/>
+        <line x1="130" y1="115" x2="130" y2="155" stroke="#D4AF37" stroke-width="1.5" opacity="0.5"/>
         <line x1="350" y1="115" x2="350" y2="155" stroke="#34D399" stroke-width="1.5" opacity="0.5"/>
         <line x1="650" y1="115" x2="650" y2="155" stroke="#A78BFA" stroke-width="1.5" opacity="0.5"/>
         <line x1="870" y1="115" x2="870" y2="155" stroke="#D4AF37" stroke-width="1.5" opacity="0.5"/>
         
         <!-- Junction dots -->
-        <circle cx="130" cy="155" r="4" fill="#22D3EE" filter="url(#appGlow2)"/>
+        <circle cx="130" cy="155" r="4" fill="#D4AF37" filter="url(#appGlow2)"/>
         <circle cx="350" cy="155" r="4" fill="#34D399" filter="url(#appGlow2)"/>
         <circle cx="650" cy="155" r="4" fill="#A78BFA" filter="url(#appGlow2)"/>
         <circle cx="870" cy="155" r="4" fill="#D4AF37" filter="url(#appGlow2)"/>
         
         <!-- Horizontal connector to central processing -->
-        <line x1="130" y1="155" x2="870" y2="155" stroke="#22D3EE" stroke-width="1.5" opacity="0.3"/>
+        <line x1="130" y1="155" x2="870" y2="155" stroke="#D4AF37" stroke-width="1.5" opacity="0.3"/>
         
         <!-- Central junction down -->
-        <circle cx="500" cy="155" r="5" fill="#22D3EE" filter="url(#appGlow2)"/>
-        <line x1="500" y1="155" x2="500" y2="185" stroke="#22D3EE" stroke-width="2" opacity="0.5"/>
+        <circle cx="500" cy="155" r="5" fill="#D4AF37" filter="url(#appGlow2)"/>
+        <line x1="500" y1="155" x2="500" y2="185" stroke="#D4AF37" stroke-width="2" opacity="0.5"/>
         
         <!-- Section Label: THE BRAIN -->
         <text x="500" y="180" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="11" letter-spacing="3" font-family="'JetBrains Mono', monospace">THE BRAIN</text>
         
         <!-- Central Processing Box -->
         <g transform="translate(150, 195)">
-          <rect width="700" height="100" rx="8" fill="rgba(34, 211, 238, 0.1)" stroke="#22D3EE" stroke-width="2"/>
+          <rect width="700" height="100" rx="8" fill="rgba(212, 175, 55, 0.1)" stroke="#D4AF37" stroke-width="2"/>
           <text x="350" y="35" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">Central Processing</text>
           <!-- Sub-modules -->
-          <circle cx="100" cy="70" r="4" fill="#22D3EE"/>
-          <text x="100" y="85" text-anchor="middle" fill="#22D3EE" font-size="10">People</text>
-          <text x="230" y="70" text-anchor="middle" fill="#22D3EE" font-size="10">Assignments</text>
-          <text x="350" y="70" text-anchor="middle" fill="#22D3EE" font-size="10">Issues</text>
-          <text x="470" y="70" text-anchor="middle" fill="#22D3EE" font-size="10">Messages</text>
-          <text x="600" y="70" text-anchor="middle" fill="#22D3EE" font-size="10">Documents</text>
+          <circle cx="100" cy="70" r="4" fill="#D4AF37"/>
+          <text x="100" y="85" text-anchor="middle" fill="#D4AF37" font-size="10">People</text>
+          <text x="230" y="70" text-anchor="middle" fill="#D4AF37" font-size="10">Assignments</text>
+          <text x="350" y="70" text-anchor="middle" fill="#D4AF37" font-size="10">Issues</text>
+          <text x="470" y="70" text-anchor="middle" fill="#D4AF37" font-size="10">Messages</text>
+          <text x="600" y="70" text-anchor="middle" fill="#D4AF37" font-size="10">Documents</text>
         </g>
         
         <!-- Central box down to junction -->
-        <line x1="500" y1="295" x2="500" y2="330" stroke="#22D3EE" stroke-width="2" opacity="0.5"/>
-        <circle cx="500" cy="330" r="5" fill="#22D3EE" filter="url(#appGlow2)"/>
+        <line x1="500" y1="295" x2="500" y2="330" stroke="#D4AF37" stroke-width="2" opacity="0.5"/>
+        <circle cx="500" cy="330" r="5" fill="#D4AF37" filter="url(#appGlow2)"/>
         
         <!-- Section Label: WHERE DATA LIVES -->
         <text x="500" y="355" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="11" letter-spacing="3" font-family="'JetBrains Mono', monospace">WHERE DATA LIVES</text>
         
         <!-- TWO paths only: Supabase (left) and External Services (right) -->
-        <line x1="500" y1="330" x2="300" y2="330" stroke="#22D3EE" stroke-width="1.5" opacity="0.4"/>
+        <line x1="500" y1="330" x2="300" y2="330" stroke="#D4AF37" stroke-width="1.5" opacity="0.4"/>
         <line x1="500" y1="330" x2="700" y2="330" stroke="#25D366" stroke-width="1.5" opacity="0.4"/>
         
         <!-- Junction dots -->
-        <circle cx="300" cy="330" r="4" fill="#22D3EE" filter="url(#appGlow2)"/>
+        <circle cx="300" cy="330" r="4" fill="#D4AF37" filter="url(#appGlow2)"/>
         <circle cx="700" cy="330" r="4" fill="#25D366" filter="url(#appGlow2)"/>
         
         <!-- Lines down to boxes -->
-        <line x1="300" y1="330" x2="300" y2="370" stroke="#22D3EE" stroke-width="1.5" opacity="0.5"/>
+        <line x1="300" y1="330" x2="300" y2="370" stroke="#D4AF37" stroke-width="1.5" opacity="0.5"/>
         <line x1="700" y1="330" x2="700" y2="370" stroke="#25D366" stroke-width="1.5" opacity="0.5"/>
         
         <!-- Bottom Row: TWO boxes only -->
         <!-- Supabase (combined PostgreSQL + File Storage) -->
         <g transform="translate(100, 370)">
-          <rect width="400" height="70" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <rect width="400" height="70" rx="6" fill="rgba(212, 175, 55, 0.08)" stroke="#D4AF37" stroke-width="1.5"/>
           <text x="200" y="28" text-anchor="middle" fill="#fff" font-size="15" font-weight="600">Supabase</text>
           <text x="200" y="45" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="10">London Data Centre</text>
-          <text x="120" y="62" text-anchor="middle" fill="#22D3EE" font-size="9">PostgreSQL</text>
-          <text x="200" y="62" text-anchor="middle" fill="#22D3EE" font-size="9">File Storage</text>
-          <text x="280" y="62" text-anchor="middle" fill="#22D3EE" font-size="9">Auth</text>
+          <text x="120" y="62" text-anchor="middle" fill="#D4AF37" font-size="9">PostgreSQL</text>
+          <text x="200" y="62" text-anchor="middle" fill="#D4AF37" font-size="9">File Storage</text>
+          <text x="280" y="62" text-anchor="middle" fill="#D4AF37" font-size="9">Auth</text>
         </g>
         
         <!-- External Services -->
@@ -2104,7 +2104,7 @@
       <span class="label">Technology / 003</span>
     </div>
     
-    <h2 class="fade-up">Technology <span class="text-cyan">Stack</span></h2>
+    <h2 class="fade-up">Technology <span class="text-gold">Stack</span></h2>
     
     <p class="fade-up">Every technology chosen for reliability, security, and long-term support. Here's what we're using and why.</p>
     
@@ -2164,30 +2164,30 @@
         
         <!-- Vercel down to junction, then splits to two destinations -->
         <line x1="450" y1="275" x2="450" y2="310" stroke="#D4AF37" stroke-width="2" opacity="0.6"/>
-        <circle cx="450" cy="310" r="5" fill="#22D3EE" filter="url(#techGlow)"/>
+        <circle cx="450" cy="310" r="5" fill="#D4AF37" filter="url(#techGlow)"/>
         
         <!-- Section Label: WHERE DATA LIVES -->
         <text x="450" y="335" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="11" letter-spacing="3" font-family="'JetBrains Mono', monospace">WHERE DATA LIVES</text>
         
         <!-- TWO paths from junction: left to Supabase, right to External -->
-        <line x1="450" y1="310" x2="295" y2="310" stroke="#22D3EE" stroke-width="1.5" opacity="0.5"/>
+        <line x1="450" y1="310" x2="295" y2="310" stroke="#D4AF37" stroke-width="1.5" opacity="0.5"/>
         <line x1="450" y1="310" x2="660" y2="310" stroke="#25D366" stroke-width="1.5" opacity="0.5"/>
         
-        <circle cx="295" cy="310" r="4" fill="#22D3EE" filter="url(#techGlow)"/>
+        <circle cx="295" cy="310" r="4" fill="#D4AF37" filter="url(#techGlow)"/>
         <circle cx="660" cy="310" r="4" fill="#25D366" filter="url(#techGlow)"/>
         
-        <line x1="295" y1="310" x2="295" y2="350" stroke="#22D3EE" stroke-width="1.5" opacity="0.5"/>
+        <line x1="295" y1="310" x2="295" y2="350" stroke="#D4AF37" stroke-width="1.5" opacity="0.5"/>
         <line x1="660" y1="310" x2="660" y2="350" stroke="#25D366" stroke-width="1.5" opacity="0.5"/>
         
         <!-- Bottom Row: TWO boxes -->
         <!-- Supabase -->
         <g transform="translate(100, 350)">
-          <rect x="0" y="0" width="390" height="100" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <rect x="0" y="0" width="390" height="100" rx="6" fill="rgba(212, 175, 55, 0.08)" stroke="#D4AF37" stroke-width="1.5"/>
           <text x="195" y="32" text-anchor="middle" fill="#fff" font-size="17" font-weight="600">Supabase</text>
           <text x="195" y="50" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11">PostgreSQL + Storage • London</text>
-          <text x="100" y="78" text-anchor="middle" fill="#22D3EE" font-size="9">Database</text>
-          <text x="195" y="78" text-anchor="middle" fill="#22D3EE" font-size="9">File Storage</text>
-          <text x="290" y="78" text-anchor="middle" fill="#22D3EE" font-size="9">Auth</text>
+          <text x="100" y="78" text-anchor="middle" fill="#D4AF37" font-size="9">Database</text>
+          <text x="195" y="78" text-anchor="middle" fill="#D4AF37" font-size="9">File Storage</text>
+          <text x="290" y="78" text-anchor="middle" fill="#D4AF37" font-size="9">Auth</text>
         </g>
         
         <!-- External Services -->
@@ -2206,7 +2206,7 @@
     
     <div class="grid grid-2 fade-up" style="align-items: start;">
       <!-- Supabase -->
-      <div class="card" style="border-left: 3px solid var(--color-cyan);">
+      <div class="card" style="border-left: 3px solid var(--color-gold);">
         <h4 style="display: flex; align-items: center; gap: 0.5rem;">
           <img src="https://cdn.brandfetch.io/supabase.com/w/64/h/64/symbol" alt="Supabase" style="width: 24px; height: 24px;"> Supabase
         </h4>
@@ -2219,7 +2219,7 @@
           <li>Real-time subscriptions for live updates</li>
           <li>99.9% uptime guarantee</li>
         </ul>
-        <span class="badge badge-cyan">Database</span>
+        <span class="badge badge-gold">Database</span>
         <span class="badge badge-green">Auth</span>
         <span class="badge badge-gold">Storage</span>
       </div>
@@ -2239,7 +2239,7 @@
           <li>Used by McDonald's, Twitch, and The Washington Post</li>
         </ul>
         <span class="badge badge-gold">Hosting</span>
-        <span class="badge badge-cyan">CDN</span>
+        <span class="badge badge-gold">CDN</span>
       </div>
       
       <!-- Next.js -->
@@ -2257,7 +2257,7 @@
           <li>Server and client in one codebase. Simpler, faster</li>
         </ul>
         <span class="badge badge-green">Framework</span>
-        <span class="badge badge-cyan">React</span>
+        <span class="badge badge-gold">React</span>
       </div>
       
       <!-- GitHub -->
@@ -2293,7 +2293,7 @@
           <li>~£0.03 per message. Much cheaper than SMS</li>
         </ul>
         <span class="badge" style="background: rgba(37, 211, 102, 0.15); color: #25D366;">Messaging</span>
-        <span class="badge badge-cyan">Official API</span>
+        <span class="badge badge-gold">Official API</span>
       </div>
       
       <!-- OpenAI -->
@@ -2315,8 +2315,8 @@
       </div>
     </div>
     
-    <div class="card fade-up" style="margin-top: 2rem; border-color: var(--color-cyan); background: rgba(6, 182, 212, 0.05);">
-      <h4 style="color: var(--color-cyan);">No Vendor Lock-In</h4>
+    <div class="card fade-up" style="margin-top: 2rem; border-color: var(--color-gold); background: rgba(6, 182, 212, 0.05);">
+      <h4 style="color: var(--color-gold);">No Vendor Lock-In</h4>
       <p>All technologies use open standards. If you ever want to move providers, your data and code come with you. You own everything.</p>
     </div>
   </div>
@@ -2330,7 +2330,7 @@
       <span class="label">Data Flow / 003</span>
     </div>
     
-    <h2 class="fade-up">Labour Request <span class="text-cyan">Flow</span></h2>
+    <h2 class="fade-up">Labour Request <span class="text-gold">Flow</span></h2>
     
     <p class="fade-up">Watch a labour request flow through the system.</p>
     
@@ -2344,8 +2344,8 @@
           <div style="font-weight: 600;">Reallocate</div>
           <div style="font-size: 0.8rem; color: var(--color-text-secondary);">Workers finishing current jobs</div>
         </div>
-        <div style="text-align: center; padding: 1rem; background: rgba(34, 211, 238, 0.1); border-radius: 8px;">
-          <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-cyan);">2</div>
+        <div style="text-align: center; padding: 1rem; background: rgba(212, 175, 55, 0.1); border-radius: 8px;">
+          <div style="font-size: 1.5rem; font-weight: 700; color: var(--color-gold);">2</div>
           <div style="font-weight: 600;">Internal Search</div>
           <div style="font-size: 0.8rem; color: var(--color-text-secondary);">Available pool matches</div>
         </div>
@@ -2369,7 +2369,7 @@
         </defs>
         
         <!-- Main horizontal connector line -->
-        <line x1="80" y1="90" x2="820" y2="90" stroke="#22D3EE" stroke-width="1.5" opacity="0.3"/>
+        <line x1="80" y1="90" x2="820" y2="90" stroke="#D4AF37" stroke-width="1.5" opacity="0.3"/>
         
         <!-- Step 1: Request -->
         <g transform="translate(30, 50)">
@@ -2390,19 +2390,19 @@
         
         <!-- Step 3: Search -->
         <g transform="translate(260, 50)">
-          <rect width="100" height="80" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <rect width="100" height="80" rx="6" fill="rgba(212, 175, 55, 0.08)" stroke="#D4AF37" stroke-width="1.5"/>
           <text x="50" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Search</text>
           <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Labour pool</text>
         </g>
-        <circle cx="310" cy="90" r="4" fill="#22D3EE" filter="url(#flowGlow)"/>
+        <circle cx="310" cy="90" r="4" fill="#D4AF37" filter="url(#flowGlow)"/>
         
         <!-- Step 4: Match -->
         <g transform="translate(375, 50)">
-          <rect width="100" height="80" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <rect width="100" height="80" rx="6" fill="rgba(212, 175, 55, 0.08)" stroke="#D4AF37" stroke-width="1.5"/>
           <text x="50" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Match</text>
           <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Skills + location</text>
         </g>
-        <circle cx="425" cy="90" r="4" fill="#22D3EE" filter="url(#flowGlow)"/>
+        <circle cx="425" cy="90" r="4" fill="#D4AF37" filter="url(#flowGlow)"/>
         
         <!-- Step 5: Offer -->
         <g transform="translate(490, 50)">
@@ -2474,19 +2474,19 @@
         
         <!-- Step 5: Details -->
         <g transform="translate(490, 50)">
-          <rect width="100" height="80" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <rect width="100" height="80" rx="6" fill="rgba(212, 175, 55, 0.08)" stroke="#D4AF37" stroke-width="1.5"/>
           <text x="50" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Details</text>
           <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Personal info</text>
         </g>
-        <circle cx="540" cy="90" r="4" fill="#22D3EE" filter="url(#flowGlow)"/>
+        <circle cx="540" cy="90" r="4" fill="#D4AF37" filter="url(#flowGlow)"/>
         
         <!-- Step 6: Docs -->
         <g transform="translate(605, 50)">
-          <rect width="100" height="80" rx="6" fill="rgba(34, 211, 238, 0.08)" stroke="#22D3EE" stroke-width="1.5"/>
+          <rect width="100" height="80" rx="6" fill="rgba(212, 175, 55, 0.08)" stroke="#D4AF37" stroke-width="1.5"/>
           <text x="50" y="35" text-anchor="middle" fill="#fff" font-size="12" font-weight="600">Docs</text>
           <text x="50" y="52" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9">Upload</text>
         </g>
-        <circle cx="655" cy="90" r="4" fill="#22D3EE" filter="url(#flowGlow)"/>
+        <circle cx="655" cy="90" r="4" fill="#D4AF37" filter="url(#flowGlow)"/>
         
         <!-- Step 7: Qualified (final) -->
         <g transform="translate(720, 50)">
@@ -2508,7 +2508,7 @@
       <span class="label">Database / 004</span>
     </div>
     
-    <h2 class="fade-up">Database <span class="text-cyan">Schema</span></h2>
+    <h2 class="fade-up">Database <span class="text-gold">Schema</span></h2>
     
     <p class="fade-up">10 core tables with full referential integrity.</p>
     
@@ -2571,8 +2571,8 @@
       </div>
     </div>
     
-    <div class="card fade-up" style="border-color: var(--color-cyan); background: rgba(6, 182, 212, 0.05);">
-      <h4 style="color: var(--color-cyan); margin-bottom: 1rem;">What Gets Stored</h4>
+    <div class="card fade-up" style="border-color: var(--color-gold); background: rgba(6, 182, 212, 0.05);">
+      <h4 style="color: var(--color-gold); margin-bottom: 1rem;">What Gets Stored</h4>
       <div class="grid grid-2" style="gap: 1.5rem;">
         <div>
           <p style="margin-bottom: 0.5rem;"><strong>Operatives:</strong> Names, phone numbers, day rates, skills, certifications, ratings</p>
@@ -2784,16 +2784,16 @@
     <p class="fade-up">The system enforces UK labour law automatically on every shift assignment:</p>
     
     <div class="grid grid-3 fade-up" style="margin-top: 1.5rem;">
-      <div class="card" style="border-color: var(--color-cyan);">
-        <h4 style="color: var(--color-cyan);">48-Hour Week</h4>
+      <div class="card" style="border-color: var(--color-gold);">
+        <h4 style="color: var(--color-gold);">48-Hour Week</h4>
         <p style="font-size: 0.9rem;">System tracks weekly hours across all sites. Warns at 44hrs, blocks at 48hrs (unless opt-out on file).</p>
       </div>
-      <div class="card" style="border-color: var(--color-cyan);">
-        <h4 style="color: var(--color-cyan);">11-Hour Rest</h4>
+      <div class="card" style="border-color: var(--color-gold);">
+        <h4 style="color: var(--color-gold);">11-Hour Rest</h4>
         <p style="font-size: 0.9rem;">Minimum 11 hours between shifts enforced. System won't allow back-to-back assignments that violate rest periods.</p>
       </div>
-      <div class="card" style="border-color: var(--color-cyan);">
-        <h4 style="color: var(--color-cyan);">Break Entitlement</h4>
+      <div class="card" style="border-color: var(--color-gold);">
+        <h4 style="color: var(--color-gold);">Break Entitlement</h4>
         <p style="font-size: 0.9rem;">6+ hour shifts require 20min break. System calculates and records break compliance automatically.</p>
       </div>
     </div>
@@ -2806,7 +2806,7 @@
         <span class="badge badge-gold">NPORS</span>
         <span class="badge badge-green">LANTRA</span>
         <span class="badge badge-green">CS30-CS42 (Chainsaw)</span>
-        <span class="badge badge-cyan">First Aid</span>
+        <span class="badge badge-gold">First Aid</span>
       </div>
       <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--color-text-secondary);">System matches job requirements to operative certifications. No cert = no assignment to that equipment.</p>
     </div>
@@ -2841,11 +2841,11 @@
       </div>
     </div>
     
-    <div class="card fade-up" style="margin-top: 1.5rem; border-color: var(--color-cyan); background: rgba(34, 211, 238, 0.05);">
-      <h4 style="color: var(--color-cyan);">Smart Allocation Priority</h4>
+    <div class="card fade-up" style="margin-top: 1.5rem; border-color: var(--color-gold); background: rgba(212, 175, 55, 0.05);">
+      <h4 style="color: var(--color-gold);">Smart Allocation Priority</h4>
       <p>When filling a labour request, the system automatically ranks candidates by:</p>
       <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
-        <span class="badge badge-cyan">1. Average Rating</span>
+        <span class="badge badge-gold">1. Average Rating</span>
         <span class="badge badge-gold">2. Recent Work History</span>
         <span class="badge badge-green">3. Skills Match</span>
         <span class="badge badge-purple">4. Location/Travel Time</span>
@@ -2890,8 +2890,8 @@
     <h2 class="fade-up">Security & <span class="text-red">Data Protection</span></h2>
     
     <div class="grid grid-2 fade-up" style="margin-top: 2rem;">
-      <div class="card" style="border-color: var(--color-cyan);">
-        <h3 style="color: var(--color-cyan); margin-bottom: 1rem;">Data Protection</h3>
+      <div class="card" style="border-color: var(--color-gold);">
+        <h3 style="color: var(--color-gold); margin-bottom: 1rem;">Data Protection</h3>
         <ul style="color: var(--color-text-secondary); line-height: 2.2;">
           <li><strong>Stored in the UK.</strong> London data centre, your data never leaves the country</li>
           <li><strong>Fully encrypted.</strong> Data is scrambled when stored and when transmitted</li>
@@ -2911,8 +2911,8 @@
     </div>
     
     <div class="grid grid-2 fade-up" style="margin-top: 2rem; gap: 1.5rem;">
-      <div class="card" style="border-color: var(--color-cyan);">
-        <h4 style="color: var(--color-cyan);">Data Isolation</h4>
+      <div class="card" style="border-color: var(--color-gold);">
+        <h4 style="color: var(--color-gold);">Data Isolation</h4>
         <p>Each user only sees their own organisation's data. The database enforces this automatically, making it impossible to access another company's operatives.</p>
       </div>
       <div class="card" style="border-color: var(--color-red);">
@@ -2951,7 +2951,7 @@
       <span class="label">Timeline / 007</span>
     </div>
     
-    <h2 class="fade-up">Implementation <span class="text-cyan">Timeline</span></h2>
+    <h2 class="fade-up">Implementation <span class="text-gold">Timeline</span></h2>
     
     <div class="grid grid-2 fade-up" style="margin-top: 2rem; align-items: start;">
       <div class="timeline">
@@ -2995,7 +2995,7 @@
       
       <div>
         <h3>Deliverables</h3>
-        <div class="card" style="margin-bottom: 1rem;"><h4 class="text-cyan">Phase 1</h4><p>✓ Database live<br>✓ Auth working<br>✓ Dashboard shell</p></div>
+        <div class="card" style="margin-bottom: 1rem;"><h4 class="text-gold">Phase 1</h4><p>✓ Database live<br>✓ Auth working<br>✓ Dashboard shell</p></div>
         <div class="card" style="margin-bottom: 1rem;"><h4 class="text-gold">Phase 2</h4><p>✓ Operative management<br>✓ Document tracking<br>✓ Allocations</p></div>
         <div class="card" style="margin-bottom: 1rem;"><h4 class="text-green">Phase 3</h4><p>✓ WhatsApp connected<br>✓ Sophie live<br>✓ NCR via WhatsApp</p></div>
         <div class="card"><h4 class="text-purple">Phase 4</h4><p>✓ UAT complete<br>✓ Training done<br>✓ Go-live</p></div>
@@ -3033,7 +3033,7 @@
       </div>
       
       <div>
-        <h3 style="color: var(--color-cyan);">Your Protections</h3>
+        <h3 style="color: var(--color-gold);">Your Protections</h3>
         
         <div class="card" style="margin-bottom: 1rem; border-color: var(--color-green);">
           <h4 style="color: var(--color-green);">✓ Full Code Ownership</h4>
