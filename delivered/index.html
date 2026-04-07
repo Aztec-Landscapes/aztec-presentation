@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aztec B.O.S: UAT Delivery Summary</title>
+
+  <link rel="icon" type="image/png" href="https://cdn.brandfetch.io/coldlava.ai/w/64/h/64/icon">
+  <link rel="apple-touch-icon" href="https://cdn.brandfetch.io/coldlava.ai/w/180/h/180/icon">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #030305;
+      color: #fff;
+      line-height: 1.7;
+      overflow-x: hidden;
+      letter-spacing: -0.01em;
+    }
+
+    :root {
+      --color-bg: #030305;
+      --color-bg-elevated: #0a0a0f;
+      --color-gold: #D4AF37;
+      --color-gold-glow: rgba(212, 175, 55, 0.35);
+      --color-gold-subtle: rgba(212, 175, 55, 0.08);
+      --color-green: #34D399;
+      --color-red: #F87171;
+      --color-text-primary: rgba(255, 255, 255, 0.95);
+      --color-text-secondary: rgba(255, 255, 255, 0.65);
+      --color-text-muted: rgba(255, 255, 255, 0.35);
+      --color-border: rgba(255, 255, 255, 0.08);
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+    /* --- HERO --- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--color-gold-glow) 0%, transparent 70%);
+      pointer-events: none;
+      opacity: 0.12;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.45rem 1.25rem;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 100px;
+      color: var(--color-gold);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      opacity: 0; transform: translateY(20px);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      opacity: 0; transform: translateY(30px);
+    }
+
+    .hero h1 .gold { color: var(--color-gold); }
+
+    .hero .subtitle {
+      font-size: 1.05rem;
+      color: var(--color-text-secondary);
+      font-weight: 300;
+      max-width: 520px;
+      margin-bottom: 3rem;
+      line-height: 1.75;
+      opacity: 0; transform: translateY(20px);
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 2.5rem;
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+      opacity: 0; transform: translateY(20px);
+    }
+
+    .hero-meta strong { color: var(--color-text-secondary); font-weight: 500; }
+
+    /* --- SECTION --- */
+    .section {
+      padding: 5rem 0;
+      opacity: 0; transform: translateY(40px);
+    }
+
+    .section-label {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-gold);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    p { font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: 0.75rem; line-height: 1.75; }
+    .lead { font-size: 1rem; margin-bottom: 2rem; }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--color-gold);
+      border-radius: 1px;
+      margin: 0 auto;
+      opacity: 0.4;
+    }
+
+    /* --- STATS --- */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-card .number { font-size: 1.75rem; font-weight: 800; line-height: 1; margin-bottom: 0.3rem; }
+    .stat-card .multiplier { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600; color: var(--color-gold); letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+    .stat-card .label { font-size: 0.7rem; color: var(--color-text-muted); font-weight: 500; }
+
+    /* --- BASELINE LIST --- */
+    .baseline-list {
+      padding-left: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .baseline-list li {
+      color: var(--color-text-secondary);
+      margin-bottom: 0.3rem;
+      font-size: 0.9rem;
+    }
+
+    /* --- PHASE BLOCKS --- */
+    .phase-block {
+      margin-bottom: 2rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      backdrop-filter: blur(10px);
+    }
+
+    .phase-header {
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-gold-subtle);
+    }
+
+    .phase-header h3 { font-size: 1rem; font-weight: 600; margin: 0; color: var(--color-text-primary); }
+
+    .phase-tag {
+      font-family: var(--font-mono);
+      background: var(--color-gold-subtle);
+      color: var(--color-gold);
+      padding: 0.25rem 0.65rem;
+      border-radius: 100px;
+      font-size: 0.55rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+    }
+
+    .phase-agreed {
+      padding: 0.75rem 1.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .phase-agreed p { margin: 0; font-size: 0.8rem; color: var(--color-text-muted); }
+    .phase-agreed strong { color: var(--color-text-secondary); }
+
+    .phase-extra-item {
+      padding: 0.75rem 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .phase-extra-item:last-child { border-bottom: none; }
+
+    .extra-num {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--color-gold-subtle);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: var(--color-gold);
+      margin-top: 2px;
+    }
+
+    .extra-content h4 { margin: 0 0 0.15rem 0; font-size: 0.85rem; font-weight: 600; }
+    .extra-content p { margin: 0; font-size: 0.78rem; color: var(--color-text-muted); line-height: 1.55; }
+
+    /* --- FEATURE CARDS --- */
+    .feature-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 0.75rem;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px -10px rgba(0,0,0,0.4);
+    }
+
+    .card-header { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 0.5rem; }
+
+    .card-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      color: var(--color-gold);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.7rem;
+    }
+
+    .card-title { font-size: 0.95rem; font-weight: 700; line-height: 1.3; padding-top: 3px; }
+    .card-body { font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.65; margin-bottom: 0.75rem; }
+
+    .scope-note {
+      background: var(--color-gold-subtle);
+      border: 1px solid rgba(212, 175, 55, 0.12);
+      border-radius: var(--radius-sm);
+      padding: 0.5rem 0.75rem;
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+    }
+
+    .scope-note strong { color: var(--color-gold); font-weight: 600; }
+
+    /* --- SUMMARY --- */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .summary-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .summary-card h4 { color: var(--color-gold); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .summary-card p { margin: 0; font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.6; }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-gold);
+      padding: 1.25rem 1.5rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      backdrop-filter: blur(10px);
+    }
+
+    .highlight-box p { margin: 0; font-size: 0.9rem; }
+
+    /* --- FOOTER --- */
+    .footer {
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .footer .brand {
+      color: var(--color-text-muted);
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .footer .brand .gold { color: var(--color-gold); }
+
+    /* --- BACK LINK --- */
+    .back-link {
+      position: fixed;
+      top: 1.5rem;
+      left: 1.5rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.2s;
+      z-index: 100;
+    }
+
+    .back-link:hover { color: var(--color-gold); }
+
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .summary-grid { grid-template-columns: 1fr; }
+      .hero-meta { flex-direction: column; gap: 0.5rem; }
+      .back-link { position: static; padding: 1rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="/" class="back-link">&larr; Architecture</a>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Development Complete &mdash; Ready for UAT</div>
+  <h1>Aztec B.O.S.<br><span class="gold">Delivery Summary</span></h1>
+  <p class="subtitle">Development is complete and the system is live. This is a summary of everything built ahead of user acceptance testing, including 27 features delivered beyond the original agreement.</p>
+  <div class="hero-meta">
+    <div><strong>Date:</strong> 7 April 2026</div>
+    <div><strong>Client:</strong> Aztec Landscapes</div>
+    <div><strong>Live:</strong> aztec-landscapes-bos.vercel.app</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SUMMARY -->
+  <div class="section">
+    <span class="section-label">Summary</span>
+    <h2>What Was Delivered</h2>
+    <p class="lead">The system is live and ready for testing. This report compares the original agreed scope against what has been built. 27 additional features were delivered at no extra cost.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card"><div class="number">47</div><div class="multiplier">4.7x agreed</div><div class="label">Pages Built</div></div>
+      <div class="stat-card"><div class="number">3</div><div class="multiplier">3x agreed</div><div class="label">Comms Channels</div></div>
+      <div class="stat-card"><div class="number">6</div><div class="multiplier">6x agreed</div><div class="label">AI Capabilities</div></div>
+      <div class="stat-card"><div class="number">8+</div><div class="multiplier">2.7x agreed</div><div class="label">Integrations</div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BASELINE -->
+  <div class="section">
+    <span class="section-label">Baseline</span>
+    <h2>What Was Originally Agreed</h2>
+    <ul class="baseline-list">
+      <li>14-week build across 4 phases</li>
+      <li>Core modules: operatives, Sophie AI recruitment, allocations, compliance, documents, NCRs, RAP scoring, arrivals, dashboard</li>
+      <li>WhatsApp as the only communication channel</li>
+      <li>Sophie AI chatbot for recruitment intake only</li>
+    </ul>
+    <p>Everything below sits on top of the above, which was delivered in full.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PHASE BY PHASE -->
+  <div class="section">
+    <span class="section-label">Phase-by-Phase</span>
+    <h2>Additional Features Per Agreed Phase</h2>
+    <p class="lead">Each additional feature mapped to the original phase it enhances.</p>
+
+    <div class="phase-block">
+      <div class="phase-header"><h3>Phase 1: Discovery &amp; Foundation</h3><span class="phase-tag">Agreed: 2 Weeks</span></div>
+      <div class="phase-agreed"><p><strong>Agreed:</strong> Database live, authentication working, dashboard shell.</p></div>
+      <div class="phase-extra-item"><div class="extra-num">17</div><div class="extra-content"><h4>Audit Trail</h4><p>Dedicated page showing every change: who, what, when, with before/after values.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">23</div><div class="extra-content"><h4>Real-Time Updates</h4><p>All data across the platform updates live without refreshing the page.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">9</div><div class="extra-content"><h4>Pay Grade &amp; Rate Management</h4><p>9 billing grades with 28% margin protection and automatic rate cascading.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">25</div><div class="extra-content"><h4>Location Mapping</h4><p>Postcodes converted to coordinates for operatives and sites.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">27</div><div class="extra-content"><h4>Admin Data Tools</h4><p>Secure bulk export and data management tools.</p></div></div>
+    </div>
+
+    <div class="phase-block">
+      <div class="phase-header"><h3>Phase 2: Core Build</h3><span class="phase-tag">Agreed: 6 Weeks</span></div>
+      <div class="phase-agreed"><p><strong>Agreed:</strong> Operative management, document tracking, allocations.</p></div>
+      <div class="phase-extra-item"><div class="extra-num">4</div><div class="extra-content"><h4>AI Document Verification</h4><p>AI reads passports, driving licences, and CSCS cards automatically.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">5</div><div class="extra-content"><h4>CV Parsing</h4><p>Upload a CV and the system extracts work history and estimated rate.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">8</div><div class="extra-content"><h4>Upskilling Analytics</h4><p>Dashboard tracking every grade change with cost impact, leaderboards, and export.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">11</div><div class="extra-content"><h4>Data Quality Tracking</h4><p>Completeness scoring, gap detection, and one-click profile completion links.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">12</div><div class="extra-content"><h4>Self-Service Document Portal</h4><p>Operatives upload documents from their phone without logging in.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">13</div><div class="extra-content"><h4>Bulk Import</h4><p>Import hundreds of operatives from a spreadsheet with validation and duplicate detection.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">16</div><div class="extra-content"><h4>Privacy Mode</h4><p>One toggle hides all financial figures for safe screen-sharing.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">18</div><div class="extra-content"><h4>Timesheets &amp; PDF</h4><p>Weekly timesheets with approval workflow and PDF download.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">19</div><div class="extra-content"><h4>Reports Module</h4><p>Five report sections with filters and CSV export.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">20</div><div class="extra-content"><h4>Key Person Tracking</h4><p>Flag critical operatives with reason and full history.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">21</div><div class="extra-content"><h4>Onboarding Checklist</h4><p>Four-step onboarding tracked per operative.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">26</div><div class="extra-content"><h4>Multi-Scheme Certifications</h4><p>CPCS, PAL/IPAF, CISRS, NRSWA tracked alongside CSCS.</p></div></div>
+    </div>
+
+    <div class="phase-block">
+      <div class="phase-header"><h3>Phase 3: Communications</h3><span class="phase-tag">Agreed: 3 Weeks</span></div>
+      <div class="phase-agreed"><p><strong>Agreed:</strong> WhatsApp connected, Sophie AI live, NCR reporting via WhatsApp.</p></div>
+      <div class="phase-extra-item"><div class="extra-num">2</div><div class="extra-content"><h4>Outlook Email Integration</h4><p>Emails synced into B.O.S. alongside WhatsApp and SMS in one unified inbox.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">3</div><div class="extra-content"><h4>SMS Channel</h4><p>Send and receive SMS for operatives without WhatsApp.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">6</div><div class="extra-content"><h4>AI Recruitment Adverts</h4><p>AI generates job ad copy for Facebook, LinkedIn, and Indeed.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">7</div><div class="extra-content"><h4>Multi-Language Translation</h4><p>11 languages auto-translated on all inbound and outbound messages.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">10</div><div class="extra-content"><h4>Automated Campaigns</h4><p>Bulk campaigns with follow-ups for document chasing, profile completion, and job offers.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">14</div><div class="extra-content"><h4>Smart WhatsApp Management</h4><p>Handles 24-hour rules automatically with message queuing and manual override.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">24</div><div class="extra-content"><h4>Short Links</h4><p>Clean links for WhatsApp messages instead of long URLs.</p></div></div>
+    </div>
+
+    <div class="phase-block">
+      <div class="phase-header"><h3>Phase 4: Polish &amp; Deploy</h3><span class="phase-tag">Agreed: 3 Weeks</span></div>
+      <div class="phase-agreed"><p><strong>Agreed:</strong> UAT complete, training done, go-live.</p></div>
+      <div class="phase-extra-item"><div class="extra-num">1</div><div class="extra-content"><h4>ALF &mdash; AI Staff Assistant</h4><p>AI co-pilot staff can chat with to search operatives, create allocations, and send messages.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">15</div><div class="extra-content"><h4>Notifications &amp; To-Do</h4><p>Real-time alerts, activity feed, and actionable to-do list in one place.</p></div></div>
+      <div class="phase-extra-item"><div class="extra-num">22</div><div class="extra-content"><h4>Donseed Attendance</h4><p>Biometric scanner integration for automatic shift and timesheet creation. Built and ready.</p></div></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ALL 27 -->
+  <div class="section">
+    <span class="section-label">Detailed Breakdown</span>
+    <h2>All 27 Additional Features</h2>
+    <p class="lead">Each feature was delivered on top of the original agreed scope.</p>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">1</div><div class="card-title">ALF &mdash; AI Staff Assistant</div></div><div class="card-body">An AI assistant built into the system that staff can chat with to search for operatives, create allocations, run campaigns, and send messages &mdash; all from one conversation.</div><div class="scope-note"><strong>Agreed:</strong> Only Sophie (for recruitment). No AI for staff.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">2</div><div class="card-title">Microsoft Outlook Email Integration</div></div><div class="card-body">Connects to Aztec's Outlook account. Incoming emails from operatives automatically appear in B.O.S. alongside WhatsApp and SMS. Includes editable email templates and a unified inbox view.</div><div class="scope-note"><strong>Agreed:</strong> WhatsApp only. Email not mentioned.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">3</div><div class="card-title">SMS Channel</div></div><div class="card-body">Send and receive SMS for operatives who don't have WhatsApp. Appears in the same unified inbox.</div><div class="scope-note"><strong>Agreed:</strong> WhatsApp only.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">4</div><div class="card-title">AI Document Verification</div></div><div class="card-body">AI reads uploaded passports, driving licences, and CSCS cards. Extracts name, date of birth, expiry, and card details automatically. Flags mismatches against the operative's record.</div><div class="scope-note"><strong>Agreed:</strong> Manual document checking only.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">5</div><div class="card-title">CV Parsing</div></div><div class="card-body">Upload a CV and the system reads it, pulls out work history, trade, and an estimated day rate. Staff just confirm or adjust.</div><div class="scope-note"><strong>Agreed:</strong> Not in the original scope.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">6</div><div class="card-title">AI Recruitment Adverts</div></div><div class="card-body">AI generates ready-to-post job adverts for Facebook, LinkedIn, and Indeed &mdash; headline, body copy, and hashtags.</div><div class="scope-note"><strong>Agreed:</strong> Adverts included, but no AI generation.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">7</div><div class="card-title">Multi-Language Translation</div></div><div class="card-body">Messages from operatives in 11 languages are automatically translated to English. Staff replies are translated back into the operative's language.</div><div class="scope-note"><strong>Agreed:</strong> Multi-language for Sophie only (4 languages).</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">8</div><div class="card-title">Upskilling Analytics</div></div><div class="card-body">Full dashboard tracking every grade change: who was upskilled, by which director, at which site, the cost impact, and approval status. Includes trend charts, leaderboards, and CSV export.</div><div class="scope-note"><strong>Agreed:</strong> "No visibility on skills gaps" was a stated problem. No solution was scoped.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">9</div><div class="card-title">Pay Grade &amp; Rate Management</div></div><div class="card-body">9 billing grades with automatic rate enforcement. 28% minimum margin protection. When a grade rate changes, every operative on that grade updates automatically.</div><div class="scope-note"><strong>Agreed:</strong> "Rate matrices" mentioned as a concept only.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">10</div><div class="card-title">Automated Campaigns</div></div><div class="card-body">Bulk message campaigns to chase documents, complete profiles, collect missing data, or send job offers &mdash; with automatic follow-ups and progress tracking per operative.</div><div class="scope-note"><strong>Agreed:</strong> Individual WhatsApp messages only.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">11</div><div class="card-title">Data Quality Tracking</div></div><div class="card-body">Every operative scored on completeness (25 fields). Colour-coded badges show gaps at a glance. One-click button sends a personalised link to the operative asking for the missing info.</div><div class="scope-note"><strong>Agreed:</strong> No data quality tracking.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">12</div><div class="card-title">Self-Service Document Portal</div></div><div class="card-body">Operatives receive a link on their phone, upload their ID and CSCS card without needing a login. AI verifies the documents inline. Works in multiple languages.</div><div class="scope-note"><strong>Agreed:</strong> Staff-managed uploads only.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">13</div><div class="card-title">Bulk Import</div></div><div class="card-body">Upload a spreadsheet and import hundreds of operatives at once. The system validates every row, catches duplicates, and shows a preview before committing.</div><div class="scope-note"><strong>Agreed:</strong> Manual entry only.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">14</div><div class="card-title">Smart WhatsApp Management</div></div><div class="card-body">Handles WhatsApp's 24-hour messaging rules automatically. If the window is closed, the message is queued and delivered as soon as the operative replies. Staff can take over manually at any time.</div><div class="scope-note"><strong>Agreed:</strong> Basic send and receive only.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">15</div><div class="card-title">Notifications &amp; To-Do System</div></div><div class="card-body">Real-time notification bell, activity feed, and a to-do list that surfaces pending document reviews, unread messages, open NCRs, and missing pay rates &mdash; all actionable from one place.</div><div class="scope-note"><strong>Agreed:</strong> Document expiry alerts only.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">16</div><div class="card-title">Privacy Mode</div></div><div class="card-body">One toggle hides all pay rates, charge rates, and margins across the entire system. Useful for screen-sharing or when others are looking over your shoulder.</div><div class="scope-note"><strong>Agreed:</strong> Not in scope.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">17</div><div class="card-title">Audit Trail</div></div><div class="card-body">A dedicated page showing every change made in the system &mdash; who changed what, when, and what the old and new values were.</div><div class="scope-note"><strong>Agreed:</strong> Mentioned in one line. Built as a full standalone module.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">18</div><div class="card-title">Timesheets &amp; PDF Export</div></div><div class="card-body">Weekly timesheets with approval workflow and professional PDF download.</div><div class="scope-note"><strong>Agreed:</strong> Not in the original scope.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">19</div><div class="card-title">Reports Module</div></div><div class="card-body">Five report sections (Compliance, Labour, NCR, RAP, Timesheets) with date filters and CSV export.</div><div class="scope-note"><strong>Agreed:</strong> Only a basic dashboard.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">20</div><div class="card-title">Key Person Tracking</div></div><div class="card-body">Flag important operatives with a reason (skills, location, leadership, etc.) and keep a full history of who flagged them and why.</div><div class="scope-note"><strong>Agreed:</strong> Not in scope.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">21</div><div class="card-title">Onboarding Checklist</div></div><div class="card-body">Track each operative through four onboarding steps: blue sticker, buddy allocation, 2-week review, and induction completion.</div><div class="scope-note"><strong>Agreed:</strong> A single induction form only.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">22</div><div class="card-title">Donseed Attendance Integration</div></div><div class="card-body">Connects to Donseed biometric scanners. Automatically creates shift records and timesheets from check-in/check-out data. Built and ready &mdash; awaiting API access.</div><div class="scope-note"><strong>Agreed:</strong> WhatsApp-based arrival confirmation only.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">23</div><div class="card-title">Real-Time Updates</div></div><div class="card-body">Every change across the system appears live &mdash; no page refresh needed. Covers the dashboard, communications, notifications, and all data tables.</div><div class="scope-note"><strong>Agreed:</strong> Not scoped as a feature.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">24</div><div class="card-title">Short Links</div></div><div class="card-body">Clean, short URLs for document upload links and job offers sent via WhatsApp.</div><div class="scope-note"><strong>Agreed:</strong> Not in scope.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">25</div><div class="card-title">Location Mapping</div></div><div class="card-body">Postcodes automatically converted to map coordinates for operatives and sites, ready for travel distance calculations.</div><div class="scope-note"><strong>Agreed:</strong> Postcodes stored as text only.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">26</div><div class="card-title">Multi-Scheme Certifications</div></div><div class="card-body">CPCS, PAL/IPAF, CISRS, and NRSWA cards tracked individually with card numbers, types, and expiry dates.</div><div class="scope-note"><strong>Agreed:</strong> CSCS only.</div></div>
+
+    <div class="feature-card"><div class="card-header"><div class="card-num">27</div><div class="card-title">Admin Data Tools</div></div><div class="card-body">Secure tools for bulk data export and management, with safety checks before any destructive actions.</div><div class="scope-note"><strong>Agreed:</strong> Not in scope.</div></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CLOSING -->
+  <div class="section">
+    <span class="section-label">Closing</span>
+    <h2>Where the Additional Value Sits</h2>
+    <div class="summary-grid">
+      <div class="summary-card"><h4>More Ways to Communicate</h4><p>Email and SMS added alongside WhatsApp, with Outlook integration and a unified inbox.</p></div>
+      <div class="summary-card"><h4>AI Throughout the System</h4><p>Staff assistant, document verification, CV reading, translation, and ad generation &mdash; five AI capabilities beyond Sophie.</p></div>
+      <div class="summary-card"><h4>Visibility &amp; Control</h4><p>Upskilling analytics, reports, data quality tracking, and pay grade governance &mdash; tools to see what's happening and keep it in check.</p></div>
+      <div class="summary-card"><h4>Less Manual Work</h4><p>Automated campaigns, smart messaging, background jobs, real-time updates, and self-service portals for operatives.</p></div>
+    </div>
+    <div class="highlight-box" style="margin-top: 1.5rem;">
+      <p>All 27 features were delivered ahead of UAT, at no additional cost.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="brand">Cold Lava <span class="gold">AI</span></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Hero animations
+  gsap.to('.hero-badge', { opacity: 1, y: 0, duration: 0.8, delay: 0.2, ease: 'power3.out' });
+  gsap.to('.hero h1', { opacity: 1, y: 0, duration: 0.8, delay: 0.4, ease: 'power3.out' });
+  gsap.to('.hero .subtitle', { opacity: 1, y: 0, duration: 0.8, delay: 0.6, ease: 'power3.out' });
+  gsap.to('.hero-meta', { opacity: 1, y: 0, duration: 0.8, delay: 0.8, ease: 'power3.out' });
+
+  // Section scroll animations
+  document.querySelectorAll('.section').forEach(section => {
+    gsap.to(section, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%',
+        once: true
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
